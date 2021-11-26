@@ -1,0 +1,78 @@
+.navBar-container {
+    /* width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    position: fixed; */
+    position: fixed;
+  width: 100vw;
+  height: 45px;
+  z-index: 99;
+}
+
+.navBar-container .bar{
+    display: flex;
+    height: 45px;
+    align-items: center;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.navBar-container .home-logo{
+    height: 80%;
+    flex: 1.7;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.navBar-container .btn-board{
+    flex: 1.1;
+}
+
+.navBar-container .btn-search{
+    flex: 5;
+}   
+
+.navBar-container .btn-mypage{
+    margin-left: auto;
+    text-align: left;
+    flex: 1;
+
+}
+
+.navBar-container .btn-login{
+    margin-left: auto;
+    text-align: left;
+    flex: 1.2;
+
+}
+
+.navBar-container .btn-logout{
+    margin-left: auto;
+    text-align: left;
+    flex: 1;
+
+}
+
+.navBar-container .btn-signup{
+    margin-left: auto;
+    text-align: left;
+    flex: 1.2;
+
+}
+
+
+.navBar-container .btn-admin{
+    margin-left: auto;
+    text-align: left;
+    flex: 0.8;
+
+}
+
+.navBar-container span{
+    cursor: pointer;
+}
