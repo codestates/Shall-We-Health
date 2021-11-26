@@ -8,6 +8,8 @@ const postRouter = require("./router/postRouter");
 const chatRouter = require("./router/chatRouter");
 const adminRouter = require("./router/adminRouter");
 const mypageRouter = require("./router/mypageRouter");
+require("socket.io");
+const { Server } = require("socket.io");
 
 /*sequelize 설정*/
 const sequelize = new Sequelize(
@@ -34,6 +36,17 @@ testConnection();
 
 /*서버 설정*/
 const app = express();
+
+const http = require("http").createServer(app);
+const io = new Server(http, {
+  cors: {
+    origin: "*",
+    credentials: true,
+  },
+});
+
+module.exports = io;
+
 app.use(cookieParser());
 app.use(express.json({ strict: false }));
 app.use(
@@ -44,7 +57,7 @@ app.use(
   })
 );
 
-let server = app.listen(process.env.PORT, () => {
+let server = http.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);
 });
 module.exports = server;
