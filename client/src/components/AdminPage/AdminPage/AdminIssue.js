@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "react-js-pagination";
 import ModalIssue from './ModalIssue';
 
