@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { upload, lists } = require("../controllers/chat");
+const { create, message, lists } = require("../controllers/chat");
 
-router.post("/", upload);
+router.post("/", create);
+router.post("/message", message);
 router.get("/", lists);
+
 module.exports = router;
