@@ -10,9 +10,19 @@ module.exports = {
       },
       hostId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+          as: "hostId",
+        },
       },
       guestId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+          as: "hostId",
+        },
       },
       reserved_at: {
         type: Sequelize.DATE,
