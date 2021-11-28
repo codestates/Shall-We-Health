@@ -11,7 +11,8 @@ import FindParter from './pages/FindPartner';
 import Board from './pages/Board';
 import MyPage from './pages/MyPage';
 import AdminPage from './pages/AdminPage';
-import Chat from './components/View.js/Chat'
+import Chat from './components/View.js/Chat';
+import Pagination from './components/Pagination/Pagination';
 
 function App() {
   return (
@@ -41,9 +42,9 @@ function App() {
         <Route path='/mypage' component={MyPage} />
         <Route path='/admin' component={AdminPage} />
         <Route path='/chat' component={Chat} />
+        <Route path='/pagination' component={Pagination} />
       </Switch>
     </div>
-    
   );
 }
 
