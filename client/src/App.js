@@ -11,11 +11,13 @@ import FindParter from './pages/FindPartner'
 import Board from './pages/Board'
 import MyPage from './pages/MyPage';
 import AdminPage from './pages/AdminPage';
+import ModifyUserInfo from './components/MyPage/ModifyUserInfo';
+
 
 function App() {
   return (
     <div className="App">
-      <NavigationBar/>
+      <NavigationBar />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
@@ -27,6 +29,8 @@ function App() {
         <Route path='/view' component={View} />
         <Route path='/mypage' component={MyPage} />
         <Route path='/admin' component={AdminPage} />
+        <Route path='/modifyUserInfo' component={ModifyUserInfo} />
+
       </Switch>
     </div>
   );
