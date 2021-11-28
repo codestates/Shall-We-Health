@@ -28,8 +28,8 @@ module.exports = {
         type: Sequelize.DATE,
       },
       isMatched: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       location: {
         type: Sequelize.JSON,
@@ -40,10 +40,12 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
       },
     });
   },
