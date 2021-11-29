@@ -1,0 +1,80 @@
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1024px;
+  min-width: 768px;
+  margin: 0 auto;
+  /* box-shadow: 5px 10px 20px rgb(187, 187, 187); */
+  height: 90vh;
+}
+
+.home-logo {
+  background-image: url('./logo.svg');
+  width: 270px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: 40px;
+}
+
+.signup-container input {
+  outline: none;
+  border: #39cfd9 solid 2px;
+  width: 345px;
+  height: 35px;
+  font-size: 16px;
+}
+
+.signup-container button {
+  background-color: #2ab2bb;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px 5px 10px;
+}
+
+.signup-container button:hover {
+  cursor: pointer;
+}
+.signup-container .signup-box {
+  display: flex;
+}
+
+.signup-container .text {
+  font-weight: 650;
+}
+
+.signup-container .btn-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-container .btn-confirm {
+  margin: 25px 0px 45px 20px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.signup-container .ment,
+.text-checkment {
+  text-align: right;
+  color: #ff7373;
+  padding-bottom: 20px;
+}
+
+.signup-container .btn-signup {
+  font-size: 18px;
+  padding: 8px 150px 8px 140px;
+  font-weight: 700;
+  justify-self: center;
+}
+
+.signup-container .text-sentMail {
+  /* visibility: hidden; */
+  text-align: center;
+  font-size: 25px;
+  font-weight: 800;
+  padding: 100px 30px 30px 30px;
+}

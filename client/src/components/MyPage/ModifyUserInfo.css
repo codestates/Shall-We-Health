@@ -1,0 +1,63 @@
+.modifyuserinfo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1024px;
+  min-width: 768px;
+  margin: 0 auto;
+}
+
+.modifyuserinfo-container table {
+  margin-top: 100px;
+}
+
+.modifyuserinfo-container td {
+  text-align: center;
+}
+
+.modifyuserinfo-container input {
+  outline: none;
+  border: #39cfd9 solid 2px;
+  width: 345px;
+  height: 35px;
+  font-size: 16px;
+}
+
+.modifyuserinfo-container button {
+  background-color: #2ab2bb;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px 5px 10px;
+  width: 100px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.modifyuserinfo-container .text {
+  font-weight: 650;
+  text-align: start;
+}
+
+.modifyuserinfo-container .btn-nickname-confirm {
+  margin-left: 20px;
+}
+
+.modifyuserinfo-container .text-wrong {
+  text-align: right;
+  color: #ff7373;
+  padding-bottom: 20px;
+}
+
+.modifyuserinfo-container .btn-modify {
+  padding: 10px 20px 10px 20px;
+  background-color: #39cfd9;
+  margin-top: 50px;
+}
+
+.modifyuserinfo-container .btn-quit {
+  background-color: white;
+  color: #acacac;
+  margin: 10px;
+}
