@@ -9,6 +9,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Post.belongsTo(models.User, {
+        onDelete: "SET NULL",
+      });
+      Post.hasMany(models.Issue, {
+        foreignKey: {
+          name: "postId",
+        },
+        onDelete: "SET NULL",
+      });
+      Post.hasOne(models.Chat, {
+        foreignKey: {
+          name: "roomId",
+        },
+        onDelete: "SET NULL",
+      });
+      Post.hasMany(models.Thumbsup, {
+        foreignKey: {
+          name: "postId",
+        },
+        onDelete: "SET NULL",
+      });
     }
   }
   Post.init(

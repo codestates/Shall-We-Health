@@ -1,0 +1,288 @@
+.adminpage-container{
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminpage-container .admin-title{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(200, 200, 200);
+}
+
+.adminpage-container .admin-title img{
+    height: 80%;
+    margin: 0 10px;
+}
+
+.adminpage-container .admin-title div{
+    font-size: 1.2em;
+    font-weight: 500;
+    color: rgb(53, 53, 53);
+}
+
+.adminpage-container .admin-tap{
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.adminpage-container .admin-tap span{
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.adminpage-container .admin-tap span.selected{
+    font-weight: 700;
+    padding-bottom: 5px;
+    border-bottom: 4px solid rgb(85, 85, 85);
+}
+
+/*매칭 관리*/
+.adminmatch-container{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminpage-container .box-search{
+    display: flex;
+    align-items: center;
+}
+
+.adminpage-container .box-search .search-box{
+    margin-left:auto;
+}
+
+.adminpage-container .search-box{
+    margin-left: auto;
+    padding: 3px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #838282;
+    border-radius: 2px;
+    width: 200px;
+}
+
+.adminpage-container #search {
+    padding: 0;
+    width: 140px;
+    border:none;
+    background: none;
+    outline: none;
+    float: left;
+    font-size: 0.8rem;
+    line-height: 20px;
+    margin-left: 20px;
+  }
+
+.adminpage-container #searchButton {
+    text-decoration: none;
+    float: right;
+    width: 20px;
+    height: 20px;
+    background-color: #8d8d8d;
+    border-radius: 50%;
+    display: flex;
+    font-size: 0.7em;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+    border: 2px solid #8d8d8d;
+  }
+
+.adminmatch-container .table-data{
+    text-align: center;
+    margin: 5px auto;
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.adminmatch-container .table-data th{
+    height: 60px;
+    vertical-align: middle;
+    border-bottom: 3px solid #2AB2BB;
+}
+
+.adminmatch-container .table-data tr{
+    border-bottom: 1px solid #dfdfdf;
+    height: 60px;
+    font-size: 0.9em;
+    color: rgb(68, 68, 68);
+}
+
+.adminmatch-container .table-data .date{
+    width: 15%
+}
+
+.adminmatch-container .table-data .location{
+    width: 27%
+}
+
+.adminmatch-container .table-data .target{
+    width: 25%
+}
+
+.adminmatch-container .table-data .match{
+    width: 20%
+}
+
+.adminmatch-container .table-data .delete{
+    width: 10%
+}
+
+.adminmatch-container .table-data .box-none{
+    height: 420px;
+}
+
+.adminmatch-container .table-data .btn-delete{
+    cursor: pointer;
+}
+
+.adminmatch-container .box-paging{
+    margin: 30px 0;
+}
+
+/*유저 괸리*/
+.adminuser-container{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminuser-container .table-data{
+    text-align: center;
+    margin: 5px auto;
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.adminuser-container .table-data th{
+    height: 60px;
+    vertical-align: middle;
+    border-bottom: 3px solid #2AB2BB;
+}
+
+.adminuser-container .table-data tr{
+    border-bottom: 1px solid #dfdfdf;
+    height: 60px;
+    font-size: 0.9em;
+    color: rgb(68, 68, 68);
+}
+
+.adminuser-container .table-data .email{
+    width: 20%
+}
+
+.adminuser-container .table-data .nickname{
+    width: 20%
+}
+
+.adminuser-container .table-data .hostNum{
+    width: 13%
+}
+
+.adminuser-container .table-data .guestNum{
+    width: 13%
+}
+
+.adminuser-container .table-data .delete{
+    width: 10%
+}
+
+.adminuser-container .table-data .box-none{
+    height: 420px;
+}
+
+.adminuser-container .table-data .btn-delete{
+    cursor: pointer;
+}
+
+.adminuser-container .box-paging{
+    margin: 30px 0;
+}
+
+/*신고 내역*/
+.adminissue-container{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminissue-container .table-data{
+    text-align: center;
+    margin: 5px auto;
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.adminissue-container .table-data th{
+    height: 60px;
+    vertical-align: middle;
+    border-bottom: 3px solid #2AB2BB;
+}
+
+.adminissue-container .table-data tr{
+    border-bottom: 1px solid #dfdfdf;
+    height: 60px;
+    font-size: 0.9em;
+    color: rgb(68, 68, 68);
+    cursor: pointer;
+}
+
+.adminissue-container .table-data .issue-date{
+    width: 10%
+}
+
+.adminissue-container .table-data .date{
+    width: 20%
+}
+
+.adminissue-container .table-data .location{
+    width: 20%
+}
+
+.adminissue-container .table-data .target{
+    width: 15%
+}
+
+.adminissue-container .table-data .reporter{
+    width: 15%
+}
+
+.adminissue-container .table-data .box-none{
+    height: 420px;
+}
+
+.adminissue-container .table-data .btn-delete{
+    cursor: pointer;
+}
+
+.adminissue-container .box-paging{
+    margin: 30px 0;
+}
+
+.adminpage-container .pagination { display: flex; justify-content: center; margin-top: 15px; }
+.adminpage-container ul { list-style: none; padding: 0; }
+.adminpage-container ul.pagination li { display: inline-block; width: 30px; height: 30px; margin: 0 2px; display: flex; justify-content: center; align-items: center; font-size: 1rem; } 
+.adminpage-container ul.pagination li:first-child{ } 
+.adminpage-container ul.pagination li:last-child{  } 
+.adminpage-container ul.pagination li a { text-decoration: none; color: #696969; font-size: 1rem; } 
+.adminpage-container ul.pagination li.active a { color: white; } 
+.adminpage-container ul.pagination li.active { background-color: #39CFD9; border-radius: 20px;} 
+/* .board-container ul.pagination li a:hover, ul.pagination li a.active { color: #39CFD9;}  */
+.adminpage-container .page-selection { width: 48px; height: 30px; color: #39CFD9; }

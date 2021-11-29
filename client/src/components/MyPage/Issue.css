@@ -1,0 +1,84 @@
+.issue-container{
+}
+
+.issue-container .box-issue{
+    max-width: 1024px;
+    width: 100%;
+    /* min-width: 768px; */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.issue-container .issue-title {
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+.issue-container .issue-info {
+    text-align: left;
+    margin-left: 10px;
+    color: rgb(54, 54, 54)
+}
+
+.issue-container .issue-script {
+    text-align: left;
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: rgb(117, 117, 117);
+}
+
+.issue-container .issue-content{
+    margin: 5px 10px;
+    height: 200px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    vertical-align: top;
+    padding: 10px 10px;
+}
+
+.issue-container .issue-content:focus{
+    outline: none !important;
+    border: 1px solid gray;
+}
+
+
+.issue-container .box-issue-btn{
+    display: flex;
+    margin: 10px 0;
+    text-align: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+.issue-container span#btn-cancel{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#bdbdbd;
+    padding-top: 3px;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+.issue-container span#btn-issue{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#2AB2BB;
+    padding-top: 3px;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 5px;
+  }
