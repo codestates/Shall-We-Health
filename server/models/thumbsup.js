@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Thumbsup.belongsTo(models.Post, {
+        onDelete: "SET NULL",
+      });
+      Thumbsup.belongsTo(models.User, {
+        onDelete: "CASCADE",
+      });
     }
   }
   Thumbsup.init(
