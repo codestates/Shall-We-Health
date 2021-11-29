@@ -1,0 +1,90 @@
+.findmap-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.findmap-container .searchResult-table {
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+  /* border: 1px black solid; */
+}
+
+.findLocation-search .inputForm {
+  margin: 2%;
+}
+.findpartner-container .input-textbox {
+  border: none;
+  font-size: 1.25em;
+  width: 200px;
+}
+
+.findpartner-container .search-button {
+  font-size: 1.2em;
+  border: none;
+  background-color: white;
+  color: rgba(39, 39, 38, 0.904);
+}
+
+.findmap-container .search-section {
+  border: solid 1px black;
+  width: 250px;
+  height: 30px;
+  border-radius: 4px;
+  margin: 2%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.findmap-container .findmap-search {
+  /* border: black solid 1px; */
+  width: 295px;
+}
+
+.findmap-container .search-section {
+  margin-left: auto;
+  margin-right: auto;
+}
+.findmap-container .search-result {
+  margin-top: 30px;
+  margin-left: 2%;
+  font-size: 1.25em;
+}
+
+.findmap-container .place-name {
+  font-size: 1em;
+  margin: 1%;
+}
+
+.findmap-container .place-address {
+  font-size: 1em;
+  margin: 1%;
+}
+.findmap-container .place-phone {
+  font-size: 0.9em;
+  margin: 1%;
+}
+
+.findmap-container .place-list {
+  margin: 3%;
+  padding: 2%;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.findmap-container .place-list:hover {
+  background-color: #39cfd9;
+  color: white;
+}
+.findmap-container .emapty-result {
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.findmap-container .place-list-container {
+  border-bottom: black 1px solid;
+  width: 250px;
+}
+
+.findmap-container .showmap {
+  margin-left: auto;
+}
