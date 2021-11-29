@@ -1,0 +1,97 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  background-color: rgb(228, 228, 228);
+  border-radius: 10px;
+}
+
+.chat-container .chat-open-comment {
+  padding: 5px 0 5px 0;
+  color: #ffffff;
+  text-align: center;
+  background-color: rgb(115, 134, 173);
+  border-radius: 10px;
+}
+
+.chat-container .chat-messages {
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+  max-height: 350px;
+  overflow-y: scroll;
+  padding: 0 0 10px 0;
+}
+
+.chat-container .my-chat-sort {
+  align-self: flex-end;
+  text-align: right;
+  max-width: 170px;
+  display: inline-block;
+  word-break: break-all;
+}
+
+.chat-container .my-chat,
+.other-chat {
+  padding: 7px;
+  background-color: white;
+  max-width: 170px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-right: 10px;
+  display: inline-block;
+  word-break: break-all;
+}
+
+.chat-container .other-chat {
+  background-color: #39cfd9;
+  margin-left: 10px;
+}
+
+.chat-container .my-info,
+.other-info {
+  margin-top: 3px;
+  max-width: 170px;
+  font-size: 13px;
+  margin-right: 10px;
+  font-weight: 700;
+  color: rgb(49, 49, 49);
+}
+
+.chat-container .other-info {
+  margin-left: 10px;
+}
+
+.chat-container .input-message {
+  border: none;
+  width: 80%;
+  height: 30px;
+  margin: 10px 10px 10px 5%;
+  border-radius: 30px;
+  padding-left: 10px;
+}
+
+.chat-container .input-message:focus {
+  outline: none;
+  border: none;
+}
+
+.chat-container .btn-send {
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #39cfd9;
+  width: 10%;
+  height: 30px;
+  text-align: center;
+  border-radius: 20px;
+  font-weight: 700;
+  min-width: 60px;
+  margin-right: 10px;
+}
+
+.input-send-line {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}

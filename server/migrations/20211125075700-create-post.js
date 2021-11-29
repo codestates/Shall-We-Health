@@ -10,16 +10,26 @@ module.exports = {
       },
       hostId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+          as: "hostId",
+        },
       },
       guestId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+          as: "hostId",
+        },
       },
       reserved_at: {
         type: Sequelize.DATE,
       },
       isMatched: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       location: {
         type: Sequelize.JSON,
@@ -30,10 +40,12 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
       },
     });
   },

@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Issue.belongsTo(models.Post, {
+        onDelete: "SET NULL",
+      });
+      Issue.belongsTo(models.User, {
+        onDelete: "SET NULL",
+      });
     }
   }
   Issue.init(
