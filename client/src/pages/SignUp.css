@@ -11,7 +11,7 @@
 }
 
 .home-logo {
-  background-image: url('./logo.svg');
+  background-image: url('../img/logo.svg');
   width: 270px;
   height: 200px;
   background-repeat: no-repeat;
