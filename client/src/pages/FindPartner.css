@@ -1,0 +1,183 @@
+body {
+  background-color: #f4f4f49d;
+}
+.findpartner-container {
+  background-color: white;
+  max-width: 1024px;
+  min-width: 1024px;
+  padding-top: 15px;
+  margin: 150px auto 150px auto;
+}
+
+.findpartner-container .datepick-container {
+  border-top: #39cfd9 solid 3px;
+  margin: 5%;
+}
+
+.findpartner-container .datepick-title {
+  font-size: 1.25em;
+  margin: 2%;
+}
+.findpartner-container .datepick-main {
+  padding: 3% 25% 5% 25%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.findpartner-container .date-title {
+  font-size: 1.1em;
+}
+.findpartner-container .time-title {
+  font-size: 1.1em;
+}
+.findpartner-container .minute-title {
+  font-size: 1.1em;
+}
+
+.findpartner-container .location-container {
+  border-top: #39cfd9 solid 3px;
+  margin: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.findpartner-container .map-section {
+  margin: 1%;
+}
+
+.findpartner-container .input-search {
+  width: 150px;
+}
+
+.findpartner-container .location-title {
+  font-size: 1.25em;
+  margin: 2%;
+}
+
+.findpartner-container .weight-title {
+  font-size: 1.25em;
+  margin: 2%;
+}
+.findpartner-container .weight-options {
+  width: 120px;
+  height: 40px;
+  margin: 1%;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #9ca2a3;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+.findpartner-container .weight-options:checked {
+  background-color: #39cfd9;
+}
+.findpartner-container .weight-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.findpartner-container .weight-container {
+  border-top: #39cfd9 solid 3px;
+  margin: 5%;
+}
+
+.findpartner-container .bodypart-container {
+  border-top: #39cfd9 solid 3px;
+  margin: 5%;
+}
+
+.findpartner-container .message-container {
+  border-top: #39cfd9 solid 3px;
+  margin: 5%;
+}
+
+.findpartner-container .button-container {
+  /* border: black solid 1px; */
+  margin: 15%;
+  padding-bottom: 10%;
+}
+
+.findpartner-container .button-section {
+  text-align: center;
+}
+
+.findpartner-container .findpartner-button {
+  height: 70px;
+  width: 240px;
+  font-size: 1.5em;
+  background-color: #39cfd9;
+  color: white;
+  font-weight: 900;
+  border: none;
+  border-radius: 30px;
+}
+
+.findpartner-container .message-title {
+  font-size: 1.25em;
+  margin: 2%;
+}
+.findpartner-container .message-input {
+  width: 800px;
+  height: 200px;
+  border-radius: 13px;
+  font-size: 1.25em;
+  padding: 3%;
+  text-align: top;
+  resize: none;
+}
+.findpartner-container .message-wrap {
+  text-align: center;
+}
+
+.findpartner-container .bodypart-title {
+  font-size: 1.25em;
+  margin: 2%;
+}
+
+.findpartner-container .bodypart-section {
+  /* text-align: center; */
+  margin-left: 10%;
+}
+
+.findpartner-container .body-options {
+  width: 100px;
+  height: 40px;
+  margin: 1%;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #9ca2a3;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.findpartner-container .weight-options-sample {
+  width: 120px;
+  height: 40px;
+  margin: 1%;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #39cfd9;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.findpartner-container .body-options-sample {
+  width: 100px;
+  height: 40px;
+  margin: 1%;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #39cfd9;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+}
