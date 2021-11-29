@@ -1,0 +1,69 @@
+.confirm-container{
+    width: 100%;
+    height: 100%;
+    top: 0; 
+    left: 0;
+    position: fixed;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+  }
+  
+  .confirm-container .box-confirm{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 20%; /*조절필요*/
+    height: 25%; /*조절필요*/
+    min-width: 300px;
+    min-height: 220px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .confirm-container .confirm-message{
+    margin: 15px 0;
+    font-weight: 500;
+    height: 60%;
+  }
+  
+  .confirm-container .box-confirm-btn{
+    display: flex;
+  }
+  
+  .confirm-container span#btn-cancel{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#bdbdbd;
+    padding-top: 3px;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .confirm-container span#btn-confirm{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#2AB2BB;
+    padding-top: 3px;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 5px;
+  }
