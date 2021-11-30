@@ -10,12 +10,18 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Post.belongsTo(models.User, {
+        foreignKey: "hostId",
+        as: "hosts",
+        onDelete: "SET NULL",
+      });
+      Post.belongsTo(models.User, {
+        foreignKey: "guestId",
+        as: "guests",
         onDelete: "SET NULL",
       });
       Post.hasMany(models.Issue, {
-        foreignKey: {
-          name: "postId",
-        },
+        foreignKey: "postId",
+        as: "posts",
         onDelete: "SET NULL",
       });
       Post.hasOne(models.Chat, {

@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const { user } = require("../../models");
+const { User } = require("../../models");
 
 module.exports = async (req, res) => {
   try {
@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
       });
     }
   } catch (err) {
+    console.log(err);
     throw err;
   }
 };
