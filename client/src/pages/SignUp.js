@@ -20,7 +20,7 @@ export default function SignUp() {
         : (
           <div className='signup-box'>
             <div>
-              <div className='text'>닉네임</div>
+              <div className='text'>닉네임(2자 이상 8자 이내)</div>
               <input name='nickname' />
               <div className='text-checkment'>사용중인 닉네임 입니다</div>
               {/* <div className='text-checkment'>사용가능한 닉네임 입니다</div> */}
