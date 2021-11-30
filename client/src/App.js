@@ -7,7 +7,7 @@ import Footer from './pages/Footer';
 import View from './pages/View';
 import SignUp from './pages/SignUp';
 import FindPw from './pages/FindPw';
-import FindParter from './pages/FindPartner';
+import FindPartner from './pages/FindPartner';
 import Board from './pages/Board';
 import MyPage from './pages/MyPage';
 import AdminPage from './pages/AdminPage';
