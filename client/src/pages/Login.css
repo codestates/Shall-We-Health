@@ -1,109 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .login-container {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: block;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  text-align: center;
+}
+
+.login-container .login-modal {
+  font-family: 'Roboto Mono', monospace;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  min-width: 400px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 30px;
+  padding: 10px 0;
+  min-height: 550px;
+  max-height: 550px;
+}
+
+.login-container .fadeIn {
+  animation: fadeIn 0.5s;
 }
 
 .login-container .home-logo {
-  background-image: url('./logo.svg');
-  width: 300px;
-  height: 200px;
+  background-image: url('../img/logo.svg');
+  height: 80px;
   background-repeat: no-repeat;
+  margin-left: 20px;
+}
+
+.login-container .btn-loginClose {
+  background-image: url('../img/X.svg');
+  width: 20px;
+  height: 30px;
+  background-repeat: no-repeat;
+  align-self: flex-end;
+  margin-right: 5%;
   background-size: 100% 100%;
-  margin-bottom: 40px;
 }
 
-.login-container .login-inner-contanier {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1024px;
-  min-width: 768px;
-  text-align: center;
-  padding-top: 40px;
-  align-items: center;
-}
-
-.login-container .inputEmail-text,
-.inputPw-text {
-  padding-right: 30%;
+.login-container .text-email,
+.login-container .text-pw {
+  padding-right: 50%;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 17px;
+  color: rgb(56, 56, 56);
 }
 
-.login-container .email-underbar,
-.pw-underbar {
-  width: 50px;
-  border-top: 2px #39cfd9 solid;
-  margin: 0 30% 5px 0;
+.login-container .text-email {
+  padding-right: 60%;
 }
 
-.login-container .pw-underbar {
-  width: 85px;
-}
-
-.btn-login {
+.login-container .btn-login {
   border: none;
-  outline: none;
   color: white;
   background: #2ab2bb;
   font-size: 20px;
   font-weight: 700;
-  width: 100px;
+  width: 280px;
   padding: 4px;
-  border-radius: 150px;
-  margin-bottom: 10px;
+  border-radius: 30px;
+  margin-bottom: 25px;
 }
 
-.btn-login:hover {
-  cursor: pointer;
-}
-
-.fail-login {
+.login-container .text-falilogin {
   color: #ff7373;
   margin-bottom: 10px;
+  /* visibility: hidden; */
 }
 
-.input-UserInfo {
-  background-image: url('./dumbbell.svg');
+.login-container input {
+  background-image: url('../img/dumbbell.svg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   border: none;
-  width: 300px;
-  background-position: center center;
-  padding: 34px 50px 40px 50px;
-  margin-bottom: 40px;
-  font-size: 16px;
+  width: 190px;
+  padding: 20px 50px 40px 40px;
+  margin-bottom: 25px;
+  font-size: 15px;
 }
 
-.input-UserInfo:focus {
+.login-container input:focus {
   outline: none;
   border: none;
 }
 
-.under-grid {
+.login-container button:hover {
+  cursor: pointer;
+}
+
+.login-container .grid-func {
   display: grid;
   grid-template-columns: 120px 100px 100px;
 }
 
-.grid-item {
+.login-container .grid-signup,
+.login-container .grid-findpw {
   text-align: right;
-  font-weight: 500;
+  border-right: rgb(117, 117, 117) 2px solid;
+  padding-right: 15px;
+  font-weight: 650;
+  color: rgb(56, 56, 56);
 }
 
-.grid-item:nth-child(2) {
+.login-container .grid-naver:nth-child(2) {
   grid-column: 2/3;
   grid-row: 1/4;
   align-self: center;
 }
 
-.grid-item:nth-child(3) {
+.login-container .grid-kakao:nth-child(3) {
   grid-column: 3/4;
   grid-row: 1/4;
   align-self: center;
 }
 
-/* ---------------------------------------------- */
-.modal-container {
+/* -ㅏ--------------------------------------------- */
+.login-container .modal-container {
   width: 100%;
   height: 100%; /*실제 적용시 100% */
   top: 0; /*실제 적용시 0 */
@@ -113,16 +153,17 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 9999;
   text-align: center;
+  border-radius: 30px;
 }
 
-.modal-container .box-modal {
+.login-container .modal-container .box-modal {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  width: 20%; /*조절필요*/
-  height: 25%; /*조절필요*/
+  width: 20%;
+  height: 25%;
   min-width: 300px;
   min-height: 220px;
   background-color: white;
@@ -133,27 +174,14 @@
   align-items: center;
 }
 
-.modal-container .modal-message {
+.login-container .modal-container .modal-message {
   display: block;
   margin: 20px 0;
   height: 30%;
+  font-weight: 650;
 }
 
-/* .modal-container span {
-  display: block;
-  text-align: center;
-  vertical-align: middle;
-  background-color: #2ab2bb;
-  padding-top: 3px;
-  color: white;
-  width: 90px;
-  height: 30px;
-  border-radius: 10px;
-  font-weight: 500;
-  cursor: pointer;
-} */
-
-.modal-container .btn-close {
+.login-container .modal-container .btn-close {
   text-align: center;
   background-color: #2ab2bb;
   padding: 8px 30px 8px 30px;
