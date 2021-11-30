@@ -56,14 +56,14 @@ export default function FindPartner() {
 
   return (
 
-    <div className='findpartner-container'>
-
-      <div className='datepick-container'>
-        <div className='datepick-title'>운동 일시</div>
-        <div className='datepick-main'>
-          <div className='date-title'>날짜</div><Select className='date-selectbox' options={dateOptions} placeholder='0000-00-00' styles={customStyles} />
-          <Select className='time-selectbox' options={timeOptions} placeholder='00' styles={customStyles} /><div className=' time-title'>시</div>
-          <Select className='minute-selectbox' options={minuteOptions} placeholder='00' styles={customStyles} /><div className='minute-title'>분</div>
+    <div className='whole-findpartner'>
+      <div className='findpartner-container'>
+        <div className='datepick-container'>
+          <div className='datepick-title'>운동 일시</div>
+          <div className='datepick-main'>
+            <div className='date-title'>날짜</div><Select className='date-selectbox' options={dateOptions} placeholder='0000-00-00' styles={customStyles} />
+            <Select className='time-selectbox' options={timeOptions} placeholder='00' styles={customStyles} /><div className=' time-title'>시</div>
+            <Select className='minute-selectbox' options={minuteOptions} placeholder='00' styles={customStyles} /><div className='minute-title'>분</div>
 
         </div>
       </div>
@@ -122,6 +122,9 @@ export default function FindPartner() {
 
     </div>
 
+
+
+    </div>
 
   )
 }
