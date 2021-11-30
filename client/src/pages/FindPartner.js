@@ -59,9 +59,8 @@ export default function FindPartner() {
 
 
   return (
-    <>
+    <div className='whole-findpartner'>
       <div className='findpartner-container'>
-
         <div className='datepick-container'>
           <div className='datepick-title'>운동 일시</div>
           <div className='datepick-main'>
@@ -126,6 +125,6 @@ export default function FindPartner() {
 
       </div>
 
-    </>
+    </div>
   )
 }
