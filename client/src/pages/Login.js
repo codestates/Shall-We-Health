@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Login.css';
 
-export default function Login() {
+export default function Login({setModal}) {
   const [loginInfo, setLoginInfo] = useState({ email: "", pw: "" })
   const [failModal, setFailModal] = useState(false)
-  const [modal, setModal] = useState(false)
 
 
   const valueChange = (e) => {
@@ -20,9 +20,6 @@ export default function Login() {
 
   return (
     <>
-      {modal === true
-        ? (
-
           <div className="login-container">
             <div className="login-modal fadeIn">
               <div className='btn-loginClose' onClick={() => { setModal(false) }}></div>
@@ -38,16 +35,15 @@ export default function Login() {
                 : ""
               }
               <div className="grid-func">
-                <div className="grid-signup"> 회원가입 </div>
+                <div className="grid-signup">
+                  <Link to='/signup'style={{ color: 'inherit', textDecoration: 'inherit' }}>회원가입</Link>
+                </div>
                 <div className="grid-naver">  네이버 </div>
                 <div className="grid-kakao"> 카카오톡 </div>
                 <div className="grid-findpw">  비밀번호 찾기 </div>
               </div>
             </div>
           </div>
-        )
-        : <button onClick={() => { setModal(true) }}>로그인</button>
-      }
     </>
   );
 

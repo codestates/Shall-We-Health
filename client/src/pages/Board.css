@@ -3,10 +3,10 @@
     max-width: 1024px;
     width: 100%;
     /* min-width: 768px; */
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 0  auto  5% auto;
   }
   
   .board-container .box-banner{
