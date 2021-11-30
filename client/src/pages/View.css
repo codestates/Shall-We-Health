@@ -1,0 +1,215 @@
+.whole-view {
+  background-color: #f4f4f49d;
+  margin-bottom: 100px;
+}
+.view-container .main-container {
+  width: 60%;
+  min-width: 1000px;
+  margin: 10px auto auto auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.view-container .components-container {
+  width: 70%;
+  background-color: white;
+  margin: 1% 1% 5% 0;
+  border-radius: 10px;
+}
+
+.view-container .tab-menu {
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+  padding-bottom: 10px;
+  border-bottom: 1px #39cfd9 solid;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-container .edit-delete-tab {
+  display: flex;
+  flex-direction: row;
+  width: 60px;
+
+  justify-content: space-between;
+}
+.view-container .edit-tab {
+}
+.view-container .delete-tab {
+}
+
+.view-container .match-chat-tab {
+  display: flex;
+  flex-direction: row;
+}
+
+.view-container .match-info-tab {
+  margin: 0 2% 0 2%;
+  width: 80px;
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.view-container .chat-tab {
+  margin: 0 2% 0 0;
+  width: 80px;
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.view-container .bodypart-result {
+  margin: 5% 2% 2% 2%;
+  height: 20%;
+}
+
+.view-container .bodypart-title {
+  margin: 2%;
+  font-size: 1.25em;
+  font-weight: 900;
+}
+.view-container .view-body-options {
+  width: 100px;
+  height: 40px;
+  margin: 1%;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #39cfd9;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.view-container .weight-result {
+  margin: 5% 2% 2% 2%;
+  height: 20%;
+}
+
+.view-container .view-weight-options {
+  width: 150px;
+  height: 40px;
+  margin: 1%;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #39cfd9;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.view-container .weight-title {
+  margin: 2%;
+  font-size: 1.25em;
+  font-weight: 900;
+}
+
+.view-container .message-result {
+  margin: 5% 2% 2% 2%;
+  height: 500px;
+}
+
+.view-container .message-title {
+  margin: 2%;
+  font-size: 1.25em;
+  font-weight: 900;
+}
+.view-container .message-content {
+  margin: 2%;
+  font-size: 1.2em;
+}
+
+.view-container .info-container {
+  width: 30%;
+  height: 30%;
+  background-color: white;
+  margin: 1%;
+  border-radius: 10px;
+  margin: 1% 0 5% 0;
+}
+
+.view-container .info-user-nickname {
+  margin: 8% 2% 2% 2%;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.view-container .date-address-section {
+  margin: 15% 2% 2% 2%;
+}
+
+.view-container .address-section {
+  display: flex;
+  flex-direction: row;
+}
+.view-container .info-date {
+  font-size: 1.3em;
+  margin: 2%;
+}
+.view-container .info-address {
+  margin: 2%;
+}
+
+.view-container .address-copy {
+  margin: 2%;
+  color: red;
+}
+
+.view-container .button-section {
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+}
+
+.view-container .finding-button {
+  height: 40px;
+  margin-bottom: 1%;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #39cfd9;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+  font-weight: 900;
+}
+
+.view-container .application-button {
+  height: 40px;
+  margin-bottom: 1%;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #39cfd9;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+  font-weight: 900;
+}
+
+.view-container .deadline-button {
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 1%;
+  border: none;
+  cursor: pointer;
+  background-color: #b6b6b6;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+  font-weight: 900;
+}
+
+.view-container .match-cancel-button {
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 1%;
+  border: none;
+  cursor: pointer;
+  background-color: #ff9878;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+  font-weight: 900;
+}

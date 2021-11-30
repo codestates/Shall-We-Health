@@ -1,12 +1,13 @@
-body {
+.whole-findpartner {
   background-color: #f4f4f49d;
+  padding-top: 15px;
 }
 .findpartner-container {
   background-color: white;
   max-width: 1024px;
   min-width: 1024px;
   padding-top: 15px;
-  margin: 150px auto 150px auto;
+  margin: 150px auto 0 auto;
 }
 
 .findpartner-container .datepick-container {
