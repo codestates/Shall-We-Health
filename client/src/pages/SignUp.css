@@ -8,8 +8,10 @@
   margin: 0 auto;
 }
 
-.signup-container .home-logo {
-  background-image: url('./logo.svg');
+
+.home-logo {
+  background-image: url('../img/logo.svg');
+
   width: 270px;
   height: 200px;
   background-repeat: no-repeat;
