@@ -164,8 +164,8 @@ const DataRow = ({ el, setConfirm, setDeleteId }) => {
     <tr>
       <td>{el.email}</td>
       <td>{el.nickname}</td>
-      <td>{el.recruitCount}</td>
-      <td>{el.matchingCount}</td>
+      <td>{el.hostNum}</td>
+      <td>{el.guestNum}</td>
       <td>
         <FontAwesomeIcon
           icon={faTrashAlt}

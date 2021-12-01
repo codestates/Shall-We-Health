@@ -15,7 +15,7 @@ export default function ModalIssue({setModalIssue, issueData}) {
           </tr>
           <tr>
           <th>신고 날짜</th>
-          <td>{issueData.created_at.slice(0,10)}</td>
+          <td>{issueData.createdAt.slice(0,10)}</td>
           </tr>
           <tr>
           <th>신고 내용</th>

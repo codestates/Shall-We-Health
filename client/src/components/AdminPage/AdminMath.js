@@ -162,12 +162,12 @@ export default function AdminMatch() {
 const DataRow = ({ el, setConfirm, setDeleteId }) => {
   return (
     <tr>
-      <td>{el.reserved_at}</td>
-      <td>{el.location.place_name}</td>
+      <td>{el.reserved_at.slice(0,10) + ' ' + el.reserved_at.slice(11,16)}</td>
+      <td>{el.placeName}</td>
       <td>
-        {el.guestId
-          ? `${el.hosts.nickname}/${el.guests.nickname}`
-          : el.hosts.nickname}
+        {el.guestNickname
+          ? `${el.hostNickname}/${el.guestNickname}`
+          : el.hostNickname}
       </td>
       <td>
         {el.isMatched === '0'

@@ -24,9 +24,9 @@ export default function AdminPage() {
     })
   }
 
-  useEffect(()=>{
-    checkisAdmin();
-  },[])
+  // useEffect(()=>{
+  //   checkisAdmin();
+  // },[])
 
   return (
     <div className="adminpage-container">

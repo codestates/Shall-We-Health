@@ -103,9 +103,9 @@ const DataRow = ({ el, setModalIssue, setIssueData }) => {
         setModalIssue(true);
       }}
     >
-      <td>{el.created_at.slice(0, 10)}</td>
-      <td>{el.reserved_at}</td>
-      <td>{el.location.place_name}</td>
+      <td>{el.createdAt.slice(0, 10)}</td>
+      <td>{el.reserved_at.slice(0,10) + ' ' + el.reserved_at.slice(11,16)}</td>
+      <td>{el.placeName}</td>
       <td>{el.target}</td>
       <td>{el.reporter}</td>
     </tr>
