@@ -35,17 +35,12 @@ module.exports = async (req, res) => {
             maxAge: 6 * 10 * 60, //1시간
           })
           .status(200)
-          .json({
-            data: {
-              accessToken,
-              userData: userData.dataValues,
-            },
-          });
+          .end();
       } else {
         return res.status(401).json({
           data: null,
           error: {
-            path: "/users/login",
+            path: "/user/login",
             message: "unauthorized",
           },
         });
@@ -54,7 +49,7 @@ module.exports = async (req, res) => {
       return res.status(404).json({
         data: null,
         error: {
-          path: "/users/login",
+          path: "/user/login",
           message: "user not found",
         },
       });
