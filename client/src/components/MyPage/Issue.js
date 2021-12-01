@@ -22,6 +22,9 @@ export default function Issue({setIssue, issueInfo}) {
         content,
         postId: issueInfo.postId
       })
+      .then(()=>{
+        setCompleteModal(true)
+      })
     }
   }
 
