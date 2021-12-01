@@ -13,7 +13,7 @@ module.exports = {
         references: {
           model: "Users",
           key: "id",
-          as: "hostId",
+          as: "hosts",
         },
       },
       guestId: {
@@ -21,7 +21,7 @@ module.exports = {
         references: {
           model: "Users",
           key: "id",
-          as: "hostId",
+          as: "guests",
         },
       },
       reserved_at: {
