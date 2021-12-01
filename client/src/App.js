@@ -45,10 +45,10 @@ function App() {
   }
 
   return (
-    
+
     <div className='App'>
       {style()}
-      <StickyNav length='45'><NavigationBar/></StickyNav>
+      <StickyNav length='45'><NavigationBar /></StickyNav>
       <div className='area-nav'></div>
       <Switch>
         <Route exact path='/' component={Home} />
@@ -64,7 +64,7 @@ function App() {
         <Route path='/verify-email/:token' component={VerifyEmail} />
         <Route path='/updatepw/:token' component={UpdatePw} />
       </Switch>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
