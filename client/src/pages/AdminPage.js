@@ -54,7 +54,7 @@ export default function AdminPage() {
 
 function Modal({setModal}) {
   return (
-    <div className="modaladmin-container">
+    <div className="issuealert-container">
     <div className="box-modal">
       <div className="modal-message">관리자만 접근할 수 있습니다.</div>
       <div>
