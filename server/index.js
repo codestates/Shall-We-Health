@@ -37,15 +37,15 @@ testConnection();
 /*서버 설정*/
 const app = express();
 
-const http = require("http").createServer(app);
-const io = new Server(http, {
-  cors: {
-    origin: "*",
-    credentials: true,
-  },
-});
+// const http = require("http").createServer(app);
+// const io = new Server(http, {
+//   cors: {
+//     origin: "*",
+//     credentials: true,
+//   },
+// });
 
-module.exports = io;
+// module.exports = io;
 
 app.use(cookieParser());
 app.use(express.json({ strict: false }));
@@ -57,7 +57,7 @@ app.use(
   })
 );
 
-let server = http.listen(process.env.PORT, () => {
+let server = app.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);
 });
 module.exports = server;
