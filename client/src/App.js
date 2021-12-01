@@ -55,7 +55,7 @@ function App() {
         <Route path='/signup' component={SignUp} />
         <Route path='/find-pw' component={FindPw} />
         <Route path='/board' component={Board} />
-        <Route path='/find-partner' component={FindParter} />
+        <Route path='/find-partner' component={FindPartner} />
         <Route path='/view/:postId' component={View} />
         <Route path='/mypage' component={MyPage} />
         <Route path='/admin' component={AdminPage} />
