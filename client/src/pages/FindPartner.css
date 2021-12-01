@@ -4,6 +4,7 @@
 }
 .findpartner-container {
   background-color: white;
+  border-radius: 30px;
   max-width: 1024px;
   min-width: 1024px;
   padding-top: 15px;
@@ -98,7 +99,7 @@
 
 .findpartner-container .button-container {
   /* border: black solid 1px; */
-  margin: 15%;
+  margin: 15% 15% 0 15%;
   padding-bottom: 10%;
 }
 
@@ -107,9 +108,9 @@
 }
 
 .findpartner-container .findpartner-button {
-  height: 70px;
-  width: 240px;
-  font-size: 1.5em;
+  height: 50px;
+  width: 200px;
+  font-size: 1.2em;
   background-color: #39cfd9;
   color: white;
   font-weight: 900;

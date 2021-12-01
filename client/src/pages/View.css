@@ -1,12 +1,12 @@
 .whole-view {
   background-color: #f4f4f49d;
-  margin-bottom: 100px;
 }
 .view-container .main-container {
   width: 60%;
   min-width: 1000px;
-  margin: 10px auto auto auto;
+  margin: 10px auto 0 auto;
   display: flex;
+  height: 800px;
   flex-direction: row;
 }
 
@@ -30,13 +30,14 @@
 .view-container .edit-delete-tab {
   display: flex;
   flex-direction: row;
-  width: 60px;
+  width: 90px;
 
   justify-content: space-between;
 }
 .view-container .edit-tab {
 }
 .view-container .delete-tab {
+  margin-right: 5px;
 }
 
 .view-container .match-chat-tab {
@@ -46,15 +47,15 @@
 
 .view-container .match-info-tab {
   margin: 0 2% 0 2%;
-  width: 80px;
-  font-size: 1.3em;
+  width: 100px;
+  font-size: 1.1em;
   font-weight: 700;
 }
 
 .view-container .chat-tab {
   margin: 0 2% 0 0;
-  width: 80px;
-  font-size: 1.3em;
+  width: 100px;
+  font-size: 1.1em;
   font-weight: 700;
 }
 
@@ -65,7 +66,7 @@
 
 .view-container .bodypart-title {
   margin: 2%;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: 900;
 }
 .view-container .view-body-options {
@@ -78,7 +79,7 @@
   background-color: #39cfd9;
   color: white;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .view-container .weight-result {
@@ -96,33 +97,33 @@
   background-color: #39cfd9;
   color: white;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .view-container .weight-title {
   margin: 2%;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: 900;
 }
 
 .view-container .message-result {
   margin: 5% 2% 2% 2%;
-  height: 500px;
+  height: 300px;
 }
 
 .view-container .message-title {
   margin: 2%;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: 900;
 }
 .view-container .message-content {
   margin: 2%;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .view-container .info-container {
   width: 30%;
-  height: 30%;
+  height: 400px;
   background-color: white;
   margin: 1%;
   border-radius: 10px;
@@ -131,7 +132,7 @@
 
 .view-container .info-user-nickname {
   margin: 8% 2% 2% 2%;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 900;
 }
 
@@ -144,7 +145,7 @@
   flex-direction: row;
 }
 .view-container .info-date {
-  font-size: 1.3em;
+  font-size: 1.1em;
   margin: 2%;
 }
 .view-container .info-address {
@@ -171,7 +172,7 @@
   background-color: #39cfd9;
   color: white;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 900;
 }
 
@@ -184,7 +185,7 @@
   background-color: #39cfd9;
   color: white;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 900;
 }
 
@@ -197,7 +198,7 @@
   background-color: #b6b6b6;
   color: white;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 900;
 }
 
@@ -210,6 +211,6 @@
   background-color: #ff9878;
   color: white;
   font-weight: 500;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 900;
 }

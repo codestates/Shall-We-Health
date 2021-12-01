@@ -25,7 +25,7 @@ export default function View() {
 
           <div className='tab-menu'>
             <div className='match-chat-tab'>
-              <div className='match-info-tab' >매칭정보</div>
+              <div className='match-info-tab'>매칭정보</div>
               <div className='chat-tab' >채팅하기</div>
             </div>
             <div className='edit-delete-tab'>

@@ -45,18 +45,18 @@ function App() {
   }
 
   return (
-    
+
     <div className='App'>
       {style()}
-      <StickyNav length='45'><NavigationBar/></StickyNav>
+      <StickyNav length='45'><NavigationBar /></StickyNav>
       <div className='area-nav'></div>
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/signup' component={SignUp} />
         <Route path='/find-pw' component={FindPw} />
         <Route path='/board' component={Board} />
-        <Route path='/find-partner' component={FindParter} />
-        <Route path='/view/:postId' component={View} />
+        <Route path='/find-partner' component={FindPartner} />
+        <Route path='/view' component={View} />
         <Route path='/mypage' component={MyPage} />
         <Route path='/admin' component={AdminPage} />
         <Route path='/chat' component={Chat} />
@@ -64,7 +64,7 @@ function App() {
         <Route path='/verify-email/:token' component={VerifyEmail} />
         <Route path='/updatepw/:token' component={UpdatePw} />
       </Switch>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
