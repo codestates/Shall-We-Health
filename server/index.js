@@ -21,20 +21,16 @@ const sequelize = new Sequelize(
     dialect: "mysql",
     logging: console.log,
     logging: (...msg) => console.log(msg),
-    dialectOptions: {
-      ssl: "Amazon RDS",
-    },
+    // dialectOptions: {
+    //   ssl: "Amazon RDS",
+    // },
   }
 );
 
 const testConnection = async () => {
   try {
-    const data = await sequelize.authenticate();
-    if (data) {
-      console.log("successfully connected");
-    } else {
-      console.log("not working");
-    }
+    await sequelize.authenticate();
+    console.log("successfully connected");
   } catch (error) {
     console.log("unalbe to connect to the database", error);
   }
