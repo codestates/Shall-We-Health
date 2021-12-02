@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Loading from '../components/etc/Loading';
 import Slider from "react-slick";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { dummyData } from './dummyData';
 import Pagination from 'react-js-pagination';
 import "slick-carousel/slick/slick.css";
@@ -14,6 +17,43 @@ export default function Board() {
   const [count, setCount] = useState(100)
   const [ selectDate, setSelectDate ] = useState(0)
   const [ selectLocation, setSelectLocation] = useState('전체')
+  const [ locationForm, setLocationForm ] = useState('%')
+  const [ data, setData ] = useState([])
+  const [ isLoading, setIsLoading ] = useState(false)
+  const [ isMatched, setIsMatched ] = useState(null)
+  const [ keyword, setKeyword ] = useState(null)
+  const [ScrollY, setScrollY] = useState(0);  // 스크롤값을 저장하기 위한 상태
+  const [btnStatus, setBtnStatus] = useState(false); // 버튼 상태
+
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset);
+    if(ScrollY > 100) {
+      // 100 이상이면 버튼이 보이게
+      setBtnStatus(true);
+    } else {
+      // 100 이하면 버튼이 사라지게
+      setBtnStatus(false);
+    }
+  }
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener('scroll', handleFollow);
+    }
+    watch(); // addEventListener 함수를 실행
+    return () => {
+      window.removeEventListener('scroll', handleFollow); // addEventListener 함수를 삭제
+    }
+  })
+
+  const handleTop = () => {  // 클릭하면 스크롤이 위로 올라가는 함수
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    setScrollY(0);  // ScrollY 의 값을 초기화
+    setBtnStatus(false); // BtnStatus의 값을 false로 바꿈 => 버튼 숨김
+  }
 
   const settings = {
     dots: false,
@@ -22,6 +62,16 @@ export default function Board() {
     slidesToShow: 10,
     slidesToScroll: 1,
   };
+
+  const getDateForm = (n) => {
+    let today = new Date();
+    let date = new Date(today.setDate(today.getDate() + n));
+    let year = date.getFullYear();
+    let month = ('0' + (date.getMonth() + 1)).slice(-2);
+    let day = ('0' + date.getDate()).slice(-2);
+
+    return year + '-' + month  + '-' + day; 
+  }
   
   const getDateArr = (n) => {
     let today = new Date();
@@ -41,6 +91,68 @@ export default function Board() {
 
   const locationArr = ['전체', '서울', '경기', '인천', '대전', '충북', '충남', '대구', '부산', '울산', '경북', '경남', '광주', '전북', '전남', '강원', '제주']
 
+  const handleLocation = (e) => {
+    setSelectLocation(e.target.innerText)
+    if(e.target.innerText==='전체') {
+      setLocationForm('%')
+    } else {
+      setLocationForm(e.target.innerText)
+    }
+  }
+
+  const hadleKeyword = (e) => {
+    if(e.target.value==='') {
+      setKeyword(null)
+    } else {
+      setKeyword(e.target.value)
+    }
+  }
+
+  //데이터 요청
+  const getData = async() => {
+    await setIsLoading(true)
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/post`, {
+			params: {
+        date : getDateForm(selectDate),
+        location : locationForm,
+        page,
+        isMatched,
+        keyword
+       }
+		})
+    .then((res) => {
+      setData(res.data.data)
+      setCount(res.data.count)
+    })
+    await setIsLoading(false)
+  }
+
+  const getDataPage = () => {
+    axios.get(`${process.env.REACT_APP_SERVER_API}/post`, {
+			params: {
+        date : getDateForm(selectDate),
+        location : locationForm,
+        page,
+        isMatched,
+        keyword
+       }
+		})
+    .then((res) => {
+      setData(res.data.data);
+      setCount(res.data.count);
+      handleTop();
+    })
+  }
+
+  // useEffect(()=>{
+  //   getData();
+  // },[selectDate, locationForm, isMatched])
+
+
+    // useEffect(()=>{
+  //   getDataPage();
+  // },[page])
+
   return (
     <div className="board-container">
       <div className="box-banner">
@@ -58,21 +170,22 @@ export default function Board() {
         <ul className='box-location'>
           {locationArr.map((el,i) => {
             return (
-              <li className={selectLocation===el ? 'btn-selected-location' : 'btn-location'} onClick={(e)=>{setSelectLocation(e.target.innerText)}}>{el}</li>
+              <li className={selectLocation===el ? 'btn-selected-location' : 'btn-location'} onClick={handleLocation}>{el}</li>
             )
           })}
       </ul>
       <div className='box-filter'>
-          <input type='checkbox' id='match-out' className='match-check-box'/>
+          <input type='checkbox' id='match-out' className='match-check-box' checked={isMatched} onChange={(e)=>{setIsMatched(e.target.checked)}}/>
           <label for='match-out' className='text-match'>신청 가능만 보기</label>
           <div class='search-box'>
           <input
             type='text'
             id='search'
             placeholder='헬스장 명을 입력하세요'
+            onChange={hadleKeyword}
           ></input>
           <span>
-            <button id='searchButton'>
+            <button id='searchButton' onClick={getData}>
               <FontAwesomeIcon icon={faSearch}/>
             </button>
           </span>
@@ -80,17 +193,27 @@ export default function Board() {
       </div>
       <div className='box-list'>
         <table className='table-data'>
-          {dummyData.map((el,i)=> {
+          {isLoading ? (
+            <tr className='box-loading'>
+            <td colSpan='3'>
+              <Loading/>
+            </td>
+          </tr>
+          ) : (dummyData.length===0 ? (
+            <tr className='box-none'>
+              <td colSpan='3'>일치하는 게시물이 없습니다.</td>
+            </tr>
+          ) :(dummyData.map((el,i)=> {
             return(
               <RowData el={el} key={i}/>
             )
-          })}
+          })))}
         </table>
       </div>
       <div className='box-pagination'>
         <Pagination
           activePage={page}
-          itemsCountPerPage={20}
+          itemsCountPerPage={15}
           totalItemsCount={count}
           pageRangeDisplayed={5}
           prevPageText={'‹'}
@@ -98,6 +221,7 @@ export default function Board() {
           onChange={setPage}
         />
       </div>
+      <div className={btnStatus?'btn-top':'btn-top none'} onClick={handleTop}><FontAwesomeIcon icon={faCaretUp}/></div>
     </div>
   );
 }
@@ -141,13 +265,15 @@ function DateBtn({ selectDate, setSelectDate, days, date, i }) {
 function RowData({el}) {
   return(
     <tr>
-            <td className='time'>{el.time.length===4? '0'+el.time : el.time}</td>
+            <td className='time'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.reserved_at.slice(11,16)}</Link></td>
             <td className='info'>
-              <div className='title'>{el.location.address_name.slice(0,2)+' '+el.location.place_name}</div>
-              <div className='sub-info'>3대 {el.description.sbd} {el.description.bodyPart.join(' ')}</div>
+              <div className='title'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.location.address_name.slice(0,2)+' '+el.location.place_name}</Link></div>
+              <div className='sub-info'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>3대 {el.description.sbd} {el.description.bodyPart.join(' ')}</Link></div>
             </td>
             <td className='match'>
-              {el.isMatched===0 ? <div className='btn-match'>신청 가능</div> : <div className='btn-match-end'>마감</div>}
+            <Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+              {!el.isMatched ? <div className='btn-match'>신청 가능</div> : <div className='btn-match-end'>마감</div>}
+              </Link>
             </td>
           </tr>
   )
