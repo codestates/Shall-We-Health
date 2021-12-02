@@ -8,7 +8,6 @@
   margin: 0 auto 5% auto;
 }
 
-
 .home-logo {
   background-image: url('../img/logo.svg');
 
@@ -24,6 +23,8 @@
   width: 345px;
   height: 35px;
   font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px #39cfd9;
 }
 
 .signup-container button {
@@ -40,20 +41,13 @@
 
 .signup-container .text {
   font-weight: 650;
+  color: rgb(58, 58, 58);
 }
 
 .signup-container .btn-confirm {
   margin: 0px 0px 0px 10px;
   font-weight: 600;
   font-size: 15px;
-}
-
-.signup-container .ment,
-.signup-container .text-checkment {
-  text-align: right;
-  color: #ff7373;
-  margin-bottom: 15px;
-  margin-right: 80px;
 }
 
 .signup-container .btn-signup {
@@ -65,7 +59,6 @@
 }
 
 .signup-container .text-sentMail {
-  /* visibility: hidden; */
   text-align: center;
   font-size: 25px;
   font-weight: 800;
@@ -73,6 +66,23 @@
   height: 30vh;
 }
 
-.signup-container .hidden {
-  visibility: hidden;
+.signup-container .message {
+  text-align: right;
+  margin: 5px 0 10px 0;
+  margin-right: 80px;
+  font-size: 15px;
+  font-weight: 500;
+  height: 19px;
+}
+
+.signup-container .err {
+  color: #ff7373;
+}
+
+.signup-container .check {
+  color: #3330e0;
+}
+
+.signup-container .center {
+  text-align: center;
 }
