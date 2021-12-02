@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.STRING(100),
       },
       salt: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(500),
       },
       password: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(500),
       },
       isOauth: {
         type: Sequelize.BOOLEAN,

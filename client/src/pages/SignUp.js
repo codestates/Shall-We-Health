@@ -16,15 +16,12 @@ export default function SignUp() {
     setCheckMsg({ ...checkMsg, signUp: '' })
   };
 
-  // console.log(inputInfo.)
 
   const isValidCkecked = async () => {
     const { nickname, email, password, pwConfirm } = inputInfo
     const nickVerify = verifyNickname(nickname)
     const emailVal = verifyEmail(email)
     const passwordVal = verifyPassword(password)
-
-    console.log(nickVerify)
 
     if (!nickVerify && nickname !== '') {
       await setCheckMsg({ ...checkMsg, nickname: '닉네임 형식이 올바르지 않습니다' })
@@ -62,7 +59,7 @@ export default function SignUp() {
 
 
   const UserInfoConfirm = async (e) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
     const { nickname, email } = inputInfo
 
     if (name === 'nickname') {
@@ -107,11 +104,27 @@ export default function SignUp() {
       const { nickname, email, password, pwConfirm } = isValid
 
       if ((nickname && email && password && pwConfirm) === true) {
+        /*모든 조건이 true일때 회원가입가능*/
         const { nickname, email, password } = inputInfo
 
         await axios.post(`${process.env.REACT_APP_SERVER_API}/user/signup`, {
+          /* 회원가입 DB저장*/
           nickname, email, password
         })
+          .then(() => {
+            axios.post(`${process.env.REACT_APP_SERVER_API}/user/signup-verification`, { email })
+              /* 회원가입 DB저장되어 있는 이메일확인 후 메일보내주기*/
+              .then((res) => {
+                console.log(res)
+                setSignUp(true)
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
       else {
         setCheckMsg({ ...checkMsg, [name]: '위에 내용 중 빠진부분이 없는지 확인해주세요' })
@@ -119,7 +132,6 @@ export default function SignUp() {
     }
   }
 
-  console.log(isValid)
   useEffect(() => {
     isValidCkecked()
   }, [inputInfo])

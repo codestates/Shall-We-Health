@@ -8,9 +8,8 @@
   margin: 0 auto 5% auto;
 }
 
-.home-logo {
+.signup-container .home-logo {
   background-image: url('../img/logo.svg');
-
   width: 270px;
   height: 200px;
   background-repeat: no-repeat;
