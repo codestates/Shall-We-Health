@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   try {
     const loginData = await User.findOne({
       where: { email },
-      attributes: ["email", "nickname", "createdAt", "updatedAt"],
+      attributes: ["email", "createdAt"],
     });
     if (loginData) {
       const accessToken = jwt.sign(
