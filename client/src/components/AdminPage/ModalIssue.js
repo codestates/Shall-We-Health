@@ -1,21 +1,21 @@
 import React from 'react';
 import './ModalIssue.css'
 
-export default function ModalIssue({setModalIssue}) {
+export default function ModalIssue({setModalIssue, issueData}) {
   return <div className='modalissue-container'>
       <div className="box-modal">
         <table className='table-info'>
           <tr>
           <th>신고자</th>
-          <td>임유빈</td>
+          <td>{issueData.reporter}</td>
           </tr>
           <tr>
           <th>신고 대상</th>
-          <td>김소현</td>
+          <td>{issueData.target}</td>
           </tr>
           <tr>
           <th>신고 날짜</th>
-          <td>2021.11.24</td>
+          <td>{issueData.createdAt.slice(0,10)}</td>
           </tr>
           <tr>
           <th>신고 내용</th>
@@ -23,7 +23,7 @@ export default function ModalIssue({setModalIssue}) {
           </tr>
           
         </table>
-        <div className="issue-content">노쇼 시전하셨습니다. 화가 납니다.</div>
+        <div className="issue-content">{issueData.content}</div>
         <div>
           <span onClick={()=>{setModalIssue(false)}}>닫기</span>
         </div>

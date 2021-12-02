@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Login from './Login';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +8,8 @@ import './NavigationBar.css';
 export default function NavigationBar() {
   const [isLogin, setIsLogin] = useState(true);
   const [isAdmin, setIsAdmin] = useState(true);
+
+  const [loginModal, setLoginModal] = useState(false)
 
   return (
     <div className='navBar-container'>
@@ -39,18 +42,13 @@ export default function NavigationBar() {
               </Link>
             </div>
             <div className='btn-logout'>
-              <span>로그아웃</span>
+              <span onClick={()=>{setLoginModal(true)}}>로그아웃</span>
             </div>
           </>
         ) : (
           <>
-            <div className='btn-login'>
-            <Link
-              to='/login'
-              style={{ color: 'inherit', textDecoration: 'inherit' }}
-            >
-              <span>로그인</span>
-              </Link>
+            <div className='btn-login-nav'>
+              <span onClick={()=>{setLoginModal(true)}}>로그인</span>
             </div>
             <div className='btn-signup'>
             <Link
@@ -75,6 +73,7 @@ export default function NavigationBar() {
           ''
         )}
       </div>
+      {loginModal ? <Login setModal={setLoginModal}/> : ''}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-// import io from "../../index.js";
+const io = require("../../index.js");
 
 module.exports = {
   create: async (req, res) => {
