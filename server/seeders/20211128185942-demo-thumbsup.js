@@ -8,27 +8,27 @@ module.exports = {
         {
           postId: 1,
           giverId: 1,
-          giverId: 2,
+          receiverId: 2,
         },
         {
           postId: 2,
           giverId: 3,
-          giverId: 4,
+          receiverId: 4,
         },
         {
           postId: 3,
           giverId: 4,
-          giverId: 2,
+          receiverId: 2,
         },
         {
           postId: 4,
           giverId: 5,
-          giverId: 1,
+          receiverId: 1,
         },
         {
           postId: 5,
           giverId: 2,
-          giverId: 4,
+          receiverId: 4,
         },
       ],
       {}
