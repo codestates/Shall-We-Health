@@ -9,15 +9,17 @@ module.exports = async (req, res) => {
       .createHash("sha512")
       .update(password + salt)
       .digest("hex");
+
     const data = await User.create({
       nickname,
       email,
-      oauth,
       salt,
       password: hashPassword,
       isOauth,
       isAdmin,
+
     });
+
     if (data) {
       return res.status(201).end();
     } else {
@@ -30,6 +32,7 @@ module.exports = async (req, res) => {
       });
     }
   } catch (err) {
+    console.log(err);
     throw err;
   }
 };

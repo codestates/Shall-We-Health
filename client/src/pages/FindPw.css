@@ -9,7 +9,7 @@
 }
 
 .findpw-container .home-logo {
-  background-image: url('./logo.svg');
+  background-image: url('../img/logo.svg');
   width: 300px;
   height: 200px;
   background-repeat: no-repeat;

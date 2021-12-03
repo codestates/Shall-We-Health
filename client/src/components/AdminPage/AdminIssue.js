@@ -1,96 +1,111 @@
-import React, { useState } from "react";
-import Pagination from "react-js-pagination";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Loading from '../etc/Loading';
+import Pagination from 'react-js-pagination';
 import ModalIssue from './ModalIssue';
 
 export default function AdminIssue() {
-  const [count, setCount] = useState(100);
+  const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
-  const [ modalIssue, setModalIssue ] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);
+  const [modalIssue, setModalIssue] = useState(false);
+  const [data, setData] = useState([]);
+  const [issueData, setIssueData] = useState({});
 
-  const dummyData = [{
-    "issue-date": "2020-12-27",
-    "date": "2020-12-30 14:51:04",
-    "location": "Aţ Ţawīlah",
-    "target": "McGeachey",
-    "reporter": "Adriana"
-  }, {
-    "issue-date": "2021-08-14",
-    "date": "2021-04-08 08:57:10",
-    "location": "Yengimahalla",
-    "target": "Sidebottom",
-    "reporter": "Emilee"
-  }, {
-    "issue-date": "2021-02-21",
-    "date": "2021-09-07 21:40:47",
-    "location": "Lai Lai Bisi Kopan",
-    "target": "MacAlister",
-    "reporter": "Jordana"
-  }, {
-    "issue-date": "2021-07-02",
-    "date": "2021-06-03 10:58:43",
-    "location": "Bungtiang Barat",
-    "target": "Pettwood",
-    "reporter": "Krystle"
-  }, {
-    "issue-date": "2021-08-15",
-    "date": "2021-05-10 05:23:17",
-    "location": "Mberubu",
-    "target": "Dungey",
-    "reporter": "Jacenta"
-  }, {
-    "issue-date": "2020-12-27",
-    "date": "2020-12-12 16:21:35",
-    "location": "Zhongxin",
-    "target": "Philott",
-    "reporter": "Katie"
-  }, {
-    "issue-date": "2021-04-12",
-    "date": "2021-04-26 16:50:16",
-    "location": "Ad Dawḩah",
-    "target": "Verbruggen",
-    "reporter": "Shalom"
-  }];
+  const getIssueData = async () => {
+    await setIsLoading(true);
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_API}/admin/issue-list`, {
+        params: { page },
+      })
+      .then((res) => {
+        setData(res.data.data);
+        setCount(res.data.count);
+      });
+    await setIsLoading(false);
+  };
+
+  const getIssueDataPage = () => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_API}/admin/issue-list`, {
+        params: { page },
+      })
+      .then((res) => {
+        setData(res.data.data);
+        setCount(res.data.count);
+      });
+  };
+
+  useEffect(() => {
+    getIssueData();
+  }, []);
+
+  useEffect(() => {
+    getIssueDataPage();
+  }, [page]);
 
   return (
-    <div className="adminissue-container">
-      <table className="table-data">
-        <th className="issue-date">신고 날짜</th>
-        <th className="date">매칭 일시</th>
-        <th className="location">매칭 장소</th>
-        <th className="target">신고 대상</th>
-        <th className="reporter">신고자</th>
-        {dummyData.length === 0 ? (
-          <tr className="box-none">
-            <td colSpan="5">일치하는 데이터가 없습니다.</td>
+    <div className='adminissue-container'>
+      <table className='table-data'>
+        <th className='issue-date'>신고 날짜</th>
+        <th className='date'>매칭 일시</th>
+        <th className='location'>매칭 장소</th>
+        <th className='target'>신고 대상</th>
+        <th className='reporter'>신고자</th>
+        {isLoading ? (
+          <tr className='box-loading'>
+            <td colSpan='5'>
+              <Loading />
+            </td>
+          </tr>
+        ) : data.length === 0 ? (
+          <tr className='box-none'>
+            <td colSpan='5'>일치하는 데이터가 없습니다.</td>
           </tr>
         ) : (
-          dummyData.map((el, i) => {
-            return <DataRow el={el} key={i} setModalIssue={setModalIssue}/>;
+          data.map((el, i) => {
+            return (
+              <DataRow
+                el={el}
+                key={i}
+                setModalIssue={setModalIssue}
+                setIssueData={setIssueData}
+              />
+            );
           })
         )}
       </table>
-      <div className="box-paging">
+      <div className='box-paging'>
         <Pagination
           activePage={page}
           itemsCountPerPage={7}
           totalItemsCount={count}
           pageRangeDisplayed={5}
-          prevPageText={"‹"}
-          nextPageText={"›"}
+          prevPageText={'‹'}
+          nextPageText={'›'}
           onChange={setPage}
         />
       </div>
-      {modalIssue ? <ModalIssue setModalIssue={setModalIssue}/> : ''}
+      {modalIssue ? (
+        <ModalIssue issueData={issueData} setModalIssue={setModalIssue} />
+      ) : (
+        ''
+      )}
     </div>
   );
 }
 
-const DataRow = ({ el, setModalIssue }) => {
+const DataRow = ({ el, setModalIssue, setIssueData }) => {
   return (
-    <tr onClick={()=>{setModalIssue(true)}}>
-      <td>{el['issue-date']}</td>
-      <td>{el.date.slice(0,16)}</td>
-      <td>{el.location}</td>
+    <tr
+      onClick={() => {
+        setIssueData(el);
+        setModalIssue(true);
+      }}
+    >
+      <td>{el.createdAt.slice(0, 10)}</td>
+      <td>{el.reserved_at.slice(0,10) + ' ' + el.reserved_at.slice(11,16)}</td>
+      <td>{el.placeName}</td>
       <td>{el.target}</td>
       <td>{el.reporter}</td>
     </tr>

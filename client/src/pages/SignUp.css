@@ -5,18 +5,15 @@
   width: 100%;
   max-width: 1024px;
   min-width: 768px;
-  margin: 0 auto;
-  /* box-shadow: 5px 10px 20px rgb(187, 187, 187); */
-  height: 90vh;
+  margin: 0 auto 5% auto;
 }
 
-.home-logo {
-  background-image: url('./logo.svg');
+.signup-container .home-logo {
+  background-image: url('../img/logo.svg');
   width: 270px;
   height: 200px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  margin-bottom: 40px;
 }
 
 .signup-container input {
@@ -25,6 +22,8 @@
   width: 345px;
   height: 35px;
   font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px #39cfd9;
 }
 
 .signup-container button {
@@ -38,30 +37,16 @@
 .signup-container button:hover {
   cursor: pointer;
 }
-.signup-container .signup-box {
-  display: flex;
-}
 
 .signup-container .text {
   font-weight: 650;
-}
-
-.signup-container .btn-box {
-  display: flex;
-  flex-direction: column;
+  color: rgb(58, 58, 58);
 }
 
 .signup-container .btn-confirm {
-  margin: 25px 0px 45px 20px;
+  margin: 0px 0px 0px 10px;
   font-weight: 600;
   font-size: 15px;
-}
-
-.signup-container .ment,
-.text-checkment {
-  text-align: right;
-  color: #ff7373;
-  padding-bottom: 20px;
 }
 
 .signup-container .btn-signup {
@@ -69,12 +54,34 @@
   padding: 8px 150px 8px 140px;
   font-weight: 700;
   justify-self: center;
+  margin-top: 20px;
 }
 
 .signup-container .text-sentMail {
-  /* visibility: hidden; */
   text-align: center;
   font-size: 25px;
   font-weight: 800;
   padding: 100px 30px 30px 30px;
+  height: 30vh;
+}
+
+.signup-container .message {
+  text-align: right;
+  margin: 5px 0 10px 0;
+  margin-right: 80px;
+  font-size: 15px;
+  font-weight: 500;
+  height: 19px;
+}
+
+.signup-container .err {
+  color: #ff7373;
+}
+
+.signup-container .check {
+  color: #3330e0;
+}
+
+.signup-container .center {
+  text-align: center;
 }

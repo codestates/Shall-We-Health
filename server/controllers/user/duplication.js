@@ -7,12 +7,16 @@ module.exports = async (req, res) => {
         [Op.or]: [{ nickname: req.query.nickname }, { email: req.query.email }],
       },
     });
-    if (data === null) {
+
+    // console.log(data)
+
+    if (data === null) {  // 중복X -> false 전달
       return res.status(200).json({ data: false });
-    } else {
-      return res.status(404).json({ data: true });
+    } else { //중복 O -> true
+      return res.status(200).json({ data: true });
     }
   } catch (err) {
     throw err;
   }
 };
+

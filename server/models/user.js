@@ -10,18 +10,24 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Post, {
-        foreignKey: {
-          name: "giverId",
-          name: "receiverId",
-        },
+        foreignKey: "hostId",
+        as: "hosts",
+        onDelete: "SET NULL", //default 설정임
+      });
+      User.hasMany(models.Post, {
+        foreignKey: "guestId",
+        as: "guests",
         onDelete: "SET NULL", //default 설정임
       });
       User.hasMany(models.Issue, {
-        foreignKey: {
-          name: "reporterId",
-          name: "targetId",
-        },
-        onDelete: "SET NULL",
+        foreignKey: "reporterId",
+        as: "reports",
+        onDelete: "SET NULL", //default 설정임
+      });
+      User.hasMany(models.Issue, {
+        foreignKey: "targetId",
+        as: "targets",
+        onDelete: "SET NULL", //default 설정임
       });
       User.hasMany(models.Chat, {
         foreignKey: {

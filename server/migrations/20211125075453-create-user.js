@@ -15,16 +15,20 @@ module.exports = {
         type: Sequelize.STRING(100),
       },
       salt: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(500),
       },
       password: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(500),
       },
       isOauth: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
       isAdmin: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      isEmailVerified: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
