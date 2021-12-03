@@ -8,9 +8,9 @@ module.exports = async (req, res) => {
       where: {
         email,
       },
-      attributes: ["salt", "password"],
+      attributes: ["salt", "password", "isEmailVerified"],
     });
-    if (passwordData) {
+    if (passwordData && passwordData.isEmailVerified) {
       const { salt } = passwordData;
       const hashPassword = crypto
         .createHash("sha512")
