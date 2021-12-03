@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
       where: {
         email,
       },
-      attributes: ["salt", "password"],
+      attributes: ["email"],
     });
     if (passwordData) {
       const { salt } = passwordData;

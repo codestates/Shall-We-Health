@@ -1,0 +1,29 @@
+.verifyemail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1024px;
+  min-width: 768px;
+  margin: 0 auto 5% auto;
+}
+
+.verifyemail-container .home-logo {
+  background-image: url('../../img/logo.svg');
+  width: 270px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.verifyemail-container .text-signUp {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 800;
+  padding: 100px 30px 30px 30px;
+  height: 30vh;
+}
+
+.verifyemail-container .Fail {
+  color: #ff7373;
+}
