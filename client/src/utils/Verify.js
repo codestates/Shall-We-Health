@@ -15,7 +15,6 @@ module.exports = {
       }
     }
 
-    console.log(nickname.length)
     if (nickLength > 3 && nickLength < 21) {
       const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\s]*$/;
       return regex.test(nickname)
@@ -36,12 +35,6 @@ module.exports = {
     const regex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,15}$/;
     return regex.test(password)
   },
-
-  signUp: () => {
-
-  }
-
-
 
 }
 

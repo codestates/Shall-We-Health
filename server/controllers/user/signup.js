@@ -4,8 +4,6 @@ const { User } = require("../../models");
 module.exports = async (req, res) => {
   try {
     const { nickname, email, password, isOauth, isAdmin } = req.body;
-    console.log(req.body)
-
     const salt = crypto.randomBytes(128).toString("base64");
     const hashPassword = crypto
       .createHash("sha512")
@@ -19,6 +17,7 @@ module.exports = async (req, res) => {
       password: hashPassword,
       isOauth,
       isAdmin,
+
     });
 
     if (data) {

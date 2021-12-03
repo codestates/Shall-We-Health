@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
       },
     });
 
-    console.log(data)
+    // console.log(data)
 
     if (data === null) {  // 중복X -> false 전달
       return res.status(200).json({ data: false });
