@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../../models");
 
 module.exports = async (req, res) => {
-  const { email } = req.body;
+  const { email, nickname } = req.body;
   try {
     const loginData = await User.findOne({
       where: { email },
@@ -21,13 +21,14 @@ module.exports = async (req, res) => {
           maxAge: 6 * 10 * 60, //1시간
         })
         .status(200)
-        .json({
-          data: {
-            accessToken,
-            userData: userData.dataValues,
-          },
-        });
+        .end();
     } else {
+      await User.create({
+        email,
+        isOauth: true,
+        nickname,
+      });
+      return res.status(201).end();
     }
   } catch (err) {
     console.log(err);
