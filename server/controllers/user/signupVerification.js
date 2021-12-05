@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
       const email2 = userEmail.dataValues
       const token = jwt.sign(email2, process.env.ACCESS_SECRET, { expiresIn: "1h" })
 
+
       let transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -104,7 +105,6 @@ module.exports = async (req, res) => {
           href="http://localhost:3000/verify-email/${token}">&#50868;&#46041;&#47700;&#51060;&#53944; &#52286;&#51004;&#47084; &#44032;&#44592;  &#10143;</a><![endif]>
         <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:rect xmlns:v="urn:schemas-microsoft-com:vml" href="http://localhost:3000" style="width:193px" fillcolor="#395896" stroke="f"><v:textbox style="mso-fit-shape-to-text:t" inset="0px,12px,0px,12px"><center style="font-size:14px;line-height:24px;color:#FFFFFF;font-family:Avenir,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px">&#50868;&#46041;&#47700;&#51060;&#53944; &#52286;&#51004;&#47084; &#44032;&#44592; &#10143;</center></v:textbox></v:rect><![endif]--></div>
       </div>
-          
             </div>
           <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
           </div>

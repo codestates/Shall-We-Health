@@ -51,9 +51,10 @@
 
 .login-container .home-logo {
   background-image: url('../img/logo.svg');
-  height: 80px;
+  width: 270px;
+  height: 200px;
   background-repeat: no-repeat;
-  margin-left: 20px;
+  background-size: 100% 100%;
 }
 
 .login-container .btn-loginClose {
@@ -93,8 +94,13 @@
 
 .login-container .text-falilogin {
   color: #ff7373;
+  height: 22px;
   margin-bottom: 10px;
-  /* visibility: hidden; */
+  font-weight: 550;
+}
+
+.login-container .hidden {
+  visibility: hidden;
 }
 
 .login-container input {

@@ -15,8 +15,40 @@ import VerifyEmail from './components/SignUp/VerifyEmail';
 import UpdatePw from './components/FindPw/UpdatePw'
 import Chat from './components/View.js/Chat';
 import Pagination from './components/Pagination/Pagination';
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import axios from "axios"
+import { login } from './actions';
 
 function App() {
+  const dispatch = useDispatch();
+
+
+  const isAuthenticated = async () => {
+    const res = await axios
+      .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.data) {
+          const { isLogin, decoded } = res.data.data
+          dispatch(
+            login({
+              isLogin: isLogin,
+              isAdmin: decoded.isAdmin,
+              isOauth: decoded.isOauth,
+              id: decoded.id,
+              nickname: decoded.nickname,
+              email: decoded.email,
+            })
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
 
   const style = () => {
     return (
@@ -43,6 +75,10 @@ function App() {
       `}</style>
     )
   }
+
+  useEffect(() => {
+    isAuthenticated();
+  }, []);
 
   return (
 
