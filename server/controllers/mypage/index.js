@@ -5,7 +5,7 @@ module.exports = {
   lists: async (req, res) => {
     try {
       const { userId } = req.params;
-      await getAccessToken(req, res);
+      const resposne = await getAccessToken(req, res);
       //accessToken 확인완료
       //이제 전달받은 userId를 검증할 차례
       const userData = await User.findOne({
@@ -23,7 +23,7 @@ module.exports = {
           },
         });
       } else {
-        if (userData.dataValues.id === userId) {
+        if(response.dataValues.id === userData.dataValues.id) {
           const sql =
             "select post.hostId, hosts.nickname as hostNickname, post.guestId, guests.nickname as guestNickname, post.reserved_at, post.reserved_at, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName, post.isMatched, (select exists (select giverId from Thumbsups as thumbsup where thumbsup.giverId= ? AND thumbsup.postId = post.id )) as thumbsup from Posts as post left join Users as hosts on post.hostId = hosts.id left join Users as guests on post.guestId = guests.id where guestId = ? OR hostId = ?";
           const postData = await sequelize.query(sql, {
