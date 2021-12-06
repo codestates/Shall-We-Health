@@ -33,7 +33,7 @@ export default function Login({ setModal }) {
         else {
           /* 로그인 성공했을때 */
           setModal(false)
-          window.location.replace('/')
+          window.location.reload('/')
 
         }
       })

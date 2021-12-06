@@ -4,6 +4,7 @@ const {
   auth,
   duplication,
   emailVerification,
+  findPwVerification,
   info,
   kakao,
   login,
@@ -21,6 +22,7 @@ router.post("/logout", logout);
 router.patch("/info", info);
 router.post("/signup", signup);
 router.patch("/email-verification", emailVerification);
-router.post("/password-verification", passwordVerification);
+router.post("/findpw-verification", findPwVerification);
+router.patch("/password-verification", passwordVerification);
 router.post("/signup-verification", signupVerification);
 module.exports = router;
