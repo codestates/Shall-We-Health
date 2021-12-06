@@ -144,14 +144,14 @@ export default function Board() {
     })
   }
 
-  // useEffect(()=>{
-  //   getData();
-  // },[selectDate, locationForm, isMatched])
+  useEffect(()=>{
+    getData();
+  },[selectDate, locationForm, isMatched])
 
 
-    // useEffect(()=>{
-  //   getDataPage();
-  // },[page])
+    useEffect(()=>{
+    getDataPage();
+  },[page])
 
   return (
     <div className="board-container">
@@ -175,7 +175,13 @@ export default function Board() {
           })}
       </ul>
       <div className='box-filter'>
-          <input type='checkbox' id='match-out' className='match-check-box' checked={isMatched} onChange={(e)=>{setIsMatched(e.target.checked)}}/>
+          <input type='checkbox' id='match-out' className='match-check-box' checked={isMatched} onChange={(e)=>{
+            if(!e.target.checked) {
+              setIsMatched(null)
+            } else{
+              setIsMatched(e.target.checked)
+            }
+            }}/>
           <label for='match-out' className='text-match'>신청 가능만 보기</label>
           <div class='search-box'>
           <input
@@ -199,11 +205,11 @@ export default function Board() {
               <Loading/>
             </td>
           </tr>
-          ) : (dummyData.length===0 ? (
+          ) : (data.length===0 ? (
             <tr className='box-none'>
               <td colSpan='3'>일치하는 게시물이 없습니다.</td>
             </tr>
-          ) :(dummyData.map((el,i)=> {
+          ) :(data.map((el,i)=> {
             return(
               <RowData el={el} key={i}/>
             )
@@ -267,7 +273,7 @@ function RowData({el}) {
     <tr>
             <td className='time'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.reserved_at.slice(11,16)}</Link></td>
             <td className='info'>
-              <div className='title'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.location.address_name.slice(0,2)+' '+el.location.place_name}</Link></div>
+              <div className='title'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.addressName.slice(0,2)+' '+el.placeName}</Link></div>
               <div className='sub-info'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>3대 {el.description.sbd} {el.description.bodyPart.join(' ')}</Link></div>
             </td>
             <td className='match'>

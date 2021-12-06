@@ -12,7 +12,6 @@ module.exports = async (req, res) => {
       attributes: ["salt", "password", "isEmailVerified"],
     });
 
-
     if (!passwordData) {
       /* 이메일로 못 찾았을때 */
       return res.status(204).json({

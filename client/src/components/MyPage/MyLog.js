@@ -141,7 +141,7 @@ export default function MyLog() {
   const dummyData = [{
     'postId' : 1,
     'hostId' : 10,
-    'hostNickname' : 'sohhyeon',
+    'hostNickname' : 'kimcoding',
     'guestId' : 1,
     'guestNickname' : 'moonstar',
     'reserved_at' : '2022-12-06T06:59:00.000Z',
@@ -151,7 +151,7 @@ export default function MyLog() {
    },{
     'postId' : 2,
     'hostId' : 10,
-    'hostNickname' : 'sohhyeon',
+    'hostNickname' : 'kimcoding',
     'guestId' : 25,
     'guestNickname' : 'moonstar',
     'reserved_at' : '2022-12-06T06:59:00.000Z',
@@ -161,7 +161,7 @@ export default function MyLog() {
 },{
     'postId' : 3,
     'hostId' : 10,
-    'hostNickname' : 'sohhyeon',
+    'hostNickname' : 'kimcoding',
     'guestId' : 0,
     'guestNickname' : 'moonstar',
     'reserved_at' : '2022-12-06T06:59:00.000Z',
@@ -171,7 +171,7 @@ export default function MyLog() {
 },{
   'postId' : 4,
   'hostId' : 10,
-  'hostNickname' : 'sohhyeon',
+  'hostNickname' : 'kimcoding',
   'guestId' : 2,
   'guestNickname' : 'moonstar',
   'reserved_at' : '2022-12-06T06:59:00.000Z',
@@ -181,7 +181,7 @@ export default function MyLog() {
  },{
   'postId' : 5,
   'hostId' : 10,
-  'hostNickname' : 'sohhyeon',
+  'hostNickname' : 'kimcoding',
   'guestId' : 25,
   'guestNickname' : 'moonstar',
   'reserved_at' : '2022-12-06T06:59:00.000Z',
@@ -191,7 +191,7 @@ export default function MyLog() {
 },{
   'postId' : 6,
   'hostId' : 10,
-  'hostNickname' : 'sohhyeon',
+  'hostNickname' : 'kimcoding',
   'guestId' : 0,
   'guestNickname' : 'moonstar',
   'reserved_at' : '2022-12-06T06:59:00.000Z',
@@ -201,7 +201,7 @@ export default function MyLog() {
 },{
   'postId' : 7,
   'hostId' : 10,
-  'hostNickname' : 'sohhyeon',
+  'hostNickname' : 'kimcoding',
   'guestId' : 0,
   'guestNickname' : 'moonstar',
   'reserved_at' : '2022-12-06T06:59:00.000Z',
@@ -211,7 +211,7 @@ export default function MyLog() {
  },{
   'postId' : 8,
   'hostId' : 10,
-  'hostNickname' : 'sohhyeon',
+  'hostNickname' : 'kimcoding',
   'guestId' : 25,
   'guestNickname' : 'moonstar',
   'reserved_at' : '2022-12-06T06:59:00.000Z',
@@ -221,7 +221,7 @@ export default function MyLog() {
 },{
   'postId' : 9,
   'hostId' : 10,
-  'hostNickname' : 'sohhyeon',
+  'hostNickname' : 'kimcoding',
   'guestId' : 0,
   'guestNickname' : 'moonstar',
   'reserved_at' : '2022-12-06T06:59:00.000Z',

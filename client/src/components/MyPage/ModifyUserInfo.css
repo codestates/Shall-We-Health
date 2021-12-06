@@ -33,6 +33,7 @@
   width: 100px;
   font-weight: 600;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .modifyuserinfo-container .text {
@@ -48,16 +49,94 @@
   text-align: right;
   color: #ff7373;
   padding-bottom: 20px;
+  font-size: 0.9em;
+}
+
+.modifyuserinfo-container .text-right {
+  text-align: right;
+  color: #7bbd6b;
+  padding-bottom: 20px;
+  font-size: 0.9em;
+}
+
+.modifyuserinfo-container .hidden {
+  text-align: right;
+  color: #7bbd6b;
+  padding-bottom: 20px;
+  visibility: hidden;
+  font-size: 0.9em;
 }
 
 .modifyuserinfo-container .btn-modify {
   padding: 10px 20px 10px 20px;
   background-color: #39cfd9;
   margin-top: 50px;
+  cursor: pointer;
 }
 
 .modifyuserinfo-container .btn-quit {
   background-color: white;
   color: #acacac;
   margin: 10px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.modifyuserinfo-container .btn-quit:hover{
+  text-decoration: underline;
+}
+
+/*error 모달*/
+.modalmodify-container{
+  width: 100%;
+  height: 100%; /*실제 적용시 100% */
+  top: 0; /*실제 적용시 0 */
+  left: 0;
+  position: fixed;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  text-align: center;
+}
+
+.modalmodify-container .box-modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 20%; /*조절필요*/
+  height: 25%; /*조절필요*/
+  min-width: 300px;
+  min-height: 220px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;
+}
+
+.modalmodify-container .modal-message{
+  margin: 15px 0;
+  font-weight: 600;
+  height: 50%;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;
+}
+
+.modalmodify-container span{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#2AB2BB;
+  padding-top: 3px;
+  color: white;
+  width: 90px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
 }
