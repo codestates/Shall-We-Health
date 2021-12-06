@@ -5,11 +5,19 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faThList, faUser, faSearch, fas } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
+import axios from "axios"
 
 export default function NavigationBar() {
   const { isLogin, isAdmin } = useSelector((state) => state.loginReducer);
 
   const [loginModal, setLoginModal] = useState(false)
+  const handleLogout = () => {
+    axios.post(`${process.env.REACT_APP_SERVER_API}/user/logout`, "", { withCredentials: true })
+      .then(window.location.replace("/"))
+      .catch(err => console.log(err))
+  }
+
+
 
   return (
     <div className='navBar-container'>
@@ -46,25 +54,25 @@ export default function NavigationBar() {
               </Link>
             </div>
             <div className='btn-logout'>
-              <span onClick={()=>{setLoginModal(true)}}>로그아웃</span>
+              <span onClick={handleLogout}>로그아웃</span>
             </div>
           </>
         ) : (
           <>
             <div className='btn-login-nav'>
-              <span onClick={()=>{setLoginModal(true)}}>로그인</span>
+              <span onClick={() => { setLoginModal(true) }}>로그인</span>
             </div>
             <div className='btn-signup'>
-            <Link
-              to='/signup'
-              style={{ color: 'inherit', textDecoration: 'inherit' }}
-            >
-              <span>회원가입</span>
+              <Link
+                to='/signup'
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+              >
+                <span>회원가입</span>
               </Link>
             </div>
           </>
         )}
-        {isAdmin&&isLogin ? (
+        {isAdmin && isLogin ? (
           <div className='btn-admin'>
             <Link
               to='/admin'
@@ -77,7 +85,7 @@ export default function NavigationBar() {
           ''
         )}
       </div>
-      {loginModal ? <Login setModal={setLoginModal}/> : ''}
+      {loginModal ? <Login setModal={setLoginModal} /> : ''}
     </div>
   );
 }
