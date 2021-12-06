@@ -8,7 +8,7 @@ const {
   unrecommend,
 } = require("../controllers/mypage");
 
-router.get("/", lists);
+router.get("/:userId", lists);
 router.post("/issue", issue);
 router.post("/", recommend);
 router.delete("/", unrecommend);
