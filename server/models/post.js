@@ -31,9 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "SET NULL",
       });
       Post.hasMany(models.Thumbsup, {
-        foreignKey: {
-          name: "postId",
-        },
+        foreignKey: "postId",
+        as: "postLikes",
         onDelete: "SET NULL",
       });
     }

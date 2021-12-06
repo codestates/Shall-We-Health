@@ -1,6 +1,6 @@
 const { Op, QueryTypes } = require("sequelize");
 const { Post, User, Thumbsup, sequelize } = require("../../models");
-const jwt = require("jsonwebtoken");
+const { getAccessToken } = require("../../utils/validation");
 module.exports = {
   upload: async (req, res) => {
     try {
@@ -138,73 +138,45 @@ module.exports = {
   },
   remove: async (req, res) => {
     try {
-      const { accessToken } = req.cookies;
       const { postId, hostId } = req.body;
-      if (!accessToken) {
+      await getAccessToken(req, res);
+      //올바른 accessToken 확인완료
+      //이제 전달받은 postId와 hostId를 검증할 차례
+      const postData = await Post.findOne({
+        where: {
+          id: postId,
+        },
+        attributes: ["hostId"],
+      });
+      //postId가 없거나 일치하는 게시물이 없는 경우
+      if (!postData) {
         return res.status(400).json({
           data: null,
           error: {
             path: "/post",
-            message: "no accessToken",
+            message: "post not found",
           },
         });
       } else {
-        const verified = jwt.verify(
-          accessToken,
-          process.env.ACCESS_SECRET,
-          (err, decoded) => {
-            if (err) return null;
-            return decoded;
-          }
-        );
-        if (!verified) {
-          return res.status(401).json({
-            data: null,
-            error: {
-              path: "/user/auth",
-              message: "invalid accessToken",
-            },
-          });
-        } else {
-          //올바른 accessToken 확인완료
-          //이제 전달받은 postId와 hostId를 검증할 차례
-          const postData = await Post.findOne({
+        //전달받은 postId와 일치하는 게시물(postData)을 찾은 경우
+        //postData에서 받아온 hostId와 전달받은 hostId가 일치하는 경우(게시물 작성자가 유저가 맞는 경우)
+        if (postData.dataValues.hostId === hostId) {
+          await Post.destroy({
             where: {
               id: postId,
             },
-            attributes: ["hostId"],
           });
-          //postId가 없거나 일치하는 게시물이 없는 경우
-          if (!postData) {
-            return res.status(404).json({
-              data: null,
-              error: {
-                path: "/post",
-                message: "post not found",
-              },
-            });
-          } else {
-            //전달받은 postId와 일치하는 게시물(postData)을 찾은 경우
-            //postData에서 받아온 hostId와 전달받은 hostId가 일치하는 경우(게시물 작성자가 유저가 맞는 경우)
-            if (postData.dataValues.hostId === hostId) {
-              await Post.destroy({
-                where: {
-                  id: postId,
-                },
-              });
-              return res.status(204).end();
-            }
-            //postData에서 받아온 hostId와 전달받은 hostId가 불일치하는 경우(게시물 작성자가 유저가 아닌 경우)
-            else {
-              return res.status(401).json({
-                data: null,
-                error: {
-                  path: "/post",
-                  message: "invalid hostId",
-                },
-              });
-            }
-          }
+          return res.status(204).end();
+        }
+        //postData에서 받아온 hostId와 전달받은 hostId가 불일치하는 경우(게시물 작성자가 유저가 아닌 경우)
+        else {
+          return res.status(403).json({
+            data: null,
+            error: {
+              path: "/post",
+              message: "forbidden access",
+            },
+          });
         }
       }
     } catch (err) {

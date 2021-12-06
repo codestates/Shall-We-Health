@@ -36,10 +36,13 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "SET NULL",
       });
       User.hasMany(models.Thumbsup, {
-        foreignKey: {
-          name: "giverId",
-          name: "receiverId",
-        },
+        foreignKey: "giverId",
+        as: "givers",
+        onDelete: "CASCADE",
+      });
+      User.hasMany(models.Thumbsup, {
+        foreignKey: "receiverId",
+        as: "receivers",
         onDelete: "CASCADE",
       });
     }
