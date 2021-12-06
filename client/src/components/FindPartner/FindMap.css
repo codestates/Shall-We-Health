@@ -18,9 +18,12 @@
   font-size: 1.25em;
   width: 150px;
   height: 25px;
+
   /* border: black 1px solid; */
 }
-
+.findmap-container .input-textbox:focus {
+  outline: none;
+}
 .findmap-container .search-button {
   font-size: 1.2em;
   border: none;
