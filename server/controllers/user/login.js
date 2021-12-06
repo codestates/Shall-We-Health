@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 module.exports = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const passwordData = await User.findOne({
       where: {
         email,
@@ -12,58 +13,71 @@ module.exports = async (req, res) => {
     });
 
     if (!passwordData) {
+      /* 이메일로 못 찾았을때 */
       return res.status(204).json({
-        data: null,
+        data: passwordData,
         error: {
-          path: "/user/login",
-          message: "user not found",
+          path: "/users/login",
+          message: "wrong email",
         },
       });
-    }
-    if (!passwordData.isEmailVerified) {
-      return res.status(403).json({
-        data: null,
-        error: {
-          path: "/user/login",
-          message: "email verification required",
-        },
-      });
+    } else {
+      /* 이메일은 맞음 */
+
+      const { salt } = passwordData;
+      const hashPassword = crypto
+        .createHash("sha512")
+        .update(password + salt)
+        .digest("hex");
+
+      if (passwordData.password !== hashPassword) {
+        /* 이메일 맞음 비밀번호 틀림 */
+        return res.status(204).json({
+          data: null,
+          error: {
+            path: "/users/login",
+            message: "wrong password",
+          },
+        });
+      }
+
+
+      if (!passwordData.dataValues.isEmailVerified) {
+        /* 이메일 맞음 비밀번호 맞음 회원가입인증 안함 */
+        return res.status(403).json({
+          data: null,
+          error: {
+            path: "/user/login",
+            message: "email verification required",
+          },
+        });
+      }
+
+
+      if (passwordData.password === hashPassword && passwordData.dataValues.isEmailVerified) {
+        /* 이메일 맞음 비밀번호 맞음 회원가입인증 함 */
+        const userData = await User.findOne({
+          where: {
+            email,
+          },
+          attributes: { exclude: ["salt", "password"] },
+        });
+        const accessToken = jwt.sign(
+          userData.dataValues,
+          process.env.ACCESS_SECRET,
+          {
+            expiresIn: "1h",
+          }
+        );
+        res
+          .cookie("accessToken", accessToken, {
+            maxAge: 6 * 10 * 60 * 1000, // 1시간
+          })
+          .status(200)
+          .end();
+      }
     }
 
-    const { salt } = passwordData;
-    const hashPassword = crypto
-      .createHash("sha512")
-      .update(password + salt)
-      .digest("hex");
-    if (passwordData.password === hashPassword) {
-      const userData = await User.findOne({
-        where: {
-          email,
-        },
-        attributes: { exclude: ["salt", "password"] },
-      });
-      const accessToken = jwt.sign(
-        userData.dataValues,
-        process.env.ACCESS_SECRET,
-        {
-          expiresIn: "1h",
-        }
-      );
-      res
-        .cookie("accessToken", accessToken, {
-          maxAge: 6 * 10 * 60, //1시간
-        })
-        .status(200)
-        .end();
-    } else {
-      return res.status(401).json({
-        data: null,
-        error: {
-          path: "/user/login",
-          message: "unauthorized",
-        },
-      });
-    }
   } catch (err) {
     console.log(err);
     throw err;

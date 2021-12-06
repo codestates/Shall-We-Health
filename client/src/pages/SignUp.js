@@ -8,7 +8,7 @@ export default function SignUp() {
   const [inputInfo, setInputInfo] = useState({ nickname: '', email: '', password: '', pwConfirm: '' })
   const [isValid, setIsValid] = useState({ nickname: 0, email: 0, password: 0, pwConfirm: 0 })
   const [checkMsg, setCheckMsg] = useState({ nickname: '', email: '', password: '', pwConfirm: '', signUp: '' })
-
+  const [loading, setLoading] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -104,19 +104,21 @@ export default function SignUp() {
       const { nickname, email, password, pwConfirm } = isValid
 
       if ((nickname && email && password && pwConfirm) === true) {
+        setLoading(true)
         /*모든 조건이 true일때 회원가입가능*/
         const { nickname, email, password } = inputInfo
-
         await axios.post(`${process.env.REACT_APP_SERVER_API}/user/signup`, {
+
           /* 회원가입 DB저장*/
           nickname, email, password
         })
           .then(() => {
             axios.post(`${process.env.REACT_APP_SERVER_API}/user/signup-verification`, { email })
               /* 회원가입 DB저장되어 있는 이메일확인 후 메일보내주기*/
-              .then((res) => {
+              .then(async (res) => {
                 console.log(res)
-                setSignUp(true)
+                await setLoading(false)
+                await setSignUp(true)
               })
               .catch((err) => {
                 console.log(err);
@@ -141,42 +143,50 @@ export default function SignUp() {
 
     <div className='signup-container'>
       <div className='home-logo'></div>
-      {signUp === true
+      {loading === true
         ? (
-          <div>
-            <div className='text-sentMail'> 입력하신 이메일로 <br /> 가입메일이 발송 되었습니다. </div>
-          </div>)
-        : (
-          <div className='signup-box'>
-            <div className='text'>닉네임</div>
-            <div>
-              <input name='nickname' onChange={handleInputChange} placeholder='특수문자 제외 2~10자내로 입력해주세요(공백가능)' />
-              <button name='nickname' className='btn-confirm' onClick={(e) => { UserInfoConfirm(e) }} >중복확인</button>
-            </div>
-            <div className={isValid.nickname ? 'message check ' : 'message err'}>{checkMsg.nickname} </div>
-
-
-            <div className='text'>이메일</div>
-            <div>
-              <input name='email' onChange={handleInputChange} placeholder=' example@health.com' />
-              <button name='email' className='btn-confirm' onClick={(e) => { UserInfoConfirm(e) }}>중복확인</button>
-            </div>
-            <div className={isValid.email ? 'message check' : 'message err'}>{checkMsg.email}</div>
-
-
-            <div className='text'>비밀번호</div>
-            <input name='password' type='password' onChange={handleInputChange} placeholder=' 영문+숫자 조합 8~15자리를 사용합니다' />
-            <div className='message err' >{checkMsg.password}</div>
-
-            <div className='text'> 비밀번호 확인</div>
-            <input name='pwConfirm' type='password' onChange={handleInputChange} placeholder=' 비밀번호 재입력' />
-            <div className='message err' >{checkMsg.pwConfirm}</div>
-
-            <div className='message err center' >{checkMsg.signUp}</div>
-            <button name='signUp' className='btn-signup' onClick={(e) => { UserInfoConfirm(e) }}>회원가입</button>
+          <div className='loading-container'>
+            <img alt='loading' src='img/loading.svg' />
           </div>
         )
+        : (signUp === true
+          ? (
+            <div>
+              <div className='text-sentMail'> 입력하신 이메일로 <br /> 가입메일이 발송 되었습니다. </div>
+            </div>)
+          : (
+            <div className='signup-box'>
+              <div className='text'>닉네임</div>
+              <div>
+                <input name='nickname' onChange={handleInputChange} placeholder='특수문자 제외 2~10자내로 입력해주세요(공백가능)' />
+                <button name='nickname' className='btn-confirm' onClick={(e) => { UserInfoConfirm(e) }} >중복확인</button>
+              </div>
+              <div className={isValid.nickname ? 'message check ' : 'message err'}>{checkMsg.nickname} </div>
+
+
+              <div className='text'>이메일</div>
+              <div>
+                <input name='email' onChange={handleInputChange} placeholder=' example@health.com' />
+                <button name='email' className='btn-confirm' onClick={(e) => { UserInfoConfirm(e) }}>중복확인</button>
+              </div>
+              <div className={isValid.email ? 'message check' : 'message err'}>{checkMsg.email}</div>
+
+
+              <div className='text'>비밀번호</div>
+              <input name='password' type='password' onChange={handleInputChange} placeholder=' 영문+숫자 조합 8~15자리를 사용합니다' />
+              <div className='message err' >{checkMsg.password}</div>
+
+              <div className='text'> 비밀번호 확인</div>
+              <input name='pwConfirm' type='password' onChange={handleInputChange} placeholder=' 비밀번호 재입력' />
+              <div className='message err' >{checkMsg.pwConfirm}</div>
+
+              <div className='message err center' >{checkMsg.signUp}</div>
+              <button name='signUp' className='btn-signup' onClick={(e) => { UserInfoConfirm(e) }}>회원가입</button>
+            </div>
+          )
+        )
       }
+
 
     </div>
   )

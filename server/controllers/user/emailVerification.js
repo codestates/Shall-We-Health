@@ -8,7 +8,8 @@ module.exports = async (req, res) => {
     const verified = jwt.verify(token, process.env.ACCESS_SECRET, (err, decoded) => {
       if (err) return null;
       return decoded;
-    })
+    });
+
 
     // { email: 'sunyeong2222@gmail.com', iat: 1638472846, exp: 1638476446 }
     //1. 토큰을 해독했는데 유효하지 않았을 때
@@ -25,8 +26,11 @@ module.exports = async (req, res) => {
       });
     } else {
       //해독된거로 DB찾기
+
       const { email } = verified
       const userEmail = await User.findOne({ where: { email }, attributes: ["email"] });
+
+
       if (!userEmail) {
         /* DB에 유저 정보가 없을 때*/
         return res.status(404).json({

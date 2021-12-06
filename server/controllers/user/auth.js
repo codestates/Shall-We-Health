@@ -3,6 +3,7 @@ const { User } = require("../../models");
 module.exports = async (req, res) => {
   try {
     const { accessToken } = req.cookies;
+
     if (!accessToken) {
       return res.status(400).json({
         data: null,
@@ -20,6 +21,8 @@ module.exports = async (req, res) => {
           return decoded;
         }
       );
+
+
       //accessToken은 있지만 해독되지 않는 경우
       if (!verified) {
         return res.status(401).json({
@@ -30,7 +33,8 @@ module.exports = async (req, res) => {
           },
         });
       } else {
-        const userData = User.findOne({
+
+        const userData = await User.findOne({
           where: {
             email: verified.email,
           },
@@ -43,6 +47,7 @@ module.exports = async (req, res) => {
             "isEmailVerified",
           ],
         });
+
         //accessToken있고, 해독되었지만 일치하는 정보가 DB에 없는 경우
         if (!userData) {
           return res.status(404).json({
@@ -51,8 +56,7 @@ module.exports = async (req, res) => {
             message: "user not found",
           });
         } else {
-          const { id, nickname, email, isOauth, isAdmin, isEmailVerified } =
-            userData.dataValues;
+          const { id, nickname, email, isOauth, isAdmin, isEmailVerified } = userData.dataValues;
           return res.status(200).json({
             data: {
               isLogin: true,
