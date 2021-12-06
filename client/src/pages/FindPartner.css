@@ -62,21 +62,27 @@
   font-size: 1.25em;
   margin: 2%;
 }
-.findpartner-container .weight-options {
+.findpartner-container .weight-button-label {
+  text-align: center;
+  display: inline-block;
+  line-height: 50px;
   width: 120px;
-  height: 40px;
   margin: 1%;
-  border-radius: 20px;
+  border-radius: 40px;
   border: none;
   cursor: pointer;
   background-color: #9ca2a3;
   color: white;
-  font-weight: 500;
-  font-size: 1.1em;
+  font: 1.1em;
 }
-.findpartner-container .weight-options:checked {
+
+input[type='checkbox']:checked + label {
   background-color: #39cfd9;
 }
+input[type='radio']:checked + label {
+  background-color: #39cfd9;
+}
+
 .findpartner-container .weight-button {
   display: flex;
   flex-direction: row;
@@ -122,7 +128,7 @@
   font-size: 1.25em;
   margin: 2%;
 }
-.findpartner-container .message-input {
+.findpartner-container #message-input {
   width: 800px;
   height: 200px;
   border-radius: 13px;
@@ -145,41 +151,33 @@
   margin-left: 10%;
 }
 
-.findpartner-container .body-options {
+.findpartner-container .body-options-label {
+  text-align: center;
+  display: inline-block;
+  line-height: 40px;
   width: 100px;
-  height: 40px;
   margin: 1%;
   border-radius: 20px;
   border: none;
   cursor: pointer;
   background-color: #9ca2a3;
   color: white;
-  font-weight: 500;
-  font-size: 1.1em;
+  font: 1.1em;
 }
 
-.findpartner-container .weight-options-sample {
-  width: 120px;
-  height: 40px;
-  margin: 1%;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  background-color: #39cfd9;
-  color: white;
-  font-weight: 500;
-  font-size: 1.1em;
-}
-
-.findpartner-container .body-options-sample {
-  width: 100px;
-  height: 40px;
-  margin: 1%;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  background-color: #39cfd9;
-  color: white;
-  font-weight: 500;
-  font-size: 1.1em;
+.findpartner-container #chest,
+#triceps,
+#back,
+#biceps,
+#shoulder,
+#leg,
+#abs,
+#cardio,
+#ud100,
+#bt100-200,
+#bt200-300,
+#bt300-400,
+#bt400-500,
+#ov500 {
+  display: none;
 }
