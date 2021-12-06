@@ -161,7 +161,7 @@ export default function ModifyUserInfo() {
             <td className='text-wrong'>사용중인 닉네임 입니다</td>
           )}
         </tr>
-        {isOauth ? (
+        {!isOauth ? (
           <>
         <tr>
           <td className='text'>새로운 비밀번호</td>

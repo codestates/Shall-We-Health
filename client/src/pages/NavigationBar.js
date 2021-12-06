@@ -3,7 +3,7 @@ import Login from './Login';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faThList, faUser, faSearch, fas } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
 import axios from "axios"
 
@@ -22,31 +22,35 @@ export default function NavigationBar() {
   return (
     <div className='navBar-container'>
       <div className='bar'>
-        <img alt='logo' src='img/logo.svg' className='home-logo' onClick={() => { window.location.replace('/') }} />
+        <img alt='logo' src='img/logo.svg' className='home-logo web' onClick={()=>{window.location.replace('/')}}/>
+        <img alt='logo' src='img/symbol.svg' className='home-logo mobile' onClick={()=>{window.location.replace('/')}}/>
         <div className='btn-board'>
-          <Link
-            to='/board'
-            style={{ color: 'inherit', textDecoration: 'inherit' }}
-          >
-            <span>메이트 탐색</span>
+        <Link
+              to='/board'
+              style={{ color: 'inherit', textDecoration: 'inherit' }}
+            >
+          <span  className='web'>메이트 탐색</span>
+          <FontAwesomeIcon className='board mobile' icon={faThList} />
           </Link>
         </div>
         <div className='btn-search'>
-          <Link
-            to='/find-partner'
-            style={{ color: 'inherit', textDecoration: 'inherit' }}
-          >
-            <span>메이트 모집</span>
+        <Link
+              to='/find-partner'
+              style={{ color: 'inherit', textDecoration: 'inherit' }}
+            >
+          <span className='web'>메이트 모집</span>
+          <FontAwesomeIcon className='find-partner mobile' icon={faSearch} />
           </Link>
         </div>
         {isLogin ? (
           <>
             <div className='btn-mypage'>
-              <Link
-                to='/mypage'
-                style={{ color: 'inherit', textDecoration: 'inherit' }}
-              >
-                <span>마이페이지</span>
+            <Link
+              to='/mypage'
+              style={{ color: 'inherit', textDecoration: 'inherit' }}
+            >
+              <span className='web'>마이페이지</span>
+              <FontAwesomeIcon className='mypage mobile' icon={faUser} />
               </Link>
             </div>
             <div className='btn-logout'>
