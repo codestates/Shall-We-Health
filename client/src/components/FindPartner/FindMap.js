@@ -13,6 +13,7 @@ export default function FindMap(
     e.preventDefault();
     setPlace(inputText);
     setInputText("");
+    setMarkerPlace({})
   };
 
 
