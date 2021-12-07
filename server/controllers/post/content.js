@@ -1,6 +1,8 @@
 const { Post } = require("../../models");
+const { getAccessToken } = require("../../utils/validation");
 module.exports = async (req, res) => {
   try {
+    await getAccessToken(req, res);
     const { postId } = req.params;
     const { location, description } = req.query;
     if (!location || !description) {

@@ -4,7 +4,9 @@ const { getAccessToken } = require("../../utils/validation");
 module.exports = {
   upload: async (req, res) => {
     try {
-      const { userId, reserved_at, location, description } = req.body;
+      const response = await getAccessToken(req, res);
+      const userId = response.dataValues.id;
+      const { reserved_at, location, description } = req.body;
       if (userId && reserved_at && location && description) {
         const postData = Post.create({
           hostId: userId,
