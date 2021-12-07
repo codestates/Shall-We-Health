@@ -165,7 +165,7 @@ export default function FindPartner() {
         reserved_at: reserveTime,
         location: markerPlace,
         description: description
-      })
+      }, {withCredentials: true})
     }
     else {
       setModalMsg('선택하지 않은 정보가 있습니다.')
