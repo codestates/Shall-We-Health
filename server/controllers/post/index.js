@@ -4,7 +4,9 @@ const { getAccessToken } = require("../../utils/validation");
 module.exports = {
   upload: async (req, res) => {
     try {
-      const { userId, reserved_at, location, description } = req.body;
+      const response = await getAccessToken(req, res);
+      const userId = response.dataValues.id;
+      const { reserved_at, location, description } = req.body;
 
       if (userId && reserved_at && location && description) {
         //동일한 날짜에 이미 업로드(호스트) 또는 신청한(게스트) 내역이 있다면, 신청제한
