@@ -10,6 +10,8 @@ export default function SignUp() {
   const [checkMsg, setCheckMsg] = useState({ nickname: '', email: '', password: '', pwConfirm: '', signUp: '' })
   const [loading, setLoading] = useState(false)
 
+  console.log(isValid)
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInputInfo({ ...inputInfo, [name]: value });
@@ -103,7 +105,7 @@ export default function SignUp() {
     if (name === 'signUp') {
       const { nickname, email, password, pwConfirm } = isValid
 
-      if ((nickname && email && password && pwConfirm) === true) {
+      if (nickname === true && email === true && password && pwConfirm) {
         setLoading(true)
         /*모든 조건이 true일때 회원가입가능*/
         const { nickname, email, password } = inputInfo
