@@ -1,12 +1,24 @@
 const { Op, QueryTypes } = require("sequelize");
-const { Post, User, Thumbsup, sequelize } = require("../../models");
+const { Post, User, sequelize } = require("../../models");
 const { getAccessToken } = require("../../utils/validation");
 module.exports = {
   upload: async (req, res) => {
     try {
       const { userId, reserved_at, location, description } = req.body;
+
       if (userId && reserved_at && location && description) {
-        const postData = Post.create({
+        //동일한 날짜에 이미 업로드(호스트) 또는 신청한(게스트) 내역이 있다면, 신청제한
+        const existingData = await Post.findAll({
+          where: {
+            [Op.substring]: [{ reserved_at }],
+            [Op.or]: [{ hostId: userId }, { guestId: userId }],
+            [Op.not]: [{ isMatched: 2 }],
+          },
+        });
+        if (existingData) {
+          return res.status(204).end();
+        }
+        await Post.create({
           hostId: userId,
           reserved_at,
           location,
@@ -17,8 +29,8 @@ module.exports = {
       return res.status(400).json({
         data: null,
         error: {
-          path: "/user",
-          message: "Inssuficient body data",
+          path: "/post",
+          message: "Insufficient body data",
         },
       });
     } catch (err) {
