@@ -1,5 +1,5 @@
 const { QueryTypes } = require("sequelize");
-const { Post, User, Thumbsup, sequelize } = require("../../models");
+const { Post, User, Thumbsup, sequelize, Issue } = require("../../models");
 const { getAccessToken } = require("../../utils/validation");
 module.exports = {
   lists: async (req, res) => {
@@ -47,22 +47,103 @@ module.exports = {
   },
   issue: async (req, res) => {
     try {
-      res.end();
+      const response = await getAccessToken(req, res);
+      const userId = response.dataValues.id;
+      const { targetId, content, postId } = req.body;
+
+      const postData = await Post.findOne({
+        where: {
+          id: postId,
+          [Op.or]: [{ hostId: targetId }, { guestId: targetId }],
+        },
+      });
+      if (postData && content) {
+        await Issue.create({
+          postId,
+          reporterId: userId,
+          targetId,
+          content,
+        });
+        return res.status(201).end();
+      } else {
+        return res.status(400).json({
+          data: null,
+          error: {
+            path: "/mypage",
+            message: "post not found",
+          },
+        });
+      }
     } catch (err) {
+      console.log(err);
       throw err;
     }
   },
   recommend: async (req, res) => {
     try {
-      res.end();
+      const response = await getAccessToken(req, res);
+      const userId = response.dataValues.id;
+      const { postId, receiverId } = req.body;
+
+      //postId와 receiverId 유효성 확인
+      const postData = await Post.findOne({
+        where: {
+          id: postId,
+          [Op.or]: [{ hostId: receiverId }, { guestId: receiverId }],
+        },
+      });
+      if (postData) {
+        await Thumbsup.create({
+          postId,
+          giverId: userId,
+          receiverId,
+        });
+        return res.status(201).end();
+      } else {
+        return res.status(400).json({
+          data: null,
+          error: {
+            path: "/mypage",
+            error: "post not found",
+          },
+        });
+      }
     } catch (err) {
+      console.log(err);
       throw err;
     }
   },
   unrecommend: async (req, res) => {
     try {
-      res.end();
+      const response = await getAccessToken(req, res);
+      const userId = response.dataValues.id;
+      const { postId, receiverId } = req.body;
+
+      const thumbsupData = await Thumbsup.findAll({
+        where: {
+          postId,
+          receiverId,
+        },
+      });
+      if (thumbsupData) {
+        await Thumbsup.destroy({
+          where: {
+            postId,
+            giverId: userId,
+            receiverId,
+          },
+        });
+      } else {
+        return res.status(400).json({
+          data: null,
+          error: {
+            path: "/mypage",
+            error: "thumbsup not found",
+          },
+        });
+      }
     } catch (err) {
+      console.log(err);
       throw err;
     }
   },
