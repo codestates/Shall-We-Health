@@ -1,6 +1,7 @@
 .whole-findpartner {
   background-color: #f4f4f49d;
   padding-top: 15px;
+  padding-bottom: 150px;
 }
 .findpartner-container {
   background-color: white;
@@ -117,11 +118,15 @@ input[type='radio']:checked + label {
   height: 50px;
   width: 200px;
   font-size: 1.2em;
-  background-color: #39cfd9;
+  background-color: #9ca2a3;
   color: white;
   font-weight: 900;
   border: none;
   border-radius: 30px;
+  cursor: pointer;
+}
+.findpartner-container .findpartner-button:hover {
+  background-color: #39cfd9;
 }
 
 .findpartner-container .message-title {
@@ -180,4 +185,58 @@ input[type='radio']:checked + label {
 #bt400-500,
 #ov500 {
   display: none;
+}
+
+.findpartner-container .modalmatch-container {
+  width: 100%;
+  height: 100%; /*실제 적용시 100% */
+  top: 0; /*실제 적용시 0 */
+  left: 0;
+  position: fixed;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  text-align: center;
+}
+
+.findpartner-container .modalmatch-container .box-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 20%; /*조절필요*/
+  height: 25%; /*조절필요*/
+  min-width: 300px;
+  min-height: 220px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.findpartner-container .modalmatch-container .modal-message {
+  margin: 15px 0;
+  font-weight: 600;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.findpartner-container .modalmatch-container span {
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #2ab2bb;
+  padding-top: 3px;
+  color: white;
+  width: 90px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
 }
