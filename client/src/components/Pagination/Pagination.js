@@ -17,7 +17,7 @@ const Pagination = ({
     pages = maxPage;
   }
 
-  for (let i = 0; i <= pages; i++) {
+  for (let i = 1; i <= pages; i++) {
     pageNumbers.push(i);
   }
   return (
@@ -26,11 +26,7 @@ const Pagination = ({
         <span
           className='first'
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
-          onClick={() => {
-            activePage > pageRangeDisplayed
-              ? paginate(activePage - pageRangeDisplayed)
-              : paginate(1);
-          }}
+          onClick={() => paginate(1) }
         >
           &lt;&lt;
         </span>
