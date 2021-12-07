@@ -22,10 +22,10 @@
   grid-template-columns: 358px;
   align-items: center;
   gap: 8px 25px;
+  height: 430px;
 }
 
-.findpw-container .text-findPw,
-.findpw-container .text-modifyPw {
+.findpw-container .text-findPw {
   font-size: 30px;
   font-weight: 700;
   grid-column: 1/3;
@@ -33,64 +33,59 @@
   margin-bottom: 50px;
 }
 
-.findpw-container .text-email,
-.findpw-container .text-pw,
-.findpw-container .text-dubble-pw {
+.findpw-container .text-email {
   font-weight: 700;
   font-size: 18px;
   grid-column: 1/3;
 }
 
-.findpw-container .input-pw,
-.findpw-container .input-dubble-pw,
-.findpw-container .input-email {
+.findpw-container input {
   border: solid 2px #39cfd9;
-  width: 350px;
-  height: 40px;
-  font-size: 14px;
+  border: #39cfd9 solid 2px;
+  width: 345px;
+  height: 35px;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px #39cfd9;
 }
 
-.findpw-container .input-pw:focus,
-.findpw-container .input-dubble-pw:focus {
+.findpw-container input:focus {
   outline: none;
 }
 
-.findpw-container .btn-modifyPw,
-.findpw-container .btn-mailsend {
-  border: none;
+.findpw-container button {
   background-color: #2ab2bb;
+  border: none;
   color: white;
-  font-size: 15px;
-  font-weight: 700;
-  width: 120px;
-  height: 30px;
   border-radius: 20px;
-  grid-row: 8/9;
-  justify-self: center;
-}
-
-.findpw-container .btn-home {
-  border: none;
-  grid-column: 1/3;
-  font-weight: 800;
-  margin: 20% 0px 0px 0px;
-  background-color: #2ab2bb;
-  color: white;
+  padding: 5px 10px 5px 10px;
   font-size: 18px;
+  margin: 20px;
+  font-weight: 800;
+  justify-self: center;
   width: 150px;
   height: 40px;
-  border-radius: 20px;
-  justify-self: center;
 }
 
-.findpw-container .btn-modifyPw:hover,
-.findpw-container .btn-mailsend:hover,
-.findpw-container .btn-home:hover {
+.findpw-container button:hover {
   cursor: pointer;
 }
 
+.findpw-container .btn-mailsend {
+  grid-row: 8/9;
+}
+
+.findpw-container .btn-home {
+  grid-column: 1/3;
+  justify-self: center;
+}
+
+.findpw-container .hidden {
+  visibility: hidden;
+  grid-column: 1/2;
+}
+
 .findpw-container .text-sentMail {
-  /* visibility: hidden; */
   text-align: center;
   grid-column: 1/3;
   font-size: 25px;
@@ -98,13 +93,13 @@
   padding: 100px 30px 30px 30px;
 }
 
-.findpw-container .text-wrong-pw,
-.findpw-container .text-wrong-dubblePw,
-.findpw-container .email-check,
-.findpw-container .not-validemail {
-  /* visibility: hidden; */
+.findpw-container .err {
   grid-column: 1/2;
   color: #ff7373;
   text-align: right;
   padding-bottom: 15px;
+}
+
+.findpw-container .loading-container {
+  height: 430px;
 }

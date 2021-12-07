@@ -1,0 +1,85 @@
+.updatepw-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1024px;
+  min-width: 768px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.updatepw-container .home-logo {
+  background-image: url('../../img/logo.svg');
+  width: 300px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: 20px;
+}
+
+.updatepw-container .text-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.updatepw-container .text-pw,
+.updatepw-container .text-dubble-pw {
+  font-weight: 700;
+  font-size: 18px;
+  align-self: flex-start;
+  margin-left: 340px;
+}
+
+.updatepw-container input {
+  border: solid 2px #39cfd9;
+  width: 345px;
+  height: 35px;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px #39cfd9;
+}
+
+.updatepw-container input:focus {
+  outline: none;
+}
+
+.updatepw-container button {
+  background-color: #2ab2bb;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px 5px 10px;
+  font-size: 18px;
+  margin: 20px;
+  font-weight: 800;
+  justify-self: center;
+  width: 150px;
+  height: 40px;
+}
+
+.updatepw-container button:hover {
+  cursor: pointer;
+}
+
+.updatepw-container .err {
+  align-self: flex-end;
+  color: #ff7373;
+  font-size: 15px;
+  font-weight: 500;
+  height: 19px;
+  padding-bottom: 15px;
+  margin-right: 340px;
+}
+
+.updatepw-container .hidden {
+  visibility: hidden;
+}
+
+.text-completed {
+  height: 330px;
+  font-size: 30px;
+  font-weight: 800;
+  margin-top: 100px;
+}

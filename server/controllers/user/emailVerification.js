@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
           },
         });
       } else {
-        const sql = `update users set isEmailVerified = 1 where email = "${email}";`
+        const sql = `update Users set isEmailVerified = 1 where email = "${email}";`
         const rows = await sequelize.query(sql, { type: QueryTypes.UPDATE });
         if (rows) {
           return res.status(200).json({ data: true });
