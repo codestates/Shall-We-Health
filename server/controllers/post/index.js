@@ -12,12 +12,26 @@ module.exports = {
         //동일한 날짜에 이미 업로드(호스트) 또는 신청한(게스트) 내역이 있다면, 신청제한
         const existingData = await Post.findAll({
           where: {
-            [Op.substring]: [{ reserved_at }],
+            [Op.and]: [
+              sequelize.where(
+                sequelize.fn("date", sequelize.col("reserved_at")),
+                ">=",
+                reserved_at.slice(0, 10)
+              ),
+              sequelize.where(
+                sequelize.fn("date", sequelize.col("reserved_at")),
+                "<=",
+                reserved_at.slice(0, 10)
+              ),
+            ],
+
             [Op.or]: [{ hostId: userId }, { guestId: userId }],
             [Op.not]: [{ isMatched: 2 }],
           },
         });
-        if (existingData) {
+
+        if (existingData.length !== 0) {
+
           return res.status(204).end();
         }
         await Post.create({
