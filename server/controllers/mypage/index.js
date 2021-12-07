@@ -54,15 +54,69 @@ module.exports = {
   },
   recommend: async (req, res) => {
     try {
-      res.end();
+      const response = await getAccessToken(req, res);
+      const userId = response.dataValues.id;
+      const { postId, receiverId } = req.body;
+
+      //postId와 receiverId 유효성 확인
+      const postData = await Post.findOne({
+        where: {
+          id: postId,
+          [Op.or]: [{ hostId: receiverId }, { guestId: receiverId }],
+        },
+      });
+      if (postData) {
+        await Thumbsup.create({
+          postId,
+          giverId: userId,
+          receiverId,
+        });
+        return res.status(201).end();
+      } else {
+        return res.status(400).json({
+          data: null,
+          error: {
+            path: "/mypage",
+            error: "post not found",
+          },
+        });
+      }
     } catch (err) {
+      console.log(err);
       throw err;
     }
   },
   unrecommend: async (req, res) => {
     try {
-      res.end();
+      const response = await getAccessToken(req, res);
+      const userId = response.dataValues.id;
+      const { postId, receiverId } = req.body;
+
+      const thumbsupData = await Thumbsup.findAll({
+        where: {
+          postId,
+          receiverId,
+        },
+      });
+      if (thumbsupData) {
+        await Thumbsup.destroy({
+          where: {
+            postId,
+            giverId: userId,
+            receiverId,
+          },
+        });
+      } else {
+        return res.status(400).json({
+          data: null,
+          error: {
+            path: "/mypage",
+            error: "thumbsup not found",
+          },
+        });
+      }
     } catch (err) {
+      console.log(err);
       throw err;
     }
   },
