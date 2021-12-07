@@ -12,6 +12,7 @@ const {
   passwordVerification,
   signupVerification,
   signup,
+  withdrawal,
 } = require("../controllers/user");
 
 router.get("/auth", auth);
@@ -25,4 +26,5 @@ router.patch("/email-verification", emailVerification);
 router.post("/findpw-verification", findPwVerification);
 router.patch("/password-verification", passwordVerification);
 router.post("/signup-verification", signupVerification);
+router.delete("/withdrawal", withdrawal);
 module.exports = router;

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './FindPartner.css';
 import Select from 'react-select'
 import FindMap from '../components/FindPartner/FindMap';
+import axios from 'axios';
 
 
 export default function FindPartner() {
@@ -34,8 +35,8 @@ export default function FindPartner() {
   let minuteOptions = [{ value: '00', label: '00' }]
   for (let i = 10; i < 60; i = i + 10) {
     let obj = {}
-    obj.value = i
-    obj.label = i
+    obj.value = `${i}`
+    obj.label = `${i}`
     minuteOptions.push(obj)
   }
   //
@@ -53,6 +54,100 @@ export default function FindPartner() {
   });
 
 
+  const [year, setYear] = useState('')
+  const [hour, setHour] = useState('')
+  const [minute, setMinute] = useState('')
+  const [sbd, setSbd] = useState('')
+  const [text, setText] = useState('')
+  const [bodypartOptions, setBodyPartOptions] = useState('')
+
+
+  let description = {
+    "sbd": sbd,
+    "bodypart": bodypartOptions,
+    "message": text
+  }
+
+
+
+  const yearChange = (value) => {
+    setYear(value.value)
+  }
+  const hourChange = (value) => {
+    setHour(value.value)
+  }
+  const minuteChange = (value) => {
+    setMinute(value.value)
+  }
+  const sbdChange = (e) => {
+    setSbd(e.target.value)
+  }
+
+  const textChange = (e) => {
+    setText(e.target.value)
+  }
+  const getCheckboxValue = () => {
+    // 선택된 목록 가져오기
+    const query = 'input[name="bodyOptions"]:checked';
+    const selectedEls =
+      document.querySelectorAll(query);
+
+    // 선택된 목록에서 value 찾기
+    let bodypartArr = [];
+    selectedEls.forEach((el) => {
+      bodypartArr.push(el.value);
+    });
+
+    setBodyPartOptions(bodypartArr)
+    // 출력
+    // console.log(bodypartArr)
+
+  }
+
+  useEffect(() => {
+    console.log(year)
+  }, [year])
+
+  useEffect(() => {
+    console.log(hour)
+  }, [hour])
+
+  useEffect(() => {
+    console.log(minute)
+  }, [minute])
+
+  useEffect(() => {
+    description.sbd = sbd
+    console.log(description)
+    console.log(text)
+
+  }, [sbd])
+
+  useEffect(() => {
+    console.log(description)
+  }, [bodypartOptions])
+
+  useEffect(() => {
+    console.log(description)
+
+  }, [text])
+
+
+  const userId = 1 // redux로 관리
+  const location = 12//findmap에서 보내줄 예정
+  const handleSubmit = () => {
+    const reserveTime = `${year} ${hour}:${minute}:00`
+    if (location && reserveTime && userId && description) {
+      axios.post(`${process.env.REACT_APP_SERVER_API}/post`, {
+        userId: userId,
+        reserved_at: reserveTime,
+        location: location,
+        description: description
+      })
+    }
+    //else 모달 띄워서 입력정보 확인해달라고 하기.
+  }
+
 
   return (
 
@@ -61,69 +156,101 @@ export default function FindPartner() {
         <div className='datepick-container'>
           <div className='datepick-title'>운동 일시</div>
           <div className='datepick-main'>
-            <div className='date-title'>날짜</div><Select className='date-selectbox' options={dateOptions} placeholder='0000-00-00' styles={customStyles} />
-            <Select className='time-selectbox' options={timeOptions} placeholder='00' styles={customStyles} /><div className=' time-title'>시</div>
-            <Select className='minute-selectbox' options={minuteOptions} placeholder='00' styles={customStyles} /><div className='minute-title'>분</div>
+            <div className='date-title'>날짜</div>
+            <Select className='date-selectbox' options={dateOptions} value={dateOptions.find(op => { return op.value === year })} onChange={yearChange} placeholder='0000-00-00' styles={customStyles} />
+            <Select className='time-selectbox' options={timeOptions} value={timeOptions.find(op => { return op.value === hour })} onChange={hourChange} placeholder='00' styles={customStyles} />
+            <div className=' time-title'>시</div>
+            <Select className='minute-selectbox' options={minuteOptions} value={minuteOptions.find(op => { return op.value === minute })} onChange={minuteChange} placeholder='00' styles={customStyles} />
+            <div className='minute-title'>분</div>
 
-        </div>
-      </div>
-
-      <div className='location-container'>
-        <div className='list-section'>
-          <div className='location-title'>헬스장 위치</div>
-        </div>
-        <div className='map-section'><FindMap /></div>
-      </div>
-      <div className='weight-container'>
-        <div className='weight-title'>3대 운동 중량</div>
-        <div className='weight-button'>
-          <button className='weight-options'>100kg이하</button>
-          <button className='weight-options'>100~200kg</button>
-          <button className='weight-options-sample'>200~300kg</button>
-          <button className='weight-options'>300~400kg</button>
-          <button className='weight-options'>400~500kg</button>
-          <button className='weight-options'>500kg 이상</button>
-        </div>
-      </div>
-
-      <div className='bodypart-container'>
-        <div className='bodypart-title'>운동부위</div>
-        <div className='bodypart-section'>
-          <div className='bodypart-1'>
-            <button className='body-options-sample'>가슴</button>
-            <button className='body-options-sample'>삼두</button>
-          </div>
-          <div className='bodypart-2'>
-            <button className='body-options'>등</button>
-            <button className='body-options'>이두</button>
-          </div>
-          <div className='bodypart-3'>
-            <button className='body-options'>어깨</button>
-            <button className='body-options'>하체</button>
-          </div>
-          <div className='bodypart-4'>
-            <button className='body-options-sample'>복근</button>
-            <button className='body-options-sample'>유산소</button>
           </div>
         </div>
-      </div>
 
-      <div className='message-container'>
-        <div className='message-title'>파트너에게 하고싶은말(200자 이내로 작성해주세요)</div>
-        <div className='message-wrap'><textarea className='message-input' maxLength='200' ></textarea></div>
-      </div>
+        <div className='location-container'>
+          <div className='list-section'>
+            <div className='location-title'>헬스장 위치</div>
+          </div>
+          <div className='map-section'><FindMap /></div>
+        </div>
+        <div className='weight-container'>
+          <div className='weight-title'>3대 운동 중량</div>
+          <div className='weight-button'>
 
-      <div className='button-container'>
-        <div className='button-section'>
-          <button className='findpartner-button'>파트너 찾기</button>
+            <input type='radio' id='ud100' value='100kg이하' name='weightOptions' onClick={sbdChange} />
+            <label className='weight-button-label' for='ud100' >100kg이하</label>
+
+
+            <input type='radio' id='bt100-200' value='100~200kg' name='weightOptions' onClick={sbdChange} />
+            <label className='weight-button-label' for='bt100-200'  >100~200kg</label>
+
+
+            <input type='radio' id='bt200-300' value='200~300kg' name='weightOptions' onClick={sbdChange} />
+            <label className='weight-button-label' for='bt200-300' >200~300kg</label>
+
+
+            <input type='radio' id='bt300-400' value='300~400kg' name='weightOptions' onClick={sbdChange} />
+            <label className='weight-button-label' for='bt300-400' >300~400kg</label>
+
+
+            <input type='radio' id='bt400-500' value='400~500kg' name='weightOptions' onClick={sbdChange} />
+            <label className='weight-button-label' for='bt400-500' >400~500kg</label>
+
+
+            <input type='radio' id='ov500' value='500kg이상' name='weightOptions' onClick={sbdChange} />
+            <label className='weight-button-label' for='ov500' >500kg이상</label>
+
+          </div>
+        </div>
+
+        <div className='bodypart-container'>
+          <div className='bodypart-title'>운동부위</div>
+          <div className='bodypart-section'>
+            <div className='bodypart-1'>
+
+              <input type='checkbox' id='chest' value='가슴' name='bodyOptions' onClick={getCheckboxValue} />
+              <label className='body-options-label' for='chest' >가슴</label>
+
+              <input type='checkbox' id='triceps' value='삼두' name='bodyOptions' onClick={getCheckboxValue} />
+              <label className='body-options-label' for='triceps'>삼두</label>
+            </div>
+            <div className='bodypart-2'>
+
+              <input type='checkbox' id='back' value='등' name='bodyOptions' onClick={getCheckboxValue} />
+              <label className='body-options-label' for='back' >등</label>
+
+              <input type='checkbox' id='biceps' value='이두' name='bodyOptions' onClick={getCheckboxValue} />
+              <label className='body-options-label' for='biceps'>이두</label>
+            </div>
+            <div className='bodypart-3'>
+
+              <input type='checkbox' id='shoulder' value='어깨' name='bodyOptions' onClick={getCheckboxValue} />
+              <label className='body-options-label' for='shoulder' >어깨</label>
+
+              <input type='checkbox' id='leg' value='하체' name='bodyOptions' onClick={getCheckboxValue} />
+              <label className='body-options-label' for='leg'>하체</label>
+            </div>
+            <div className='bodypart-4'>
+
+              <input type='checkbox' id='abs' value='복근' name='bodyOptions' onClick={getCheckboxValue} />
+              <label className='body-options-label' for='abs' >복근</label>
+
+              <input type='checkbox' id='cardio' value='유산소' name='bodyOptions' onClick={getCheckboxValue} />
+              <label className='body-options-label' for='cardio'>유산소</label>
+            </div>
+          </div>
+        </div>
+
+        <div className='message-container'>
+          <div className='message-title'>파트너에게 하고싶은말(200자 이내로 작성해주세요)</div>
+          <div className='message-wrap'><textarea id='message-input' maxLength='200' onChange={textChange} ></textarea></div>
+        </div>
+
+        <div className='button-container'>
+          <div className='button-section'>
+            <button className='findpartner-button' onClick={handleSubmit}>파트너 찾기</button>
+          </div>
         </div>
       </div>
-
-
-    </div>
-
-
-
     </div>
 
   )

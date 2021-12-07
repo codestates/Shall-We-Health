@@ -11,6 +11,11 @@ module.exports = {
           receiverId: 2,
         },
         {
+          postId: 1,
+          giverId: 2,
+          receiverId: 1,
+        },
+        {
           postId: 2,
           giverId: 3,
           receiverId: 4,

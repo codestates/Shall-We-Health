@@ -189,6 +189,11 @@ export default function Board() {
             id='search'
             placeholder='헬스장 명을 입력하세요'
             onChange={hadleKeyword}
+            onKeyPress={(e)=>{
+              if(e.key==='Enter') {
+                getData();
+              }
+            }}
           ></input>
           <span>
             <button id='searchButton' onClick={getData}>

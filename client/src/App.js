@@ -31,6 +31,7 @@ function App() {
       })
       .then((res) => {
         if (res.data.data) {
+          console.log('어쓰송공')
           const { isLogin, decoded } = res.data.data
           dispatch(
             login({

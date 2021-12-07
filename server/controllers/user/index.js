@@ -9,5 +9,7 @@ module.exports = {
   passwordVerification: require("./passwordVerification"),
   signup: require("./signup"),
   signupVerification: require("./signupVerification"),
-  findPwVerification: require("./findPwVerification")
+  findPwVerification: require("./findPwVerification"),
+  withdrawal: require("./withdrawal"),
+
 };
