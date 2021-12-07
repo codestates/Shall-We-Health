@@ -6,6 +6,31 @@ import axios from 'axios';
 
 
 export default function FindPartner() {
+  const [searchResult, setSearchResult] = useState('')
+  const [inputText, setInputText] = useState("");
+  const [place, setPlace] = useState("");
+  const [markerPlace, setMarkerPlace] = useState({})
+  const [modal, setModal] = useState(false)
+  const [modalMsg, setModalMsg] = useState('')
+  // const [isSelected, setIsSelected] = useState('')
+  function CreateModal({ setModal, modalMsg }) {
+    return (
+      <div className='modalmatch-container'>
+        <div className='box-modal'>
+          <div className='modal-message'>{modalMsg}</div>
+          <div>
+            <span
+              onClick={() => {
+                setModal(false);
+              }}
+            >
+              확인
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
   // 당일로부터 14일 이후까지만의 날짜를 Select의 값으로 전해주기위함
   let dateOptions = []
   for (let i = 0; i < 14; i++) {
@@ -55,8 +80,8 @@ export default function FindPartner() {
 
 
   const [year, setYear] = useState('')
-  const [hour, setHour] = useState('')
-  const [minute, setMinute] = useState('')
+  const [hour, setHour] = useState('00')
+  const [minute, setMinute] = useState('00')
   const [sbd, setSbd] = useState('')
   const [text, setText] = useState('')
   const [bodypartOptions, setBodyPartOptions] = useState('')
@@ -104,48 +129,48 @@ export default function FindPartner() {
 
   }
 
-  useEffect(() => {
-    console.log(year)
-  }, [year])
+  // useEffect(() => {
+  //   console.log(year)
+  // }, [year])
 
-  useEffect(() => {
-    console.log(hour)
-  }, [hour])
+  // useEffect(() => {
+  //   console.log(hour)
+  // },[hour] )
 
-  useEffect(() => {
-    console.log(minute)
-  }, [minute])
+  // useEffect(() => {
+  //   console.log(minute)
+  // }, [minute])
 
   useEffect(() => {
     description.sbd = sbd
-    console.log(description)
-    console.log(text)
 
   }, [sbd])
 
-  useEffect(() => {
-    console.log(description)
-  }, [bodypartOptions])
+  // useEffect(() => {
+  //   console.log(description)
+  // }, [bodypartOptions])
 
-  useEffect(() => {
-    console.log(description)
+  // useEffect(() => {
+  //   console.log(description)
 
-  }, [text])
+  // }, [text])
 
 
   const userId = 1 // redux로 관리
-  const location = 12//findmap에서 보내줄 예정
   const handleSubmit = () => {
     const reserveTime = `${year} ${hour}:${minute}:00`
-    if (location && reserveTime && userId && description) {
+    if (reserveTime && userId && description && markerPlace.address_name) {
       axios.post(`${process.env.REACT_APP_SERVER_API}/post`, {
         userId: userId,
         reserved_at: reserveTime,
-        location: location,
+        location: markerPlace,
         description: description
       })
     }
-    //else 모달 띄워서 입력정보 확인해달라고 하기.
+    else {
+      setModalMsg('선택하지 않은 정보가 있습니다.')
+      setModal(true)
+    }
   }
 
 
@@ -170,7 +195,15 @@ export default function FindPartner() {
           <div className='list-section'>
             <div className='location-title'>헬스장 위치</div>
           </div>
-          <div className='map-section'><FindMap /></div>
+          <div className='map-section'><FindMap searchResult={searchResult}
+            setSearchResult={setSearchResult}
+            inputText={inputText}
+            setInputText={setInputText}
+            place={place}
+            setPlace={setPlace}
+            markerPlace={markerPlace}
+            setMarkerPlace={setMarkerPlace}
+          /></div>
         </div>
         <div className='weight-container'>
           <div className='weight-title'>3대 운동 중량</div>
@@ -251,6 +284,8 @@ export default function FindPartner() {
           </div>
         </div>
       </div>
+
+      {modal ? <CreateModal setModal={setModal} modalMsg={modalMsg} /> : ''}
     </div>
 
   )
