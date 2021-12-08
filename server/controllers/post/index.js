@@ -142,7 +142,6 @@ module.exports = {
             model: User,
             as: "guests",
             attributes: [],
-            required: true,
           },
         ],
         where: {
