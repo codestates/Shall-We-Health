@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
             sequelize.fn(
               "JSON_EXTRACT",
               sequelize.col("`posts`.`location`"),
-              sequelize.literal(`"$.addressName"`)
+              sequelize.literal(`"$.address_name"`)
             ),
             "addressName",
           ],
@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
             sequelize.fn(
               "JSON_EXTRACT",
               sequelize.col("`posts`.`location`"),
-              sequelize.literal(`"$.placeName"`)
+              sequelize.literal(`"$.place_name"`)
             ),
             "placeName",
           ],
