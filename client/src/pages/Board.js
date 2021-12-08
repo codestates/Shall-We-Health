@@ -279,7 +279,7 @@ function RowData({el}) {
             <td className='time'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.reserved_at.slice(11,16)}</Link></td>
             <td className='info'>
               <div className='title'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.addressName.slice(0,2)+' '+el.placeName}</Link></div>
-              <div className='sub-info'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>3대 {el.description.sbd} {el.description.bodyPart.join(' ')}</Link></div>
+              <div className='sub-info'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>3대 {el.description.sbd} {el.description.bodypart.join(' ')}</Link></div>
             </td>
             <td className='match'>
             <Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>

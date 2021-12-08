@@ -145,18 +145,16 @@ export default function FindPartner() {
     const reserveTime = `${year} ${hour}:${minute}:01`
     if (reserveTime && userId && description && markerPlace.address_name) {
       axios.post(`${process.env.REACT_APP_SERVER_API}/post`, {
-        userId: userId,
         reserved_at: reserveTime,
         location: markerPlace,
         description: description
-      })
+      }, {withCredentials: true})
         .then((res) => {
           if (res.status === 204) {
             setModalMsg('1일 1개의 모집글만 작성 할 수 있습니다.')
             setModal(true)
           }
         })
-
     }
     else {
       setModalMsg('선택하지 않은 정보가 있습니다.')
