@@ -170,7 +170,7 @@ module.exports = async (req, res) => {
       let send = await transporter.sendMail(message);
       console.log('send_pw')
 
-      return res.status(200).json({ data: token, message: '메시지가 전송되었습니다' })
+      return res.status(201).end()
     } else {
       return res.status(400).json({
         data: null,
