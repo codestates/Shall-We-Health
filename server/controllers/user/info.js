@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
           },
         }
       );
-    } else {
+    } else if ((!nickname && !newPassword) || !email) {
       return res.status(400).json({
         error: {
           path: "/user/info",

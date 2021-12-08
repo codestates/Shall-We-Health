@@ -1,13 +1,11 @@
 import React, {useState} from "react";
 import NewWindow from "react-new-window";
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 import "./Issue.css";
 
 export default function Issue({setIssue, issueInfo}) {
 
 
-  const { id } = useSelector((state) => state.loginReducer);
   const [ content, SetContent ] = useState('')
   const [ modal, setModal ] = useState(false)
   const [ completModal, setCompleteModal ] = useState(false)
@@ -17,10 +15,11 @@ export default function Issue({setIssue, issueInfo}) {
       setModal(true)
     } else {
       axios.post(`${process.env.REACT_APP_SERVER_API}/mypage/issue`,{
-        reporterId: id,
         targetId: issueInfo.targetId,
         content,
         postId: issueInfo.postId
+      }, {
+        withCredentials: true
       })
       .then(()=>{
         setCompleteModal(true)

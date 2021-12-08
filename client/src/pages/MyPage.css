@@ -105,15 +105,15 @@
 }
 
 .mylog-container .table-data-th .date{
-    width: 15%
+    width: 17%
 }
 
 .mylog-container .table-data-th .location{
-    width: 27%
+    width: 28%
 }
 
 .mylog-container .table-data-th .hostGuest{
-    width: 25%
+    width: 28%
 }
 
 .mylog-container .table-data-th .match{
@@ -137,11 +137,11 @@
 }
 
 .mylog-container .table-data .match{
-    width: 20%
+    width: 10%
 }
 
 .mylog-container .table-data .etc{
-    width: 10%
+    width: 15%
 }
 
 .mylog-container .table-data .box-loading{
@@ -175,7 +175,7 @@
 
 .mylog-container .table-data .btn-issue{
     color:rgb(209, 75, 51);
-    margin: 0 20px;
+    margin: 0 0 0 10%;
     cursor: pointer;
     font-weight: 600;
 }

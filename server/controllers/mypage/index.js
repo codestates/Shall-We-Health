@@ -1,4 +1,4 @@
-const { QueryTypes } = require("sequelize");
+const { Op, QueryTypes } = require("sequelize");
 const { Post, User, Thumbsup, sequelize, Issue } = require("../../models");
 const { getAccessToken } = require("../../utils/validation");
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
       } else {
         if (response.dataValues.id === userData.dataValues.id) {
           const sql =
-            "select post.hostId, hosts.nickname as hostNickname, post.guestId, guests.nickname as guestNickname, post.reserved_at, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName, post.isMatched, (select exists (select giverId from Thumbsups as thumbsup where thumbsup.giverId= ? AND thumbsup.postId = post.id )) as thumbsup from Posts as post left join Users as hosts on post.hostId = hosts.id left join Users as guests on post.guestId = guests.id where guestId = ? OR hostId = ?";
+            "select post.id as postId, post.hostId, hosts.nickname as hostNickname, post.guestId, guests.nickname as guestNickname, post.reserved_at, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS place_name, post.isMatched, (select exists (select giverId from Thumbsups as thumbsup where thumbsup.giverId= ? AND thumbsup.postId = post.id )) as thumbsup from Posts as post left join Users as hosts on post.hostId = hosts.id left join Users as guests on post.guestId = guests.id where guestId = ? OR hostId = ?";
           const postData = await sequelize.query(sql, {
             replacements: [userId, userId, userId],
             type: QueryTypes.SELECT,
@@ -120,19 +120,21 @@ module.exports = {
       const { postId, receiverId } = req.body;
 
       const thumbsupData = await Thumbsup.findAll({
+        attributes: ['id'],
         where: {
           postId,
           receiverId,
         },
       });
-      if (thumbsupData) {
+      if (thumbsupData.length!==0) {
         await Thumbsup.destroy({
           where: {
             postId,
             giverId: userId,
             receiverId,
           },
-        });
+        })
+        return res.status(200).end();
       } else {
         return res.status(400).json({
           data: null,
