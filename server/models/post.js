@@ -12,28 +12,28 @@ module.exports = (sequelize, DataTypes) => {
       Post.belongsTo(models.User, {
         foreignKey: "hostId",
         as: "hosts",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
       Post.belongsTo(models.User, {
         foreignKey: "guestId",
         as: "guests",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
       Post.hasMany(models.Issue, {
         foreignKey: "postId",
         as: "posts",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
       Post.hasOne(models.Chat, {
         foreignKey: {
           name: "roomId",
         },
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
       Post.hasMany(models.Thumbsup, {
         foreignKey: "postId",
         as: "postLikes",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
     }
   }
