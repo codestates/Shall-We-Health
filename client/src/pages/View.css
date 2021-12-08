@@ -67,7 +67,7 @@
 .view-container .bodypart-title {
   margin: 2%;
   font-size: 1em;
-  font-weight: 900;
+  font-weight: 700;
 }
 .view-container .view-body-options {
   width: 100px;
@@ -89,9 +89,9 @@
 
 .view-container .view-weight-options {
   width: 150px;
-  height: 40px;
+  height: 50px;
   margin: 1%;
-  border-radius: 20px;
+  border-radius: 30px;
   border: none;
   cursor: pointer;
   background-color: #39cfd9;
@@ -103,7 +103,7 @@
 .view-container .weight-title {
   margin: 2%;
   font-size: 1em;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .view-container .message-result {
@@ -114,7 +114,7 @@
 .view-container .message-title {
   margin: 2%;
   font-size: 1em;
-  font-weight: 900;
+  font-weight: 700;
 }
 .view-container .message-content {
   margin: 2%;
@@ -133,7 +133,7 @@
 .view-container .info-user-nickname {
   margin: 8% 2% 2% 2%;
   font-size: 1.2em;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .view-container .date-address-section {
@@ -154,44 +154,47 @@
 
 .view-container .address-copy {
   margin: 2%;
-  color: red;
+  color: rgb(177, 20, 20);
+  cursor: pointer;
 }
 
 .view-container .button-section {
   display: flex;
   flex-direction: column;
   padding: 10%;
+  text-align: center;
+  margin-top: 20%;
 }
 
 .view-container .finding-button {
-  height: 40px;
+  height: 50px;
   margin-bottom: 1%;
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
   background-color: #39cfd9;
   color: white;
   font-weight: 500;
   font-size: 1em;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .view-container .application-button {
-  height: 40px;
+  height: 50px;
   margin-bottom: 1%;
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
   background-color: #39cfd9;
   color: white;
   font-weight: 500;
   font-size: 1em;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .view-container .deadline-button {
-  height: 40px;
-  border-radius: 10px;
+  height: 50px;
+  border-radius: 20px;
   margin-bottom: 1%;
   border: none;
   cursor: pointer;
@@ -199,12 +202,12 @@
   color: white;
   font-weight: 500;
   font-size: 1em;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .view-container .match-cancel-button {
-  height: 40px;
-  border-radius: 10px;
+  height: 50px;
+  border-radius: 20px;
   margin-bottom: 1%;
   border: none;
   cursor: pointer;
@@ -212,5 +215,5 @@
   color: white;
   font-weight: 500;
   font-size: 1em;
-  font-weight: 900;
+  font-weight: 700;
 }

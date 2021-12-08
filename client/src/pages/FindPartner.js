@@ -3,9 +3,13 @@ import './FindPartner.css';
 import Select from 'react-select'
 import FindMap from '../components/FindPartner/FindMap';
 import axios from 'axios';
+import { useSelector } from 'react-redux'
+
+
 
 
 export default function FindPartner() {
+  const userId = useSelector((state) => state.loginReducer.id)
   const [searchResult, setSearchResult] = useState('')
   const [inputText, setInputText] = useState("");
   const [place, setPlace] = useState("");
@@ -89,7 +93,7 @@ export default function FindPartner() {
 
   let description = {
     "sbd": sbd,
-    "bodypart": bodypartOptions,
+    "bodyPart": bodypartOptions,
     "message": text
   }
 
@@ -129,43 +133,28 @@ export default function FindPartner() {
 
   }
 
-  // useEffect(() => {
-  //   console.log(year)
-  // }, [year])
 
-  // useEffect(() => {
-  //   console.log(hour)
-  // },[hour] )
-
-  // useEffect(() => {
-  //   console.log(minute)
-  // }, [minute])
 
   useEffect(() => {
     description.sbd = sbd
 
   }, [sbd])
 
-  // useEffect(() => {
-  //   console.log(description)
-  // }, [bodypartOptions])
 
-  // useEffect(() => {
-  //   console.log(description)
-
-  // }, [text])
-
-
-  const userId = 1 // redux로 관리
   const handleSubmit = () => {
-    const reserveTime = `${year} ${hour}:${minute}:00`
+    const reserveTime = `${year} ${hour}:${minute}:01`
     if (reserveTime && userId && description && markerPlace.address_name) {
       axios.post(`${process.env.REACT_APP_SERVER_API}/post`, {
-        userId: userId,
         reserved_at: reserveTime,
         location: markerPlace,
         description: description
       }, {withCredentials: true})
+        .then((res) => {
+          if (res.status === 204) {
+            setModalMsg('1일 1개의 모집글만 작성 할 수 있습니다.')
+            setModal(true)
+          }
+        })
     }
     else {
       setModalMsg('선택하지 않은 정보가 있습니다.')
