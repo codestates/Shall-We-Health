@@ -1,5 +1,6 @@
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const LOGIN_MODAL = "LOGIN_MODAL";
 
 export const login = (state) => {
   return {
@@ -12,6 +13,13 @@ export const login = (state) => {
       nickname: state.nickname,
       email: state.email
     },
+  };
+};
+
+export const loginModal = (state) => {
+  return {
+    type: LOGIN_MODAL,
+    payload: { isModal: state }
   };
 };
 

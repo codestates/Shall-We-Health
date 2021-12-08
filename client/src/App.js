@@ -22,8 +22,6 @@ import { login } from './actions';
 
 function App() {
   const dispatch = useDispatch();
-
-
   const isAuthenticated = async () => {
     const res = await axios
       .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
@@ -31,7 +29,6 @@ function App() {
       })
       .then((res) => {
         if (res.data.data) {
-          console.log('어쓰송공')
           const { isLogin, decoded } = res.data.data
           dispatch(
             login({

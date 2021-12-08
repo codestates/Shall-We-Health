@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import axios from "axios"
+import KakaoLoginClickHandler from '../components/SignUp/Kakao';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginModal } from '../actions';
 
-export default function Login({ setModal }) {
+export default function Login() {
+  const dispatch = useDispatch();
+  const { isModal } = useSelector((state) => state.loginModalReducer);
+
   const [loginInfo, setLoginInfo] = useState({ email: "", password: "" })
   const [failModal, setFailModal] = useState(false)
   const [loginFail, setLoginFail] = useState(false)
@@ -12,14 +18,23 @@ export default function Login({ setModal }) {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
   }
 
+  const handleModal = () => {
+    dispatch(loginModal(!isModal))
+  }
+
   const EnterLogin = (e) => {
     if (e.key === "Enter") {
       handleLogin()
     }
   }
 
-  const handleLogin = async () => {
+  const kakaoLoginHandler = async () => {
+    await KakaoLoginClickHandler()
+    await handleModal()
+  }
 
+
+  const handleLogin = async () => {
     const { email, password } = loginInfo
     await axios.post(`${process.env.REACT_APP_SERVER_API}/user/login`, { email, password },
       {
@@ -32,7 +47,7 @@ export default function Login({ setModal }) {
         }
         else {
           /* 로그인 성공했을때 */
-          setModal(false)
+          handleModal()
           window.location.reload('/')
 
         }
@@ -48,13 +63,11 @@ export default function Login({ setModal }) {
       })
   }
 
-
-
   return (
     <>
       <div className="login-container">
         <div className="login-modal fadeIn">
-          <div className='btn-loginClose' onClick={() => { setModal(false) }}></div>
+          <div className='btn-loginClose' onClick={handleModal}></div>
           <div className="home-logo"></div>
           <div className="text-email">Email</div>
           <input className="input-email" name="email" onChange={valueChange} placeholder='Email' onKeyPress={EnterLogin} />
@@ -67,12 +80,12 @@ export default function Login({ setModal }) {
             : ""
           }
           <div className="grid-func">
-            <div className="grid-signup" onClick={() => { setModal(false) }}>
+            <div className="grid-signup" onClick={handleModal}>
               <Link to='/signup' style={{ color: 'inherit', textDecoration: 'inherit' }}>회원가입</Link>
             </div>
+            <div className="grid-kakao" onClick={kakaoLoginHandler} > </div>
             <div className="grid-naver">  네이버 </div>
-            <div className="grid-kakao"> 카카오톡 </div>
-            <div className="grid-findpw" onClick={() => { setModal(false) }}>
+            <div className="grid-findpw" onClick={handleModal}>
               <Link to='/find-pw' style={{ color: 'inherit', textDecoration: 'inherit' }}> 비밀번호 찾기 </Link>
             </div>
           </div>

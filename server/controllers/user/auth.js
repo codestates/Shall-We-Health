@@ -4,6 +4,7 @@ module.exports = async (req, res) => {
   try {
     const { accessToken } = req.cookies;
 
+
     if (!accessToken) {
       return res.status(400).json({
         data: null,
@@ -13,15 +14,10 @@ module.exports = async (req, res) => {
         },
       });
     } else {
-      const verified = jwt.verify(
-        accessToken,
-        process.env.ACCESS_SECRET,
-        (err, decoded) => {
-          if (err) return null;
-          return decoded;
-        }
-      );
-
+      const verified = jwt.verify(accessToken, process.env.ACCESS_SECRET, (err, decoded) => {
+        if (err) return null;
+        return decoded;
+      });
 
       //accessToken은 있지만 해독되지 않는 경우
       if (!verified) {
@@ -35,9 +31,7 @@ module.exports = async (req, res) => {
       } else {
 
         const userData = await User.findOne({
-          where: {
-            email: verified.email,
-          },
+          where: { email: verified.email, },
           attributes: [
             "id",
             "nickname",
