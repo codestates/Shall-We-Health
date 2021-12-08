@@ -156,7 +156,7 @@ export default function ModifyUserInfo() {
           ) : checkNickname === 1 ? (
             <td className='text-right'>사용 가능한 닉네임 입니다</td>
           ) : checkNickname === 2 ? (
-            <td className='text-wrong'>사용 불가능한 닉네임 입니다</td>
+            <td className='text-wrong'>특수문자 제외 2~10자내로 입력해주세요(공백가능)</td>
           ) : (
             <td className='text-wrong'>사용중인 닉네임 입니다</td>
           )}
