@@ -15,42 +15,42 @@ module.exports = async (req, res) => {
       });
     }
     if (keyword) {
-      const data = await User.findOne({
+      const { count, rows } = await User.findAndCountAll({
         where: {
-          [Op.or]: [{ email: keyword }, { nickname: keyword }],
+          [Op.or]: [
+            { email: { [Op.substring]: keyword } },
+            { nickname: { [Op.substring]: keyword } },
+          ],
         },
-        attributes: ["id", "email", "nickname"],
+        attributes: [
+          "id",
+          "email",
+          "nickname",
+          [
+            sequelize.fn("count", sequelize.col("`hosts`.`hostId`")),
+            "hostCount",
+          ],
+          [
+            sequelize.fn("count", sequelize.col("`guests`.`isMatched`")),
+            "guestMatchCount",
+          ],
+        ],
+        group: ["User.id"],
+
+        include: [
+          { model: Post, as: "hosts", attributes: [] },
+          {
+            model: Post,
+            as: "guests",
+            attributes: [],
+            where: {
+              isMatched: 1,
+            },
+            required: false,
+          },
+        ],
       });
-      console.log(data);
-      if (data) {
-        const recruitCount = await Post.count({
-          where: {
-            hostId: data.dataValues.id,
-          },
-        });
-        const matchingCount = await Post.count({
-          where: {
-            isMatched: 1,
-          },
-        });
-        return res.status(200).json({
-          data: {
-            id: data.dataValues.id,
-            email: data.dataValues.email,
-            nickname: data.dataValues.nickname,
-            recruitCount,
-            matchingCount,
-          },
-        });
-      } else {
-        return res.status(404).json({
-          data: null,
-          error: {
-            path: "/admin/user-list",
-            message: "page not found",
-          },
-        });
-      }
+      return res.status(200).json({ data: rows, count: rows.length });
     } else {
       const sql =
         "select Users.id, Users.email, Users.nickname, IFNULL(A.hostNum,0) AS hostNum, IFNULL(B.guestNum,0) AS guestNum from Users LEFT JOIN (SELECT hostId, COUNT(id) AS hostNum FROM Posts GROUP BY hostId) as A ON Users.id=A.hostId LEFT JOIN (SELECT guestId, COUNT(id) AS guestNum FROM Posts GROUP BY guestId) AS B ON Users.id=B.guestId";
