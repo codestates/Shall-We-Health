@@ -66,13 +66,11 @@ module.exports = async (req, res) => {
           userData.dataValues,
           process.env.ACCESS_SECRET,
           {
-            expiresIn: "1h",
+            expiresIn: "1d",
           }
         );
         res
-          .cookie("accessToken", accessToken, {
-            maxAge: 6 * 10 * 60 * 1000, // 1시간
-          })
+          .cookie("accessToken", accessToken)
           .status(200)
           .end();
       }
