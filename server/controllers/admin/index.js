@@ -6,8 +6,8 @@ module.exports = {
   userList: require("./userList"),
   deleteById: async (req, res) => {
     const response = await getAccessToken(req, res);
-    const { isAdmin } = response.dataValues.isAdmin;
-    if (!isAdmin) {
+    const { isAdmin } = await response.dataValues.isAdmin;
+    if (isAdmin) {
       return res.status(403).json({
         data: null,
         error: {

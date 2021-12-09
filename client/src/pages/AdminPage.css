@@ -169,6 +169,12 @@
     border-bottom: 3px solid #2AB2BB;
 }
 
+@media (min-width: 0px) and (max-width: 453px) {
+  .adminmatch-container .table-data th{
+    font-size: 0.9em;
+}
+}
+
 .adminmatch-container .table-data tr{
     border-bottom: 1px solid #dfdfdf;
     height: 60px;
@@ -182,6 +188,14 @@
 
 .adminmatch-container .table-data .location{
     width: 27%
+}
+
+.adminmatch-container .text-location{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
 }
 
 .adminmatch-container .table-data .target{
@@ -362,6 +376,12 @@
     height: 60px;
     vertical-align: middle;
     border-bottom: 3px solid #2AB2BB;
+}
+
+@media (min-width: 0px) and (max-width: 497px) {
+  .adminuser-container .table-data th{
+    font-size: 0.9em;
+}
 }
 
 .adminuser-container .table-data tr{
@@ -567,6 +587,12 @@
     cursor: pointer;
 }
 
+@media (min-width: 0px) and (max-width: 624px) {
+  .adminissue-container .table-data th{
+    font-size: 0.9em;
+}
+}
+
 .adminissue-container .table-data .issue-date{
     width: 10%
 }
@@ -577,6 +603,14 @@
 
 .adminissue-container .table-data .location{
     width: 20%
+}
+
+.adminissue-container .text-location{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
 }
 
 .adminissue-container .table-data .target{

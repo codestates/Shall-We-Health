@@ -37,6 +37,20 @@ export default function AdminMatch() {
     await setIsLoading(false);
   };
 
+  const getSearchData = async () => {
+    await setIsLoading(true);
+    await setPage(1)
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_API}/admin/post-list`, {
+        params: { page, nickname },
+      })
+      .then((res) => {
+        setData(res.data.data);
+        setCount(res.data.count);
+      });
+    await setIsLoading(false);
+  };
+
   const getMatchDataPage = () => {
     axios
       .get(`${process.env.REACT_APP_SERVER_API}/admin/post-list`, {
@@ -50,7 +64,7 @@ export default function AdminMatch() {
 
   const deleteMatch = () => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_API}/admin/post`, {
+      .delete(`${process.env.REACT_APP_SERVER_API}/admin`, {
         data: { postId: deleteId },
         withCredentials: true,
       })
@@ -79,12 +93,17 @@ export default function AdminMatch() {
             id='search'
             placeholder='닉네임'
             onChange={handleNickname}
+            onKeyPress={(e)=>{
+              if(e.key==='Enter') {
+                getSearchData();
+              }
+            }}
           ></input>
           <span>
             <button
               id='searchButton'
               onClick={() => {
-                getMatchData();
+                getSearchData();
               }}
             >
               <FontAwesomeIcon icon={faSearch} />
@@ -163,16 +182,16 @@ const DataRow = ({ el, setConfirm, setDeleteId }) => {
   return (
     <tr>
       <td>{el.reserved_at.slice(0,10) + ' ' + el.reserved_at.slice(11,16)}</td>
-      <td>{el.placeName}</td>
+      <td><span className='text-location'>{el.placeName}</span></td>
       <td>
         {el.guestNickname
-          ? `${el.hostNickname}/${el.guestNickname}`
+          ? el.hostNickname + ' /\n' + el.guestNickname
           : el.hostNickname}
       </td>
       <td>
-        {el.isMatched === '0'
+        {el.isMatched === false
           ? '모집중'
-          : el.isMatched === '1'
+          : el.isMatched === true
           ? '마감'
           : '취소'}
       </td>

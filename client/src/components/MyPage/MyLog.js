@@ -278,7 +278,7 @@ const DataRow = ({
         >
           <span>
             {el.guestNickname
-              ? `${el.hostNickname}/${el.guestNickname}`
+              ? el.hostNickname + ' /\n' + el.guestNickname
               : el.hostNickname}
           </span>
         </Link>

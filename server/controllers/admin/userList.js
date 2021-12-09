@@ -28,11 +28,11 @@ module.exports = async (req, res) => {
           "nickname",
           [
             sequelize.fn("count", sequelize.col("`hosts`.`hostId`")),
-            "hostCount",
+            "hostNum",
           ],
           [
             sequelize.fn("count", sequelize.col("`guests`.`isMatched`")),
-            "guestMatchCount",
+            "guestNum",
           ],
         ],
         group: ["User.id"],

@@ -15,7 +15,7 @@ export default function AdminPage() {
       withCredentials: true,
     })
     .then((res) =>{
-      if(!res.data.data.isAdmin) {
+      if(!res.data.data.decoded.isAdmin) {
         setModal(true)
       }
     })
@@ -24,9 +24,9 @@ export default function AdminPage() {
     })
   }
 
-  // useEffect(()=>{
-  //   checkisAdmin();
-  // },[])
+  useEffect(()=>{
+    checkisAdmin();
+  },[])
 
   return (
     <div className="adminpage-container">

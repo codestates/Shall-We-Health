@@ -37,6 +37,21 @@ export default function AdminUser() {
     await setIsLoading(false);
   };
 
+
+  const getSearchData = async () => {
+    await setIsLoading(true);
+    await setPage(1);
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_API}/admin/user-list`, {
+        params: { page, keyword },
+      })
+      .then((res) => {
+        setData(res.data.data);
+        setCount(res.data.count);
+      });
+    await setIsLoading(false);
+  };
+
   const getUserDataPage = () => {
     axios
       .get(`${process.env.REACT_APP_SERVER_API}/admin/user-list`, {
@@ -50,7 +65,7 @@ export default function AdminUser() {
 
   const deleteUser = () => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_API}/admin/user`, {
+      .delete(`${process.env.REACT_APP_SERVER_API}/admin`, {
         data: { userId: deleteId },
         withCredentials: true,
       })
@@ -79,12 +94,17 @@ export default function AdminUser() {
             id='search'
             placeholder='닉네임 또는 이메일'
             onChange={handleKeyword}
+            onKeyPress={(e)=>{
+              if(e.key==='Enter') {
+                getSearchData();
+              }
+            }}
           ></input>
           <span>
             <button
               id='searchButton'
               onClick={() => {
-                getUserData();
+                getSearchData();
               }}
             >
               <FontAwesomeIcon icon={faSearch} />
@@ -95,8 +115,8 @@ export default function AdminUser() {
       <table className='table-data'>
         <th className='email'>이메일</th>
         <th className='nickname'>닉네임</th>
-        <th className='hostNum'>모집 횟수</th>
-        <th className='guestNum'>매칭 횟수</th>
+        <th className='hostNum'>모집횟수</th>
+        <th className='guestNum'>매칭횟수</th>
         <th className='delete'></th>
         {isLoading ? (
           <tr className='box-loading'>

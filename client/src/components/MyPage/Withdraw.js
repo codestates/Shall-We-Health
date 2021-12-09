@@ -8,11 +8,21 @@ export default function Withdraw({setWithdrawModal}) {
 
   const { email } = useSelector((state) => state.loginReducer);
   const [ isChecked, setIsCheck ] = useState(false)
-  const [ completeModal, setCompleteModal] = useState(false)
+  const [ modal, setModal] = useState(false)
+  const [ modalMsg, setModalMsg ] = useState('')
 
   const submitWithdraw = () => {
-    //axios 요청 추가 예정
-    setCompleteModal(true)
+    axios.delete(`${process.env.REACT_APP_SERVER_API}/user/withdrawal`, {
+      withCredentials: true,
+    })
+    .then(()=> {
+      setModalMsg('탈퇴가 완료되었습니다.')
+      setModal(true)
+    })
+    .catch(()=>{
+      setModalMsg('잘못된 접근입니다.')
+      setModal(true)
+    })
   }
   
 
@@ -36,19 +46,19 @@ export default function Withdraw({setWithdrawModal}) {
           {isChecked ? <span id="btn-withdraw" onClick={submitWithdraw}>탈퇴하기</span> : <span id="btn-withdraw-inactive">탈퇴하기</span>}
         </div>
       </div>
-      {completeModal? <CompleteModal setWithdrawModal={setWithdrawModal} setCompleteModal={setCompleteModal}/> :''}
+      {modal? <Modal setWithdrawModal={setWithdrawModal} setModal={setModal} modalMsg={modalMsg}/> :''}
       </div>
     </NewWindow>
 }
 
-function CompleteModal({setWithdrawModal, setCompleteModal}) {
+function Modal({setWithdrawModal, setModal, modalMsg}) {
   return (
     <div className="modalwithdraw-container">
     <div className="box-modal">
-      <div className="modal-message">탈퇴가 완료되었습니다.</div>
+      <div className="modal-message">{modalMsg}</div>
       <div>
         <span onClick={()=>{
-          setCompleteModal(false)
+          setModal(false)
           setWithdrawModal(false)
           window.location.replace('/')
         }}>확인</span>
