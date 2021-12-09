@@ -10,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Chat.belongsTo(models.User, {
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
       Chat.belongsTo(models.Post, {
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
     }
   }

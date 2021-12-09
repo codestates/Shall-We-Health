@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Thumbsup.belongsTo(models.Post, {
         foreignKey: "postId",
         as: "postLikes",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
       Thumbsup.belongsTo(models.User, {
         onDelete: "CASCADE",

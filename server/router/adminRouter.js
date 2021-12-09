@@ -4,14 +4,12 @@ const {
   issueList,
   postList,
   userList,
-  removePost,
-  removeUser,
+  deleteById,
 } = require("../controllers/admin");
 
 router.get("/post-list", postList);
 router.get("/user-list", userList);
 router.get("/issue-list", issueList);
-router.delete("/post", removePost);
-router.delete("/user", removeUser);
+router.delete("/", deleteById);
 
 module.exports = router;
