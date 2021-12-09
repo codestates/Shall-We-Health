@@ -27,8 +27,8 @@ export default function NavigationBar() {
   return (
     <div className='navBar-container'>
       <div className='bar'>
-        <img alt='logo' src='img/logo.svg' className='home-logo web' onClick={() => { window.location.replace('/') }} />
-        <img alt='logo' src='img/symbol.svg' className='home-logo mobile' onClick={() => { window.location.replace('/') }} />
+        <img alt='logo' src='img/logo.svg' className='home-logo web'  onError={(e)=>{e.target.onerror = null; e.target.src='../img/logo.svg'}} onClick={() => { window.location.replace('/') }} />
+        <img alt='logo' src='img/symbol.svg' className='home-logo mobile' onError={(e)=>{e.target.onerror = null; e.target.src='../img/symbol.svg'}} onClick={() => { window.location.replace('/') }} />
         <div className='btn-board'>
           <Link
             to='/board'
