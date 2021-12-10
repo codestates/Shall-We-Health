@@ -142,6 +142,7 @@
   grid-column: 3/4;
   grid-row: 1/4;
   align-self: center;
+  margin-bottom: 20px;
 }
 
 .login-container .grid-kakao:nth-child(2) {

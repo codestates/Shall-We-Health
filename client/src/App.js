@@ -15,6 +15,7 @@ import VerifyEmail from './components/SignUp/VerifyEmail';
 import UpdatePw from './components/FindPw/UpdatePw'
 import Chat from './components/View.js/Chat';
 import Pagination from './components/Pagination/Pagination';
+import NaverLogin from './pages/NaverLogin';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import axios from "axios"
@@ -97,6 +98,7 @@ function App() {
         <Route path='/pagination' component={Pagination} />
         <Route path='/verify-email/:token' component={VerifyEmail} />
         <Route path='/updatepw/:token' component={UpdatePw} />
+        <Route path='/naver' component={NaverLogin} />
       </Switch>
       <Footer />
     </div>
