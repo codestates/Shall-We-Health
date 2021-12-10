@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { create, message, lists } = require("../controllers/chat");
+const { create, lists } = require("../controllers/chat");
 
 router.post("/", create);
-router.post("/message", message);
-router.get("/", lists);
+router.get("/:postId", lists);
 
 module.exports = router;
