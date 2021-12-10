@@ -13,6 +13,7 @@ const {
   signupVerification,
   signup,
   withdrawal,
+  naverLogin,
 } = require("../controllers/user");
 
 router.get("/auth", auth);
@@ -27,4 +28,5 @@ router.patch("/email-verification", emailVerification);
 router.post("/findpw-verification", findPwVerification);
 router.patch("/password-verification", passwordVerification);
 router.delete("/withdrawal", withdrawal);
+router.post('/naver-login', naverLogin)
 module.exports = router;
