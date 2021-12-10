@@ -14,6 +14,20 @@ export default function Login() {
   const [failModal, setFailModal] = useState(false)
   const [loginFail, setLoginFail] = useState(false)
 
+  const initializeNaverLogin = () => {
+    const naverLogin = new window.naver.LoginWithNaverId({
+      clientId: 'z6TA4to1zr3gBuIu2HMa',
+      callbackUrl: 'http://localhost:3000/naver', 
+      isPopup: false, // popup 형식으로 띄울것인지 설정
+      loginButton: { color: 'green', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
+    });
+    naverLogin.init();
+  };
+    
+  useEffect(() => {
+    initializeNaverLogin();
+  }, []);
+
   const valueChange = (e) => {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
   }
@@ -84,7 +98,7 @@ export default function Login() {
               <Link to='/signup' style={{ color: 'inherit', textDecoration: 'inherit' }}>회원가입</Link>
             </div>
             <div className="grid-kakao" onClick={kakaoLoginHandler} > </div>
-            <div className="grid-naver">  네이버 </div>
+            <div className="grid-naver" id='naverIdLogin'></div>
             <div className="grid-findpw" onClick={handleModal}>
               <Link to='/find-pw' style={{ color: 'inherit', textDecoration: 'inherit' }}> 비밀번호 찾기 </Link>
             </div>
