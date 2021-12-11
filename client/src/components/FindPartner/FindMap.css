@@ -20,9 +20,12 @@
   font-size: 1.25em;
   width: 150px;
   height: 25px;
+  background-color: var(--main-backcolor3);
+  color: var(--font-color1);
 
   /* border: black 1px solid; */
 }
+
 .findmap-container .input-textbox:focus {
   outline: none;
 }
@@ -31,9 +34,9 @@
   border: none;
   margin-left: 23px;
   width: 50px;
-  background-color: white;
+  background-color: var(--main-backcolor3);
   height: 27px;
-  color: rgba(39, 39, 38, 0.904);
+  color: var(--font-color2);
 }
 
 .findmap-container .search-section {

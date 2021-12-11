@@ -38,7 +38,7 @@
   max-width: 400px;
   min-width: 400px;
   margin: 0 auto;
-  background-color: white;
+  background-color: var(--main-backcolor3);
   border-radius: 30px;
   padding: 10px 0;
   min-height: 550px;
@@ -73,7 +73,7 @@
   padding-right: 50%;
   font-weight: 700;
   font-size: 17px;
-  color: rgb(56, 56, 56);
+  color: var(--font-color3);
 }
 
 .login-container .text-email {
@@ -105,6 +105,7 @@
 
 .login-container input {
   background-image: url('../img/dumbbell.svg');
+  background-color: var(--main-backcolor3);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   border: none;
@@ -112,6 +113,7 @@
   padding: 20px 50px 40px 40px;
   margin-bottom: 25px;
   font-size: 15px;
+  color: var(--font-color1);
 }
 
 .login-container input:focus {
@@ -135,7 +137,7 @@
   border-right: rgb(117, 117, 117) 2px solid;
   padding-right: 15px;
   font-weight: 650;
-  color: rgb(56, 56, 56);
+  color: var(--font-color2);
 }
 
 .login-container .grid-naver:nth-child(3) {

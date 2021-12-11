@@ -14,7 +14,7 @@
       width: 90%;
       border: 1px solid rgb(235, 235, 235);
       border-radius: 20px;
-      box-shadow: 5px 10px 20px rgb(187, 187, 187);
+      box-shadow: 5px 10px 20px var(--shadow-color);
       background-color: rgb(235, 235, 235);
   }
   
@@ -79,7 +79,7 @@
   
   .board-container .box-date .btn-selected-date{
       cursor: pointer;
-      background-color: #39CFD9;
+      background-color: var(--main-color1);
       color: white;
       border-radius: 30px;
       height: 50px;
@@ -94,12 +94,12 @@
   }
   
   .board-container .box-date .slick-prev:before{
-      color: rgb(100, 100, 100);
+      color: var(--btn-color1);
   }
   
   
   .board-container .box-date .slick-next:before{
-      color: rgb(100, 100, 100);
+      color: var(--btn-color1);
   }
   
   .board-container .box-location{
@@ -130,7 +130,7 @@
   
   .board-container .box-location .btn-selected-location{
       margin: 0 3px;
-      background-color: rgb(172, 172, 172);
+      background-color: var(--main-color2);
       border-radius: 20px;
       color: white;
       cursor: pointer;
@@ -174,7 +174,7 @@
       margin-left: auto;
       padding: 3px;
       height: 20px;
-      background-color: #fff;
+      background-color: var(--main-backcolor3);
       border: 1px solid #838282;
       border-radius: 2px;
       width: 200px;
@@ -190,7 +190,12 @@
       font-size: 0.8rem;
       line-height: 20px;
       margin-left: 20px;
+      color: var(--font-color1);
     }
+
+.board-container #search::placeholder{
+    color: var(--font-color2);
+}
   
   .board-container #searchButton {
       text-decoration: none;
@@ -265,7 +270,7 @@
       color: white;
       font-size: 0.85em;
       font-weight: 600;
-      background-color: #39CFD9;
+      background-color: var(--main-color1);
       border-radius: 7px;
       height: 30px;
       width: 130px;
@@ -295,9 +300,9 @@
   .board-container ul.pagination li:last-child{  } 
   .board-container ul.pagination li a { text-decoration: none; color: #696969; font-size: 1rem; } 
   .board-container ul.pagination li.active a { color: white; } 
-  .board-container ul.pagination li.active { background-color: #39CFD9; border-radius: 20px;} 
+  .board-container ul.pagination li.active { background-color: var(--main-color1); border-radius: 20px;} 
   /* .board-container ul.pagination li a:hover, ul.pagination li a.active { color: #39CFD9;}  */
-  .board-container .page-selection { width: 48px; height: 30px; color: #39CFD9; }
+  .board-container .page-selection { width: 48px; height: 30px; color: var(--main-color1); }
 
   /*top 버튼*/
 
@@ -307,14 +312,14 @@
       flex-direction: column;
       justify-content: center;
       bottom: 5%;
-      right: 15%;
+      right: 240px;
       font-size: 1.6em;
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      color: rgb(98, 98, 98);
-      box-shadow: 0px 2px 7px rgb(187, 187, 187);
-      background-color: #FFF;
+      color: var(--btn-color1);
+      box-shadow: 0px 2px 7px var(--shadow-color);
+      background-color: var(--btn-color2);
       cursor: pointer;
   }
 
