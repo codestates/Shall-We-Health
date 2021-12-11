@@ -1,5 +1,5 @@
 .whole-view {
-  background-color: #f4f4f49d;
+  background-color: var(--main-backcolor2);
 }
 .view-container .main-container {
   width: 60%;
@@ -12,7 +12,7 @@
 
 .view-container .components-container {
   width: 70%;
-  background-color: white;
+  background-color: var(--main-backcolor3);
   margin: 1% 1% 5% 0;
   border-radius: 10px;
 }
@@ -124,7 +124,7 @@
 .view-container .info-container {
   width: 30%;
   height: 400px;
-  background-color: white;
+  background-color: var(--main-backcolor3);
   margin: 1%;
   border-radius: 10px;
   margin: 1% 0 5% 0;
