@@ -1,5 +1,4 @@
 import './Pagination.css';
-import React, { useEffect, useState } from 'react';
 const Pagination = ({
   activePage, //현재 페이지
   itemsCountPerPage, //7
