@@ -3,8 +3,8 @@ import axios from 'axios';
 import Loading from '../etc/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import Pagination from 'react-js-pagination';
-
+// import Pagination from 'react-js-pagination';
+import Pagination from '../Pagination/Pagination';
 export default function AdminUser() {
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
@@ -36,7 +36,6 @@ export default function AdminUser() {
       });
     await setIsLoading(false);
   };
-
 
   const getSearchData = async () => {
     await setIsLoading(true);
@@ -94,8 +93,8 @@ export default function AdminUser() {
             id='search'
             placeholder='닉네임 또는 이메일'
             onChange={handleKeyword}
-            onKeyPress={(e)=>{
-              if(e.key==='Enter') {
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
                 getSearchData();
               }
             }}
@@ -142,7 +141,7 @@ export default function AdminUser() {
         )}
       </table>
       <div className='box-paging'>
-        <Pagination
+        {/* <Pagination
           activePage={page}
           itemsCountPerPage={7}
           totalItemsCount={count}
@@ -150,6 +149,13 @@ export default function AdminUser() {
           prevPageText={'‹'}
           nextPageText={'›'}
           onChange={setPage}
+        /> */}
+        <Pagination
+          activePage={page}
+          itemsCountPerPage={7}
+          totalItemsCount={count}
+          pageRangeDisplayed={5}
+          paginate={setPage}
         />
       </div>
       {confirm ? (
