@@ -25,7 +25,12 @@
 .adminpage-container .admin-title div{
     font-size: 1.2em;
     font-weight: 500;
-    color: rgb(53, 53, 53);
+    color: var(--font-color3);
+}
+
+
+.adminpage-container .box-pages{
+  height: 670px;
 }
 
 .adminpage-container .admin-tap{
@@ -42,7 +47,7 @@
 .adminpage-container .admin-tap span.selected{
     font-weight: 700;
     padding-bottom: 5px;
-    border-bottom: 4px solid rgb(85, 85, 85);
+    border-bottom: 4px solid var(--btn-color1);
 }
 
 .modaladmin-container{
@@ -67,7 +72,7 @@
     height: 25%; /*조절필요*/
     min-width: 300px;
     min-height: 220px;
-    background-color: white;
+    background-color: var(--main-backcolor3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;  
@@ -121,7 +126,7 @@
     margin-left: auto;
     padding: 3px;
     height: 20px;
-    background-color: #fff;
+    background-color: var(--main-backcolor3);
     border: 1px solid #838282;
     border-radius: 2px;
     width: 200px;
@@ -137,7 +142,12 @@
     font-size: 0.8rem;
     line-height: 20px;
     margin-left: 20px;
+    color: var(--font-color1);
   }
+
+.adminpage-container #search::placeholder{
+    color: var(--font-color2);
+}
 
 .adminpage-container #searchButton {
     text-decoration: none;
@@ -155,6 +165,9 @@
     border: 2px solid #8d8d8d;
   }
 
+.adminmatch-container .box-table{
+  height: 485px;
+}
 
 .adminmatch-container .table-data{
     text-align: center;
@@ -179,7 +192,7 @@
     border-bottom: 1px solid #dfdfdf;
     height: 60px;
     font-size: 0.9em;
-    color: rgb(68, 68, 68);
+    color: var(--font-color2);
 }
 
 .adminmatch-container .table-data .date{
@@ -250,7 +263,7 @@
     height: 25%; /*조절필요*/
     min-width: 300px;
     min-height: 220px;
-    background-color: white;
+    background-color: var(--main-backcolor3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;  
@@ -304,7 +317,7 @@
     height: 25%; /*조절필요*/
     min-width: 300px;
     min-height: 220px;
-    background-color: white;
+    background-color: var(--main-backcolor3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;  
@@ -365,6 +378,10 @@
     justify-content: center;
 }
 
+.adminuser-container .box-table{
+  height: 485px;
+}
+
 .adminuser-container .table-data{
     text-align: center;
     margin: 5px auto;
@@ -388,7 +405,7 @@
     border-bottom: 1px solid #dfdfdf;
     height: 60px;
     font-size: 0.9em;
-    color: rgb(68, 68, 68);
+    color: var(--font-color2);
 }
 
 .adminuser-container .table-data .email{
@@ -450,7 +467,7 @@
     height: 25%; /*조절필요*/
     min-width: 300px;
     min-height: 220px;
-    background-color: white;
+    background-color: var(--main-backcolor3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;  
@@ -504,7 +521,7 @@
     height: 25%; /*조절필요*/
     min-width: 300px;
     min-height: 220px;
-    background-color: white;
+    background-color: var(--main-backcolor3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;  
@@ -566,6 +583,10 @@
     justify-content: center;
 }
 
+.adminissue-container .box-table{
+  height: 513px;
+}
+
 .adminissue-container .table-data{
     text-align: center;
     margin: 5px auto;
@@ -583,7 +604,7 @@
     border-bottom: 1px solid #dfdfdf;
     height: 60px;
     font-size: 0.9em;
-    color: rgb(68, 68, 68);
+    color: var(--font-color2);
     cursor: pointer;
 }
 

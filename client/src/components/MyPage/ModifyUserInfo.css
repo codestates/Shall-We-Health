@@ -22,6 +22,8 @@
   width: 345px;
   height: 35px;
   font-size: 16px;
+  background-color: var(--main-backcolor3);
+  color: var(--font-color1);
 }
 
 .modifyuserinfo-container button {
@@ -75,7 +77,7 @@
 }
 
 .modifyuserinfo-container .btn-quit {
-  background-color: white;
+  background-color: var(--main-backcolor1);
   color: #acacac;
   margin: 10px;
   cursor: pointer;
@@ -109,7 +111,7 @@
   height: 25%; /*조절필요*/
   min-width: 300px;
   min-height: 220px;
-  background-color: white;
+  background-color: var(--main-backcolor3);
   border-radius: 20px;
   display: flex;
   flex-direction: column;  

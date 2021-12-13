@@ -1,7 +1,7 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  /* width: 90%; */
   background-color: rgb(228, 228, 228);
   border-radius: 10px;
 }
@@ -12,13 +12,14 @@
   text-align: center;
   background-color: rgb(115, 134, 173);
   border-radius: 10px;
+  font-weight: 600;
 }
 
 .chat-container .chat-messages {
   display: flex;
   flex-direction: column;
-  min-height: 350px;
-  max-height: 350px;
+  min-height: 400px;
+  max-height: 400px;
   overflow-y: scroll;
   padding: 0 0 10px 0;
 }

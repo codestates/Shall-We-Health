@@ -1,17 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 @keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
-    transform: translate3d(0, 100%, 0);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
   to {
     opacity: 1;
   }
+}
+
+.login-container .fadeIn {
+  animation: fadeIn 0.7s;
 }
 
 .login-container {
@@ -39,7 +38,7 @@
   max-width: 400px;
   min-width: 400px;
   margin: 0 auto;
-  background-color: white;
+  background-color: var(--main-backcolor3);
   border-radius: 30px;
   padding: 10px 0;
   min-height: 550px;
@@ -74,7 +73,7 @@
   padding-right: 50%;
   font-weight: 700;
   font-size: 17px;
-  color: rgb(56, 56, 56);
+  color: var(--font-color3);
 }
 
 .login-container .text-email {
@@ -106,6 +105,7 @@
 
 .login-container .input-back {
   background-image: url('../img/dumbbell.svg');
+  background-color: var(--main-backcolor3);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   border: none;
@@ -118,6 +118,7 @@
   border: none;
   width: 190px;
   font-size: 15px;
+  color: var(--font-color1);
 }
 
 .login-container input:focus {
@@ -141,7 +142,7 @@
   border-right: rgb(117, 117, 117) 2px solid;
   padding-right: 15px;
   font-weight: 650;
-  color: rgb(56, 56, 56);
+  color: var(--font-color2);
 }
 
 .login-container .grid-naver:nth-child(3) {

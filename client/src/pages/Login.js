@@ -79,7 +79,7 @@ export default function Login() {
 
   return (
     <>
-      <div className="login-container">
+      <div className="login-container" >
         <div className="login-modal fadeIn">
           <div className='btn-loginClose' onClick={handleModal}></div>
           <div className="home-logo"></div>

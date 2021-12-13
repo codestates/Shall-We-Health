@@ -20,7 +20,7 @@
     height: 50%; /*조절필요*/
     max-width: 500px;
     max-height: 500px;
-    background-color: white;
+    background-color: var(--main-backcolor3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;  
@@ -38,12 +38,12 @@
 
   .modalissue-container .table-info th{
       font-size: 0.9em;
-      color: rgb(46, 46, 46);
+      color: var(--font-color3);
   }
 
   .modalissue-container .table-info td{
     font-size: 0.88em;
-    color: rgb(97, 97, 97);
+    color: var(--font-color2);
     padding-left: 10px;
 }
 
@@ -52,7 +52,7 @@
     text-align: left;
     width: 88%;
     font-size:0.9em;
-    color:rgb(65, 65, 65);
+    color:var(--font-color2);
     padding: 10px 5px;
     border-top: 1px solid rgb(187, 187, 187);
 }
@@ -67,4 +67,5 @@
     height: 30px;
     font-weight: 500;
     cursor: pointer;
+    color: var(--font-color2);
   }
