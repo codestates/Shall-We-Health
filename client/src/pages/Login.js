@@ -84,9 +84,13 @@ export default function Login() {
           <div className='btn-loginClose' onClick={handleModal}></div>
           <div className="home-logo"></div>
           <div className="text-email">Email</div>
-          <input className="input-email" name="email" onChange={valueChange} placeholder='Email' onKeyPress={EnterLogin} />
+          <div className="input-back">
+            <input className="input-email" autoComplete="on" name="email" onChange={valueChange} placeholder='Email' onKeyPress={EnterLogin} />
+          </div>
           <div className="text-pw">Password</div>
-          <input className="input-pw" name="password" type='password' onChange={valueChange} placeholder='Password' onKeyPress={EnterLogin} />
+          <div className="input-back">
+            <input className="input-pw" name="password" type='password' onChange={valueChange} placeholder='Password' onKeyPress={EnterLogin} />
+          </div>
           <div className={loginFail ? "text-falilogin" : 'hidden'} > 이메일 또는 비밀번호가 잘못 입력 되었습니다 </div>
           <button className="btn-login" onClick={handleLogin}> 로그인 </button>
           {failModal === true
