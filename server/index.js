@@ -55,7 +55,7 @@ app.use(cookieParser());
 app.use(express.json({ strict: false }));
 app.use(
   cors({
-    origin: ["https://www.shallwehealth.com"],
+    origin: ["https://shallwehealth.com", "https://www.shallwehealth.com"],
     credentials: true,
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
   })
