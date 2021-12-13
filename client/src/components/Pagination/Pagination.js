@@ -1,4 +1,7 @@
 import './Pagination.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleDoubleLeft, faAngleRight, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+
 const Pagination = ({
   activePage, //현재 페이지
   itemsCountPerPage, //7
@@ -35,14 +38,16 @@ const Pagination = ({
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
           onClick={() => paginate(1)}
         >
-          &lt;&lt;
+          <FontAwesomeIcon
+          icon={faAngleDoubleLeft}/>
         </span>
         <span
           className='prev'
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
           onClick={handlePrev}
         >
-          &lt;
+          <FontAwesomeIcon
+          icon={faAngleLeft}/>
         </span>
         <ul className='paging-group'>
           {pageNumbers.map((num) => {
@@ -60,14 +65,16 @@ const Pagination = ({
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
           onClick={handleNext}
         >
-          &gt;
+          <FontAwesomeIcon
+          icon={faAngleRight}/>
         </span>
         <span
           className='last'
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
           onClick={() => paginate(totalPage)}
         >
-          &gt;&gt;
+          <FontAwesomeIcon
+          icon={faAngleDoubleRight}/>
         </span>
       </div>
     </>
