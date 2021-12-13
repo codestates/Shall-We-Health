@@ -3,7 +3,8 @@ import axios from 'axios';
 import Loading from '../etc/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import Pagination from 'react-js-pagination';
+// import Pagination from 'react-js-pagination';
+import Pagination from '../Pagination/Pagination';
 
 export default function AdminMatch() {
   const [count, setCount] = useState(0);
@@ -39,7 +40,7 @@ export default function AdminMatch() {
 
   const getSearchData = async () => {
     await setIsLoading(true);
-    await setPage(1)
+    await setPage(1);
     await axios
       .get(`${process.env.REACT_APP_SERVER_API}/admin/post-list`, {
         params: { page, nickname },
@@ -93,8 +94,8 @@ export default function AdminMatch() {
             id='search'
             placeholder='닉네임'
             onChange={handleNickname}
-            onKeyPress={(e)=>{
-              if(e.key==='Enter') {
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
                 getSearchData();
               }
             }}
@@ -141,7 +142,7 @@ export default function AdminMatch() {
         )}
       </table>
       <div className='box-paging'>
-        <Pagination
+        {/* <Pagination
           activePage={page}
           itemsCountPerPage={7}
           totalItemsCount={count}
@@ -149,6 +150,13 @@ export default function AdminMatch() {
           prevPageText={'‹'}
           nextPageText={'›'}
           onChange={setPage}
+        /> */}
+        <Pagination
+          activePage={page}
+          itemsCountPerPage={7}
+          totalItemsCount={count}
+          pageRangeDisplayed={5}
+          paginate={setPage}
         />
       </div>
       {confirm ? (
@@ -181,8 +189,12 @@ export default function AdminMatch() {
 const DataRow = ({ el, setConfirm, setDeleteId }) => {
   return (
     <tr>
-      <td>{el.reserved_at.slice(0,10) + ' ' + el.reserved_at.slice(11,16)}</td>
-      <td><span className='text-location'>{el.placeName}</span></td>
+      <td>
+        {el.reserved_at.slice(0, 10) + ' ' + el.reserved_at.slice(11, 16)}
+      </td>
+      <td>
+        <span className='text-location'>{el.placeName}</span>
+      </td>
       <td>
         {el.guestNickname
           ? el.hostNickname + ' /\n' + el.guestNickname
