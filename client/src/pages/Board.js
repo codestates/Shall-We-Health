@@ -5,7 +5,7 @@ import Loading from '../components/etc/Loading';
 import Slider from "react-slick";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCaretUp } from '@fortawesome/free-solid-svg-icons';
-import Pagination from 'react-js-pagination';
+import Pagination from '../components/Pagination/Pagination';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Board.css";
@@ -13,7 +13,7 @@ import "./Board.css";
 export default function Board() {
 
   const [page, setPage] = useState(1)
-  const [count, setCount] = useState(100)
+  const [count, setCount] = useState(0)
   const [ selectDate, setSelectDate ] = useState(0)
   const [ selectLocation, setSelectLocation] = useState('전체')
   const [ locationForm, setLocationForm ] = useState('%')
@@ -221,14 +221,12 @@ export default function Board() {
         </table>
       </div>
       <div className='box-pagination'>
-        <Pagination
+      <Pagination
           activePage={page}
           itemsCountPerPage={15}
           totalItemsCount={count}
           pageRangeDisplayed={5}
-          prevPageText={'‹'}
-          nextPageText={'›'}
-          onChange={setPage}
+          paginate={setPage}
         />
       </div>
       <div className={btnStatus?'btn-top':'btn-top none'} onClick={handleTop}><FontAwesomeIcon icon={faCaretUp}/></div>

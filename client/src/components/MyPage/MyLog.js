@@ -220,7 +220,7 @@ export default function MyLog() {
             </tr>
           ) : data.length === 0 ? (
             <tr className='box-none'>
-              <td colSpan='5'>일치하는 데이터가 없습니다.</td>
+              <td colSpan='5'>매칭 내역이 없습니다.</td>
             </tr>
           ) : (
             data.map((el, i) => {

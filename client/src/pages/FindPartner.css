@@ -90,7 +90,7 @@
   font: 1.1em;
 }
 
-input[type='checkbox']:checked + label {
+.findpartner-container input[type='checkbox']:checked + label {
   background-color: var(--main-color1);
 }
 input[type='radio']:checked + label {
