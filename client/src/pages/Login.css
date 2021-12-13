@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -46,12 +47,12 @@
 }
 
 .login-container .fadeIn {
-  animation: fadeIn 0.5s;
+  animation: fadeIn 0.7s;
 }
 
 .login-container .home-logo {
   background-image: url('../img/logo.svg');
-  width: 270px;
+  width: 200px;
   height: 200px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -103,7 +104,7 @@
   visibility: hidden;
 }
 
-.login-container input {
+.login-container .input-back {
   background-image: url('../img/dumbbell.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -111,6 +112,11 @@
   width: 190px;
   padding: 20px 50px 40px 40px;
   margin-bottom: 25px;
+}
+
+.login-container input {
+  border: none;
+  width: 190px;
   font-size: 15px;
 }
 
@@ -204,4 +210,8 @@
   border-radius: 10px;
   font-weight: 500;
   cursor: pointer;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }

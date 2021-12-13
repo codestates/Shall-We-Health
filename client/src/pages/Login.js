@@ -17,13 +17,13 @@ export default function Login() {
   const initializeNaverLogin = () => {
     const naverLogin = new window.naver.LoginWithNaverId({
       clientId: 'z6TA4to1zr3gBuIu2HMa',
-      callbackUrl: 'http://localhost:3000/naver', 
+      callbackUrl: 'http://localhost:3000/naver',
       isPopup: false, // popup 형식으로 띄울것인지 설정
       loginButton: { color: 'green', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
     });
     naverLogin.init();
   };
-    
+
   useEffect(() => {
     initializeNaverLogin();
   }, []);
@@ -84,9 +84,13 @@ export default function Login() {
           <div className='btn-loginClose' onClick={handleModal}></div>
           <div className="home-logo"></div>
           <div className="text-email">Email</div>
-          <input className="input-email" name="email" onChange={valueChange} placeholder='Email' onKeyPress={EnterLogin} />
+          <div className="input-back">
+            <input className="input-email" autoComplete="on" name="email" onChange={valueChange} placeholder='Email' onKeyPress={EnterLogin} />
+          </div>
           <div className="text-pw">Password</div>
-          <input className="input-pw" name="password" type='password' onChange={valueChange} placeholder='Password' onKeyPress={EnterLogin} />
+          <div className="input-back">
+            <input className="input-pw" name="password" type='password' onChange={valueChange} placeholder='Password' onKeyPress={EnterLogin} />
+          </div>
           <div className={loginFail ? "text-falilogin" : 'hidden'} > 이메일 또는 비밀번호가 잘못 입력 되었습니다 </div>
           <button className="btn-login" onClick={handleLogin}> 로그인 </button>
           {failModal === true
