@@ -41,16 +41,6 @@ testConnection();
 /*서버 설정*/
 const app = express();
 
-// const http = require("http").createServer(app);
-// const io = new Server(http, {
-//   cors: {
-//     origin: "*",
-//     credentials: true,
-//   },
-// });
-
-// module.exports = io;
-
 app.use(cookieParser());
 app.use(express.json({ strict: false }));
 app.use(
@@ -61,7 +51,30 @@ app.use(
   })
 );
 
-let server = app.listen(process.env.PORT, () => {
+const http = require("http").createServer(app);
+const io = new Server(http, {
+  cors: {
+    origin: ["https://www.shallwehealth.com", "https://shallwehealth.com"],
+    credentials: true,
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(`User conneced: ${socket.id}`);
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with Id: ${socket.id} joined room: ${data}`);
+  });
+  socket.on("send_message", (data) => {
+    console.log(data);
+    socket.to(data.room).emit("receive_message", data);
+  });
+  socket.on("disconnect", () => {
+    console.log("User Disconnected, socket.id");
+  });
+});
+
+let server = http.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);
 });
 module.exports = server;
