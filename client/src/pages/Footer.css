@@ -1,7 +1,7 @@
 .footer-container {
   width: 100vw;
   height: 300px;
-  background-color: #656565;
+  background-color: var(--main-backcolor4);
   display: flex;
   flex-direction: column;
   justify-content: center;

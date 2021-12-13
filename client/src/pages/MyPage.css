@@ -25,7 +25,7 @@
 .mypage-container .mypage-title div{
     font-size: 1.2em;
     font-weight: 500;
-    color: rgb(53, 53, 53);
+    color: var(--font-color3);
 }
 
 .mypage-container .mypage-tap{
@@ -42,7 +42,7 @@
 .mypage-container .mypage-tap span.selected{
     font-weight: 700;
     padding-bottom: 5px;
-    border-bottom: 4px solid rgb(85, 85, 85);
+    border-bottom: 4px solid var(--btn-color1);
 }
 
 /*활동 로그*/
@@ -101,7 +101,7 @@
     border-bottom: 1px solid #dfdfdf;
     height: 70px;
     font-size: 0.9em;
-    color: rgb(68, 68, 68);
+    color: var(--font-color2);
 }
 
 .mylog-container .table-data-th .date{

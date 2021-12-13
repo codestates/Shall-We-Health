@@ -5,7 +5,6 @@ import Loading from '../components/etc/Loading';
 import Slider from "react-slick";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCaretUp } from '@fortawesome/free-solid-svg-icons';
-import { dummyData } from './dummyData';
 import Pagination from 'react-js-pagination';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -19,7 +18,7 @@ export default function Board() {
   const [ selectLocation, setSelectLocation] = useState('전체')
   const [ locationForm, setLocationForm ] = useState('%')
   const [ data, setData ] = useState([])
-  const [ isLoading, setIsLoading ] = useState(false)
+  const [ isLoading, setIsLoading ] = useState(true)
   const [ isMatched, setIsMatched ] = useState(null)
   const [ keyword, setKeyword ] = useState(null)
   const [ScrollY, setScrollY] = useState(0);  // 스크롤값을 저장하기 위한 상태

@@ -18,12 +18,18 @@
 
 .signup-container input {
   outline: none;
-  border: #39cfd9 solid 2px;
+  border: var(--main-color1) solid 2px;
   width: 345px;
   height: 35px;
   font-size: 16px;
   border-radius: 5px;
-  box-shadow: 2px 4px 2px #39cfd9;
+  box-shadow: 2px 4px 2px var(--main-color1);
+  background-color: var(--main-backcolor3);
+  color: var(--font-color1);
+}
+
+.signup-container input::placeholder{
+  color: var(--font-color2);
 }
 
 .signup-container button {
@@ -40,7 +46,7 @@
 
 .signup-container .text {
   font-weight: 650;
-  color: rgb(58, 58, 58);
+  color: var(--font-color3);
 }
 
 .signup-container .btn-confirm {
