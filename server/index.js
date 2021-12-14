@@ -42,7 +42,7 @@ testConnection();
 /*서버 설정*/
 const app = express();
 const corsOptions = {
-  origin: ["https://shallwehealth.com", "https://www.shallwehealth.com"],
+  origin: ["https://shallwehealth.com", "https://www.shallwehealth.com", "http://localhost:3000"],
   credentials: true,
 };
 
