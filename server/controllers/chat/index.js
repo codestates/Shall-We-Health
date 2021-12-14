@@ -11,9 +11,13 @@ module.exports = {
     // });
     try {
       const userData = await getAccessToken(req, res);
+
+
       const userId = userData.dataValues.id;
       const { roomId, content } = req.body;
+
       if (!roomId) {
+        console
         return res.status(400).json({
           data: null,
           error: {
@@ -45,7 +49,7 @@ module.exports = {
     try {
       // await getAccessToken(req, res);
       const { postId } = req.params;
-      console.log(postId);
+
       const { hostId, guestId } = req.query;
       if (!postId || !hostId || !guestId) {
         return res.status(400).json({
@@ -76,6 +80,7 @@ module.exports = {
         },
         Order: ["createdAt", "ASC"],
       });
+
       return res.status(200).json({
         hostNickname: hostData.dataValues.nickname,
         guestNickname: guestData.dataValues.nickname,

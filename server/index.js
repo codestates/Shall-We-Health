@@ -46,6 +46,8 @@ const corsOptions = {
   credentials: true,
 };
 
+
+
 app.use(cookieParser());
 app.use(express.json({ strict: false }));
 app.use(
@@ -57,7 +59,10 @@ app.use(
 
 const http = require("http").createServer(app);
 const io = new Server(http, {
-  cors: corsOptions,
+  cors: {
+  ...corsOptions
+    methods: ["GET", "POST"],
+  },
 });
 
 io.on("connection", (socket) => {
@@ -83,6 +88,7 @@ let server = http.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);
 });
 module.exports = server;
+
 
 /*라우터 설정*/
 app.use("/post", postRouter);
