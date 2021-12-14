@@ -17,11 +17,13 @@ module.exports = {
                 sequelize.fn("date", sequelize.col("reserved_at")),
                 ">=",
                 reserved_at.slice(0, 10)
+
               ),
               sequelize.where(
                 sequelize.fn("date", sequelize.col("reserved_at")),
                 "<=",
                 reserved_at.slice(0, 10)
+
               ),
             ],
 
@@ -34,13 +36,16 @@ module.exports = {
 
           return res.status(204).end();
         }
-        await Post.create({
+        const dataForpk = await Post.create({
           hostId: userId,
           reserved_at,
           location,
           description,
         });
-        return res.status(201).end();
+
+        return res.status(201).json({
+          data: dataForpk
+        });
       }
       return res.status(400).json({
         data: null,
@@ -66,7 +71,7 @@ module.exports = {
       if (!keyword && !isMatched) {
         //모든 게시물 다 불러오기 (예약날짜, 장소, 페이지에 따른 필터링은 적용됨)
         const sql =
-          "SELECT reserved_at, isMatched, description, JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) AS addressName, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName FROM Posts WHERE reserved_at LIKE ? AND JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) LIKE ? ORDER BY reserved_at";
+          "SELECT id, reserved_at, isMatched, description, JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) AS addressName, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName FROM Posts WHERE reserved_at LIKE ? AND JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) LIKE ? ORDER BY reserved_at";
         rows = await sequelize.query(sql, {
           replacements: [`${date}%`, `${location}%`],
           type: QueryTypes.SELECT,
@@ -75,7 +80,7 @@ module.exports = {
       if (isMatched && !keyword) {
         //신청가능한 게시물 다 불러오기
         const sql =
-          "SELECT reserved_at, isMatched, description, JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) AS addressName, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName FROM Posts WHERE reserved_at LIKE ? AND JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) LIKE ? AND isMatched = ? ORDER BY reserved_at";
+          "SELECT id, reserved_at, isMatched, description, JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) AS addressName, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName FROM Posts WHERE reserved_at LIKE ? AND JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) LIKE ? AND isMatched = ? ORDER BY reserved_at";
         rows = await sequelize.query(sql, {
           replacements: [`${date}%`, `${location}%`, 0],
           type: QueryTypes.SELECT,
@@ -83,7 +88,7 @@ module.exports = {
       } else if (isMatched && keyword) {
         //신청가능한 게시물 중 키워드로 필터링된 게시물 불러오기
         const sql =
-          "SELECT * FROM (SELECT reserved_at, isMatched, description, JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) AS addressName, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName FROM Posts WHERE reserved_at LIKE ? AND JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) LIKE ? AND isMatched = ?) AS Filtered WHERE Filtered.placeName LIKE ? OR Filtered.addressName LIKE ? ORDER BY Filtered.reserved_at";
+          "SELECT * FROM (SELECT id, reserved_at, isMatched, description, JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) AS addressName, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName FROM Posts WHERE reserved_at LIKE ? AND JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) LIKE ? AND isMatched = ?) AS Filtered WHERE Filtered.placeName LIKE ? OR Filtered.addressName LIKE ? ORDER BY Filtered.reserved_at";
         rows = await sequelize.query(sql, {
           replacements: [
             `${date}%`,
@@ -97,7 +102,7 @@ module.exports = {
       } else if (!isMatched && keyword) {
         //모든 게시물 중 키워드로 필터링된 게시물 불러오기
         const sql =
-          "SELECT * FROM (SELECT reserved_at, isMatched, description, JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) AS addressName, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName FROM Posts WHERE reserved_at LIKE ? AND JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) LIKE ?) AS Filtered WHERE Filtered.placeName LIKE ? OR Filtered.addressName LIKE ? ORDER BY Filtered.reserved_at";
+          "SELECT * FROM (SELECT id, reserved_at, isMatched, description, JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) AS addressName, JSON_UNQUOTE( JSON_EXTRACT(location, '$.place_name') ) AS placeName FROM Posts WHERE reserved_at LIKE ? AND JSON_UNQUOTE( JSON_EXTRACT(location, '$.address_name') ) LIKE ?) AS Filtered WHERE Filtered.placeName LIKE ? OR Filtered.addressName LIKE ? ORDER BY Filtered.reserved_at";
         rows = await sequelize.query(sql, {
           replacements: [
             `${date}%`,

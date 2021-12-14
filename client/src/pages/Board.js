@@ -15,19 +15,19 @@ export default function Board() {
 
   const [page, setPage] = useState(1)
   const [count, setCount] = useState(100)
-  const [ selectDate, setSelectDate ] = useState(0)
-  const [ selectLocation, setSelectLocation] = useState('전체')
-  const [ locationForm, setLocationForm ] = useState('%')
-  const [ data, setData ] = useState([])
-  const [ isLoading, setIsLoading ] = useState(false)
-  const [ isMatched, setIsMatched ] = useState(null)
-  const [ keyword, setKeyword ] = useState(null)
+  const [selectDate, setSelectDate] = useState(0)
+  const [selectLocation, setSelectLocation] = useState('전체')
+  const [locationForm, setLocationForm] = useState('%')
+  const [data, setData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [isMatched, setIsMatched] = useState(null)
+  const [keyword, setKeyword] = useState(null)
   const [ScrollY, setScrollY] = useState(0);  // 스크롤값을 저장하기 위한 상태
   const [btnStatus, setBtnStatus] = useState(false); // 버튼 상태
 
   const handleFollow = () => {
     setScrollY(window.pageYOffset);
-    if(ScrollY > 100) {
+    if (ScrollY > 100) {
       // 100 이상이면 버튼이 보이게
       setBtnStatus(true);
     } else {
@@ -70,9 +70,9 @@ export default function Board() {
     let month = ('0' + (date.getMonth() + 1)).slice(-2);
     let day = ('0' + date.getDate()).slice(-2);
 
-    return year + '-' + month  + '-' + day; 
+    return year + '-' + month + '-' + day;
   }
-  
+
   const getDateArr = (n) => {
     let today = new Date();
     let date = new Date(today.setDate(today.getDate() + n));
@@ -93,7 +93,7 @@ export default function Board() {
 
   const handleLocation = (e) => {
     setSelectLocation(e.target.innerText)
-    if(e.target.innerText==='전체') {
+    if (e.target.innerText === '전체') {
       setLocationForm('%')
     } else {
       setLocationForm(e.target.innerText)
@@ -101,7 +101,7 @@ export default function Board() {
   }
 
   const hadleKeyword = (e) => {
-    if(e.target.value==='') {
+    if (e.target.value === '') {
       setKeyword(null)
     } else {
       setKeyword(e.target.value)
@@ -109,49 +109,50 @@ export default function Board() {
   }
 
   //데이터 요청
-  const getData = async() => {
+  const getData = async () => {
     await setIsLoading(true)
     await axios.get(`${process.env.REACT_APP_SERVER_API}/post`, {
-			params: {
-        date : getDateForm(selectDate),
-        location : locationForm,
+      params: {
+        date: getDateForm(selectDate),
+        location: locationForm,
         page,
         isMatched,
         keyword
-       }
-		})
-    .then((res) => {
-      setData(res.data.data)
-      setCount(res.data.count)
+      }
     })
+      .then((res) => {
+        setData(res.data.data)
+        console.log(res.data.data)
+        setCount(res.data.count)
+      })
     await setIsLoading(false)
   }
 
   const getDataPage = () => {
     axios.get(`${process.env.REACT_APP_SERVER_API}/post`, {
-			params: {
-        date : getDateForm(selectDate),
-        location : locationForm,
+      params: {
+        date: getDateForm(selectDate),
+        location: locationForm,
         page,
         isMatched,
         keyword
-       }
-		})
-    .then((res) => {
-      setData(res.data.data);
-      setCount(res.data.count);
-      handleTop();
+      }
     })
+      .then((res) => {
+        setData(res.data.data);
+        setCount(res.data.count);
+        handleTop();
+      })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[selectDate, locationForm, isMatched])
+  }, [selectDate, locationForm, isMatched])
 
 
-    useEffect(()=>{
+  useEffect(() => {
     getDataPage();
-  },[page])
+  }, [page])
 
   return (
     <div className="board-container">
@@ -159,45 +160,45 @@ export default function Board() {
         <BannerSlider />
       </div>
       <div className="box-date">
-      <Slider {...settings}>
-        {dateArray.map((el,i)=> {
-          return(
-            <DateBtn selectDate={selectDate} setSelectDate={setSelectDate} key={i} i={i} date={el} days={daysArray[i]}/>
-          )
-        })}
-      </Slider>
-      </div>
-        <ul className='box-location'>
-          {locationArr.map((el,i) => {
+        <Slider {...settings}>
+          {dateArray.map((el, i) => {
             return (
-              <li className={selectLocation===el ? 'btn-selected-location' : 'btn-location'} onClick={handleLocation}>{el}</li>
+              <DateBtn selectDate={selectDate} setSelectDate={setSelectDate} key={i} i={i} date={el} days={daysArray[i]} />
             )
           })}
+        </Slider>
+      </div>
+      <ul className='box-location'>
+        {locationArr.map((el, i) => {
+          return (
+            <li className={selectLocation === el ? 'btn-selected-location' : 'btn-location'} onClick={handleLocation}>{el}</li>
+          )
+        })}
       </ul>
       <div className='box-filter'>
-          <input type='checkbox' id='match-out' className='match-check-box' checked={isMatched} onChange={(e)=>{
-            if(!e.target.checked) {
-              setIsMatched(null)
-            } else{
-              setIsMatched(e.target.checked)
-            }
-            }}/>
-          <label for='match-out' className='text-match'>신청 가능만 보기</label>
-          <div class='search-box'>
+        <input type='checkbox' id='match-out' className='match-check-box' checked={isMatched} onChange={(e) => {
+          if (!e.target.checked) {
+            setIsMatched(null)
+          } else {
+            setIsMatched(e.target.checked)
+          }
+        }} />
+        <label for='match-out' className='text-match'>신청 가능만 보기</label>
+        <div class='search-box'>
           <input
             type='text'
             id='search'
             placeholder='헬스장 명을 입력하세요'
             onChange={hadleKeyword}
-            onKeyPress={(e)=>{
-              if(e.key==='Enter') {
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
                 getData();
               }
             }}
           ></input>
           <span>
             <button id='searchButton' onClick={getData}>
-              <FontAwesomeIcon icon={faSearch}/>
+              <FontAwesomeIcon icon={faSearch} />
             </button>
           </span>
         </div>
@@ -206,17 +207,17 @@ export default function Board() {
         <table className='table-data'>
           {isLoading ? (
             <tr className='box-loading'>
-            <td colSpan='3'>
-              <Loading/>
-            </td>
-          </tr>
-          ) : (data.length===0 ? (
+              <td colSpan='3'>
+                <Loading />
+              </td>
+            </tr>
+          ) : (data.length === 0 ? (
             <tr className='box-none'>
               <td colSpan='3'>일치하는 게시물이 없습니다.</td>
             </tr>
-          ) :(data.map((el,i)=> {
-            return(
-              <RowData el={el} key={i}/>
+          ) : (data.map((el, i) => {
+            return (
+              <RowData el={el} key={i} />
             )
           })))}
         </table>
@@ -232,7 +233,7 @@ export default function Board() {
           onChange={setPage}
         />
       </div>
-      <div className={btnStatus?'btn-top':'btn-top none'} onClick={handleTop}><FontAwesomeIcon icon={faCaretUp}/></div>
+      <div className={btnStatus ? 'btn-top' : 'btn-top none'} onClick={handleTop}><FontAwesomeIcon icon={faCaretUp} /></div>
     </div>
   );
 }
@@ -266,26 +267,26 @@ function Banner() {
 
 function DateBtn({ selectDate, setSelectDate, days, date, i }) {
   return (
-    <div className={selectDate===i ? "btn-selected-date" : 'btn-date'} onClick={()=>{setSelectDate(i)}}>
-      <div className={days==='토' ? 'date blue' : (days==='일' ? 'date red' : 'date')}>{date}</div>
-      <div className={days==='토' ? 'days blue' : (days==='일' ? 'days red' : 'days')}>{days}</div>
+    <div className={selectDate === i ? "btn-selected-date" : 'btn-date'} onClick={() => { setSelectDate(i) }}>
+      <div className={days === '토' ? 'date blue' : (days === '일' ? 'date red' : 'date')}>{date}</div>
+      <div className={days === '토' ? 'days blue' : (days === '일' ? 'days red' : 'days')}>{days}</div>
     </div>
   );
 }
 
-function RowData({el}) {
-  return(
+function RowData({ el }) {
+  return (
     <tr>
-            <td className='time'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.reserved_at.slice(11,16)}</Link></td>
-            <td className='info'>
-              <div className='title'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.addressName.slice(0,2)+' '+el.placeName}</Link></div>
-              <div className='sub-info'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>3대 {el.description.sbd} {el.description.bodyPart.join(' ')}</Link></div>
-            </td>
-            <td className='match'>
-            <Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
-              {!el.isMatched ? <div className='btn-match'>신청 가능</div> : <div className='btn-match-end'>마감</div>}
-              </Link>
-            </td>
-          </tr>
+      <td className='time'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.reserved_at.slice(11, 16)}</Link></td>
+      <td className='info'>
+        <div className='title'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.addressName.slice(0, 2) + ' ' + el.placeName}</Link></div>
+        <div className='sub-info'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>3대 {el.description.sbd} {el.description.bodyPart.join(' ')}</Link></div>
+      </td>
+      <td className='match'>
+        <Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          {!el.isMatched ? <div className='btn-match'>신청 가능</div> : <div className='btn-match-end'>마감</div>}
+        </Link>
+      </td>
+    </tr>
   )
 }
