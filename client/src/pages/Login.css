@@ -119,6 +119,7 @@
   width: 190px;
   font-size: 15px;
   color: var(--font-color1);
+  background-color: var(--main-backcolor3);
 }
 
 .login-container input:focus {
@@ -214,5 +215,6 @@
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-box-shadow: 0 0 0 30px var(--main-backcolor3) inset !important;
+  -webkit-text-fill-color: var(--font-color2) !important;
 }
