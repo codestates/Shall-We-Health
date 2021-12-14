@@ -56,7 +56,7 @@ export default function Chat({ data, postId, socekt }) {
         ...messageList,
         {
           authorId: id,
-          nickname: hostNickname,
+          nickname: nickname,
           createdAt: moment(),
           content: e.target.value,
         },
