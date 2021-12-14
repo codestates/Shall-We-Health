@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 const moment = require('moment');
 
-export default function Chat({ data, postId, socekt }) {
-  const [content, setContent] = useState('');
-  const [messageList, setMessageList] = useState([]);
+
+export default function Chat({ data, postId, socket }) {
+  const [content, setContent] = useState('')
+  const [messageList, setMessageList] = useState([])
+
   const { id, nickname } = useSelector((state) => state.loginReducer);
   const { guestNickname, hostId, hostNickname, guestId } = data;
 
@@ -27,12 +29,11 @@ export default function Chat({ data, postId, socekt }) {
 
   // 이전데이터받아오기
   const getbeforeMessage = async () => {
-    await axios
-      .get(
-        `${process.env.REACT_APP_SERVER_API}/chat/${postId}`,
-        // { params: { guestId, hostId } }) // 원래코드임
-        { params: { guestId: 1, hostId } }
-      )
+
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`,
+      { params: { guestId, hostId } }) // 원래코드임
+//       { params: { guestId: 1, hostId } })
+
 
       .then((res) => {
         /* 이전 데이터 있는경우  */
@@ -49,6 +50,7 @@ export default function Chat({ data, postId, socekt }) {
   };
 
   const Enterkeysend = async (e) => {
+
     if (e.key === 'Enter' && content !== '') {
       sendMessage(); //socket.io 서버전달 핸들러 호출
       await handleSendMessage(); // 메세지 db 저장
@@ -62,6 +64,7 @@ export default function Chat({ data, postId, socekt }) {
         },
       ]);
       await setContent('');
+
     }
   };
 
@@ -81,18 +84,22 @@ export default function Chat({ data, postId, socekt }) {
     };
     console.log('msgData', messageData);
 
-    await socekt.emit('send_message', messageData);
-    setMessageList((list) => [...list, messageData]);
-  };
+
+    await socket.emit("send_message", messageData);
+    setMessageList((list) => [...list, messageData])
+  }
+
 
   console.log(messageList, 'messageList');
 
   useEffect(() => {
-    socekt.on('receive_message', (data) => {
-      console.log(data, 'receive');
-      setMessageList((list) => [...list, data]);
-    });
-  }, [socekt]);
+
+    socket.on("receive_message", (data) => {
+      console.log(data, 'receive')
+      setMessageList((list) => [...list, data])
+    })
+  }, [socket])
+
 
   //*---------------------------------socket------------------------*//
 
@@ -128,6 +135,6 @@ export default function Chat({ data, postId, socekt }) {
           전송
         </button>
       </div>
-    </div>
-  );
+    </div >
+  )
 }
