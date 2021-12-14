@@ -155,7 +155,7 @@ export default function View({ match }) {
         setChatModal(true)
       } else {
         setChatOpen(true)
-        socekt.emit("join_room", postNumber);
+        socket.emit("join_room", postNumber);
       }
     }
   }
