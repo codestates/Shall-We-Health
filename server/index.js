@@ -79,6 +79,7 @@ io.on("connection", (socket) => {
       data.nickname,
       data.content
     );
+    console.log(messageData);
     socket.to(data.room).emit("receive_message", messageData);
   });
   socket.on("disconnect", () => {
