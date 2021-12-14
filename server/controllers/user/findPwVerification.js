@@ -108,7 +108,7 @@ module.exports = async (req, res) => {
           
               <div style="Margin-left: 20px;Margin-right: 20px;">
         <div class="btn btn--flat btn--large" style="text-align:center;">
-          <![if !mso]><a style="border-radius: 0;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #ffffff !important;background-color: #395896;font-family: Avenir, sans-serif;"  href="http://localhost:3000/updatepw/${token}">&#48708;&#48128;&#48264;&#54840; &#48148;&#44984;&#47084; &#44032;&#44592; &#10143;</a><![endif]>
+          <![if !mso]><a style="border-radius: 0;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #ffffff !important;background-color: #395896;font-family: Avenir, sans-serif;"  href="https://shallwehealth.com/updatepw/${token}">&#48708;&#48128;&#48264;&#54840; &#48148;&#44984;&#47084; &#44032;&#44592; &#10143;</a><![endif]>
         <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:rect xmlns:v="urn:schemas-microsoft-com:vml" href="http://www.example.com" style="width:181px" fillcolor="#395896" stroke="f"><v:textbox style="mso-fit-shape-to-text:t" inset="0px,12px,0px,12px"><center style="font-size:14px;line-height:24px;color:#FFFFFF;font-family:Avenir,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px">&#48708;&#48128;&#48264;&#54840; &#48148;&#44984;&#47084; &#44032;&#44592; &#10143;</center></v:textbox></v:rect><![endif]--></div>
       </div>
           
