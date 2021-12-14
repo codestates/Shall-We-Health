@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: row;
   width: 90px;
-
+  cursor: pointer;
   justify-content: space-between;
 }
 .view-container .edit-tab {
@@ -181,6 +181,18 @@
 }
 
 .view-container .application-button {
+  height: 50px;
+  margin-bottom: 1%;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #39cfd9;
+  color: white;
+  font-weight: 500;
+  font-size: 1em;
+  font-weight: 700;
+}
+.view-container .match-now-button {
   height: 50px;
   margin-bottom: 1%;
   border-radius: 20px;

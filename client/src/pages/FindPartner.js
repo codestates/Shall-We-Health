@@ -16,6 +16,7 @@ export default function FindPartner() {
   const [markerPlace, setMarkerPlace] = useState({})
   const [modal, setModal] = useState(false)
   const [modalMsg, setModalMsg] = useState('')
+  const [pkId, setPkId] = useState('')
   // const [isSelected, setIsSelected] = useState('')
   function CreateModal({ setModal, modalMsg }) {
     return (
@@ -25,7 +26,11 @@ export default function FindPartner() {
           <div>
             <span
               onClick={() => {
-                setModal(false);
+                if (modalMsg === '파트너 모집글이 작성되었습니다.') {
+                  window.location.replace(`/view/${pkId}`)
+                }
+                else
+                  setModal(false);
               }}
             >
               확인
@@ -87,8 +92,8 @@ export default function FindPartner() {
   const [hour, setHour] = useState('00')
   const [minute, setMinute] = useState('00')
   const [sbd, setSbd] = useState('')
-  const [text, setText] = useState('')
-  const [bodypartOptions, setBodyPartOptions] = useState('')
+  const [text, setText] = useState('즐겁게 운동해요!')
+  const [bodypartOptions, setBodyPartOptions] = useState([])
 
 
   let description = {
@@ -134,7 +139,9 @@ export default function FindPartner() {
   }
 
 
+  useEffect(() => {
 
+  }, [modalMsg])
   useEffect(() => {
     description.sbd = sbd
 
@@ -143,23 +150,30 @@ export default function FindPartner() {
 
   const handleSubmit = () => {
     const reserveTime = `${year} ${hour}:${minute}:01`
-    if (reserveTime && userId && description && markerPlace.address_name) {
+    if (reserveTime && userId && sbd && bodypartOptions.length > 0 && markerPlace.address_name) {
       axios.post(`${process.env.REACT_APP_SERVER_API}/post`, {
         reserved_at: reserveTime,
         location: markerPlace,
         description: description
-      }, {withCredentials: true})
+      }, { withCredentials: true })
         .then((res) => {
-          if (res.status === 204) {
+          if (res.status === 201) {
+            setPkId(res.data.data.id)
+            setModalMsg('파트너 모집글이 작성되었습니다.')
+            setModal(true)
+          }
+          else {
+            console.log(res.status)
             setModalMsg('1일 1개의 모집글만 작성 할 수 있습니다.')
             setModal(true)
           }
         })
     }
-    else {
+    else if (!reserveTime || !userId || !sbd || bodypartOptions.length === 0 || !markerPlace.address_name) {
       setModalMsg('선택하지 않은 정보가 있습니다.')
       setModal(true)
     }
+
   }
 
 

@@ -1,3 +1,4 @@
+const { Op, QueryTypes } = require("sequelize");
 const { Post } = require("../../models");
 const { getAccessToken } = require("../../utils/validation");
 module.exports = async (req, res) => {
@@ -26,32 +27,34 @@ module.exports = async (req, res) => {
     });
     //게시물의 예약날짜와 일치하는 다른 게시물을 업로드했거나 신청했다면 신청 제한한다
     if (postData) {
-      const existingData = await Post.findAll({
-        where: {
-          reserved_at: postData.dataValues.reserved_at,
-          [Op.or]: [{ hostId: userId }, { guestId: userId }],
-          [Op.not]: [{ isMatched: 2 }],
-        },
-      });
-      if (existingData) {
-        return res.status(204).end();
-      }
+
       if (userId && apply) {
+        const existingData = await Post.findAll({
+          where: {
+            reserved_at: postData.dataValues.reserved_at,
+            [Op.or]: [{ hostId: userId }, { guestId: userId }], // host,guest
+            [Op.not]: [{ isMatched: 2 }], //1 번걸리고
+          },
+        });
+        if (existingData.length > 0) {
+
+          return res.status(204).end();
+        }
         await Post.update(
           {
             guestId: userId,
             isMatched: 1,
           },
-          { where: { postId } }
+          { where: { id: postId } }
         );
         return res.status(200).end();
       } else if (cancel) {
         await Post.update(
           {
-            isMatched: 2,
+            isMatched: 2, // 2가 되려면 2가 아닌 상태에서 들어가야함 
           },
           {
-            where: { postId },
+            where: { id: postId },
           }
         );
         return res.status(200).end();

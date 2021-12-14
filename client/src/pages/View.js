@@ -1,6 +1,7 @@
 /* global kakao */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './View.css';
 import Chat from '../components/View.js/Chat'
 import io from 'socket.io-client';
@@ -16,10 +17,17 @@ export default function View({ match }) {
   const [reserveDate, setReserveDate] = useState('')
   const [searchPlace, setSearchPlace] = useState('')
   const [ismatched, setIsMatched] = useState('')
+
+  const [showButton, setShowButton] = useState(0)
+  const [modal, setModal] = useState(false)
+  const [modalMsg, setModalMsg] = useState('')
+  const userId = useSelector(state => state.loginReducer.id)
+  const [pkId, setPkId] = useState('')
   const [chatOpen, setChatOpen] = useState(false)
   const [data, setData] = useState('')
-  const [modal, setModal] = useState(false)
+  const [chatModal, setChatModal] = useState(false)
   const [modalMessage, setModalMessage] = useState('')
+
 
   const getDetailpost = () => {
     axios.get(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}`)
@@ -32,11 +40,100 @@ export default function View({ match }) {
         setReserveDate(res.data.data[0].reserved_at)
         setSearchPlace(res.data.data[0].location)
         setIsMatched(res.data.data[0].isMatched)
+
+
+
+        if (ismatched === false && res.data.data[0].hostId !== userId) {
+          setShowButton(0)
+        }
+        else if (ismatched === false && res.data.data[0].hostId === userId) {
+          setShowButton(1)
+        }
+        else if ((ismatched === true && res.data.data[0].hostId === userId) || (ismatched === true && res.data.data[0].guestId === userId)) {
+          setShowButton(2)
+        }
+        else if ((ismatched === true && res.data.data[0].hostId !== userId) || (ismatched === true && res.data.data[0].guestId !== userId)) {
+          setShowButton(3)
+        }
+        else if (ismatched === 2) {
+          setShowButton(4)
+        }
+        console.log(showButton)
+        console.log(ismatched)
+        console.log(match)
+        console.log(userId)
+        console.log(res.data.data)
         setData(res.data.data[0])
+
       }
       )
   }
+  function CreateModal({ setModal, modalMsg }) {
+    return (
+      <div className='modalmatch-container'>
+        <div className='box-modal'>
+          <div className='modal-message'>{modalMsg}</div>
+          <div>
+            <span
+              onClick={() => {
+                setModal(false);
+                window.location.reload()
+              }}
+            >
+              {/* {modalMsg === '취소하시겠습니까? 일방적인 취소는 신고사유가 될 수 있습니다.' ? '취소' : '확인'} */}
+              확인
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
+  const applyClick = () => {
+    if (!userId) {
+      setModalMsg('로그인 후 이용해주세요.')
+      setModal(true)
+    }
+    axios.patch(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}/match`, {
+      apply: true
+    }, { withCredentials: true })
+      .then((res) => {
+        if (res.status === 200) {
+          // window.location.reload()
+          setModalMsg('신청이 완료되었습니다. 채팅방 이용이 가능합니다.')
+          setModal(true)
+        }
+        if (res.status === 204) {
+          setModalMsg('이미 신청하셨거나, 모집글을 올리셨습니다.')
+          setModal(true)
+
+        }
+
+      })
+  }
+
+  const cancelClick = () => {
+    axios.patch(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}/match`, {
+      cancel: true
+    }, { withCredentials: true })
+      .then((res) => {
+        if (res.status === 200) {
+          // window.location.reload()
+          setModalMsg('취소되었습니다. 일방적인 취소는 신고사유가 될 수 있습니다.')
+          setModal(true)
+        }
+      })
+  }
+
+  const deleteClick = () => {
+    axios.delete(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}/match`,)
+      .then((res) => {
+        if (res.status === 204) {
+          setModalMsg('게시물이 삭제되었습니다.')
+          setModal(true)
+        }
+      })
+  }
   function MakeBodyPartButton({ el }) {
     return (
       <button className='view-body-options'>{el}</button>
@@ -70,7 +167,7 @@ export default function View({ match }) {
 
   useEffect(() => {
     getDetailpost()
-  }, [])
+  }, [userId, ismatched])
 
 
 
@@ -120,7 +217,7 @@ export default function View({ match }) {
             </div>
             <div className='edit-delete-tab'>
               <div className='edit-tab'>수정</div>
-              <div className='delete-tab'>삭제</div>
+              <div className='delete-tab' onClick={deleteClick}>삭제</div>
             </div>
           </div>
 
@@ -160,26 +257,36 @@ export default function View({ match }) {
             ${reserveDate.slice(8, 10)}일
             ${reserveDate.slice(11, 13)}:${reserveDate.slice(14, 16)}`}
             </div>
+            
             <div className='address-section'>
               <div className='info-address'>{loca}</div>
               <div className='address-copy' onClick={copyClick}>주소 복사</div>
             </div>
           </div>
           <div className='button-section'>
-            {(ismatched === false) ? <button className='application-button'>신청하기</button>
-              : (ismatched === 2) ? <button className='match-cancel-button'>매칭취소</button>
-                : <button className='deadline-button'>마감</button>}
+            {(showButton === 0) ? <button className='application-button' onClick={applyClick}>신청하기</button>
+              : (showButton === 1) ? <button className='match-now-button' >모집중</button>
+                : (showButton === 2) ? <button className='match-cancel-button' onClick={cancelClick}>매칭취소</button>
+                  : (showButton === 3) ? <button className='deadline-button'>마감</button>
+                    : <button className='deadline-button'>마감</button>}
           </div>
         </div>
-        <div onClick={() => { setModal(false) }} className={modal ? "modal-container" : "modal-container hidden"}>
+        
+        <div onClick={() => { setChatModal(false) }} className={chatModal ? "modal-container" : "modal-container hidden"}>
           <div className="box-modal">
             <div className="modal-message">{modalMessage}</div>
             <div>
-              <span onClick={() => { setModal(false) }} >확인</span>
+              <span onClick={() => { setChatModal(false) }} >확인</span>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
-  </div >;
+    {modal ? <CreateModal setModal={setModal} modalMsg={modalMsg} /> : ''}
+  </div>;
 }
+
+
+
+
