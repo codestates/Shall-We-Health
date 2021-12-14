@@ -1,8 +1,9 @@
 const moment = require("moment");
 
 module.exports = {
-  formatMessage: (nickname, content) => {
+  formatMessage: (authorId, nickname, content) => {
     const res = {
+      authorId,
       nickname,
       content,
       datetime: moment().format("h:mm a"),

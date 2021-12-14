@@ -10,6 +10,7 @@ const adminRouter = require("./router/adminRouter");
 const mypageRouter = require("./router/mypageRouter");
 require("socket.io");
 const { Server } = require("socket.io");
+const formatMessage = require("./utils/messages");
 
 /*sequelize 설정*/
 const sequelize = new Sequelize(
@@ -40,28 +41,45 @@ testConnection();
 
 /*서버 설정*/
 const app = express();
-
-// const http = require("http").createServer(app);
-// const io = new Server(http, {
-//   cors: {
-//     origin: "*",
-//     credentials: true,
-//   },
-// });
-
-// module.exports = io;
+const corsOptions = {
+  origin: ["https://shallwehealth.com", "https://www.shallwehealth.com", "http://localhost:3000"],
+  credentials: true,
+};
 
 app.use(cookieParser());
 app.use(express.json({ strict: false }));
 app.use(
   cors({
-    origin: ["https://shallwehealth.com", "https://www.shallwehealth.com"],
-    credentials: true,
+    ...corsOptions,
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
   })
 );
 
-let server = app.listen(process.env.PORT, () => {
+const http = require("http").createServer(app);
+const io = new Server(http, {
+  cors: corsOptions,
+});
+
+io.on("connection", (socket) => {
+  console.log(`User conneced: ${socket.id}`);
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with Id: ${socket.id} joined room: ${data}`);
+  });
+  socket.on("send_message", (data) => {
+    const messageData = formatMessage(
+      data.authorId,
+      data.nickname,
+      data.content
+    );
+    socket.to(data.room).emit("receive_message", messageData);
+  });
+  socket.on("disconnect", () => {
+    console.log("User Disconnected, socket.id");
+  });
+});
+
+let server = http.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);
 });
 module.exports = server;

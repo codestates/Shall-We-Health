@@ -46,7 +46,7 @@ module.exports = {
       // await getAccessToken(req, res);
       const { postId } = req.params;
       console.log(postId);
-      const { hostId, guestId } = req.body;
+      const { hostId, guestId } = req.query;
       if (!postId || !hostId || !guestId) {
         return res.status(400).json({
           data: null,
@@ -70,7 +70,7 @@ module.exports = {
         },
       });
       const chatData = await Chat.findAll({
-        attributes: ["authorId", "content"],
+        attributes: ["authorId", "content", "createdAt"],
         where: {
           roomId: postId,
         },
