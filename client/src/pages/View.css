@@ -10,6 +10,10 @@
   flex-direction: row;
 }
 
+.view-container #map{
+  color: black;
+}
+
 .view-container .components-container {
   width: 70%;
   background-color: var(--main-backcolor3);
@@ -255,7 +259,7 @@
   height: 25%; /*조절필요*/
   min-width: 300px;
   min-height: 220px;
-  background-color: white;
+  background-color: var(--main-backcolor3);
   border-radius: 20px;
   display: flex;
   flex-direction: column;

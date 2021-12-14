@@ -3,9 +3,11 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import NewWindow from "react-new-window";
 import './Withdraw.css'
+import useTheme from '../../hooks/useTheme';
 
 export default function Withdraw({setWithdrawModal}) {
 
+  const [theme] = useTheme();
   const { email } = useSelector((state) => state.loginReducer);
   const [ isChecked, setIsCheck ] = useState(false)
   const [ modal, setModal] = useState(false)
@@ -27,7 +29,7 @@ export default function Withdraw({setWithdrawModal}) {
   
 
   return <NewWindow features={{ width: 500, height: 280 }} title="탈퇴하기">
-      <div className="withdraw-container">
+      <div className="withdraw-container" data-theme={theme}>
       <div className="box-withdraw">
         <div className="withdraw-title">
           탈퇴하기
@@ -52,8 +54,11 @@ export default function Withdraw({setWithdrawModal}) {
 }
 
 function Modal({setWithdrawModal, setModal, modalMsg}) {
+
+  const [theme] = useTheme();
+  
   return (
-    <div className="modalwithdraw-container">
+    <div className="modalwithdraw-container" data-theme={theme}>
     <div className="box-modal">
       <div className="modal-message">{modalMsg}</div>
       <div>

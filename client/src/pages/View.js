@@ -169,7 +169,11 @@ export default function View({ match }) {
     getDetailpost()
   }, [userId, ismatched])
 
-
+  useEffect(()=>{
+    window.scrollTo({
+      top: 0
+    });
+  },[])
 
   useEffect(() => {
     const container = document.getElementById('map');
