@@ -1,73 +1,109 @@
 import React, { useEffect, useState } from 'react';
 import './Chat.css'
-import dummy1 from './seonyeongDummy';
-import { io } from 'socket.io-client';
 import { useSelector } from 'react-redux';
-require("socket.io-client")
+import axios from "axios"
 
 
-export default function Chat({ data, postId }) {
-  const [message, setMessage] = useState('')
-  const [messageList, setMessageList] = useState([...dummy1])
-  const { id } = useSelector((state) => state.loginReducer);
-  const { guestNickname, hostId, hostNickname } = data
-
-  console.log(id)
+export default function Chat({ data, postId, socekt }) {
+  const [content, setContent] = useState('')
+  const [messageList, setMessageList] = useState([])
+  const { id, nickname } = useSelector((state) => state.loginReducer);
+  const { guestNickname, hostId, hostNickname, guestId } = data
 
   useEffect(() => {
     const chatRoom = document.getElementsByClassName('chat-messages')[0]
-    // document.getElementsByClassName('chat-messages')[0].addEventListener('scroll', trackScrolling);
     chatRoom.scrollTop = chatRoom.scrollHeight
   }, [messageList])
 
   //*---------------------------------axios------------------------*//
   // 채팅한거 db 저장
-  // const handleSendMessage = async () => {
-  //   await axios.post(`${process.env.REACT_APP_SERVER_API}/chats`,
-  //     { email })
-  // }
+  const handleSendMessage = async () => {
+    await axios.post(`${process.env.REACT_APP_SERVER_API}/chat`, { roomId: postId, content },
+      { withCredentials: true, })
+  }
 
   // 이전데이터받아오기
-  // const getbeforeMessage = () => {
-  //   const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/chats`,
-  //     { params: { postId, guestId, hostId, reserved_at } })
-  // }
-  //*---------------------------------axios------------------------*//
+  const getbeforeMessage = async () => {
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`,
+      // { params: { guestId, hostId } }) // 원래코드임
+      { params: { guestId: 1, hostId } })
 
-
-  //*---------------------------------socket------------------------*//
+      .then((res) => {
+        /* 이전 데이터 있는경우  */
+        console.log(res)
+        console.log(res.data.data, 'res')
+        setMessageList(res.data.data)
+      })
+      .catch((err) => {
+        // if (err.response.status === 400) {
+        console.log(err.response)
+        /* postId_hostId/GuestId  하나라도 없는경우 에러*/
+        // }
+      })
+  }
 
   const Enterkeysend = async (e) => {
-    if (e.key === "Enter" && message !== "") {
-      //socket.io 서버전달 핸들러 호출
-      // await sendMessages()
-      setMessageList([...messageList, { id: id, nickname: guestNickname, datetime: '1:19pm', message: e.target.value }]);
-      await setMessage('')
+    if (e.key === "Enter" && content !== "") {
+      sendMessage() //socket.io 서버전달 핸들러 호출
+      await handleSendMessage() // 메세지 db 저장
+      setMessageList([...messageList, { authorId: id, nickname: hostNickname, createdAt: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(), content: e.target.value }]);
+      await setContent('')
 
     }
   }
 
+  useEffect(() => {
+    getbeforeMessage()
+  }, [])
 
+
+  //*---------------------------------axios------------------------*//
+
+  //*---------------------------------socket------------------------*//
+  const sendMessage = async () => {
+    const messageData = {
+      room: postId,
+      authorId: id,
+      content: content,
+      time: new Date(),
+    };
+    console.log('msgData', messageData)
+
+    await socekt.emit("send_message", messageData);
+    setMessageList((list) => [...list, messageData])
+  }
+
+  console.log(messageList, 'messageList')
+
+  useEffect(() => {
+    socekt.on("receive_message", (data) => {
+      console.log(data, 'receive')
+      setMessageList((list) => [...list, data])
+    })
+  }, [socekt])
+
+
+  //*---------------------------------socket------------------------*//
 
 
   return (
 
     <div className='chat-container'>
-      {/* <button onClick={joinRoom}>채팅하기</button> */}
       <div className='chat-messages' >
         <div className='chat-open-comment'> {guestNickname}님과 {hostNickname}님의 대화가 시작되었습니다.</div>
         {messageList.map((el, idx) => {
           return (
-            <div key={idx} className={el.id === id ? 'my-chat-sort' : ""}>
-              <div className={el.id === id ? 'my-info' : 'other-info'} > {el.datetime}  </div>
-              <div className={el.id === id ? 'my-chat' : 'other-chat'} > {el.message} </div>
+            <div key={idx} className={el.authorId === id ? 'my-chat-sort' : ""}>
+              <div className={el.authorId === id ? 'my-info' : 'other-info'} >
+                {el.createdAt}</div>
+              <div className={el.authorId === id ? 'my-chat' : 'other-chat'} > {el.content} </div>
             </div>
           )
         })}
       </div>
       <div className="input-send-line">
-        <input className='input-message' value={message} name='chat' onChange={(e) => setMessage(e.target.value)} onKeyPress={Enterkeysend} />
-        <button className='btn-send'>전송</button>
+        <input className='input-message' value={content} name='chat' onChange={(e) => setContent(e.target.value)} onKeyPress={Enterkeysend} />
+        <button className='btn-send' onClick={handleSendMessage}>전송</button>
       </div>
     </div >
 

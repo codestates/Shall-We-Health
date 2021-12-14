@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './View.css';
 import Chat from '../components/View.js/Chat'
+import io from 'socket.io-client';
+const socekt = io.connect("http://localhost:8080");
 
 export default function View({ match }) {
   const postNumber = match.params.postId
@@ -54,8 +56,10 @@ export default function View({ match }) {
       if (now > chatCloseTime) { /* 마감시간보다 현재시간이 크다면 */ //console.log(test > chatCloseTime, 'test > close') 
         setModalMessage('마감 된 채팅방입니다')
         setModal(true)
+      } else {
+        setChatOpen(true)
+        socekt.emit("join_room", postNumber);
       }
-      setChatOpen(true)
     }
   }
 
@@ -112,7 +116,7 @@ export default function View({ match }) {
           <div className='tab-menu'>
             <div className='match-chat-tab'>
               <div className='match-info-tab' onClick={() => { setChatOpen(false) }}>매칭정보</div>
-              <div className='chat-tab' onClick={(e) => { chatting(e) }}>채팅하기</div>
+              <div className='chat-tab' onClick={() => { chatting() }}>채팅하기</div>
             </div>
             <div className='edit-delete-tab'>
               <div className='edit-tab'>수정</div>
@@ -121,7 +125,7 @@ export default function View({ match }) {
           </div>
 
           {chatOpen
-            ? <Chat data={data} postId={postNumber} />
+            ? <Chat data={data} postId={postNumber} socekt={socekt} />
             : (
               <>
                 <div className='bodypart-result'>
