@@ -19,11 +19,12 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "mysql",
+    port: process.env.DB_PORT,
     logging: console.log,
     logging: (...msg) => console.log(msg),
-    // dialectOptions: {
-    //   ssl: "Amazon RDS",
-    // },
+    dialectOptions: {
+      ssl: "Amazon RDS",
+    },
   }
 );
 
@@ -54,7 +55,7 @@ app.use(cookieParser());
 app.use(express.json({ strict: false }));
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://shallwehealth.com", "https://www.shallwehealth.com"],
     credentials: true,
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
   })
