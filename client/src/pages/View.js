@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import './View.css';
 import Chat from '../components/View.js/Chat'
 import io from 'socket.io-client';
-const socket = io.connect('https://server.shallwehealth.com');
+const socket = io.connect(process.env.REACT_APP_SERVER_API);
 
 export default function View({ match }) {
   const postNumber = match.params.postId
