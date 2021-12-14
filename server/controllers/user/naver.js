@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  const { email, nickname } = userData.data.response;
+  const { email } = userData.data.response;
   const isOauth = 1;
 
   try {
@@ -50,12 +50,12 @@ module.exports = async (req, res) => {
       while(duplication){
         var randomSet = await makeId(5)
         duplication = await User.findOne({
-          where: { nickname: nickname+randomSet },
+          where: { nickname: randomSet },
           attributes: ["email", "createdAt"],
         })
       }
       
-      const newLoginData = await User.create({ email, isOauth, nickname : nickname+randomSet, isEmailVerified:1 });
+      const newLoginData = await User.create({ email, isOauth, nickname : randomSet, isEmailVerified:1 });
       const accessToken = jwt.sign(
         newLoginData.dataValues,
         process.env.ACCESS_SECRET,
