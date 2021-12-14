@@ -10,7 +10,7 @@ const adminRouter = require("./router/adminRouter");
 const mypageRouter = require("./router/mypageRouter");
 require("socket.io");
 const { Server } = require("socket.io");
-const formatMessage = require("./utils/messages");
+const { formatMessage } = require("./utils/messages");
 
 /*sequelize 설정*/
 const sequelize = new Sequelize(
@@ -23,9 +23,9 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT,
     logging: console.log,
     logging: (...msg) => console.log(msg),
-    dialectOptions: {
-      ssl: "Amazon RDS",
-    },
+    // dialectOptions: {
+    //   ssl: "Amazon RDS",
+    // },
   }
 );
 
@@ -60,7 +60,7 @@ app.use(
 const http = require("http").createServer(app);
 const io = new Server(http, {
   cors: {
-  ...corsOptions
+    ...corsOptions,
     methods: ["GET", "POST"],
   },
 });
