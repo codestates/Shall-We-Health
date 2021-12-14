@@ -1,4 +1,38 @@
+:root {
+  --main-color1: #39CFD9;
+  --main-color2: rgb(172, 172, 172);
+  --btn-color1: rgb(100, 100, 100);
+  --btn-color2: #FFF;
+  --nav-color: rgb(211, 211, 211);
+  --main-backcolor1: #fafafa;
+  --main-backcolor2: #f4f4f49d;
+  --main-backcolor3: white;
+  --main-backcolor4: #656565;
+  --font-color1: black;
+  --font-color2: #535353;
+  --font-color3: rgb(56, 56, 56);
+  --shadow-color: rgb(187, 187, 187);
+}
+
+[data-theme="dark"] {
+  --main-color1: #367c81;
+  --main-color2: rgb(88, 86, 86);
+  --btn-color1: rgb(240, 240, 240);
+  --btn-color2: rgb(54, 54, 54);
+  --nav-color: rgb(93, 93, 93);
+  --main-backcolor1: #202020;
+  --main-backcolor2: #202020;
+  --main-backcolor3: rgb(93, 93, 93);
+  --main-backcolor4: #313131;
+  --font-color1: white;
+  --font-color2: #eeeeee;
+  --font-color3: rgb(233, 233, 233);
+  --shadow-color: rgb(0, 0, 0);
+}
+
 .issue-container{
+  background-color: var(--main-backcolor1);
+  color: var(--font-color1);
 }
 
 .issue-container .box-issue{
@@ -20,14 +54,14 @@
 .issue-container .issue-info {
     text-align: left;
     margin-left: 10px;
-    color: rgb(54, 54, 54)
+    color: var(--font-color3);
 }
 
 .issue-container .issue-script {
     text-align: left;
     margin-left: 10px;
     font-size: 0.9em;
-    color: rgb(117, 117, 117);
+    color: var(--font-color2);
 }
 
 .issue-container .issue-content{
@@ -37,6 +71,8 @@
     border: 1px solid gray;
     vertical-align: top;
     padding: 10px 10px;
+    background-color: var(--main-backcolor1);
+    color: var(--font-color1);
 }
 
 .issue-container .issue-content:focus{
@@ -105,18 +141,20 @@
     height: 25%; /*조절필요*/
     min-width: 300px;
     min-height: 220px;
-    background-color: white;
+    background-color: var(--main-backcolor3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;  
     justify-content: center; 
     align-items: center;
+    color: var(--font-color1);
   }
   
   .issuealert-container .modal-message{
     margin: 15px 0;
     font-weight: 600;
     height: 50%;
+    color: var(--font-color1);
     display: flex;
     flex-direction: column;  
     justify-content: center; 

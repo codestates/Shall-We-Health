@@ -21,7 +21,27 @@ module.exports = async (req, res) => {
         .end();
     } else {
       /* 회원가입 안되어있을 때 */
-      await User.create({ email, isOauth, nickname, });
+      function makeId(length) {
+        var result = "";
+        var characters =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+          result += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+          );
+        }
+        return result;
+      }
+      let duplication = true
+      while(duplication){
+        var randomSet = await makeId(5)
+        duplication = await User.findOne({
+          where: { nickname: nickname+randomSet },
+          attributes: ["email", "createdAt"],
+        })
+      }
+      await User.create({ email, isOauth, nickname: nickname+randomSet, isEmailVerified:1 });
       return res.status(201).end();
     }
   } catch (err) {

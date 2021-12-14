@@ -6,7 +6,7 @@ module.exports = {
       authorId,
       nickname,
       content,
-      datetime: moment().format("h:mm a"),
+      createdAt: moment().format("hh:mm a"),
     };
     return res;
   },

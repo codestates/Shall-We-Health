@@ -17,6 +17,11 @@ if (config.use_env_variable) {
     port: config.port,
     dialect: config.dialect,
     timezone: "Asia/Seoul",
+    dialectOptions: {
+      charset: "utf8mb4",
+      dateStrings: true,
+      typeCast: true,
+    },
     // dialectOptions: { ssl: "Amazon RDS" },
     // pool: { maxConnections: 5, maxIdleTime: 30 },
   });
