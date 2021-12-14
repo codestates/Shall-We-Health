@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import axios from "axios"
 
 
-export default function Chat({ data, postId, socekt }) {
+export default function Chat({ data, postId, socket }) {
   const [content, setContent] = useState('')
   const [messageList, setMessageList] = useState([])
   const { id, nickname } = useSelector((state) => state.loginReducer);
@@ -46,7 +46,7 @@ export default function Chat({ data, postId, socekt }) {
     if (e.key === "Enter" && content !== "") {
       sendMessage() //socket.io 서버전달 핸들러 호출
       await handleSendMessage() // 메세지 db 저장
-      setMessageList([...messageList, { authorId: id, nickname: hostNickname, createdAt: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(), content: e.target.value }]);
+      setMessageList([...messageList, { authorId: id, nickname: nickname, createdAt: '', content: e.target.value }]);
       await setContent('')
 
     }
@@ -69,18 +69,18 @@ export default function Chat({ data, postId, socekt }) {
     };
     console.log('msgData', messageData)
 
-    await socekt.emit("send_message", messageData);
+    await socket.emit("send_message", messageData);
     setMessageList((list) => [...list, messageData])
   }
 
   console.log(messageList, 'messageList')
 
   useEffect(() => {
-    socekt.on("receive_message", (data) => {
+    socket.on("receive_message", (data) => {
       console.log(data, 'receive')
       setMessageList((list) => [...list, data])
     })
-  }, [socekt])
+  }, [socket])
 
 
   //*---------------------------------socket------------------------*//

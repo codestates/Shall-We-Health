@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import './View.css';
 import Chat from '../components/View.js/Chat'
 import io from 'socket.io-client';
-const socekt = io.connect("http://localhost:8080");
+const socket = io.connect('https://server.shallwehealth.com');
 
 export default function View({ match }) {
   const postNumber = match.params.postId
@@ -222,7 +222,7 @@ export default function View({ match }) {
           </div>
 
           {chatOpen
-            ? <Chat data={data} postId={postNumber} socekt={socekt} />
+            ? <Chat data={data} postId={postNumber} socekt={socket} />
             : (
               <>
                 <div className='bodypart-result'>
