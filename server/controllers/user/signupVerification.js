@@ -102,8 +102,8 @@ module.exports = async (req, res) => {
               <div style="Margin-left: 20px;Margin-right: 20px;">
         <div class="btn btn--flat btn--large" style="text-align:center;">
           <![if !mso]><a style="border-radius: 0;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #ffffff !important;background-color: #395896;font-family: Avenir, sans-serif;" 
-          href="http://localhost:3000/verify-email/${token}">&#50868;&#46041;&#47700;&#51060;&#53944; &#52286;&#51004;&#47084; &#44032;&#44592;  &#10143;</a><![endif]>
-        <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:rect xmlns:v="urn:schemas-microsoft-com:vml" href="http://localhost:3000" style="width:193px" fillcolor="#395896" stroke="f"><v:textbox style="mso-fit-shape-to-text:t" inset="0px,12px,0px,12px"><center style="font-size:14px;line-height:24px;color:#FFFFFF;font-family:Avenir,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px">&#50868;&#46041;&#47700;&#51060;&#53944; &#52286;&#51004;&#47084; &#44032;&#44592; &#10143;</center></v:textbox></v:rect><![endif]--></div>
+          href="https://shallwehealth.com//verify-email/${token}">&#50868;&#46041;&#47700;&#51060;&#53944; &#52286;&#51004;&#47084; &#44032;&#44592;  &#10143;</a><![endif]>
+        <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:rect xmlns:v="urn:schemas-microsoft-com:vml" href="https://shallwehealth.com" style="width:193px" fillcolor="#395896" stroke="f"><v:textbox style="mso-fit-shape-to-text:t" inset="0px,12px,0px,12px"><center style="font-size:14px;line-height:24px;color:#FFFFFF;font-family:Avenir,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px">&#50868;&#46041;&#47700;&#51060;&#53944; &#52286;&#51004;&#47084; &#44032;&#44592; &#10143;</center></v:textbox></v:rect><![endif]--></div>
       </div>
             </div>
           <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
