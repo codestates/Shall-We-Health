@@ -143,7 +143,7 @@ export default function View({ match }) {
   const chatting = () => {
     if (ismatched !== true) { /* 취소 된 파트너 isMatched === 2 or isMatched === false */
       setModalMessage('매칭 된 상대만 대화 할 수 있습니다')
-      setModal(true)
+      setChatModal(true)
     } else if (ismatched === true) {
       const reserved = reserveDate.slice(0, reserveDate.length - 1) //reserved_at -- 2021-12-14T05:20:01.000Z -- Tue Dec 14 2021 14:20:01 GMT+0900 (한국 표준시)
       const chatCloseTime = new Date(reserved);
@@ -152,7 +152,7 @@ export default function View({ match }) {
 
       if (now > chatCloseTime) { /* 마감시간보다 현재시간이 크다면 */ //console.log(test > chatCloseTime, 'test > close') 
         setModalMessage('마감 된 채팅방입니다')
-        setModal(true)
+        setChatModal(true)
       } else {
         setChatOpen(true)
         socekt.emit("join_room", postNumber);
@@ -257,7 +257,7 @@ export default function View({ match }) {
             ${reserveDate.slice(8, 10)}일
             ${reserveDate.slice(11, 13)}:${reserveDate.slice(14, 16)}`}
             </div>
-            
+
             <div className='address-section'>
               <div className='info-address'>{loca}</div>
               <div className='address-copy' onClick={copyClick}>주소 복사</div>
@@ -271,7 +271,7 @@ export default function View({ match }) {
                     : <button className='deadline-button'>마감</button>}
           </div>
         </div>
-        
+
         <div onClick={() => { setChatModal(false) }} className={chatModal ? "modal-container" : "modal-container hidden"}>
           <div className="box-modal">
             <div className="modal-message">{modalMessage}</div>
@@ -280,7 +280,7 @@ export default function View({ match }) {
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
     {modal ? <CreateModal setModal={setModal} modalMsg={modalMsg} /> : ''}
