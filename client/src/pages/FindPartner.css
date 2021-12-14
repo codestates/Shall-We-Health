@@ -1,11 +1,10 @@
 .whole-findpartner {
-  background-color: #f4f4f49d;
+  background-color: var(--main-backcolor2);
   padding-top: 15px;
   padding-bottom: 150px;
 }
 .findpartner-container {
-  background-color: white;
-  border-radius: 30px;
+  background-color: var(--main-backcolor3);
   max-width: 1024px;
   min-width: 1024px;
   padding-top: 15px;
@@ -13,7 +12,7 @@
 }
 
 .findpartner-container .datepick-container {
-  border-top: #39cfd9 solid 3px;
+  border-top: var(--main-color1) solid 3px;
   margin: 5%;
 }
 
@@ -39,12 +38,25 @@
   font-size: 1.1em;
 }
 
+.findpartner-container .date-selectbox{
+  color: black;
+}
+
+.findpartner-container .time-selectbox{
+  color: black;
+}
+
+.findpartner-container .minute-selectbox{
+  color: black;
+}
+
 .findpartner-container .location-container {
-  border-top: #39cfd9 solid 3px;
+  border-top: var(--main-color1) solid 3px;
   margin: 5%;
   display: flex;
   flex-direction: column;
 }
+
 
 .findpartner-container .map-section {
   margin: 1%;
@@ -52,6 +64,7 @@
 
 .findpartner-container .input-search {
   width: 150px;
+  background-color: var(--main-backcolor3);
 }
 
 .findpartner-container .location-title {
@@ -73,15 +86,15 @@
   border: none;
   cursor: pointer;
   background-color: #9ca2a3;
-  color: white;
+  color: var(--main-backcolor3);
   font: 1.1em;
 }
 
-input[type='checkbox']:checked + label {
-  background-color: #39cfd9;
+.findpartner-container input[type='checkbox']:checked + label {
+  background-color: var(--main-color1);
 }
 input[type='radio']:checked + label {
-  background-color: #39cfd9;
+  background-color: var(--main-color1);
 }
 
 .findpartner-container .weight-button {
@@ -90,17 +103,17 @@ input[type='radio']:checked + label {
   justify-content: center;
 }
 .findpartner-container .weight-container {
-  border-top: #39cfd9 solid 3px;
+  border-top: var(--main-color1) solid 3px;
   margin: 5%;
 }
 
 .findpartner-container .bodypart-container {
-  border-top: #39cfd9 solid 3px;
+  border-top: var(--main-color1) solid 3px;
   margin: 5%;
 }
 
 .findpartner-container .message-container {
-  border-top: #39cfd9 solid 3px;
+  border-top: var(--main-color1) solid 3px;
   margin: 5%;
 }
 
@@ -126,7 +139,7 @@ input[type='radio']:checked + label {
   cursor: pointer;
 }
 .findpartner-container .findpartner-button:hover {
-  background-color: #39cfd9;
+  background-color: var(--main-color1);
 }
 
 .findpartner-container .message-title {
@@ -141,6 +154,8 @@ input[type='radio']:checked + label {
   padding: 3%;
   text-align: top;
   resize: none;
+  background-color: var(--main-backcolor3);
+  color: var(--font-color1);
 }
 .findpartner-container .message-wrap {
   text-align: center;
@@ -209,7 +224,7 @@ input[type='radio']:checked + label {
   height: 25%; /*조절필요*/
   min-width: 300px;
   min-height: 220px;
-  background-color: white;
+  background-color: var(--main-backcolor3);
   border-radius: 20px;
   display: flex;
   flex-direction: column;

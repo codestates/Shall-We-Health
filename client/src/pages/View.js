@@ -3,7 +3,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './View.css';
-
+import Chat from '../components/View.js/Chat'
+import io from 'socket.io-client';
+const socekt = io.connect("http://localhost:8080");
 
 export default function View({ match }) {
   const postNumber = match.params.postId
@@ -15,18 +17,16 @@ export default function View({ match }) {
   const [reserveDate, setReserveDate] = useState('')
   const [searchPlace, setSearchPlace] = useState('')
   const [ismatched, setIsMatched] = useState('')
+
   const [showButton, setShowButton] = useState(0)
   const [modal, setModal] = useState(false)
   const [modalMsg, setModalMsg] = useState('')
   const userId = useSelector(state => state.loginReducer.id)
   const [pkId, setPkId] = useState('')
-
-
-  // 내가 쓴글 신청하지 못하게 하기
-  // 내가 신청한 글 들어가면 취소하기 나오기. 이거부터해 
-  // 뭐해야해, getDetailpostd에서 데이터 받아서 guestId 랑  
-
-
+  const [chatOpen, setChatOpen] = useState(false)
+  const [data, setData] = useState('')
+  const [chatModal, setChatModal] = useState(false)
+  const [modalMessage, setModalMessage] = useState('')
 
 
   const getDetailpost = () => {
@@ -40,6 +40,7 @@ export default function View({ match }) {
         setReserveDate(res.data.data[0].reserved_at)
         setSearchPlace(res.data.data[0].location)
         setIsMatched(res.data.data[0].isMatched)
+
 
 
         if (ismatched === false && res.data.data[0].hostId !== userId) {
@@ -62,6 +63,8 @@ export default function View({ match }) {
         console.log(match)
         console.log(userId)
         console.log(res.data.data)
+        setData(res.data.data[0])
+
       }
       )
   }
@@ -137,6 +140,27 @@ export default function View({ match }) {
     )
   }
 
+  const chatting = () => {
+    if (ismatched !== true) { /* 취소 된 파트너 isMatched === 2 or isMatched === false */
+      setModalMessage('매칭 된 상대만 대화 할 수 있습니다')
+      setModal(true)
+    } else if (ismatched === true) {
+      const reserved = reserveDate.slice(0, reserveDate.length - 1) //reserved_at -- 2021-12-14T05:20:01.000Z -- Tue Dec 14 2021 14:20:01 GMT+0900 (한국 표준시)
+      const chatCloseTime = new Date(reserved);
+      const now = new Date();
+      chatCloseTime.setHours(chatCloseTime.getHours() + 2); /* 마감시간에 2시간 더해주기 */
+
+      if (now > chatCloseTime) { /* 마감시간보다 현재시간이 크다면 */ //console.log(test > chatCloseTime, 'test > close') 
+        setModalMessage('마감 된 채팅방입니다')
+        setModal(true)
+      } else {
+        setChatOpen(true)
+        socekt.emit("join_room", postNumber);
+      }
+    }
+  }
+
+
   function copyClick() {
     navigator.clipboard.writeText(loca)
   }
@@ -188,8 +212,8 @@ export default function View({ match }) {
 
           <div className='tab-menu'>
             <div className='match-chat-tab'>
-              <div className='match-info-tab'>매칭정보</div>
-              <div className='chat-tab' >채팅하기</div>
+              <div className='match-info-tab' onClick={() => { setChatOpen(false) }}>매칭정보</div>
+              <div className='chat-tab' onClick={() => { chatting() }}>채팅하기</div>
             </div>
             <div className='edit-delete-tab'>
               <div className='edit-tab'>수정</div>
@@ -197,28 +221,33 @@ export default function View({ match }) {
             </div>
           </div>
 
-          <div className='bodypart-result'>
-            <div className='bodypart-title'>운동부위</div>
-            {
-              bodypartArr.map((el, id) => {
-                return (
-                  <MakeBodyPartButton key={id} el={el} />
-                )
-              })
-            }
-          </div>
+          {chatOpen
+            ? <Chat data={data} postId={postNumber} socekt={socekt} />
+            : (
+              <>
+                <div className='bodypart-result'>
+                  <div className='bodypart-title'>운동부위</div>
+                  {
+                    bodypartArr.map((el, id) => {
+                      return (
+                        <MakeBodyPartButton key={id} el={el} />
+                      )
+                    })
+                  }
+                </div>
 
-          <div className='weight-result'>
-            <div className='weight-title'>3대 운동 중량</div>
-            <button className='view-weight-options'>{sbdResult}</button>
-          </div>
+                <div className='weight-result'>
+                  <div className='weight-title'>3대 운동 중량</div>
+                  <button className='view-weight-options'>{sbdResult}</button>
+                </div>
 
-          <div className='message-result'>
-            <div className='message-title'>파트너에게 한마디</div>
-            <div className='message-content'>{messageResult}</div>
-          </div>
+                <div className='message-result'>
+                  <div className='message-title'>파트너에게 한마디</div>
+                  <div className='message-content'>{messageResult}</div>
+                </div>
+              </>
+            )}
         </div>
-
         <div className='info-container'>
           <div className='info-user-nickname'>{nickname} 님</div>
           <div className='date-address-section'>
@@ -228,6 +257,7 @@ export default function View({ match }) {
             ${reserveDate.slice(8, 10)}일
             ${reserveDate.slice(11, 13)}:${reserveDate.slice(14, 16)}`}
             </div>
+            
             <div className='address-section'>
               <div className='info-address'>{loca}</div>
               <div className='address-copy' onClick={copyClick}>주소 복사</div>
@@ -241,7 +271,16 @@ export default function View({ match }) {
                     : <button className='deadline-button'>마감</button>}
           </div>
         </div>
-
+        
+        <div onClick={() => { setChatModal(false) }} className={chatModal ? "modal-container" : "modal-container hidden"}>
+          <div className="box-modal">
+            <div className="modal-message">{modalMessage}</div>
+            <div>
+              <span onClick={() => { setChatModal(false) }} >확인</span>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
     {modal ? <CreateModal setModal={setModal} modalMsg={modalMsg} /> : ''}
@@ -249,12 +288,5 @@ export default function View({ match }) {
 }
 
 
-// 매칭취소 하려고 할때, 
 
- //본인이 만든 게시물에 본인이 들어갔을때 , 모집중이라는 단어가 보이게
- //다른사람이 만든 게시물에 들어가면 신청하기 버튼 보이기 
- //본인이 신청한 게시물에 들어가면 매칭취소 버튼 보이기 
- // 본인의 게시물이 신청되었을 때 매칭취소버튼 보이기
- // 모집자와, 신청자를 제외한 다른 유저가 게시물을 보면 마감버튼 보이기
 
-//제가 원하는 기능이 되게끔 한다음에 검토를 받을게요 소현님한테 

@@ -11,5 +11,5 @@ module.exports = {
   signupVerification: require("./signupVerification"),
   findPwVerification: require("./findPwVerification"),
   withdrawal: require("./withdrawal"),
-
+  naverLogin: require("./naver"),
 };

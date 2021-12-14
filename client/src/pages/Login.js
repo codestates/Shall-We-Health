@@ -14,6 +14,20 @@ export default function Login() {
   const [failModal, setFailModal] = useState(false)
   const [loginFail, setLoginFail] = useState(false)
 
+  const initializeNaverLogin = () => {
+    const naverLogin = new window.naver.LoginWithNaverId({
+      clientId: 'z6TA4to1zr3gBuIu2HMa',
+      callbackUrl: 'http://localhost:3000/naver',
+      isPopup: false, // popup 형식으로 띄울것인지 설정
+      loginButton: { color: 'green', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
+    });
+    naverLogin.init();
+  };
+
+  useEffect(() => {
+    initializeNaverLogin();
+  }, []);
+
   const valueChange = (e) => {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
   }
@@ -65,14 +79,18 @@ export default function Login() {
 
   return (
     <>
-      <div className="login-container">
+      <div className="login-container" >
         <div className="login-modal fadeIn">
           <div className='btn-loginClose' onClick={handleModal}></div>
           <div className="home-logo"></div>
           <div className="text-email">Email</div>
-          <input className="input-email" name="email" onChange={valueChange} placeholder='Email' onKeyPress={EnterLogin} />
+          <div className="input-back">
+            <input className="input-email" autoComplete="on" name="email" onChange={valueChange} placeholder='Email' onKeyPress={EnterLogin} />
+          </div>
           <div className="text-pw">Password</div>
-          <input className="input-pw" name="password" type='password' onChange={valueChange} placeholder='Password' onKeyPress={EnterLogin} />
+          <div className="input-back">
+            <input className="input-pw" name="password" type='password' onChange={valueChange} placeholder='Password' onKeyPress={EnterLogin} />
+          </div>
           <div className={loginFail ? "text-falilogin" : 'hidden'} > 이메일 또는 비밀번호가 잘못 입력 되었습니다 </div>
           <button className="btn-login" onClick={handleLogin}> 로그인 </button>
           {failModal === true
@@ -84,7 +102,7 @@ export default function Login() {
               <Link to='/signup' style={{ color: 'inherit', textDecoration: 'inherit' }}>회원가입</Link>
             </div>
             <div className="grid-kakao" onClick={kakaoLoginHandler} > </div>
-            <div className="grid-naver">  네이버 </div>
+            <div className="grid-naver" id='naverIdLogin'></div>
             <div className="grid-findpw" onClick={handleModal}>
               <Link to='/find-pw' style={{ color: 'inherit', textDecoration: 'inherit' }}> 비밀번호 찾기 </Link>
             </div>

@@ -5,9 +5,17 @@
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ce140f38be2018c5b771d481dbe13069&libraries=services"
     ></script>
+
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script
+      type="text/javascript"
+      src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+      charset="utf-8"
+    ></script>
+
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,7 +43,7 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
       // window.Kakao.init(`"${process.env.REACT_APP_KAKAO_JS_KEY}"`);
-      window.Kakao.init("c4b04d3368ac87cd8c02a2ac64bb5128");
+      window.Kakao.init("%REACT_APP_KAKAO_JS_KEY%");
     </script>
   </head>
   <body>

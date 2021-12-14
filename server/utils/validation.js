@@ -4,6 +4,7 @@ const { User } = require("../models");
 module.exports = {
   getAccessToken: async (req, res) => {
     const { accessToken } = req.cookies;
+
     if (!accessToken) {
       return res.status(400).json({
         data: null,

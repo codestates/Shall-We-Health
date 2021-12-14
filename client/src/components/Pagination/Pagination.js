@@ -1,43 +1,53 @@
 import './Pagination.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleDoubleLeft, faAngleRight, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
 const Pagination = ({
-  activePage,
-  itemsCountPerPage,
+  activePage, //현재 페이지
+  itemsCountPerPage, //7
   totalItemsCount,
-  pageRangeDisplayed,
-  paginate,
+  pageRangeDisplayed, //5
+  paginate, //setPage
 }) => {
   const pageNumbers = [];
   const totalPage = Math.ceil(totalItemsCount / itemsCountPerPage); //필요한 모든 페이지 페이지 개수
-  const maxPage = pageRangeDisplayed; //한번에 보일 수 있는 최대 페이지 개수
-  let pages = 0; //필요한 페이지 개수
-  if (totalPage < maxPage) {
-    pages = totalPage;
-  } else {
-    pages = maxPage;
-  }
 
-  for (let i = 1; i <= pages; i++) {
+  const startPage =
+    Math.floor((activePage - 1) / pageRangeDisplayed) * pageRangeDisplayed + 1;
+
+  const endPage =
+    startPage + pageRangeDisplayed - 1 > totalPage
+      ? totalPage
+      : startPage + pageRangeDisplayed - 1;
+  for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
+
+  const handlePrev = () => {
+    activePage > 1 ? paginate(activePage - 1) : paginate(activePage);
+  };
+  const handleNext = () => {
+    activePage < totalPage ? paginate(activePage + 1) : paginate(activePage);
+  };
+
   return (
     <>
       <div className='pagination-container'>
         <span
           className='first'
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
-          onClick={() => paginate(1) }
+          onClick={() => paginate(1)}
         >
-          &lt;&lt;
+          <FontAwesomeIcon
+          icon={faAngleDoubleLeft}/>
         </span>
         <span
           className='prev'
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
-          onClick={() => {
-            activePage > 1 ? paginate(activePage - 1) : paginate(activePage);
-          }}
+          onClick={handlePrev}
         >
-          &lt;
+          <FontAwesomeIcon
+          icon={faAngleLeft}/>
         </span>
         <ul className='paging-group'>
           {pageNumbers.map((num) => {
@@ -53,20 +63,18 @@ const Pagination = ({
         <span
           className='next'
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
-          onClick={() => {
-            activePage < totalPage
-              ? paginate(activePage + 1)
-              : paginate(activePage);
-          }}
+          onClick={handleNext}
         >
-          &gt;
+          <FontAwesomeIcon
+          icon={faAngleRight}/>
         </span>
         <span
           className='last'
           style={{ color: '#C4C4C4', fontWeight: 'bold' }}
           onClick={() => paginate(totalPage)}
         >
-          &gt;&gt;
+          <FontAwesomeIcon
+          icon={faAngleDoubleRight}/>
         </span>
       </div>
     </>

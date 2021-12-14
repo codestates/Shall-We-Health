@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../etc/Loading';
-import Pagination from 'react-js-pagination';
+import Pagination from '../Pagination/Pagination';
 import ModalIssue from './ModalIssue';
 
 export default function AdminIssue() {
@@ -46,6 +46,7 @@ export default function AdminIssue() {
 
   return (
     <div className='adminissue-container'>
+      <div className='box-table'>
       <table className='table-data'>
         <th className='issue-date'>신고 날짜</th>
         <th className='date'>매칭 일시</th>
@@ -75,15 +76,14 @@ export default function AdminIssue() {
           })
         )}
       </table>
+      </div>
       <div className='box-paging'>
         <Pagination
           activePage={page}
           itemsCountPerPage={7}
           totalItemsCount={count}
           pageRangeDisplayed={5}
-          prevPageText={'‹'}
-          nextPageText={'›'}
-          onChange={setPage}
+          paginate={setPage}
         />
       </div>
       {modalIssue ? (
@@ -104,8 +104,12 @@ const DataRow = ({ el, setModalIssue, setIssueData }) => {
       }}
     >
       <td>{el.createdAt.slice(0, 10)}</td>
-      <td>{el.reserved_at.slice(0,10) + ' ' + el.reserved_at.slice(11,16)}</td>
-      <td><span className='text-location'>{el.placeName}</span></td>
+      <td>
+        {el.reserved_at.slice(0, 10) + ' ' + el.reserved_at.slice(11, 16)}
+      </td>
+      <td>
+        <span className='text-location'>{el.placeName}</span>
+      </td>
       <td>{el.target}</td>
       <td>{el.reporter}</td>
     </tr>
