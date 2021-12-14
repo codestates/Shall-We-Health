@@ -10,6 +10,7 @@ const adminRouter = require("./router/adminRouter");
 const mypageRouter = require("./router/mypageRouter");
 require("socket.io");
 const { Server } = require("socket.io");
+const formatMessage = require("./utils/messages");
 
 /*sequelize 설정*/
 const sequelize = new Sequelize(
@@ -19,11 +20,12 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "mysql",
+    port: process.env.DB_PORT,
     logging: console.log,
     logging: (...msg) => console.log(msg),
-    // dialectOptions: {
-    //   ssl: "Amazon RDS",
-    // },
+    dialectOptions: {
+      ssl: "Amazon RDS",
+    },
   }
 );
 
@@ -39,13 +41,18 @@ testConnection();
 
 /*서버 설정*/
 const app = express();
+const corsOptions = {
+  origin: ["https://shallwehealth.com", "https://www.shallwehealth.com", "http://localhost:3000"],
+  credentials: true,
+};
+
+
 
 app.use(cookieParser());
 app.use(express.json({ strict: false }));
 app.use(
   cors({
-    origin: ["https://www.shallwehealth.com", "https://shallwehealth.com"],
-    credentials: true,
+    ...corsOptions,
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
   })
 );
@@ -53,9 +60,8 @@ app.use(
 const http = require("http").createServer(app);
 const io = new Server(http, {
   cors: {
-    origin: ["https://www.shallwehealth.com", "https://shallwehealth.com"],
+  ...corsOptions
     methods: ["GET", "POST"],
-    credentials: true,
   },
 });
 
@@ -66,8 +72,12 @@ io.on("connection", (socket) => {
     console.log(`User with Id: ${socket.id} joined room: ${data}`);
   });
   socket.on("send_message", (data) => {
-    console.log(data);
-    socket.to(data.room).emit("receive_message", data);
+    const messageData = formatMessage(
+      data.authorId,
+      data.nickname,
+      data.content
+    );
+    socket.to(data.room).emit("receive_message", messageData);
   });
   socket.on("disconnect", () => {
     console.log("User Disconnected, socket.id");

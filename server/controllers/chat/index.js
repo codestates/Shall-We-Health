@@ -49,9 +49,8 @@ module.exports = {
     try {
       // await getAccessToken(req, res);
       const { postId } = req.params;
+
       const { hostId, guestId } = req.query;
-
-
       if (!postId || !hostId || !guestId) {
         return res.status(400).json({
           data: null,
