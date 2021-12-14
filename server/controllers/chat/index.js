@@ -70,7 +70,7 @@ module.exports = {
         },
       });
       const chatData = await Chat.findAll({
-        attributes: ["authorId", "content"],
+        attributes: ["authorId", "content", "createdAt"],
         where: {
           roomId: postId,
         },
