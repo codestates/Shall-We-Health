@@ -10,7 +10,7 @@ const adminRouter = require("./router/adminRouter");
 const mypageRouter = require("./router/mypageRouter");
 require("socket.io");
 const { Server } = require("socket.io");
-const formatMessage = require("./utils/messages");
+const { formatMessage } = require("./utils/messages");
 
 /*sequelize 설정*/
 const sequelize = new Sequelize(
