@@ -25,8 +25,8 @@ export default function Chat({ data, postId, socket }) {
   // 이전데이터받아오기
   const getbeforeMessage = async () => {
     await axios.get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`,
-      // { params: { guestId, hostId } }) // 원래코드임
-      { params: { guestId: 1, hostId } })
+      { params: { guestId, hostId } }) // 원래코드임
+//       { params: { guestId: 1, hostId } })
 
       .then((res) => {
         /* 이전 데이터 있는경우  */
