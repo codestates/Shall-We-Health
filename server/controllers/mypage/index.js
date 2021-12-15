@@ -126,7 +126,7 @@ module.exports = {
           receiverId,
         },
       });
-      if (thumbsupData.length!==0) {
+      if (thumbsupData.length !== 0) {
         await Thumbsup.destroy({
           where: {
             postId,

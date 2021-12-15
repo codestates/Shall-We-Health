@@ -90,16 +90,19 @@ html {
 .home-container {
   margin: 0 auto;
   overflow-x: hidden;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
 }
 
 /* top*/
 .home-container .image-section-main {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   text-align: center;
   background-image: url('../img/treadmill.jpg');
+  background-size: 100vw;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -197,7 +200,7 @@ html {
   margin-left: 30%;
   padding: 20px 0 20px 40px;
   border-radius: 30px;
-  background-color: rgb(243, 249, 250);
+  background-color: rgb(231, 246, 250);
 }
 .home-container .section-2-body,
 .section-3-body,
@@ -211,6 +214,51 @@ html {
 .section-4-FPtop,
 .section-5-FPbot {
   width: 70%;
+}
+
+.home-container .button-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 10% 20% 10%;
+}
+.home-container .button-section-1,
+.button-section-2,
+.button-section-3 {
+  height: 300px;
+  width: 300px;
+  text-align: center;
+  background-color: rgb(231, 246, 250);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2% 0 2%;
+}
+
+.home-container .btn-1-text,
+.btn-2-text,
+.btn-3-text {
+  font-size: 1.5em;
+  margin-top: 20%;
+  font-weight: 600;
+}
+
+.home-container .btn-1-btn,
+.btn-2-btn,
+.btn-3-btn {
+  width: 180px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #3dd7e2;
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  font-weight: 700;
+  float: inline-end;
+  margin-bottom: 20%;
+  cursor: pointer;
 }
 /* 
 section3 .home-container .explain-section-3 {

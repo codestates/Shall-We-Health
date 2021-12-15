@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
+import { useEffect } from 'react';
 
 
 
@@ -13,7 +14,11 @@ export default function Home() {
   const onClick = () => {
     window.location.replace('/board')
   }
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   AOS.init({ delay: 150 })
   return (
     <div className='home-container'>
@@ -83,6 +88,29 @@ export default function Home() {
         </div>
       </div>
 
+      <div className='button-section'>
+        <div data-aos="fade-up" className='button-section-1'>
+          <div className='btn-1-text'>지금 바로 다른 사람과<br /> 운동하러 가보세요.</div>
+          <Link
+            to='/find-partner'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}><button className='btn-1-btn' >파트너 신청하기</button></Link>
+        </div>
+
+        <div data-aos="fade-up" className='button-section-2'>
+          <div className='btn-2-text'>내가 원하는 시간에<br />파트너를 모집해보세요</div>
+          <Link
+            to='/find-partner'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+          ><button className='btn-2-btn' >파트너 모집하기</button></Link>
+        </div>
+
+        <div data-aos="fade-up" className='button-section-3'>
+          <div className='btn-3-text'>아직 회원이 아니신가요?<br /> 회원가입 후<br /> 나의 운동메이트를 찾아보세요</div>
+          <Link
+            to='/find-partner'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}><button className='btn-3-btn' >회원가입 하러가기</button></Link>
+        </div>
+      </div>
     </div>
 
   )

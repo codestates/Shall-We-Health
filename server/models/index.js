@@ -22,8 +22,7 @@ if (config.use_env_variable) {
       dateStrings: true,
       typeCast: true,
     },
-    // dialectOptions: { ssl: "Amazon RDS" },
-    // pool: { maxConnections: 5, maxIdleTime: 30 },
+
   });
 }
 
