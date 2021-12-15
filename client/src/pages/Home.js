@@ -92,7 +92,7 @@ export default function Home() {
         <div data-aos="fade-up" className='button-section-1'>
           <div className='btn-1-text'>지금 바로 다른 사람과<br /> 운동하러 가보세요.</div>
           <Link
-            to='/find-partner'
+            to='/board'
             style={{ color: 'inherit', textDecoration: 'inherit' }}><button className='btn-1-btn' >파트너 신청하기</button></Link>
         </div>
 
@@ -107,7 +107,7 @@ export default function Home() {
         <div data-aos="fade-up" className='button-section-3'>
           <div className='btn-3-text'>아직 회원이 아니신가요?<br /> 회원가입 후<br /> 나의 운동메이트를 찾아보세요</div>
           <Link
-            to='/find-partner'
+            to='/signup'
             style={{ color: 'inherit', textDecoration: 'inherit' }}><button className='btn-3-btn' >회원가입 하러가기</button></Link>
         </div>
       </div>
