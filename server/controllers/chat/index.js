@@ -1,23 +1,16 @@
 const { Chat, User } = require("../../models");
 const { getAccessToken } = require("../../utils/validation");
+
 module.exports = {
   create: async (req, res) => {
-    // io.on("connection", (socket) => {
-    //   console.log("a user connected");
-
-    //   socket.on("message", (message) => {
-    //     console.log(message);
-    //   });
-    // });
     try {
       const userData = await getAccessToken(req, res);
-
 
       const userId = userData.dataValues.id;
       const { roomId, content } = req.body;
 
       if (!roomId) {
-        console
+        console;
         return res.status(400).json({
           data: null,
           error: {
@@ -74,12 +67,13 @@ module.exports = {
         },
       });
       const chatData = await Chat.findAll({
-        attributes: ["authorId", "content", "createdAt"],
+        attributes: ["authorId", "content", ["createdAt", "time"]],
         where: {
           roomId: postId,
         },
         Order: ["createdAt", "ASC"],
       });
+      console.log(chatData);
 
       return res.status(200).json({
         hostNickname: hostData.dataValues.nickname,
