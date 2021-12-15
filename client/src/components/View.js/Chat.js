@@ -8,7 +8,6 @@ const moment = require('moment');
 export default function Chat({ data, postId, socket }) {
   const [content, setContent] = useState('')
   const [messageList, setMessageList] = useState([])
-
   const { id, nickname } = useSelector((state) => state.loginReducer);
   const { guestNickname, hostId, hostNickname, guestId } = data;
 
@@ -17,8 +16,7 @@ export default function Chat({ data, postId, socket }) {
     chatRoom.scrollTop = chatRoom.scrollHeight;
   }, [messageList]);
 
-  //*---------------------------------axios------------------------*//
-  // 채팅한거 db 저장
+
   const handleSendMessage = async () => {
     await axios.post(
       `${process.env.REACT_APP_SERVER_API}/chat`,
@@ -27,14 +25,10 @@ export default function Chat({ data, postId, socket }) {
     );
   };
 
-  // 이전데이터받아오기
   const getbeforeMessage = async () => {
 
     await axios.get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`,
-      { params: { guestId, hostId } }) // 원래코드임
-//       { params: { guestId: 1, hostId } })
-
-
+      { params: { guestId, hostId } })
       .then((res) => {
         /* 이전 데이터 있는경우  */
         console.log(res);
@@ -42,18 +36,14 @@ export default function Chat({ data, postId, socket }) {
         setMessageList(res.data.data);
       })
       .catch((err) => {
-        // if (err.response.status === 400) {
         console.log(err.response);
         /* postId_hostId/GuestId  하나라도 없는경우 에러*/
-        // }
       });
   };
 
   const Enterkeysend = async (e) => {
 
     if (e.key === 'Enter' && content !== '') {
-      sendMessage(); //socket.io 서버전달 핸들러 호출
-      await handleSendMessage(); // 메세지 db 저장
       setMessageList([
         ...messageList,
         {
@@ -63,7 +53,10 @@ export default function Chat({ data, postId, socket }) {
           content: e.target.value,
         },
       ]);
-      await setContent('');
+      await sendMessage(); //socket.io 서버전달 핸들러 호출
+      await handleSendMessage(); // 메세지 db 저장
+
+      setContent('');
 
     }
   };
@@ -71,8 +64,6 @@ export default function Chat({ data, postId, socket }) {
   useEffect(() => {
     getbeforeMessage();
   }, []);
-
-  //*---------------------------------axios------------------------*//
 
   //*---------------------------------socket------------------------*//
   const sendMessage = async () => {
@@ -82,20 +73,13 @@ export default function Chat({ data, postId, socket }) {
       content: content,
       time: new Date(),
     };
-    console.log('msgData', messageData);
-
 
     await socket.emit("send_message", messageData);
     setMessageList((list) => [...list, messageData])
   }
 
-
-  console.log(messageList, 'messageList');
-
   useEffect(() => {
-
     socket.on("receive_message", (data) => {
-      console.log(data, 'receive')
       setMessageList((list) => [...list, data])
     })
   }, [socket])

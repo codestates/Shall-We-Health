@@ -4,32 +4,41 @@
   align-items: center;
   width: 100%;
   max-width: 1024px;
-  min-width: 768px;
+  /* min-width: 768px; */
   margin: 0 auto 5% auto;
 }
 
 .signup-container .home-logo {
   background-image: url('../img/logo.svg');
-  width: 270px;
+  width: 30%;
+  min-width: 220px;
   height: 200px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
+.line {
+  display: flex;
+  padding-left: 10%;
+}
+
+.signup-container .signup-box {
+  display: flex;
+  flex-direction: column;
+  min-width: 60%;
+}
+
 .signup-container input {
   outline: none;
   border: var(--main-color1) solid 2px;
-  width: 345px;
-  height: 35px;
-  font-size: 16px;
+  width: 70%;
+  min-width: 190px;
+  height: 2rem;
   border-radius: 5px;
   box-shadow: 2px 4px 2px var(--main-color1);
   background-color: var(--main-backcolor3);
   color: var(--font-color1);
-}
-
-.signup-container input::placeholder {
-  color: var(--font-color2);
+  margin: 0px 10px;
 }
 
 .signup-container button {
@@ -37,30 +46,32 @@
   border: none;
   color: white;
   border-radius: 20px;
-  padding: 5px 10px 5px 10px;
 }
 
 .signup-container button:hover {
   cursor: pointer;
 }
 
-.signup-container .text {
-  font-weight: 650;
-  color: var(--font-color3);
-}
-
 .signup-container .btn-confirm {
-  margin: 0px 0px 0px 10px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 0.7em;
+  min-width: 60px;
 }
 
 .signup-container .btn-signup {
-  font-size: 18px;
-  padding: 8px 150px 8px 140px;
+  font-size: 1rem;
   font-weight: 700;
-  justify-self: center;
-  margin-top: 20px;
+  min-width: 10%;
+  max-width: 200px;
+  align-self: center;
+  padding: 10px 25px;
+}
+
+.signup-container .text {
+  font-weight: 650;
+  color: var(--font-color3);
+  margin: 0px 0px 0px 10px;
+  padding-left: 10%;
 }
 
 .signup-container .text-sentMail {
@@ -72,9 +83,8 @@
 }
 
 .signup-container .message {
-  text-align: right;
-  margin: 5px 0 10px 0;
-  margin-right: 80px;
+  text-align: left;
+  margin: 5px 0 10px 2%;
   font-size: 15px;
   font-weight: 500;
   height: 19px;
@@ -108,4 +118,30 @@
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px var(--main-backcolor3) inset !important;
   -webkit-text-fill-color: var(--font-color2) !important;
+}
+
+.signup-container input::placeholder {
+  color: var(--font-color2);
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .signup-container input {
+    font-size: 10px;
+    /* height: 25px; */
+  }
+
+  .signup-container .btn-confirm {
+    font-size: 10px;
+    width: 60px;
+  }
+
+  .signup-container .message {
+    font-size: 10px;
+    margin: 5px 0 0 5%;
+  }
+
+  .signup-container .line,
+  .signup-container .text {
+    padding-left: 0;
+  }
 }

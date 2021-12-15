@@ -191,7 +191,7 @@ export default function SignUp() {
       ) : (
         <div className='signup-box'>
           <div className='text'>닉네임</div>
-          <div>
+          <div className='line'>
             <input
               name='nickname'
               onChange={handleInputChange}
@@ -212,7 +212,7 @@ export default function SignUp() {
           </div>
 
           <div className='text'>이메일</div>
-          <div>
+          <div className='line'>
             <input
               name='email'
               onChange={handleInputChange}
@@ -233,21 +233,26 @@ export default function SignUp() {
           </div>
 
           <div className='text'>비밀번호</div>
-          <input
-            name='password'
-            type='password'
-            onChange={handleInputChange}
-            placeholder=' 영문+숫자 조합 8~15자리를 사용합니다'
-          />
+          <div className='line'>
+            <input
+              name='password'
+              type='password'
+              onChange={handleInputChange}
+              placeholder=' 영문+숫자 조합 8~15자리를 사용합니다'
+            />
+          </div>
           <div className='message err'>{checkMsg.password}</div>
 
           <div className='text'> 비밀번호 확인</div>
-          <input
-            name='pwConfirm'
-            type='password'
-            onChange={handleInputChange}
-            placeholder=' 비밀번호 재입력'
-          />
+          <div className='line'>
+
+            <input
+              name='pwConfirm'
+              type='password'
+              onChange={handleInputChange}
+              placeholder=' 비밀번호 재입력'
+            />
+          </div>
           <div className='message err'>{checkMsg.pwConfirm}</div>
 
           <div className='message err center'>{checkMsg.signUp}</div>
