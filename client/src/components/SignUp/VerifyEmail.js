@@ -3,7 +3,7 @@ import axios from "axios"
 import './VerifyEmail.css'
 
 export default function VerifyEmail({ match }) {
-  const [completed, setCompleted] = useState(false)
+  const [completed, setCompleted] = useState(true)
   const { token } = match.params
 
   const signUpstateUpdate = async () => {
