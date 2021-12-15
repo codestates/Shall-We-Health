@@ -6,7 +6,6 @@ import axios from 'axios';
 export default function Chat({ data, postId, socket }) {
   const [content, setContent] = useState('');
   const [messageList, setMessageList] = useState([]);
-
   const { id, nickname } = useSelector((state) => state.loginReducer);
   const { guestNickname, hostId, hostNickname, guestId } = data;
 
@@ -15,7 +14,6 @@ export default function Chat({ data, postId, socket }) {
     chatRoom.scrollTop = chatRoom.scrollHeight;
   }, [messageList]);
 
-  //*---------------------------------axios------------------------*//
   const handleSendMessage = async () => {
     await axios.post(
       `${process.env.REACT_APP_SERVER_API}/chat`,
@@ -25,7 +23,6 @@ export default function Chat({ data, postId, socket }) {
     setContent('');
   };
 
-  // 이전데이터받아오기
   const getbeforeMessage = async () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`, {
@@ -53,9 +50,6 @@ export default function Chat({ data, postId, socket }) {
     getbeforeMessage();
   }, []);
 
-  //*---------------------------------axios------------------------*//
-
-  //*---------------------------------socket------------------------*//
   const sendMessage = async () => {
     const now = new Date().toLocaleTimeString('en-Us', {
       hour: '2-digit',
@@ -80,13 +74,10 @@ export default function Chat({ data, postId, socket }) {
     });
   }, [socket]);
 
-  //*---------------------------------socket------------------------*//
-
   return (
     <div className='chat-container'>
       <div className='chat-messages'>
         <div className='chat-open-comment'>
-          {' '}
           {guestNickname}님과 {hostNickname}님의 대화가 시작되었습니다.
         </div>
         {messageList.map((el, idx) => {
