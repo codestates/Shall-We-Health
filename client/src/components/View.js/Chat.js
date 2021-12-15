@@ -38,12 +38,6 @@ export default function Chat({ data, postId, socket }) {
       });
   };
 
-  const Enterkeysend = async (e) => {
-    if (e.key === 'Enter' && content !== '') {
-      await sendMessage(); //socket.io 서버전달 핸들러 호출
-      await handleSendMessage(); // 메세지 db 저장
-    }
-  };
 
   useEffect(() => {
     getbeforeMessage();
@@ -58,7 +52,7 @@ export default function Chat({ data, postId, socket }) {
     return date
   }
 
-  const sendMessage = async () => {
+  const socketMessage = async () => {
     const messageData = {
       room: postId,
       authorId: id,
@@ -69,6 +63,18 @@ export default function Chat({ data, postId, socket }) {
     await socket.emit('send_message', messageData);
   };
 
+
+
+  const sendMessage = async (e) => {
+    if (e.key === 'Enter' && content !== '') {
+      await socketMessage(); //socket.io 서버전달 핸들러 호출
+      await handleSendMessage(); // 메세지 db 저장
+    }
+    if (e.type === 'click' && content !== '') {
+      await socketMessage(); //socket.io 서버전달 핸들러 호출
+      await handleSendMessage(); // 메세지 db 저장
+    }
+  };
 
 
   useEffect(() => {
@@ -121,9 +127,10 @@ export default function Chat({ data, postId, socket }) {
           value={content}
           name='chat'
           onChange={(e) => setContent(e.target.value)}
-          onKeyPress={Enterkeysend}
+          onKeyPress={sendMessage}
+          autoComplete="off"
         />
-        <button className='btn-send' onClick={handleSendMessage}>
+        <button className='btn-send' onClick={sendMessage}>
           전송
         </button>
       </div>
