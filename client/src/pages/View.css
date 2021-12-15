@@ -10,7 +10,7 @@
   flex-direction: row;
 }
 
-.view-container #map{
+.view-container #map {
   color: black;
 }
 
@@ -290,7 +290,7 @@
   width: 100%;
   height: 40px;
   justify-content: space-between;
-  /* margin: 10% 10% 0 10%; */
+  margin-top: 5%;
 
   /* background-color: #ff9878; */
 }

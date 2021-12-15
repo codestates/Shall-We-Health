@@ -108,7 +108,7 @@ export default function View({ match }) {
     );
   }
 
-  function CreateModal({ setModal2, modalMsg }) {
+  function CreateModal2({ setModal2, modalMsg }) {
     return (
       <div className='modalmatch-container'>
         <div className='box-modal'>
@@ -281,12 +281,11 @@ export default function View({ match }) {
 
 
 
-  return <div className='view-container'>
+  return (<div className='view-container'>
     <div id='map' style={{ width: '100%', height: '45vh', zIndex: 0 }}></div>
     <div className='whole-view'>
       <div className='main-container'>
         <div className='components-container'>
-
           <div className='tab-menu'>
             <div className='match-chat-tab'>
               <div className='match-info-tab' onClick={() => { setChatOpen(false) }}>매칭정보</div>
@@ -295,31 +294,31 @@ export default function View({ match }) {
             <div className={userId === hostId && ismatched === false ? 'edit-delete-tab' : 'edit-delete-tab none'} >
               <div className='edit-tab' onClick={modifyClick}>수정</div>
               <div className='delete-tab' onClick={deleteClick}>삭제</div>
-
             </div>
+          </div>
 
-            {chatOpen ? (
-              <Chat data={data} postId={postNumber} socket={socket} />
-            ) : (
-              <>
-                <div className='bodypart-result'>
-                  <div className='bodypart-title'>운동부위</div>
-                  {bodypartArr.map((el, id) => {
-                    return <MakeBodyPartButton key={id} el={el} />;
-                  })}
-                </div>
+          {chatOpen ? (
+            <Chat data={data} postId={postNumber} socket={socket} />
+          ) : (
+            <>
+              <div className='bodypart-result'>
+                <div className='bodypart-title'>운동부위</div>
+                {bodypartArr.map((el, id) => {
+                  return <MakeBodyPartButton key={id} el={el} />;
+                })}
+              </div>
 
-                <div className='weight-result'>
-                  <div className='weight-title'>3대 운동 중량</div>
-                  <button className='view-weight-options'>{sbdResult}</button>
-                </div>
+              <div className='weight-result'>
+                <div className='weight-title'>3대 운동 중량</div>
+                <button className='view-weight-options'>{sbdResult}</button>
+              </div>
 
-                <div className='message-result'>
-                  <div className='message-title'>파트너에게 한마디</div>
-                  <div className='message-content'>{messageResult}</div>
-                </div>
-              </>
-            )}
+              <div className='message-result'>
+                <div className='message-title'>파트너에게 한마디</div>
+                <div className='message-content'>{messageResult}</div>
+              </div>
+            </>
+          )}
 
         </div>
         <div className='info-container'>
@@ -333,60 +332,58 @@ export default function View({ match }) {
             ${reserveDate.slice(5, 7)}월
             ${reserveDate.slice(8, 10)}일
             ${reserveDate.slice(11, 13)}:${reserveDate.slice(14, 16)}`}
-              </div>
-
-              <div className='address-section'>
-                <div className='info-address'>{loca}</div>
-                <div className='address-copy' onClick={copyClick}>
-                  주소 복사
-                </div>
-              </div>
             </div>
-            <div className='button-section'>
-              {showButton === 0 ? (
-                <button className='application-button' onClick={applyClick}>
-                  신청하기
-                </button>
-              ) : showButton === 1 ? (
-                <button className='match-now-button'>모집중</button>
-              ) : showButton === 2 ? (
-                <button className='match-cancel-button' onClick={cancelClick}>
-                  매칭취소
-                </button>
-              ) : showButton === 3 ? (
-                <button className='deadline-button'>마감</button>
-              ) : (
-                <button className='deadline-button'>마감</button>
-              )}
+
+            <div className='address-section'>
+              <div className='info-address'>{loca}</div>
+              <div className='address-copy' onClick={copyClick}>
+                주소 복사
+              </div>
             </div>
           </div>
+          <div className='button-section'>
+            {showButton === 0 ? (
+              <button className='application-button' onClick={applyClick}>
+                신청하기
+              </button>
+            ) : showButton === 1 ? (
+              <button className='match-now-button'>모집중</button>
+            ) : showButton === 2 ? (
+              <button className='match-cancel-button' onClick={cancelClick}>
+                매칭취소
+              </button>
+            ) : showButton === 3 ? (
+              <button className='deadline-button'>마감</button>
+            ) : (
+              <button className='deadline-button'>마감</button>
+            )}
+          </div>
+        </div>
 
-          <div
-            onClick={() => {
-              setChatModal(false);
-            }}
-            className={chatModal ? 'modal-container' : 'modal-container hidden'}
-          >
-            <div className='box-modal'>
-              <div className='modal-message'>{modalMessage}</div>
-              <div>
-                <span
-                  onClick={() => {
-                    setChatModal(false);
-                  }}
-                >
-                  확인
-                </span>
-              </div>
+        <div
+          onClick={() => {
+            setChatModal(false);
+          }}
+          className={chatModal ? 'modal-container' : 'modal-container hidden'}
+        >
+          <div className='box-modal'>
+            <div className='modal-message'>{modalMessage}</div>
+            <div>
+              <span
+                onClick={() => {
+                  setChatModal(false);
+                }}
+              >
+                확인
+              </span>
             </div>
           </div>
         </div>
       </div>
-      {modal ? <CreateModal setModal={setModal} modalMsg={modalMsg} /> : ''}
     </div>
-
     {modal ? <CreateModal setModal={setModal} modalMsg={modalMsg} /> : ''}
-    {modal2 ? <CreateModal setModal2={setModal2} modalMsg={modalMsg} /> : ''}
-  </div>;
+    {modal2 ? <CreateModal2 setModal2={setModal2} modalMsg={modalMsg} /> : ''}
+  </div>
+  )
 
 }
