@@ -46,6 +46,7 @@ const corsOptions = {
     "https://shallwehealth.com",
     "https://www.shallwehealth.com",
     "http://localhost:3000",
+    "http://localhost:3001",
   ],
   credentials: true,
 };
@@ -74,11 +75,7 @@ io.on("connection", (socket) => {
     console.log(`User with Id: ${socket.id} joined room: ${data}`);
   });
   socket.on("send_message", (data) => {
-    const messageData = formatMessage(
-      data.authorId,
-      data.nickname,
-      data.content
-    );
+    const messageData = formatMessage(data.authorId, data.content, data.time);
     console.log(messageData);
     socket.to(data.room).emit("receive_message", messageData);
   });

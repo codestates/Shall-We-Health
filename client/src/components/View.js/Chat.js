@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './Chat.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-const moment = require('moment');
-
 
 export default function Chat({ data, postId, socket }) {
-  const [content, setContent] = useState('')
-  const [messageList, setMessageList] = useState([])
+  const [content, setContent] = useState('');
+  const [messageList, setMessageList] = useState([]);
   const { id, nickname } = useSelector((state) => state.loginReducer);
   const { guestNickname, hostId, hostNickname, guestId } = data;
 
@@ -16,48 +14,35 @@ export default function Chat({ data, postId, socket }) {
     chatRoom.scrollTop = chatRoom.scrollHeight;
   }, [messageList]);
 
-
   const handleSendMessage = async () => {
     await axios.post(
       `${process.env.REACT_APP_SERVER_API}/chat`,
       { roomId: postId, content },
       { withCredentials: true }
     );
+    setContent('');
   };
 
   const getbeforeMessage = async () => {
-
-    await axios.get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`,
-      { params: { guestId, hostId } })
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`, {
+        params: { guestId, hostId },
+      })
       .then((res) => {
-        /* 이전 데이터 있는경우  */
-        console.log(res);
         console.log(res.data.data, 'res');
         setMessageList(res.data.data);
       })
       .catch((err) => {
-        console.log(err.response);
-        /* postId_hostId/GuestId  하나라도 없는경우 에러*/
+        if (err.response.status === 400) {
+          console.log(err.response);
+        }
       });
   };
 
   const Enterkeysend = async (e) => {
-
     if (e.key === 'Enter' && content !== '') {
-      setMessageList([
-        ...messageList,
-        {
-          authorId: id,
-          nickname: nickname,
-          createdAt: moment(),
-          content: e.target.value,
-        },
-      ]);
       await sendMessage(); //socket.io 서버전달 핸들러 호출
       await handleSendMessage(); // 메세지 db 저장
-
-      setContent('');
-
     }
   };
 
@@ -65,40 +50,41 @@ export default function Chat({ data, postId, socket }) {
     getbeforeMessage();
   }, []);
 
-  //*---------------------------------socket------------------------*//
   const sendMessage = async () => {
+    const now = new Date().toLocaleTimeString('en-Us', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
     const messageData = {
       room: postId,
       authorId: id,
       content: content,
-      time: new Date(),
+      time: now,
     };
-
-    await socket.emit("send_message", messageData);
-    setMessageList((list) => [...list, messageData])
-  }
+    console.log('msgData', messageData);
+    setMessageList((list) => [...list, messageData]);
+    await socket.emit('send_message', messageData);
+  };
 
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageList((list) => [...list, data])
-    })
-  }, [socket])
-
-
-  //*---------------------------------socket------------------------*//
+    socket.on('receive_message', (data) => {
+      console.log(data, 'receive');
+      setMessageList((list) => [...list, data]);
+    });
+  }, [socket]);
 
   return (
     <div className='chat-container'>
       <div className='chat-messages'>
         <div className='chat-open-comment'>
-          {' '}
           {guestNickname}님과 {hostNickname}님의 대화가 시작되었습니다.
         </div>
         {messageList.map((el, idx) => {
           return (
             <div key={idx} className={el.authorId === id ? 'my-chat-sort' : ''}>
               <div className={el.authorId === id ? 'my-info' : 'other-info'}>
-                {moment(el.createdAt).format('hh:mm a')}
+                {el.time}
               </div>
               <div className={el.authorId === id ? 'my-chat' : 'other-chat'}>
                 {el.content}
@@ -119,6 +105,6 @@ export default function Chat({ data, postId, socket }) {
           전송
         </button>
       </div>
-    </div >
-  )
+    </div>
+  );
 }
