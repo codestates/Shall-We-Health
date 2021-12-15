@@ -24,11 +24,11 @@ module.exports = async (req, res) => {
       const accessToken = jwt.sign(
         loginData.dataValues,
         process.env.ACCESS_SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "3h" }
       );
 
       res
-        .cookie("accessToken", accessToken, { maxAge: 6 * 10 * 60 * 10000 }) // 1시간
+        .cookie("accessToken", accessToken, { maxAge: 6 * 10 * 60 * 1000 * 3 }) // 3시간
         .status(200)
         .end();
     } else {
@@ -46,16 +46,21 @@ module.exports = async (req, res) => {
         return result;
       }
 
-      let duplication = true
-      while(duplication){
-        var randomSet = await makeId(5)
+      let duplication = true;
+      while (duplication) {
+        var randomSet = await makeId(5);
         duplication = await User.findOne({
           where: { nickname: randomSet },
           attributes: ["email", "createdAt"],
-        })
+        });
       }
-      
-      const newLoginData = await User.create({ email, isOauth, nickname : randomSet, isEmailVerified:1 });
+
+      const newLoginData = await User.create({
+        email,
+        isOauth,
+        nickname: randomSet,
+        isEmailVerified: 1,
+      });
       const accessToken = jwt.sign(
         newLoginData.dataValues,
         process.env.ACCESS_SECRET,

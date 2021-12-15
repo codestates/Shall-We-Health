@@ -41,7 +41,6 @@ module.exports = async (req, res) => {
         });
       }
 
-
       if (!passwordData.dataValues.isEmailVerified) {
         /* 이메일 맞음 비밀번호 맞음 회원가입인증 안함 */
         return res.status(403).json({
@@ -53,8 +52,10 @@ module.exports = async (req, res) => {
         });
       }
 
-
-      if (passwordData.password === hashPassword && passwordData.dataValues.isEmailVerified) {
+      if (
+        passwordData.password === hashPassword &&
+        passwordData.dataValues.isEmailVerified
+      ) {
         /* 이메일 맞음 비밀번호 맞음 회원가입인증 함 */
         const userData = await User.findOne({
           where: {
@@ -66,18 +67,17 @@ module.exports = async (req, res) => {
           userData.dataValues,
           process.env.ACCESS_SECRET,
           {
-            expiresIn: "1h",
+            expiresIn: "3h",
           }
         );
         res
           .cookie("accessToken", accessToken, {
-            maxAge: 6 * 10 * 60 * 1000, // 1시간
+            maxAge: 6 * 10 * 60 * 1000 * 3, // 3시간
           })
           .status(200)
           .end();
       }
     }
-
   } catch (err) {
     console.log(err);
     throw err;
