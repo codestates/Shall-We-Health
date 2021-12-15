@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Chat.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-const moment = require('moment');
 
 export default function Chat({ data, postId, socket }) {
   const [content, setContent] = useState('');
@@ -17,13 +16,13 @@ export default function Chat({ data, postId, socket }) {
   }, [messageList]);
 
   //*---------------------------------axios------------------------*//
-  // 채팅한거 db 저장
   const handleSendMessage = async () => {
     await axios.post(
       `${process.env.REACT_APP_SERVER_API}/chat`,
       { roomId: postId, content },
       { withCredentials: true }
     );
+    setContent('');
   };
 
   // 이전데이터받아오기
@@ -31,37 +30,22 @@ export default function Chat({ data, postId, socket }) {
     await axios
       .get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`, {
         params: { guestId, hostId },
-      }) // 원래코드임
-      //       { params: { guestId: 1, hostId } })
-
+      })
       .then((res) => {
-        /* 이전 데이터 있는경우  */
-        console.log(res);
         console.log(res.data.data, 'res');
         setMessageList(res.data.data);
       })
       .catch((err) => {
-        // if (err.response.status === 400) {
-        console.log(err.response);
-        /* postId_hostId/GuestId  하나라도 없는경우 에러*/
-        // }
+        if (err.response.status === 400) {
+          console.log(err.response);
+        }
       });
   };
 
   const Enterkeysend = async (e) => {
     if (e.key === 'Enter' && content !== '') {
-      // setMessageList([
-      //   ...messageList,
-      //   {
-      //     authorId: id,
-      //     nickname: nickname,
-      //     createdAt: moment(),
-      //     content: e.target.value,
-      //   },
-      // ]);
       await sendMessage(); //socket.io 서버전달 핸들러 호출
       await handleSendMessage(); // 메세지 db 저장
-      setContent('');
     }
   };
 
@@ -73,19 +57,21 @@ export default function Chat({ data, postId, socket }) {
 
   //*---------------------------------socket------------------------*//
   const sendMessage = async () => {
+    const now = new Date().toLocaleTimeString('en-Us', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
     const messageData = {
       room: postId,
       authorId: id,
       content: content,
-      createdAt: moment().format('hh:mm a'),
+      time: now,
     };
     console.log('msgData', messageData);
-
-    await socket.emit('send_message', messageData);
     setMessageList((list) => [...list, messageData]);
+    await socket.emit('send_message', messageData);
   };
-
-  console.log(messageList, 'messageList');
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
@@ -107,7 +93,7 @@ export default function Chat({ data, postId, socket }) {
           return (
             <div key={idx} className={el.authorId === id ? 'my-chat-sort' : ''}>
               <div className={el.authorId === id ? 'my-info' : 'other-info'}>
-                {moment(el.createdAt).format('hh:mm a')}
+                {el.time}
               </div>
               <div className={el.authorId === id ? 'my-chat' : 'other-chat'}>
                 {el.content}

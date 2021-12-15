@@ -3,13 +3,6 @@ const { getAccessToken } = require("../../utils/validation");
 
 module.exports = {
   create: async (req, res) => {
-    // io.on("connection", (socket) => {
-    //   console.log("a user connected");
-
-    //   socket.on("message", (message) => {
-    //     console.log(message);
-    //   });
-    // });
     try {
       const userData = await getAccessToken(req, res);
 

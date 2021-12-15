@@ -1,13 +1,11 @@
-const moment = require("moment");
-
 module.exports = {
-  formatMessage: (authorId, nickname, content) => {
+  formatMessage: (authorId, content, time) => {
     const res = {
       authorId,
-      nickname,
       content,
-      createdAt: moment().format("hh:mm a"),
+      time,
     };
+    console.log(res);
     return res;
   },
 };
