@@ -16,7 +16,6 @@ if (config.use_env_variable) {
     host: config.host,
     port: config.port,
     dialect: config.dialect,
-    timezone: "+09:00",
     dialectOptions: {
       charset: "utf8mb4",
       dateStrings: true,
