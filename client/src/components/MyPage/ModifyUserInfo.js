@@ -129,10 +129,10 @@ export default function ModifyUserInfo() {
     <div className='modifyuserinfo-container'>
       <table>
         <tr>
-          <td className='text'>닉네임</td>
+          <td className='text col1'>닉네임</td>
         </tr>
         <tr>
-          <td>
+          <td className='col1'>
             <input
               value={nicknameForm}
               onChange={handleNickname}
@@ -144,7 +144,7 @@ export default function ModifyUserInfo() {
               }}
             />
           </td>
-          <td>
+          <td className='col2'>
             <button className='btn-nickname-confirm' onClick={duplication}>
               중복확인
             </button>
@@ -152,22 +152,22 @@ export default function ModifyUserInfo() {
         </tr>
         <tr>
           {checkNickname === 0 ? (
-            <td className='text-right hidden'>사용 가능한 닉네임 입니다</td>
+            <td className='text-right hidden col1'>사용 가능한 닉네임 입니다</td>
           ) : checkNickname === 1 ? (
-            <td className='text-right'>사용 가능한 닉네임 입니다</td>
+            <td className='text-right col1'>사용 가능한 닉네임 입니다</td>
           ) : checkNickname === 2 ? (
-            <td className='text-wrong'>특수문자 제외 2~10자내로 입력해주세요(공백가능)</td>
+            <td className='text-wrong col1'>특수문자 제외 2~10자내로 입력해주세요(공백가능)</td>
           ) : (
-            <td className='text-wrong'>사용중인 닉네임 입니다</td>
+            <td className='text-wrong col1'>사용중인 닉네임 입니다</td>
           )}
         </tr>
         {!isOauth ? (
           <>
         <tr>
-          <td className='text'>새로운 비밀번호</td>
+          <td className='text col1'>새로운 비밀번호</td>
         </tr>
         <tr>
-          <td>
+          <td className='col1'>
             <input
               type='password'
               onChange={(e) => {
@@ -178,20 +178,20 @@ export default function ModifyUserInfo() {
         </tr>
         <tr>
           {checkpwd === 0 ? (
-            <td className='text-right hidden'>사용 가능한 비밀번호 입니다</td>
+            <td className='text-right hidden col1'>사용 가능한 비밀번호 입니다</td>
           ) : checkpwd === 1 ? (
-            <td className='text-right'>사용 가능한 비밀번호 입니다</td>
+            <td className='text-right col1'>사용 가능한 비밀번호 입니다</td>
           ) : (
-            <td className='text-wrong'>
+            <td className='text-wrong col1'>
               숫자와 영문자 조합하여 10~15자리를 사용해야 합니다
             </td>
           )}
         </tr>
         <tr>
-          <td className='text'>비밀번호 확인</td>
+          <td className='text col1'>비밀번호 확인</td>
         </tr>
         <tr>
-          <td>
+          <td className='col1'>
             <input
               type='password'
               onChange={(e) => {
@@ -202,22 +202,22 @@ export default function ModifyUserInfo() {
         </tr>
         <tr>
           {checkpwd2 === 0 ? (
-            <td className='text-right hidden'>비밀번호가 일치합니다</td>
+            <td className='text-right hidden col1'>비밀번호가 일치합니다</td>
           ) : checkpwd2 === 1 ? (
-            <td className='text-right'>비밀번호가 일치합니다</td>
+            <td className='text-right col1'>비밀번호가 일치합니다</td>
           ) : (
-            <td className='text-wrong'>비밀번호가 일치하지 않습니다</td>
+            <td className='text-wrong col1'>비밀번호가 일치하지 않습니다</td>
           )}
         </tr>
         </>
         ) : ''}
         <tr>
-          <td>
+          <td colSpan={2}>
             <button className='btn-modify' onClick={submitInfo}>수정하기</button>
           </td>
         </tr>
         <tr>
-          <td>
+          <td colSpan={2}>
             <button className='btn-quit' onClick={ async()=>{
               await setWithdrawModal(false)
               await setWithdrawModal(true)
