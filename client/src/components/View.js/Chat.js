@@ -29,7 +29,6 @@ export default function Chat({ data, postId, socket }) {
         params: { guestId, hostId },
       })
       .then((res) => {
-        console.log(res.data.data, 'res');
         setMessageList(res.data.data);
       })
       .catch((err) => {
@@ -50,6 +49,15 @@ export default function Chat({ data, postId, socket }) {
     getbeforeMessage();
   }, []);
 
+  const dateTime = (item) => {
+    const date = new Date(item).toLocaleTimeString('en-Us', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+    return date
+  }
+  
   const sendMessage = async () => {
     const now = new Date().toLocaleTimeString('en-Us', {
       hour: '2-digit',
@@ -62,10 +70,11 @@ export default function Chat({ data, postId, socket }) {
       content: content,
       time: now,
     };
-    console.log('msgData', messageData);
     setMessageList((list) => [...list, messageData]);
     await socket.emit('send_message', messageData);
   };
+
+
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
@@ -83,12 +92,30 @@ export default function Chat({ data, postId, socket }) {
         {messageList.map((el, idx) => {
           return (
             <div key={idx} className={el.authorId === id ? 'my-chat-sort' : ''}>
-              <div className={el.authorId === id ? 'my-info' : 'other-info'}>
-                {el.time}
+              <div className={el.authorId !== id ? 'other-info' : 'hidden'}>
+                {hostNickname === nickname ? guestNickname : hostNickname}
               </div>
-              <div className={el.authorId === id ? 'my-chat' : 'other-chat'}>
-                {el.content}
-              </div>
+              <>
+                {el.authorId === id
+                  ? (
+                    <div className='mychat-box'>
+                      <div className='datetime'>{dateTime(el.time)}</div>
+                      <div className='my-chat'>
+                        {el.content}
+                      </div>
+                    </div>
+                  )
+                  : (
+                    <div className='otherchat-box'>
+                      <div className='other-chat'>
+                        {el.content}
+                      </div>
+                      <div className='datetime'>{dateTime(el.time)}</div>
+                    </div>
+                  )
+                }
+
+              </>
             </div>
           );
         })}

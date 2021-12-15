@@ -5,18 +5,11 @@ const { QueryTypes } = require("sequelize");
 module.exports = async (req, res) => {
   try {
     const { token } = req.body
-    console.log(token)
 
     const verified = jwt.verify(token, process.env.ACCESS_SECRET, (err, decoded) => {
       if (err) return null;
       return decoded;
     });
-
-    console.log(req.body)
-
-    // { email: 'sunyeong2222@gmail.com', iat: 1638472846, exp: 1638476446 }
-    //1. 토큰을 해독했는데 유효하지 않았을 때
-    //2. 유효한데 db에 저장된 이메일이 없을때
 
     if (!verified) {
       /* 토큰 해독이 안될 떄*/
