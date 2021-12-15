@@ -57,18 +57,13 @@ export default function Chat({ data, postId, socket }) {
     });
     return date
   }
-  
+
   const sendMessage = async () => {
-    const now = new Date().toLocaleTimeString('en-Us', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-    });
     const messageData = {
       room: postId,
       authorId: id,
       content: content,
-      time: now,
+      time: new Date()
     };
     setMessageList((list) => [...list, messageData]);
     await socket.emit('send_message', messageData);
