@@ -6,7 +6,6 @@ import axios from 'axios';
 export default function Chat({ data, postId, socket }) {
   const [content, setContent] = useState('');
   const [messageList, setMessageList] = useState([]);
-
   const { id, nickname } = useSelector((state) => state.loginReducer);
   const { guestNickname, hostId, hostNickname, guestId } = data;
 
@@ -15,7 +14,7 @@ export default function Chat({ data, postId, socket }) {
     chatRoom.scrollTop = chatRoom.scrollHeight;
   }, [messageList]);
 
-  //*---------------------------------axios------------------------*//
+
   const handleSendMessage = async () => {
     await axios.post(
       `${process.env.REACT_APP_SERVER_API}/chat`,
@@ -25,14 +24,13 @@ export default function Chat({ data, postId, socket }) {
     setContent('');
   };
 
-  // 이전데이터받아오기
+
   const getbeforeMessage = async () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`, {
         params: { guestId, hostId },
       })
       .then((res) => {
-        console.log(res.data.data, 'res');
         setMessageList(res.data.data);
       })
       .catch((err) => {
@@ -53,9 +51,16 @@ export default function Chat({ data, postId, socket }) {
     getbeforeMessage();
   }, []);
 
-  //*---------------------------------axios------------------------*//
+  const dateTime = (item) => {
+    const date = new Date(item).toLocaleTimeString('en-Us', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+    return date
+  }
 
-  //*---------------------------------socket------------------------*//
+
   const sendMessage = async () => {
     const now = new Date().toLocaleTimeString('en-Us', {
       hour: '2-digit',
@@ -68,10 +73,11 @@ export default function Chat({ data, postId, socket }) {
       content: content,
       time: now,
     };
-    console.log('msgData', messageData);
     setMessageList((list) => [...list, messageData]);
     await socket.emit('send_message', messageData);
   };
+
+
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
@@ -86,18 +92,35 @@ export default function Chat({ data, postId, socket }) {
     <div className='chat-container'>
       <div className='chat-messages'>
         <div className='chat-open-comment'>
-          {' '}
           {guestNickname}님과 {hostNickname}님의 대화가 시작되었습니다.
         </div>
         {messageList.map((el, idx) => {
           return (
             <div key={idx} className={el.authorId === id ? 'my-chat-sort' : ''}>
-              <div className={el.authorId === id ? 'my-info' : 'other-info'}>
-                {el.time}
+              <div className={el.authorId !== id ? 'other-info' : 'hidden'}>
+                {hostNickname === nickname ? guestNickname : hostNickname}
               </div>
-              <div className={el.authorId === id ? 'my-chat' : 'other-chat'}>
-                {el.content}
-              </div>
+              <>
+                {el.authorId === id
+                  ? (
+                    <div className='mychat-box'>
+                      <div className='datetime'>{dateTime(el.time)}</div>
+                      <div className='my-chat'>
+                        {el.content}
+                      </div>
+                    </div>
+                  )
+                  : (
+                    <div className='otherchat-box'>
+                      <div className='other-chat'>
+                        {el.content}
+                      </div>
+                      <div className='datetime'>{dateTime(el.time)}</div>
+                    </div>
+                  )
+                }
+
+              </>
             </div>
           );
         })}

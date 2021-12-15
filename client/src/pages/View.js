@@ -148,25 +148,29 @@ export default function View({ match }) {
   }
 
   const chatting = () => {
+    const { hostId, guestId } = data
     if (ismatched !== true) {
       /* 취소 된 파트너 isMatched === 2 or isMatched === false */
       setModalMessage('매칭 된 상대만 대화 할 수 있습니다');
       setChatModal(true);
-    } else if (ismatched === true) {
-      const reserved = reserveDate.slice(0, reserveDate.length - 1); //reserved_at -- 2021-12-14T05:20:01.000Z -- Tue Dec 14 2021 14:20:01 GMT+0900 (한국 표준시)
+    }
+    else if (ismatched === true) {
+      const reserved = reserveDate.slice(0, reserveDate.length - 1);
       const chatCloseTime = new Date(reserved);
       const now = new Date();
-      chatCloseTime.setHours(
-        chatCloseTime.getHours() + 2
-      ); /* 마감시간에 2시간 더해주기 */
+      chatCloseTime.setHours(chatCloseTime.getHours() + 2);
 
       if (now > chatCloseTime) {
-        /* 마감시간보다 현재시간이 크다면 */ //console.log(test > chatCloseTime, 'test > close')
         setModalMessage('마감 된 채팅방입니다');
         setChatModal(true);
       } else {
-        setChatOpen(true);
-        socket.emit('join_room', postNumber);
+        if (hostId === userId || guestId === userId) {
+          setChatOpen(true);
+          socket.emit('join_room', postNumber);
+        } else {
+          setModalMessage('매칭 된 상대만 대화 할 수 있습니다');
+          setChatModal(true);
+        }
       }
     }
   };
@@ -204,8 +208,8 @@ export default function View({ match }) {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출
         infowindow.setContent(
           '<div style="padding:5px;font-size:12px">' +
-            place.place_name +
-            '</div>'
+          place.place_name +
+          '</div>'
         );
         infowindow.open(map, marker);
       });

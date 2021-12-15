@@ -1,18 +1,19 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  /* width: 90%; */
+  width: 95%;
   background-color: rgb(228, 228, 228);
   border-radius: 10px;
+  margin: 0 auto;
 }
 
 .chat-container .chat-open-comment {
   padding: 5px 0 5px 0;
   color: #ffffff;
   text-align: center;
-  background-color: rgb(115, 134, 173);
+  background-color: #ff9878;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .chat-container .chat-messages {
@@ -22,41 +23,68 @@
   max-height: 400px;
   overflow-y: scroll;
   padding: 0 0 10px 0;
+  color: black;
+  font-weight: 700;
 }
 
 .chat-container .my-chat-sort {
   align-self: flex-end;
   text-align: right;
-  max-width: 170px;
+  max-width: 500px;
   display: inline-block;
   word-break: break-all;
 }
 
 .chat-container .my-chat,
-.other-chat {
+.chat-container .other-chat {
   padding: 7px;
   background-color: white;
-  max-width: 170px;
+  max-width: 200px;
   border-radius: 10px;
   font-size: 14px;
   margin-right: 10px;
   display: inline-block;
   word-break: break-all;
+  font-weight: 600;
 }
 
 .chat-container .other-chat {
-  background-color: #39cfd9;
+  background-color: #77d8df;
   margin-left: 10px;
 }
 
 .chat-container .my-info,
-.other-info {
-  margin-top: 3px;
+.chat-container .other-info,
+.chat-container .datetime {
+  margin-top: 5px;
   max-width: 170px;
   font-size: 13px;
   margin-right: 10px;
-  font-weight: 700;
+  font-weight: 600;
   color: rgb(49, 49, 49);
+}
+
+.chat-container .datetime {
+  text-align: end;
+  min-width: 60px;
+}
+
+.mychat-box {
+  display: flex;
+  align-items: flex-end;
+  min-width: 300px;
+  justify-content: right;
+}
+
+.otherchat-box {
+  display: flex;
+  align-items: flex-end;
+  min-width: 300px;
+}
+
+.hidden {
+  visibility: hidden;
+  height: 5px;
 }
 
 .chat-container .other-info {
@@ -81,12 +109,12 @@
   outline: none;
   border: none;
   color: white;
-  background-color: #39cfd9;
+  background-color: #77d8df;
   width: 10%;
   height: 30px;
   text-align: center;
   border-radius: 20px;
-  font-weight: 700;
+  font-weight: 800;
   min-width: 60px;
   margin-right: 10px;
 }
