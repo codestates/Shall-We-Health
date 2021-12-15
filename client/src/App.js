@@ -19,6 +19,7 @@ import UpdatePw from './components/FindPw/UpdatePw'
 import Chat from './components/View.js/Chat';
 import Pagination from './components/Pagination/Pagination';
 import NaverLogin from './pages/NaverLogin';
+import FindPartnerModify from './pages/FindPartnerModify';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import axios from "axios"
@@ -96,6 +97,7 @@ function App() {
         <Route path='/find-pw' component={FindPw} />
         <Route path='/board' component={Board} />
         <Route path='/find-partner' component={FindPartner} />
+        <Route path='/modify/:postId' component={FindPartnerModify} />
         <Route path='/view/:postId' component={View} />
         <Route path='/mypage' component={MyPage} />
         <Route path='/admin' component={AdminPage} />
@@ -106,10 +108,10 @@ function App() {
         <Route path='/naver' component={NaverLogin} />
       </Switch>
       <Footer />
-      {theme==='light' ? (
-        <div className='btn-theme dark' onClick={()=>{themeToggler()}}><FontAwesomeIcon className='icon-theme' icon={faMoon} /><div>다크 모드로 보기</div></div>
+      {theme === 'light' ? (
+        <div className='btn-theme dark' onClick={() => { themeToggler() }}><FontAwesomeIcon className='icon-theme' icon={faMoon} /><div>다크 모드로 보기</div></div>
       ) : (
-        <div className='btn-theme light' onClick={()=>{themeToggler()}}><FontAwesomeIcon className='icon-theme' icon={faSun} /><div>라이트 모드로 보기</div></div>
+        <div className='btn-theme light' onClick={() => { themeToggler() }}><FontAwesomeIcon className='icon-theme' icon={faSun} /><div>라이트 모드로 보기</div></div>
       )}
     </div>
   );

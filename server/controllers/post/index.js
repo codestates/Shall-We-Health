@@ -160,6 +160,7 @@ module.exports = {
         replacements: [postId],
         type: QueryTypes.SELECT,
       });
+      console.log(postData)
       return res.status(200).json({
         data: [postData, hostThumbsups[0]],
       });
@@ -182,6 +183,7 @@ module.exports = {
       });
       //postId가 없거나 일치하는 게시물이 없는 경우
       if (!postData) {
+        // console.log(postData)
         return res.status(400).json({
           data: null,
           error: {
@@ -193,6 +195,8 @@ module.exports = {
         //전달받은 postId와 일치하는 게시물(postData)을 찾은 경우
         //postData에서 받아온 hostId와 전달받은 hostId가 일치하는 경우(게시물 작성자가 유저가 맞는 경우)
         if (postData.dataValues.hostId === hostId) {
+          // console.log(postData.dataValues[0]["hostId"])
+          console.log(postData)
           await Post.destroy({
             where: {
               id: postId,

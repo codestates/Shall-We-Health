@@ -8,38 +8,50 @@ import io from 'socket.io-client';
 const socket = io.connect(process.env.REACT_APP_SERVER_API);
 
 export default function View({ match }) {
-  const postNumber = match.params.postId;
-  const [sbdResult, setSbdResult] = useState([]);
-  const [bodypartArr, setBodypartArr] = useState([]);
-  const [messageResult, setMessageResult] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [loca, setLoca] = useState('');
-  const [reserveDate, setReserveDate] = useState('');
-  const [searchPlace, setSearchPlace] = useState('');
-  const [ismatched, setIsMatched] = useState('');
 
-  const [showButton, setShowButton] = useState(0);
-  const [modal, setModal] = useState(false);
-  const [modalMsg, setModalMsg] = useState('');
-  const userId = useSelector((state) => state.loginReducer.id);
-  const [pkId, setPkId] = useState('');
-  const [chatOpen, setChatOpen] = useState(false);
-  const [data, setData] = useState('');
-  const [chatModal, setChatModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const postNumber = match.params.postId
+  const [sbdResult, setSbdResult] = useState([])
+  const [bodypartArr, setBodypartArr] = useState([])
+  const [messageResult, setMessageResult] = useState('')
+  const [nickname, setNickname] = useState('')
+  const [loca, setLoca] = useState('')
+  const [reserveDate, setReserveDate] = useState('')
+  const [searchPlace, setSearchPlace] = useState('')
+  const [ismatched, setIsMatched] = useState('')
+  const [thumbsUp, setThumbsUp] = useState(0)
+  const [showButton, setShowButton] = useState(0)
+  const [modal, setModal] = useState(false)
+  const [modalMsg, setModalMsg] = useState('')
+  const userId = useSelector(state => state.loginReducer.id)
+  const [hostId, setHostId] = useState('')
+  const [chatOpen, setChatOpen] = useState(false)
+  const [data, setData] = useState('')
+  const [chatModal, setChatModal] = useState(false)
+  const [modalMessage, setModalMessage] = useState('')
+  // const [modalMessage2, setModalMessage2] = useState('')
+  const [modal2, setModal2] = useState(false)
 
-  const getDetailpost = () => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}`)
+
+  const getDetailpost = async () => {
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}`)
       .then((res) => {
-        setSbdResult(res.data.data[0].description.sbd);
-        setBodypartArr(res.data.data[0].description.bodyPart);
-        setMessageResult(res.data.data[0].description.message);
-        setNickname(res.data.data[0].hostNickname);
-        setLoca(res.data.data[0].location.road_address_name);
-        setReserveDate(res.data.data[0].reserved_at);
-        setSearchPlace(res.data.data[0].location);
-        setIsMatched(res.data.data[0].isMatched);
+        setSbdResult(res.data.data[0].description.sbd)
+        setBodypartArr(res.data.data[0].description.bodyPart)
+        setMessageResult(res.data.data[0].description.message)
+        setNickname(res.data.data[0].hostNickname)
+        setLoca(res.data.data[0].location.road_address_name)
+        setReserveDate(res.data.data[0].reserved_at)
+        // console.log(reserveDate)
+        // console.log(reserveDate.slice(0, 10))
+        // console.log(reserveDate.slice(5, 7))
+        // console.log(reserveDate.slice(8, 10))
+        // console.log(reserveDate.slice(11, 13))
+        // console.log(reserveDate.slice(14, 16))
+        setSearchPlace(res.data.data[0].location)
+        setIsMatched(res.data.data[0].isMatched)
+        setHostId(res.data.data[0].hostId)
+        setThumbsUp(res.data.data[1].hostThumbsups)
+
 
         if (ismatched === false && res.data.data[0].hostId !== userId) {
           setShowButton(0);
@@ -58,14 +70,23 @@ export default function View({ match }) {
         } else if (ismatched === 2) {
           setShowButton(4);
         }
-        console.log(showButton);
-        console.log(ismatched);
-        console.log(match);
-        console.log(userId);
-        console.log(res.data.data);
-        setData(res.data.data[0]);
-      });
-  };
+
+        else if (ismatched === 2) {
+          setShowButton(4)
+        }
+        console.log(postNumber)
+        console.log(hostId)
+        console.log(showButton)
+        console.log(ismatched)
+        console.log(match)
+        console.log(userId)
+        console.log(res.data.data)
+        setData(res.data.data[0])
+        // await axios.get(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}`)
+      }
+      )
+  }
+
   function CreateModal({ setModal, modalMsg }) {
     return (
       <div className='modalmatch-container'>
@@ -87,7 +108,31 @@ export default function View({ match }) {
     );
   }
 
+  function CreateModal({ setModal2, modalMsg }) {
+    return (
+      <div className='modalmatch-container'>
+        <div className='box-modal'>
+          <div className='modal-message'>{modalMsg}</div>
+          <div>
+            <span
+              onClick={() => {
+                setModal2(false);
+                window.location.replace('/board')
+              }}
+            >
+              {/* {modalMsg === '취소하시겠습니까? 일방적인 취소는 신고사유가 될 수 있습니다.' ? '취소' : '확인'} */}
+              확인
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
+
   const applyClick = () => {
+
     if (!userId) {
       setModalMsg('로그인 후 이용해주세요.');
       setModal(true);
@@ -134,15 +179,32 @@ export default function View({ match }) {
   };
 
   const deleteClick = () => {
-    axios
-      .delete(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}/match`)
-      .then((res) => {
-        if (res.status === 204) {
-          setModalMsg('게시물이 삭제되었습니다.');
-          setModal(true);
-        }
-      });
-  };
+
+    if (postNumber && hostId) {
+      const postId = Number(postNumber)
+      axios.delete(`${process.env.REACT_APP_SERVER_API}/post`,
+        {
+          data:
+          {
+            postId: postId,
+            hostId: hostId
+          },
+          withCredentials: true
+        })
+        .then((res) => {
+          if (res.status === 204) {
+            setModalMsg('게시물이 삭제되었습니다.')
+            setModal2(true)
+          }
+        })
+    }
+  }
+
+  const modifyClick = () => {
+    if (hostId === userId)
+      window.location.replace(`/modify/${postNumber}`)
+  }
+
   function MakeBodyPartButton({ el }) {
     return <button className='view-body-options'>{el}</button>;
   }
@@ -196,7 +258,7 @@ export default function View({ match }) {
       level: 2,
     };
     const map = new kakao.maps.Map(container, options);
-    const ps = new kakao.maps.services.Places();
+    // const ps = new kakao.maps.services.Places();
     let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
     function displayMarker(place) {
@@ -217,37 +279,23 @@ export default function View({ match }) {
     displayMarker(searchPlace);
   }, [searchPlace]);
 
-  return (
-    <div className='view-container'>
-      <div id='map' style={{ width: '100%', height: '45vh', zIndex: 0 }}></div>
-      <div className='whole-view'>
-        <div className='main-container'>
-          <div className='components-container'>
-            <div className='tab-menu'>
-              <div className='match-chat-tab'>
-                <div
-                  className='match-info-tab'
-                  onClick={() => {
-                    setChatOpen(false);
-                  }}
-                >
-                  매칭정보
-                </div>
-                <div
-                  className='chat-tab'
-                  onClick={() => {
-                    chatting();
-                  }}
-                >
-                  채팅하기
-                </div>
-              </div>
-              <div className='edit-delete-tab'>
-                <div className='edit-tab'>수정</div>
-                <div className='delete-tab' onClick={deleteClick}>
-                  삭제
-                </div>
-              </div>
+
+
+  return <div className='view-container'>
+    <div id='map' style={{ width: '100%', height: '45vh', zIndex: 0 }}></div>
+    <div className='whole-view'>
+      <div className='main-container'>
+        <div className='components-container'>
+
+          <div className='tab-menu'>
+            <div className='match-chat-tab'>
+              <div className='match-info-tab' onClick={() => { setChatOpen(false) }}>매칭정보</div>
+              <div className='chat-tab' onClick={() => { chatting() }}>채팅하기</div>
+            </div>
+            <div className={userId === hostId && ismatched === false ? 'edit-delete-tab' : 'edit-delete-tab none'} >
+              <div className='edit-tab' onClick={modifyClick}>수정</div>
+              <div className='delete-tab' onClick={deleteClick}>삭제</div>
+
             </div>
 
             {chatOpen ? (
@@ -272,12 +320,16 @@ export default function View({ match }) {
                 </div>
               </>
             )}
+
+        </div>
+        <div className='info-container'>
+          <div className='info-user'>
+            <div className='info-user-nickname'>{nickname}님</div><div className='thumbsups-count'>추천({thumbsUp})</div>
           </div>
-          <div className='info-container'>
-            <div className='info-user-nickname'>{nickname} 님</div>
-            <div className='date-address-section'>
-              <div className='info-date'>
-                {`${reserveDate.slice(0, 4)}년 
+          <div className='date-address-section'>
+            <div className='info-date'>
+              {`${reserveDate.slice(0, 4)}년 
+
             ${reserveDate.slice(5, 7)}월
             ${reserveDate.slice(8, 10)}일
             ${reserveDate.slice(11, 13)}:${reserveDate.slice(14, 16)}`}
@@ -332,5 +384,9 @@ export default function View({ match }) {
       </div>
       {modal ? <CreateModal setModal={setModal} modalMsg={modalMsg} /> : ''}
     </div>
-  );
+
+    {modal ? <CreateModal setModal={setModal} modalMsg={modalMsg} /> : ''}
+    {modal2 ? <CreateModal setModal2={setModal2} modalMsg={modalMsg} /> : ''}
+  </div>;
+
 }

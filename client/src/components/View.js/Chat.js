@@ -14,7 +14,6 @@ export default function Chat({ data, postId, socket }) {
     chatRoom.scrollTop = chatRoom.scrollHeight;
   }, [messageList]);
 
-
   const handleSendMessage = async () => {
     await axios.post(
       `${process.env.REACT_APP_SERVER_API}/chat`,
@@ -23,7 +22,6 @@ export default function Chat({ data, postId, socket }) {
     );
     setContent('');
   };
-
 
   const getbeforeMessage = async () => {
     await axios
@@ -59,8 +57,7 @@ export default function Chat({ data, postId, socket }) {
     });
     return date
   }
-
-
+  
   const sendMessage = async () => {
     const now = new Date().toLocaleTimeString('en-Us', {
       hour: '2-digit',
@@ -85,8 +82,6 @@ export default function Chat({ data, postId, socket }) {
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
-
-  //*---------------------------------socket------------------------*//
 
   return (
     <div className='chat-container'>

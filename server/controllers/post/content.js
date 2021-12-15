@@ -4,8 +4,10 @@ module.exports = async (req, res) => {
   try {
     await getAccessToken(req, res);
     const { postId } = req.params;
-    const { location, description } = req.query;
-    if (!location || !description) {
+    const { reserved_at, location, description } = req.body;
+    console.log(req.body)
+    console.log(req.params)
+    if (!location || !description || !reserved_at) {
       return res.status(400).json({
         data: null,
         error: {
@@ -20,27 +22,19 @@ module.exports = async (req, res) => {
       },
     });
     if (postData) {
-      if (location) {
-        await Post.update(
-          {
-            location,
-          },
-          {
-            where: { postId },
-          }
-        );
-      }
-      if (description) {
-        await Post.update(
-          {
-            description,
-          },
-          {
-            where: { postId },
-          }
-        );
-      }
-      return res.status(200).end();
+      await Post.update(
+        {
+          location,
+          description,
+          reserved_at,
+        },
+        {
+          where: { id: postId },
+        }
+      );
+      return res.status(200).json({
+        data: postId
+      });
     }
     return res.status(404).json({
       data: null,
