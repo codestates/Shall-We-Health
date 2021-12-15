@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 
 export default function FindPartnerModify({ match }) {
     const postNumber = match.params.postId
+    const [authUserId, setAuthUserId] = useState('')
     const userId = useSelector((state) => state.loginReducer.id)
     const [searchResult, setSearchResult] = useState('')
     const [inputText, setInputText] = useState("");
@@ -25,17 +26,34 @@ export default function FindPartnerModify({ match }) {
     // const [isSelected, setIsSelected] = useState('')
     console.log(match)
 
-
+    const checkisAdmin = () => {
+        axios.get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+            withCredentials: true,
+        })
+            .then((res) => {
+                setAuthUserId(res.data.data.decoded.id)
+            })
+    }
 
     const getPostData = async () => {
+
         await axios.get(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}`)
             .then((res) => {
+                axios.get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+                    withCredentials: true,
+                })
+                    .then((res2) => {
+                        if (res2.data.data.decoded.id !== res.data.data[0].hostId) {
+                            window.location.replace('/board')
+                        }
+                    })
                 // 2021-12-17T18:20:01.000Z
                 // console.log(res.data.data[0].reserved_at.slice(0, 10))
                 // console.log(res.data.data[0].reserved_at.slice(5, 7))
                 // console.log(res.data.data[0].reserved_at.slice(8, 10))
                 // console.log(res.data.data[0].reserved_at.slice(11, 13))
                 // console.log(res.data.data[0].reserved_at.slice(14, 16))
+
                 setYear(res.data.data[0].reserved_at.slice(0, 10))
                 setHour(res.data.data[0].reserved_at.slice(11, 13))
                 setMinute(res.data.data[0].reserved_at.slice(14, 16))
@@ -49,8 +67,10 @@ export default function FindPartnerModify({ match }) {
 
 
 
-    useEffect(() => {
-        getPostData()
+    useEffect(async () => {
+        await checkisAdmin()
+        await getPostData()
+
     }, [postNumber])
 
 
