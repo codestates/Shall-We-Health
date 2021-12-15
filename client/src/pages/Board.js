@@ -244,22 +244,34 @@ function BannerSlider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true
   };
   return (
     <div>
       <Slider {...settings}>
-        <Banner />
-        <Banner />
-        <Banner />
+        <Banner1 />
+        <Banner2 />
       </Slider>
     </div>
   );
 }
 
-function Banner() {
+function Banner1() {
   return (
     <div className="banner">
-      <img className="img-banner" alt="logo" src="img/logo.svg" />
+      <img className="img-banner" alt="banner1" src="img/banner1.png" />
+      <div className='text-banner'>쉘위헬스에서 나의 헬스 메이트를 찾아보세요</div>
+    </div>
+  );
+}
+
+function Banner2() {
+  return (
+    <div className="banner">
+      <img className="img-banner" alt="banner2" src="img/banner2.png" />
+      <div className='text-banner'>쉘위헬스에서 나의 헬스 메이트를 찾아보세요</div>
     </div>
   );
 }

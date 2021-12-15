@@ -45,6 +45,27 @@
     border-bottom: 4px solid var(--btn-color1);
 }
 
+.mypage-container .box-userinfo{
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    height: 60px;
+    width: 90%;
+    margin: 20px 7%;
+}
+
+.mypage-container .text-nickname{
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.mypage-container .text-email{
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: var(--font-color2);
+}
+
 /*활동 로그*/
 .mylog-container{
     width: 90%;

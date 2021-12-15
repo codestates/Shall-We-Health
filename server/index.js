@@ -42,11 +42,14 @@ testConnection();
 /*서버 설정*/
 const app = express();
 const corsOptions = {
-  origin: ["https://shallwehealth.com", "https://www.shallwehealth.com", "http://localhost:3000"],
+  origin: [
+    "https://shallwehealth.com",
+    "https://www.shallwehealth.com",
+    "http://localhost:3000",
+    "http://localhost:3001",
+  ],
   credentials: true,
 };
-
-
 
 app.use(cookieParser());
 app.use(express.json({ strict: false }));
@@ -72,11 +75,8 @@ io.on("connection", (socket) => {
     console.log(`User with Id: ${socket.id} joined room: ${data}`);
   });
   socket.on("send_message", (data) => {
-    const messageData = formatMessage(
-      data.authorId,
-      data.nickname,
-      data.content
-    );
+    const messageData = formatMessage(data.authorId, data.content, data.time);
+    console.log(messageData);
     socket.to(data.room).emit("receive_message", messageData);
   });
   socket.on("disconnect", () => {
@@ -88,7 +88,6 @@ let server = http.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);
 });
 module.exports = server;
-
 
 /*라우터 설정*/
 app.use("/post", postRouter);
