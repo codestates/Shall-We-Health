@@ -88,11 +88,10 @@ export default function Chat({ data, postId, socket }) {
   console.log(messageList, 'messageList');
 
   useEffect(() => {
-    () =>
-      socket.on('receive_message', (data) => {
-        console.log(data, 'receive');
-        setMessageList((list) => [...list, data]);
-      });
+    socket.on('receive_message', (data) => {
+      console.log(data, 'receive');
+      setMessageList((list) => [...list, data]);
+    });
   }, [socket]);
 
   //*---------------------------------socket------------------------*//
