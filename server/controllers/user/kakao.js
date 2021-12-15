@@ -10,13 +10,17 @@ module.exports = async (req, res) => {
       attributes: ["email", "createdAt"],
     });
 
-
     if (loginData) {
       /* 회원가입이 되어있을 때 */
 
-      const accessToken = jwt.sign(loginData.dataValues, process.env.ACCESS_SECRET, { expiresIn: "1h" });
+      const accessToken = jwt.sign(
+        loginData.dataValues,
+        process.env.ACCESS_SECRET,
+        { expiresIn: "3h" }
+      );
 
-      res.cookie("accessToken", accessToken, { maxAge: 6 * 10 * 60 * 10000 }) // 1시간
+      res
+        .cookie("accessToken", accessToken, { maxAge: 6 * 10 * 60 * 1000 * 3 }) // 3시간
         .status(200)
         .end();
     } else {
@@ -33,15 +37,20 @@ module.exports = async (req, res) => {
         }
         return result;
       }
-      let duplication = true
-      while(duplication){
-        var randomSet = await makeId(5)
+      let duplication = true;
+      while (duplication) {
+        var randomSet = await makeId(5);
         duplication = await User.findOne({
-          where: { nickname: nickname+randomSet },
+          where: { nickname: nickname + randomSet },
           attributes: ["email", "createdAt"],
-        })
+        });
       }
-      await User.create({ email, isOauth, nickname: nickname+randomSet, isEmailVerified:1 });
+      await User.create({
+        email,
+        isOauth,
+        nickname: nickname + randomSet,
+        isEmailVerified: 1,
+      });
       return res.status(201).end();
     }
   } catch (err) {
