@@ -43,6 +43,7 @@ export default function FindMap(
         if (status === kakao.maps.services.Status.OK) {
           let bounds = new kakao.maps.LatLngBounds();
           setSearchResult(data)
+          console.log(data)
           let resultArr = []
           for (let i = 0; i < data.length; i++) {//5를 -> data.length  수정해야 모든결과 조회됨
             let resultObj = {
@@ -123,6 +124,7 @@ export default function FindMap(
       })
       var iwContent = `<div style="padding:5px;font-size:12px">${markerPlace.place_name} <br><a href="https://map.kakao.com/link/map/${markerPlace.place_name},${markerPlace.y},${markerPlace.x}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${markerPlace.place_name},${markerPlace.y},${markerPlace.x}" style="color:blue" target="_blank">길찾기</a></div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
         iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+      console.log(markerPlace)
 
       // 인포윈도우를 생성합니다
       var infowindow2 = new kakao.maps.InfoWindow({

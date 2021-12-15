@@ -101,7 +101,11 @@ export default function FindPartner() {
     "bodyPart": bodypartOptions,
     "message": text
   }
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
 
   const yearChange = (value) => {
@@ -169,7 +173,11 @@ export default function FindPartner() {
           }
         })
     }
-    else if (!reserveTime || !userId || !sbd || bodypartOptions.length === 0 || !markerPlace.address_name) {
+    else if (!userId) {
+      setModalMsg('로그인 후 이용가능합니다.')
+      setModal(true)
+    }
+    else if (!reserveTime || !sbd || bodypartOptions.length === 0 || !markerPlace.address_name) {
       setModalMsg('선택하지 않은 정보가 있습니다.')
       setModal(true)
     }
