@@ -186,13 +186,13 @@ export default function FindMap(
                   />
                 )
               })
-            }</div> : <div className='empty-result'>검색결과가 없습니다</div>}</div>
+            }</div> : <div className='empty-result'>헬스장을<br />검색해주세요</div>}</div>
           <div id='pagination'></div>
 
         </div>
 
         <div className='showmap'>
-          <div id='map' style={{ width: '600px', height: '600px', zIndex: 0 }}></div>
+          <div id='map' style={{ width: '96%', height: '96%', maxheight: '600px', zIndex: 0 }}></div>
         </div>
       </div>
     </>
