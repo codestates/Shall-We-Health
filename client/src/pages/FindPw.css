@@ -4,17 +4,15 @@
   align-items: center;
   width: 100%;
   max-width: 1024px;
-  min-width: 768px;
   margin: 0 auto;
 }
 
 .findpw-container .home-logo {
   background-image: url('../img/logo.svg');
-  width: 300px;
+  width: 30vh;
   height: 200px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  margin-bottom: 40px;
 }
 
 .findpw-container .inner-container {
@@ -28,25 +26,22 @@
 .findpw-container .text-findPw {
   font-size: 30px;
   font-weight: 700;
-  grid-column: 1/3;
   text-align: center;
-  margin-bottom: 50px;
 }
 
 .findpw-container .text-email {
   font-weight: 700;
   font-size: 18px;
-  grid-column: 1/3;
 }
 
 .findpw-container input {
   border: solid 2px #39cfd9;
-  border: #39cfd9 solid 2px;
-  width: 345px;
+  width: 100%;
   height: 35px;
   font-size: 16px;
   border-radius: 5px;
   box-shadow: 2px 4px 2px #39cfd9;
+  justify-self: center;
 }
 
 .findpw-container input:focus {
@@ -71,10 +66,6 @@
   cursor: pointer;
 }
 
-.findpw-container .btn-mailsend {
-  grid-row: 8/9;
-}
-
 .findpw-container .btn-home {
   grid-column: 1/3;
   justify-self: center;
@@ -94,12 +85,25 @@
 }
 
 .findpw-container .err {
-  grid-column: 1/2;
+  grid-row: 4/5;
   color: #ff7373;
   text-align: right;
-  padding-bottom: 15px;
 }
 
 .findpw-container .loading-container {
   height: 430px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .findpw-container input {
+    width: 80%;
+  }
+
+  .findpw-container .text-email {
+    padding-left: 20px;
+  }
+
+  .findpw-container .err {
+    padding-right: 10%;
+  }
 }
