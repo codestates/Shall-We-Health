@@ -42,34 +42,6 @@ module.exports = async (req, res) => {
         .end();
     } else {
       /* 회원가입 안되어있을 때 */
-      // function makeId(length) {
-      //   let result = "";
-      //   let characters =
-      //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      //   let charactersLength = characters.length;
-      //   for (let i = 0; i < length; i++) {
-      //     result += characters.charAt(
-      //       Math.floor(Math.random() * charactersLength)
-      //     );
-      //   }
-      //   return result;
-      // }
-      // let duplication = true;
-      // let randomSet = "";
-      // while (duplication) {
-      //   randomSet = makeId(5);
-      //   duplication = await User.findOne({
-      //     where: { nickname: randomSet },
-      //     attributes: ["email", "createdAt"],
-      //   });
-      // }
-
-      // const newLoginData = await User.create({
-      //   email,
-      //   isOauth,
-      //   nickname: randomSet,
-      //   isEmailVerified: 1,
-      // });
       const newLoginData = await socialSignup(5, "", email, isOauth);
       console.log(newLoginData);
       const accessToken = jwt.sign(
