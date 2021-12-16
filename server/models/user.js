@@ -12,28 +12,28 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Post, {
         foreignKey: "hostId",
         as: "hosts",
-        onDelete: "SET NULL", //default 설정임
+        onDelete: "CASCADE",
       });
       User.hasMany(models.Post, {
         foreignKey: "guestId",
         as: "guests",
-        onDelete: "SET NULL", //default 설정임
+        onDelete: "CASCADE",
       });
       User.hasMany(models.Issue, {
         foreignKey: "reporterId",
         as: "reports",
-        onDelete: "SET NULL", //default 설정임
+        onDelete: "CASCADE",
       });
       User.hasMany(models.Issue, {
         foreignKey: "targetId",
         as: "targets",
-        onDelete: "SET NULL", //default 설정임
+        onDelete: "CASCADE",
       });
       User.hasMany(models.Chat, {
         foreignKey: {
           name: "authorId",
         },
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       });
       User.hasMany(models.Thumbsup, {
         foreignKey: "giverId",

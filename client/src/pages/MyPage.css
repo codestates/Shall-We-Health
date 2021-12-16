@@ -183,7 +183,7 @@
 }
 
 .mylog-container .table-data td.etc{
-    vertical-align: top;
+    /* vertical-align: top; */
 }
 
 .mylog-container .table-data .like-issue{
