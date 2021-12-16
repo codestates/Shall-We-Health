@@ -351,12 +351,12 @@ html {
     font-size: 1.4em;
     font-weight: 700;
     line-height: 1.9;
-    color: black;
+    color: var(--font-color1);
     text-align: left;
     margin-left: 30%;
     padding: 20px 0 20px 40px;
     border-radius: 30px;
-    background-color: rgb(231, 246, 250);
+    background-color: var(--main-backcolor7);
   }
   .home-container .section-2-body,
   .section-3-body,
