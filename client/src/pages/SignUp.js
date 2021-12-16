@@ -174,6 +174,12 @@ export default function SignUp() {
     isValidCkecked();
   }, [inputInfo]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   return (
     <div className='signup-container'>
       <div className='home-logo'></div>
