@@ -37,7 +37,7 @@ export default function Home() {
 
       <div className='explain-section-2'>
         <div data-aos="fade-up" className='section-2-head'>
-          <p className='section-2-title'>신청게시판</p>
+          <p className='section-2-title web'>신청게시판</p>
           <p className='section-2-text'>
             게시판에서
             <br />원하는 날짜, 시간, 장소에
@@ -45,38 +45,41 @@ export default function Home() {
         </div>
 
         <div data-aos="fade-left" className='section-2-body'>
+        <div className='section-2-title mobile'>신청게시판</div>
           <img className='section-2-board' src='/img/board.png' alt='board' />
         </div>
       </div>
 
       <div className='explain-section-3'>
         <div data-aos="fade-up" className='section-3-head'>
-          <p className='section-3-title'>상세페이지</p>
+          <p className='section-3-title web'>상세페이지</p>
           <p className='section-3-text'>
             원하는 게시물의 상세정보를
             <br /> 확인하고 신청하세요.
           </p>
         </div>
         <div data-aos="fade-left" className='section-3-body'>
+        <div className='section-3-title mobile'>상세페이지</div>
           <img className='section-3-view' src='/img/view.png' alt='board' />
         </div>
       </div>
 
       <div className='explain-section-4'>
         <div data-aos="fade-up" className='section-4-head'>
-          <p className='section-4-title'>게시물작성</p>
+          <p className='section-4-title web'>게시물작성</p>
           <p className='section-4-text'>
             내가 운동하고자 하는 시간, <br /> 장소를선택하세요
           </p>
         </div>
         <div data-aos="fade-left" className='section-4-body'>
+        <div className='section-4-title mobile'>게시물작성</div>
           <img className='section-4-FPtop' src='/img/findpartnertop.png' alt='findpartner' />
         </div>
       </div>
 
       <div className='explain-section-5'>
         <div data-aos="fade-up" className='section-5-head'>
-          <p className='section-5-title'>게시물작성</p>
+          <p className='section-5-title web'>게시물작성</p>
           <p className='section-5-text'>
             나의 운동 레벨과  <br /> 운동하고싶은 부위를 선택 후,<br />
             파트너에게 하고싶은 말을
@@ -84,6 +87,7 @@ export default function Home() {
           </p>
         </div>
         <div data-aos="fade-left" className='section-5-body'>
+        <div className='section-5-title mobile'>게시물작성</div>
           <img className='section-5-FPbot' src='/img/findpartnerbot.png' alt='findparter' />
         </div>
       </div>
