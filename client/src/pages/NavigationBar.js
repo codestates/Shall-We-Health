@@ -34,7 +34,7 @@ export default function NavigationBar() {
             to='/board'
             style={{ color: 'inherit', textDecoration: 'inherit' }}
           >
-            <span className='web'>메이트 탐색</span>
+            <span className='web'>매칭 게시판</span>
             <FontAwesomeIcon className='board mobile' icon={faThList} />
           </Link>
         </div>
