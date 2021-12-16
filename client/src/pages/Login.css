@@ -134,14 +134,13 @@
 .login-container .grid-func {
   display: grid;
   grid-template-columns: 120px 100px 100px;
-  /* background-image: url('../img/kakao.svg'); */
 }
 
 .login-container .grid-signup,
 .login-container .grid-findpw {
   text-align: right;
   border-right: rgb(117, 117, 117) 2px solid;
-  padding-right: 15px;
+  padding-right: 3%;
   font-weight: 650;
   color: var(--font-color2);
 }
@@ -217,4 +216,20 @@
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px var(--main-backcolor3) inset !important;
   -webkit-text-fill-color: var(--font-color2) !important;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .login-container .login-modal {
+    width: 80%;
+    max-width: 300px;
+    min-width: 290px;
+    margin: 0 auto;
+    min-height: 470px;
+    max-height: 470px;
+  }
+
+  .login-container .grid-func {
+    display: grid;
+    grid-template-columns: 120px 70px 60px;
+  }
 }

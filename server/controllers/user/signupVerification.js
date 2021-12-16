@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 
     if (userEmail) {
       const email2 = userEmail.dataValues
-      const token = jwt.sign(email2, process.env.ACCESS_SECRET, { expiresIn: "1h" })
+      const token = jwt.sign(email2, process.env.ACCESS_SECRET)
 
 
       let transporter = nodemailer.createTransport({
