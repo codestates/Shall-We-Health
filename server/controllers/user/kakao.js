@@ -39,35 +39,6 @@ module.exports = async (req, res) => {
       if (socialUserData) {
         return res.status(201).end();
       }
-      //   function makeId(length) {
-      //     let result = "";
-      //     let characters =
-      //       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      //     let charactersLength = characters.length;
-      //     for (let i = 0; i < length; i++) {
-      //       result += characters.charAt(
-      //         Math.floor(Math.random() * charactersLength)
-      //       );
-      //     }
-      //     return result;
-      //   }
-      //   let duplication = true;
-      //   let randomSet = "";
-      //   while (duplication) {
-      //     randomSet = makeId(5);
-      //     duplication = await User.findOne({
-      //       where: { nickname: nickname + randomSet },
-      //       attributes: ["email", "createdAt"],
-      //     });
-      //   }
-      //   await User.create({
-      //     email,
-      //     isOauth,
-      //     nickname: nickname + randomSet,
-      //     isEmailVerified: 1,
-      //   });
-      //   return res.status(201).end();
-      // }
     }
   } catch (err) {
     console.log(err);
