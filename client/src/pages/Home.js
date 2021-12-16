@@ -68,7 +68,7 @@ export default function Home() {
         <div data-aos="fade-up" className='section-4-head'>
           <p className='section-4-title web'>게시물작성</p>
           <p className='section-4-text'>
-            내가 운동하고자 하는 시간, <br /> 장소를선택하세요
+            내가 운동하고자 하는 시간, <br /> 장소를 선택하세요.
           </p>
         </div>
         <div data-aos="fade-left" className='section-4-body'>
@@ -101,7 +101,7 @@ export default function Home() {
         </div>
 
         <div data-aos="fade-up" className='button-section-2'>
-          <div className='btn-2-text'>내가 원하는 시간에<br />파트너를 모집해보세요</div>
+          <div className='btn-2-text'>내가 원하는 시간에<br />파트너를 모집해보세요.</div>
           <Link
             to='/find-partner'
             style={{ color: 'inherit', textDecoration: 'inherit' }}
@@ -109,7 +109,7 @@ export default function Home() {
         </div>
 
         <div data-aos="fade-up" className='button-section-3'>
-          <div className='btn-3-text'>아직 회원이 아니신가요?<br /> 회원가입 후<br /> 나의 운동메이트를 찾아보세요</div>
+          <div className='btn-3-text'>아직 회원이 아니신가요?<br /> 회원가입 후<br /> 나의 운동메이트를 찾아보세요.</div>
           <Link
             to='/signup'
             style={{ color: 'inherit', textDecoration: 'inherit' }}><button className='btn-3-btn' >회원가입 하러가기</button></Link>

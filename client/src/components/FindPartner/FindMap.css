@@ -16,25 +16,27 @@
   /* border: 1px black solid; */
 }
 
-/* .findmap-container #map {
-  height: 100%;
-  width: 100%;
-  z-index: 0;
-} */
+.findmap-container #map {
+  color: black;
+}
 
 .findmap-container .inputForm {
   margin: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .findmap-container .input-textbox {
   border: none;
   font-size: 1.25em;
   width: 70%;
-  height: 25px;
+  height: 18px;
   background-color: var(--main-backcolor3);
   color: var(--font-color1);
 
   /* border: black 1px solid; */
 }
+
 
 .findmap-container .input-textbox:focus {
   outline: none;
@@ -42,7 +44,6 @@
 .findmap-container .search-button {
   font-size: 1.2em;
   border: none;
-  margin-top: 2%;
   /* margin-left: 23px; */
   width: 25%;
   background-color: var(--main-backcolor3);
@@ -196,10 +197,10 @@
   }
 }
 
-@media (min-width: 0) and (max-width: 415px) {
+@media (min-width: 0) and (max-width: 600px) {
   .findmap-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .findmap-container .findmap-search {
     position: relative;
