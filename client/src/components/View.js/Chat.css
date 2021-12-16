@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 95%;
-  background-color: rgb(228, 228, 228);
+  background-color: var(--main-backcolor5);
   border-radius: 10px;
   margin: 0 auto;
 }
@@ -14,6 +14,12 @@
   background-color: #ff9878;
   border-radius: 10px;
   font-weight: 700;
+}
+
+@media (min-width: 0px) and (max-width: 447px) {
+  .chat-container .chat-open-comment {
+    font-size: 0.8em;
+  }
 }
 
 .chat-container .chat-messages {
@@ -61,7 +67,7 @@
   font-size: 13px;
   margin-right: 10px;
   font-weight: 600;
-  color: rgb(49, 49, 49);
+  color: var(--font-color1);
 }
 
 .chat-container .datetime {

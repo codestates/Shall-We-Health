@@ -288,8 +288,8 @@ export default function View({ match }) {
         <div className='components-container'>
           <div className='tab-menu'>
             <div className='match-chat-tab'>
-              <div className='match-info-tab' onClick={() => { setChatOpen(false) }}>매칭정보</div>
-              <div className='chat-tab' onClick={() => { chatting() }}>채팅하기</div>
+              <div className={chatOpen ? 'match-info-tab' : 'match-info-tab tab-selected'} onClick={() => { setChatOpen(false) }}>매칭정보</div>
+              <div className={chatOpen ? 'chat-tab tab-selected' : 'chat-tab'} onClick={() => { chatting() }}>채팅하기</div>
             </div>
             <div className={userId === hostId && ismatched === false ? 'edit-delete-tab' : 'edit-delete-tab none'} >
               <div className='edit-tab' onClick={modifyClick}>수정</div>
