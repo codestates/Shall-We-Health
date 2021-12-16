@@ -9,7 +9,6 @@ export default function VerifyEmail({ match }) {
   const signUpstateUpdate = async () => {
     await axios.patch(`${process.env.REACT_APP_SERVER_API}/user/email-verification`, { token })
       .then((res) => {
-        console.log(res, 'client/verifyEmail')
         if (!res.data.data) {
           setCompleted(false)
         }
@@ -25,17 +24,18 @@ export default function VerifyEmail({ match }) {
 
   return (
     <div className='verifyemail-container'>
-      <div className='home-logo'></div>
       {completed
         ? (
-          <div>
-            <div className='text-signUp'>  환영합니다!💪🏻 <br /> 회원가입이 완료 되었습니다<br /> 로그인 후 운동메이트를 찾아보세요</div>
-          </div>
+          <>
+            <div className="suecessimg"></div>
+            <div className='text-signUp'>  환영합니다💪🏻 <br /> 회원가입이 완료 되었습니다<br /> 로그인 후 운동메이트를 찾아보세요</div>
+          </>
         )
         : (
-          <div>
-            <div className='text-signUp Fail'>  유효하지 않은 접근입니다.<br /> 확인 후 다시 접속해주세요.</div>
-          </div>
+          <>
+            <div className="errorimg"></div>
+            <div className='text-signUp Fail'>  유효하지 않은 접근입니다<br /> 확인 후 다시 접속해주세요</div>
+          </>
         )
       }
 
