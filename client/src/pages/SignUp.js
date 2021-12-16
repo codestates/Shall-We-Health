@@ -5,28 +5,15 @@ import { verifyNickname, verifyEmail, verifyPassword } from '../utils/Verify';
 
 export default function SignUp() {
   const [signUp, setSignUp] = useState(false);
-  const [inputInfo, setInputInfo] = useState({
-    nickname: '',
-    email: '',
-    password: '',
-    pwConfirm: '',
-  });
-  const [isValid, setIsValid] = useState({
-    nickname: 0,
-    email: 0,
-    password: 0,
-    pwConfirm: 0,
-  });
-  const [checkMsg, setCheckMsg] = useState({
-    nickname: '',
-    email: '',
-    password: '',
-    pwConfirm: '',
-    signUp: '',
-  });
+  const [nicknameVaild, setNicknameValid] = useState(0)
+  const [emailValid, setEmailValid] = useState(0)
+  const [passwordValid, setPasswordValid] = useState(0)
+  const [pwConfirmValid, setPwConfirmValid] = useState(0)
+  const [inputInfo, setInputInfo] = useState({ nickname: '', email: '', password: '', pwConfirm: '', });
+  const [checkMsg, setCheckMsg] = useState({ nickname: '', email: '', password: '', pwConfirm: '', signUp: '' });
   const [loading, setLoading] = useState(false);
+  const { nickname, email, password, pwConfirm } = inputInfo;
 
-  console.log(isValid);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,71 +21,72 @@ export default function SignUp() {
     setCheckMsg({ ...checkMsg, signUp: '' });
   };
 
-  const isValidCkecked = async () => {
-    const { nickname, email, password, pwConfirm } = inputInfo;
-    const nickVerify = verifyNickname(nickname);
-    const emailVal = verifyEmail(email);
-    const passwordVal = verifyPassword(password);
+  const handleNickname = () => {
+    const nameCheck = verifyNickname(nickname);
 
-    if (!nickVerify && nickname !== '') {
-      await setCheckMsg({
-        ...checkMsg,
-        nickname: '닉네임 형식이 올바르지 않습니다',
-      });
-      await setIsValid({ ...isValid, nickname: 0 });
-    } else if (nickVerify && nickname && isValid.nickname === 0) {
-      await setCheckMsg({ ...checkMsg, nickname: '' });
-      await setIsValid({ ...isValid, nickname: 1 });
+    if (nickname !== '' && nameCheck) {
+      setNicknameValid(1)
+      setCheckMsg({ ...checkMsg, nickname: '' });
+    } else if (nickname !== '' && !nameCheck) {
+      setNicknameValid(0)
+      setCheckMsg({ ...checkMsg, nickname: '닉네임 형식이 올바르지 않습니다' });
     }
+  }
 
-    if (!emailVal && email !== '') {
-      await setCheckMsg({
-        ...checkMsg,
-        email: '이메일 형식이 올바르지 않습니다',
-      });
-      await setIsValid({ ...isValid, email: 0 });
-    } else if (emailVal && email && isValid.email === 0) {
-      await setCheckMsg({ ...checkMsg, email: '' });
-      await setIsValid({ ...isValid, email: 1 });
+
+  const handleEmail = () => {
+    const emailCheck = verifyEmail(email);
+
+    if (email !== '' && emailCheck) {
+      setEmailValid(1)
+      setCheckMsg({ ...checkMsg, email: '' });
+    } else if (email !== '' && !emailCheck) {
+      setEmailValid(0)
+      setCheckMsg({ ...checkMsg, email: '이메일 형식이 올바르지 않습니다' });
     }
+  }
 
-    if (!passwordVal && password !== '') {
-      setCheckMsg({
-        ...checkMsg,
-        password: '숫자와 영문자 조합하여 8~15자리를 사용해야 합니다',
-      });
-      setIsValid({ ...isValid, password: 0 });
-    } else if (passwordVal && password && isValid.password === 0) {
+
+
+  const handlePassword = () => {
+    const pwCheck = verifyPassword(password);
+    if (password !== '' && !pwCheck || password === '') {
+      setPasswordValid(0)
+      setCheckMsg({ ...checkMsg, password: '숫자와 영문자 조합하여 8~15자리를 사용해야 합니다' });
+    } else if (password !== '' && pwCheck) {
+      setPasswordValid(1)
       setCheckMsg({ ...checkMsg, password: '' });
-      setIsValid({ ...isValid, password: passwordVal });
     }
+    handlePwConfirm()
+  }
 
-    if (pwConfirm !== password && pwConfirm !== '') {
-      setIsValid({ ...isValid, pwConfirm: 0 });
+  const handlePwConfirm = () => {
+    if (pwConfirm !== password) {
+      setPwConfirmValid(0)
       setCheckMsg({ ...checkMsg, pwConfirm: '비밀번호가 일치하지 않습니다' });
-    } else if (pwConfirm === password && pwConfirm && isValid.pwConfirm === 0) {
-      setIsValid({ ...isValid, pwConfirm: true });
+    } else if (password === pwConfirm) {
+      setPwConfirmValid(1)
       setCheckMsg({ ...checkMsg, pwConfirm: '' });
     }
-  };
+  }
+
 
   const UserInfoConfirm = async (e) => {
     const { name } = e.target;
-    const { nickname, email } = inputInfo;
 
     if (name === 'nickname') {
-      if (isValid.nickname === 1) {
-        await axios
-          .get(`${process.env.REACT_APP_SERVER_API}/user/duplication`, {
-            params: { nickname, email },
-          })
+      if (nicknameVaild === 1) {
+        await axios.get(`${process.env.REACT_APP_SERVER_API}/user/duplication`, {
+          params: { nickname, email },
+        })
           .then((res) => {
             if (res.data.data === false) {
-              setIsValid({ ...isValid, [name]: true });
-              setCheckMsg({ ...checkMsg, [name]: '사용가능한 닉네임입니다' });
+              setNicknameValid(true);
+              setCheckMsg({ ...checkMsg, nickname: '사용가능한 닉네임입니다' });
+
             } else {
-              setIsValid({ ...isValid, [name]: 0 });
-              setCheckMsg({ ...checkMsg, [name]: '사용중인 닉네임입니다' });
+              setNicknameValid(0);
+              setCheckMsg({ ...checkMsg, nickname: '사용중인 닉네임입니다' });
             }
           })
           .catch((err) => {
@@ -107,18 +95,19 @@ export default function SignUp() {
       }
     }
 
+
     if (name === 'email') {
-      if (isValid.email === 1) {
+      if (emailValid === 1) {
         await axios
           .get(`${process.env.REACT_APP_SERVER_API}/user/duplication`, {
             params: { nickname, email },
           })
           .then((res) => {
             if (res.data.data === false) {
-              setIsValid({ ...isValid, [name]: true });
+              setEmailValid(true);
               setCheckMsg({ ...checkMsg, [name]: '사용가능한 이메일입니다' });
             } else {
-              setIsValid({ ...isValid, [name]: 0 });
+              setEmailValid(0);
               setCheckMsg({ ...checkMsg, [name]: '가입 된 이메일입니다' });
             }
           })
@@ -129,28 +118,18 @@ export default function SignUp() {
     }
 
     if (name === 'signUp') {
-      const { nickname, email, password, pwConfirm } = isValid;
-
-      if (nickname === true && email === true && password && pwConfirm) {
+      if (nicknameVaild === true && emailValid === true && passwordValid && pwConfirmValid) {
         setLoading(true);
-        /*모든 조건이 true일때 회원가입가능*/
         const { nickname, email, password } = inputInfo;
         await axios
           .post(`${process.env.REACT_APP_SERVER_API}/user/signup`, {
-            /* 회원가입 DB저장*/
             nickname,
             email,
             password,
           })
           .then(() => {
-            axios
-              .post(
-                `${process.env.REACT_APP_SERVER_API}/user/signup-verification`,
-                { email }
-              )
-              /* 회원가입 DB저장되어 있는 이메일확인 후 메일보내주기*/
+            axios.post(`${process.env.REACT_APP_SERVER_API}/user/signup-verification`, { email })
               .then(async (res) => {
-                console.log(res);
                 await setLoading(false);
                 await setSignUp(true);
               })
@@ -170,9 +149,25 @@ export default function SignUp() {
     }
   };
 
+  console.log(passwordValid, pwConfirmValid)
+
   useEffect(() => {
-    isValidCkecked();
-  }, [inputInfo]);
+    handleNickname();
+  }, [inputInfo.nickname]);
+
+  useEffect(() => {
+    handleEmail();
+  }, [inputInfo.email]);
+
+  useEffect(() => {
+    handlePassword();
+  }, [inputInfo.password]);
+
+
+  useEffect(() => {
+    handlePwConfirm();
+  }, [inputInfo.pwConfirm]);
+
 
   return (
     <div className='signup-container'>
@@ -183,41 +178,29 @@ export default function SignUp() {
         </div>
       ) : signUp === true ? (
         <div>
+          <div className='emailimg'></div>
           <div className='text-sentMail'>
-            {' '}
-            입력하신 이메일로 <br /> 가입메일이 발송 되었습니다.{' '}
+            입력하신 이메일로 <br /> 가입메일이 발송 되었습니다.
           </div>
         </div>
       ) : (
         <div className='signup-box'>
           <div className='text'>닉네임</div>
           <div className='line'>
-            <input
-              name='nickname'
-              onChange={handleInputChange}
-              placeholder='특수문자 제외 2~10자내로 입력해주세요(공백가능)'
-            />
+            <input name='nickname' autoComplete='off' onChange={handleInputChange} placeholder='특수문자 제외 2~10자내로 입력해주세요(공백가능)' />
             <button
               name='nickname'
               className='btn-confirm'
-              onClick={(e) => {
-                UserInfoConfirm(e);
-              }}
-            >
-              중복확인
-            </button>
+              onClick={(e) => { UserInfoConfirm(e); }}
+            > 중복확인 </button>
           </div>
-          <div className={isValid.nickname ? 'message check ' : 'message err'}>
-            {checkMsg.nickname}{' '}
+          <div className={nicknameVaild ? 'message check ' : 'message err'}>
+            {checkMsg.nickname}
           </div>
 
           <div className='text'>이메일</div>
           <div className='line'>
-            <input
-              name='email'
-              onChange={handleInputChange}
-              placeholder=' example@health.com'
-            />
+            <input name='email' onChange={handleInputChange} placeholder='입력하신 메일로 가입인증메일이 전송됩니다' />
             <button
               name='email'
               className='btn-confirm'
@@ -228,7 +211,7 @@ export default function SignUp() {
               중복확인
             </button>
           </div>
-          <div className={isValid.email ? 'message check' : 'message err'}>
+          <div className={emailValid ? 'message check' : 'message err'}>
             {checkMsg.email}
           </div>
 
