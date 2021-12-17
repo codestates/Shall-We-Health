@@ -78,9 +78,15 @@ export default function Login() {
       })
   }
 
+  const modalOutSide = (e) => {
+    if (e.target === e.currentTarget) {
+      dispatch(loginModal(!isModal))
+    }
+  }
+
   return (
     <>
-      <div className="login-container" >
+      <div className="login-container" onClick={modalOutSide}>
         <div className="login-modal fadeIn">
           <div className='btn-loginClose' onClick={handleModal}></div>
           <div className="home-logo"></div>
