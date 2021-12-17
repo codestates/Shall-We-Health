@@ -6,14 +6,17 @@
 .findpartner-container {
   background-color: var(--main-backcolor3);
   max-width: 1024px;
-  min-width: 1024px;
+  width: 100%;
   padding-top: 15px;
   margin: 150px auto 0 auto;
+  z-index: 2;
 }
 
 .findpartner-container .datepick-container {
   border-top: var(--main-color1) solid 3px;
   margin: 5%;
+  display: flex;
+  flex-direction: column;
 }
 
 .findpartner-container .datepick-title {
@@ -21,33 +24,36 @@
   margin: 2%;
 }
 .findpartner-container .datepick-main {
-  padding: 3% 25% 5% 25%;
+  width: 100%;
+  padding: 3% 0 5% 0;
+  justify-content: center;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 }
 
-.findpartner-container .date-title {
+.findpartner-container .date-title,
+.time-title,
+.minute-title {
   font-size: 1.1em;
-}
-.findpartner-container .time-title {
-  font-size: 1.1em;
-}
-.findpartner-container .minute-title {
-  font-size: 1.1em;
+  margin-right: 2%;
+  margin-left: 2%;
 }
 
-.findpartner-container .date-selectbox{
+.findpartner-container .date-selectbox {
   color: black;
+  margin-right: 2%;
+  text-align: center;
 }
 
-.findpartner-container .time-selectbox{
+.findpartner-container .time-selectbox {
   color: black;
+  text-align: center;
 }
 
-.findpartner-container .minute-selectbox{
+.findpartner-container .minute-selectbox {
   color: black;
+  text-align: center;
 }
 
 .findpartner-container .location-container {
@@ -55,8 +61,8 @@
   margin: 5%;
   display: flex;
   flex-direction: column;
+  max-width: 1023px;
 }
-
 
 .findpartner-container .map-section {
   margin: 1%;
@@ -115,6 +121,7 @@ input[type='radio']:checked + label {
 .findpartner-container .message-container {
   border-top: var(--main-color1) solid 3px;
   margin: 5%;
+  height: 200px;
 }
 
 .findpartner-container .button-container {
@@ -147,8 +154,8 @@ input[type='radio']:checked + label {
   margin: 2%;
 }
 .findpartner-container #message-input {
-  width: 800px;
-  height: 200px;
+  width: 80%;
+  height: 80%;
   border-radius: 13px;
   font-size: 1.25em;
   padding: 3%;
@@ -157,8 +164,10 @@ input[type='radio']:checked + label {
   background-color: var(--main-backcolor3);
   color: var(--font-color1);
 }
+
 .findpartner-container .message-wrap {
   text-align: center;
+  height: 100%;
 }
 
 .findpartner-container .bodypart-title {
@@ -254,4 +263,96 @@ input[type='radio']:checked + label {
   border-radius: 10px;
   font-weight: 500;
   cursor: pointer;
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .findpartner-container .datepick-main {
+    width: 100%;
+    align-self: center;
+    height: 50px;
+
+    padding: 3% 0 5% 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .findpartner-container .date-title,
+  .time-title,
+  .minute-title {
+    margin: 0%;
+    font-size: 13px;
+  }
+
+  .findpartner-container .time-selectbox,
+  .minute-selectbox {
+    font-size: 13px;
+    height: 30px;
+    width: 70px;
+    margin: 0 1% 2% 1%;
+  }
+  .findpartner-container .date-selectbox {
+    font-size: 13px;
+    height: 30px;
+    width: 120px;
+    margin: 0 1% 2% 1%;
+  }
+
+  .findpartner-container .css-tlfecz-indicatorContainer {
+    padding: 0px;
+    width: 20px;
+  }
+  .findpartner-container .body-options-label {
+    font-size: 1em;
+  }
+  .findpartner-container .weight-button {
+    display: flex;
+    flex-direction: row;
+    width: 210px;
+    height: 130px;
+    font-size: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .findpartner-container .weight-button-label {
+    width: 100px;
+    line-height: 40px;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+
+  .findpartner-container .bodypart-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .findpartner-container .findpartner-button {
+    width: 120px;
+    margin-top: 10%;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .findpartner-container .message-title {
+    font-size: 1em;
+  }
+
+  .findpartner-container .bodypart-title {
+    font-size: 1em;
+  }
+  .findpartner-container .weight-title {
+    font-size: 1em;
+  }
+  .findpartner-container .location-title {
+    font-size: 1em;
+  }
+  .findpartner-container .datepick-title {
+    font-size: 1em;
+  }
 }

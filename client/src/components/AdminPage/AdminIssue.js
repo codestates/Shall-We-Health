@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Loading from '../etc/Loading';
 import Pagination from '../Pagination/Pagination';
@@ -12,7 +12,7 @@ export default function AdminIssue() {
   const [data, setData] = useState([]);
   const [issueData, setIssueData] = useState({});
 
-  const getIssueData = async () => {
+  const getIssueData = useCallback(async () => {
     await setIsLoading(true);
     await axios
       .get(`${process.env.REACT_APP_SERVER_API}/admin/issue-list`, {
@@ -23,9 +23,9 @@ export default function AdminIssue() {
         setCount(res.data.count);
       });
     await setIsLoading(false);
-  };
+  },[page])
 
-  const getIssueDataPage = () => {
+  const getIssueDataPage = useCallback(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_API}/admin/issue-list`, {
         params: { page },
@@ -34,15 +34,15 @@ export default function AdminIssue() {
         setData(res.data.data);
         setCount(res.data.count);
       });
-  };
+  }, [page])
 
   useEffect(() => {
     getIssueData();
-  }, []);
+  }, [getIssueData]);
 
   useEffect(() => {
     getIssueDataPage();
-  }, [page]);
+  }, [getIssueDataPage,page]);
 
   return (
     <div className='adminissue-container'>

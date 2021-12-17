@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux'
 
 export default function FindPartnerModify({ match }) {
     const postNumber = match.params.postId
-    const [authUserId, setAuthUserId] = useState('')
     const userId = useSelector((state) => state.loginReducer.id)
     const [searchResult, setSearchResult] = useState('')
     const [inputText, setInputText] = useState("");
@@ -25,15 +24,6 @@ export default function FindPartnerModify({ match }) {
     const [bodypartOptions, setBodyPartOptions] = useState([])
     // const [isSelected, setIsSelected] = useState('')
     console.log(match)
-
-    const checkisAdmin = () => {
-        axios.get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
-            withCredentials: true,
-        })
-            .then((res) => {
-                setAuthUserId(res.data.data.decoded.id)
-            })
-    }
 
     const getPostData = async () => {
 
@@ -67,9 +57,8 @@ export default function FindPartnerModify({ match }) {
 
 
 
-    useEffect(async () => {
-        await checkisAdmin()
-        await getPostData()
+    useEffect(() => {
+        getPostData()
 
     }, [postNumber])
 

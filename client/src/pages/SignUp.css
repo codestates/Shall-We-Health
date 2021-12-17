@@ -10,7 +10,7 @@
 
 .signup-container .home-logo {
   background-image: url('../img/logo.svg');
-  width: 30%;
+  width: 30vh;
   min-width: 220px;
   height: 200px;
   background-repeat: no-repeat;

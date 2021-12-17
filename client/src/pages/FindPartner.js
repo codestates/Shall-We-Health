@@ -194,10 +194,12 @@ export default function FindPartner() {
           <div className='datepick-main'>
             <div className='date-title'>날짜</div>
             <Select className='date-selectbox' options={dateOptions} value={dateOptions.find(op => { return op.value === year })} onChange={yearChange} placeholder='0000-00-00' styles={customStyles} />
+
             <Select className='time-selectbox' options={timeOptions} value={timeOptions.find(op => { return op.value === hour })} onChange={hourChange} placeholder='00' styles={customStyles} />
             <div className=' time-title'>시</div>
             <Select className='minute-selectbox' options={minuteOptions} value={minuteOptions.find(op => { return op.value === minute })} onChange={minuteChange} placeholder='00' styles={customStyles} />
             <div className='minute-title'>분</div>
+
 
           </div>
         </div>

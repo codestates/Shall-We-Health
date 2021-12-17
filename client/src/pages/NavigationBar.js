@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Login from './Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginModal } from '../actions';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faThList, faUser, faSearch, fas } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faThList, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
 import axios from "axios"
 
@@ -27,14 +27,14 @@ export default function NavigationBar() {
   return (
     <div className='navBar-container'>
       <div className='bar'>
-        <img alt='logo' src='img/logo.svg' className='home-logo web'  onError={(e)=>{e.target.onerror = null; e.target.src='../img/logo.svg'}} onClick={() => { window.location.replace('/') }} />
-        <img alt='logo' src='img/symbol.svg' className='home-logo mobile' onError={(e)=>{e.target.onerror = null; e.target.src='../img/symbol.svg'}} onClick={() => { window.location.replace('/') }} />
+        <img alt='logo' src='img/logo.svg' className='home-logo web' onError={(e) => { e.target.onerror = null; e.target.src = '../img/logo.svg' }} onClick={() => { window.location.replace('/') }} />
+        <img alt='logo' src='img/symbol.svg' className='home-logo mobile' onError={(e) => { e.target.onerror = null; e.target.src = '../img/symbol.svg' }} onClick={() => { window.location.replace('/') }} />
         <div className='btn-board'>
           <Link
             to='/board'
             style={{ color: 'inherit', textDecoration: 'inherit' }}
           >
-            <span className='web'>메이트 탐색</span>
+            <span className='web'>매칭 게시판</span>
             <FontAwesomeIcon className='board mobile' icon={faThList} />
           </Link>
         </div>

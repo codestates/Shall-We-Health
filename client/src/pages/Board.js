@@ -111,19 +111,19 @@ export default function Board() {
 
   //데이터 요청
   const getData = async () => {
+    await setPage(1)
     await setIsLoading(true)
     await axios.get(`${process.env.REACT_APP_SERVER_API}/post`, {
       params: {
         date: getDateForm(selectDate),
         location: locationForm,
-        page,
+        page : 1,
         isMatched,
         keyword
       }
     })
       .then((res) => {
         setData(res.data.data)
-        console.log(res.data.data)
         setCount(res.data.count)
       })
     await setIsLoading(false)
@@ -290,7 +290,7 @@ function RowData({ el }) {
     <tr>
       <td className='time'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.reserved_at.slice(11, 16)}</Link></td>
       <td className='info'>
-        <div className='title'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.addressName.slice(0, 2) + ' ' + el.placeName}</Link></div>
+        <div className='title'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>{el.addressName.split(' ')[1].slice(0,-1) + ' ' + el.placeName}</Link></div>
         <div className='sub-info'><Link to={`/view/${el.id}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>3대 {el.description.sbd} {el.description.bodyPart.join(' ')}</Link></div>
       </td>
       <td className='match'>
