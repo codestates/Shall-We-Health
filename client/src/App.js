@@ -21,7 +21,7 @@ import Pagination from './components/Pagination/Pagination';
 import NaverLogin from './pages/NaverLogin';
 import FindPartnerModify from './pages/FindPartnerModify';
 import { useDispatch } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import axios from "axios"
 import { login } from './actions';
 
@@ -29,7 +29,7 @@ function App() {
   const [theme, themeToggler] = useTheme();
   const dispatch = useDispatch();
 
-  const isAuthenticated = async () => {
+  const isAuthenticated = useCallback(async () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
         withCredentials: true,
@@ -52,7 +52,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }, [dispatch])
 
 
   const style = () => {
@@ -83,7 +83,7 @@ function App() {
 
   useEffect(() => {
     isAuthenticated();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
 

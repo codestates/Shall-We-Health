@@ -30,7 +30,7 @@ export default function Home() {
 
       <div className='explain-section-1'>
         <p data-aos="fade-up" className='explain-text-1'>혼자하는 헬스는 이제 그만,
-          <br />전국 헬스장에서 당신의 운동파트너를 찾아보세요.
+          <br />전국 헬스장에서 당신의 운동 파트너를 찾아보세요.
           <br />Shall We Health와 함께라면 가능합니다.
         </p>
       </div>
@@ -81,8 +81,8 @@ export default function Home() {
         <div data-aos="fade-up" className='section-5-head'>
           <p className='section-5-title web'>게시물작성</p>
           <p className='section-5-text'>
-            나의 운동 레벨과  <br /> 운동하고싶은 부위를 선택 후,<br />
-            파트너에게 하고싶은 말을
+            나의 운동 레벨과  <br /> 운동하고 싶은 부위를 선택 후,<br />
+            파트너에게 하고 싶은 말을
             <br />작성해주세요.
           </p>
         </div>
