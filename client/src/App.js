@@ -91,6 +91,7 @@ function App() {
       {style()}
       <StickyNav length='45'><NavigationBar /></StickyNav>
       <div className='area-nav'></div>
+      <div className='body-container'>
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/signup' component={SignUp} />
@@ -107,6 +108,7 @@ function App() {
         <Route path='/updatepw/:token' component={UpdatePw} />
         <Route path='/naver' component={NaverLogin} />
       </Switch>
+      </div>
       <Footer />
       {theme === 'light' ? (
         <div className='btn-theme dark' onClick={() => { themeToggler() }}><FontAwesomeIcon className='icon-theme' icon={faMoon} /><div>다크 모드로 보기</div></div>
