@@ -1,11 +1,11 @@
 @media (min-width: 601px) {
-.findmap-container {
-  margin-left: 2%;
-  width: 100%;
-  max-width: 1024px;
-  display: flex;
-  flex-direction: row;
-}
+  .findmap-container {
+    margin-left: 2%;
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .findmap-container .searchResult-table {
@@ -38,7 +38,6 @@
 
   /* border: black 1px solid; */
 }
-
 
 .findmap-container .input-textbox:focus {
   outline: none;
@@ -224,6 +223,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+  .findmap-container .search-result {
+    font-size: 1em;
   }
   .findmap-container .empty-result {
     text-align: center;

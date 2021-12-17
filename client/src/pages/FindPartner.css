@@ -303,12 +303,15 @@ input[type='radio']:checked + label {
     padding: 0px;
     width: 20px;
   }
-
+  .findpartner-container .body-options-label {
+    font-size: 1em;
+  }
   .findpartner-container .weight-button {
     display: flex;
     flex-direction: row;
     width: 210px;
     height: 130px;
+    font-size: 1em;
     flex-wrap: wrap;
     justify-content: center;
     margin-left: auto;
@@ -322,7 +325,11 @@ input[type='radio']:checked + label {
   }
 
   .findpartner-container .bodypart-section {
-    margin-left: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-left: 0;
   }
 
   .findpartner-container .findpartner-button {
@@ -330,5 +337,22 @@ input[type='radio']:checked + label {
     margin-top: 10%;
     font-weight: 500;
     font-size: 18px;
+  }
+
+  .findpartner-container .message-title {
+    font-size: 1em;
+  }
+
+  .findpartner-container .bodypart-title {
+    font-size: 1em;
+  }
+  .findpartner-container .weight-title {
+    font-size: 1em;
+  }
+  .findpartner-container .location-title {
+    font-size: 1em;
+  }
+  .findpartner-container .datepick-title {
+    font-size: 1em;
   }
 }

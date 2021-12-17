@@ -23,9 +23,6 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT,
     logging: console.log,
     logging: (...msg) => console.log(msg),
-    // dialectOptions: {
-    //   ssl: "Amazon RDS",
-    // },
   }
 );
 
