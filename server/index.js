@@ -23,9 +23,6 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT,
     logging: console.log,
     logging: (...msg) => console.log(msg),
-    // dialectOptions: {
-    //   ssl: "Amazon RDS",
-    // },
   }
 );
 
@@ -42,12 +39,13 @@ testConnection();
 /*서버 설정*/
 const app = express();
 const corsOptions = {
-  origin: [
-    "https://shallwehealth.com",
-    "https://www.shallwehealth.com",
-    "http://localhost:3000",
-    "http://localhost:3001",
-  ],
+  origin: "*",
+  // origin: [
+  //   "https://shallwehealth.com",
+  //   "https://www.shallwehealth.com",
+  //   "http://localhost:3000",
+  //   "http://localhost:3001",
+  // ],
   credentials: true,
 };
 
