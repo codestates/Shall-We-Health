@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './SignUp.csgit reset --soft HEAD^s';
+import './SignUp.css';
 import axios from 'axios';
 import { verifyNickname, verifyEmail, verifyPassword } from '../utils/Verify';
 
