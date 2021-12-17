@@ -7,13 +7,6 @@
     flex-direction: row;
   }
 }
-.findmap-container {
-  margin-left: 2%;
-  width: 100%;
-  max-width: 1024px;
-  display: flex;
-  flex-direction: row;
-}
 
 .findmap-container .searchResult-table {
   display: flex;

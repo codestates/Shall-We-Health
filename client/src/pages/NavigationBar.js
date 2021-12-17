@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Login from './Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginModal } from '../actions';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faThList, faUser, faSearch, fas } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faThList, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './NavigationBar.css';
 import axios from "axios"
 

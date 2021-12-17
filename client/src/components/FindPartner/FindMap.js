@@ -1,5 +1,5 @@
 /* global kakao */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../FindPartner/FindMap.css'
 
 export default function FindMap(
