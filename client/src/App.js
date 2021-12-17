@@ -20,17 +20,17 @@ import Chat from './components/View.js/Chat';
 import Pagination from './components/Pagination/Pagination';
 import NaverLogin from './pages/NaverLogin';
 import FindPartnerModify from './pages/FindPartnerModify';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import axios from "axios"
 import { login } from './actions';
 
 function App() {
-
   const [theme, themeToggler] = useTheme();
   const dispatch = useDispatch();
+
   const isAuthenticated = async () => {
-    const res = await axios
+    await axios
       .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
         withCredentials: true,
       })

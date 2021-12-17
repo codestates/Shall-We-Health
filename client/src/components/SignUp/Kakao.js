@@ -21,7 +21,7 @@ function KakaoLoginClickHandler() {
           const nickname = res.kakao_account.profile.nickname
           const isOauth = 1
 
-          const response = await axios.post(`${process.env.REACT_APP_SERVER_API}/user/kakao`,
+          await axios.post(`${process.env.REACT_APP_SERVER_API}/user/kakao`,
             { email, nickname, isOauth },
             { withCredentials: true })
             .then((res) => {

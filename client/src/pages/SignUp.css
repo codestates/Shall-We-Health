@@ -76,10 +76,9 @@
 
 .signup-container .text-sentMail {
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 800;
-  padding: 100px 30px 30px 30px;
-  height: 30vh;
+  padding: 30px;
 }
 
 .signup-container .message {
@@ -99,7 +98,7 @@
 }
 
 .signup-container .center {
-  text-align: center;
+  text-align: left;
 }
 
 .signup-container .loading-container {
@@ -107,6 +106,17 @@
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+.signup-container .emailimg {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 30vh;
+  width: 100%;
+}
+
+.signup-container .emailimg {
+  background-image: url('../img/email.svg');
 }
 
 .signup-container .loading-container img {
