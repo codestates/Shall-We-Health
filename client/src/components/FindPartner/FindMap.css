@@ -50,6 +50,10 @@
   background-color: var(--main-backcolor3);
   height: 27px;
   color: var(--font-color2);
+  display: flex;
+  align-items: center;
+  text-align: right;
+  justify-content: right;
 }
 .findmap-container .empty-result {
   text-align: center;
