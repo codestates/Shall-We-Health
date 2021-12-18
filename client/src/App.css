@@ -50,6 +50,10 @@
   height: 45px;
 }
 
+.App .body-container{
+  min-height: 100vh;
+}
+
 .btn-theme{
   position: fixed;
   display: flex;

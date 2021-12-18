@@ -21,7 +21,7 @@ import Pagination from './components/Pagination/Pagination';
 import NaverLogin from './pages/NaverLogin';
 import FindPartnerModify from './pages/FindPartnerModify';
 import { useDispatch } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import axios from "axios"
 import { login } from './actions';
 
@@ -29,7 +29,7 @@ function App() {
   const [theme, themeToggler] = useTheme();
   const dispatch = useDispatch();
 
-  const isAuthenticated = async () => {
+  const isAuthenticated = useCallback(async () => {
     await axios
       .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
         withCredentials: true,
@@ -52,7 +52,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }, [dispatch])
 
 
   const style = () => {
@@ -83,7 +83,7 @@ function App() {
 
   useEffect(() => {
     isAuthenticated();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
 
@@ -91,6 +91,7 @@ function App() {
       {style()}
       <StickyNav length='45'><NavigationBar /></StickyNav>
       <div className='area-nav'></div>
+      <div className='body-container'>
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/signup' component={SignUp} />
@@ -107,6 +108,7 @@ function App() {
         <Route path='/updatepw/:token' component={UpdatePw} />
         <Route path='/naver' component={NaverLogin} />
       </Switch>
+      </div>
       <Footer />
       {theme === 'light' ? (
         <div className='btn-theme dark' onClick={() => { themeToggler() }}><FontAwesomeIcon className='icon-theme' icon={faMoon} /><div>다크 모드로 보기</div></div>

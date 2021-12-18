@@ -111,19 +111,19 @@ export default function Board() {
 
   //데이터 요청
   const getData = async () => {
+    await setPage(1)
     await setIsLoading(true)
     await axios.get(`${process.env.REACT_APP_SERVER_API}/post`, {
       params: {
         date: getDateForm(selectDate),
         location: locationForm,
-        page,
+        page : 1,
         isMatched,
         keyword
       }
     })
       .then((res) => {
         setData(res.data.data)
-        console.log(res.data.data)
         setCount(res.data.count)
       })
     await setIsLoading(false)

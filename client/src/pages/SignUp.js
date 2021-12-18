@@ -50,23 +50,22 @@ export default function SignUp() {
 
   const handlePassword = () => {
     const pwCheck = verifyPassword(password);
-    if (password !== '' && !pwCheck || password === '') {
+    if (password !== '' && !pwCheck) {
       setPasswordValid(0)
       setCheckMsg({ ...checkMsg, password: '숫자와 영문자 조합하여 8~15자리를 사용해야 합니다' });
     } else if (password !== '' && pwCheck) {
       setPasswordValid(1)
-      setCheckMsg({ ...checkMsg, password: '' });
+      setCheckMsg({ ...checkMsg, password: '사용 가능한 비밀번호입니다' });
     }
-    handlePwConfirm()
   }
 
   const handlePwConfirm = () => {
     if (pwConfirm !== password) {
       setPwConfirmValid(0)
       setCheckMsg({ ...checkMsg, pwConfirm: '비밀번호가 일치하지 않습니다' });
-    } else if (password === pwConfirm) {
+    } else if (password === pwConfirm && pwConfirm !== '') {
       setPwConfirmValid(1)
-      setCheckMsg({ ...checkMsg, pwConfirm: '' });
+      setCheckMsg({ ...checkMsg, pwConfirm: '비밀번호가 일치합니다' })
     }
   }
 
@@ -82,11 +81,11 @@ export default function SignUp() {
           .then((res) => {
             if (res.data.data === false) {
               setNicknameValid(true);
-              setCheckMsg({ ...checkMsg, nickname: '사용가능한 닉네임입니다' });
+              setCheckMsg({ ...checkMsg, nickname: '사용 가능한 닉네임입니다' });
 
             } else {
               setNicknameValid(0);
-              setCheckMsg({ ...checkMsg, nickname: '사용중인 닉네임입니다' });
+              setCheckMsg({ ...checkMsg, nickname: '사용 중인 닉네임입니다' });
             }
           })
           .catch((err) => {
@@ -105,10 +104,10 @@ export default function SignUp() {
           .then((res) => {
             if (res.data.data === false) {
               setEmailValid(true);
-              setCheckMsg({ ...checkMsg, [name]: '사용가능한 이메일입니다' });
+              setCheckMsg({ ...checkMsg, [name]: '사용 가능한 이메일입니다' });
             } else {
               setEmailValid(0);
-              setCheckMsg({ ...checkMsg, [name]: '가입 된 이메일입니다' });
+              setCheckMsg({ ...checkMsg, [name]: '가입된 이메일입니다' });
             }
           })
           .catch((err) => {
@@ -143,13 +142,12 @@ export default function SignUp() {
       } else {
         setCheckMsg({
           ...checkMsg,
-          [name]: '위에 내용 중 빠진부분이 없는지 확인해주세요',
+          [name]: '입력하신 내용을 확인해주세요',
         });
       }
     }
   };
 
-  console.log(passwordValid, pwConfirmValid)
 
   useEffect(() => {
     handleNickname();
@@ -230,7 +228,7 @@ export default function SignUp() {
               placeholder=' 영문+숫자 조합 8~15자리를 사용합니다'
             />
           </div>
-          <div className='message err'>{checkMsg.password}</div>
+          <div className={passwordValid ? 'message check' : 'message err'}>{checkMsg.password}</div>
 
           <div className='text'> 비밀번호 확인</div>
           <div className='line'>
@@ -242,7 +240,7 @@ export default function SignUp() {
               placeholder=' 비밀번호 재입력'
             />
           </div>
-          <div className='message err'>{checkMsg.pwConfirm}</div>
+          <div className={pwConfirmValid ? 'message check' : 'message err'}>{checkMsg.pwConfirm}</div>
 
           <div className='message err center'>{checkMsg.signUp}</div>
           <button
@@ -255,7 +253,8 @@ export default function SignUp() {
             회원가입
           </button>
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
