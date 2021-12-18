@@ -45,7 +45,7 @@ export default function Home() {
         </div>
 
         <div data-aos="fade-left" className='section-2-body'>
-        <div className='section-2-title mobile'>신청게시판</div>
+          <div className='section-2-title mobile'>신청게시판</div>
           <img className='section-2-board' src='/img/board.png' alt='board' />
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function Home() {
           </p>
         </div>
         <div data-aos="fade-left" className='section-3-body'>
-        <div className='section-3-title mobile'>상세페이지</div>
+          <div className='section-3-title mobile'>상세페이지</div>
           <img className='section-3-view' src='/img/view.png' alt='board' />
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function Home() {
           </p>
         </div>
         <div data-aos="fade-left" className='section-4-body'>
-        <div className='section-4-title mobile'>게시물작성</div>
+          <div className='section-4-title mobile'>게시물작성</div>
           <img className='section-4-FPtop' src='/img/findpartnertop.png' alt='findpartner' />
         </div>
       </div>
@@ -87,8 +87,22 @@ export default function Home() {
           </p>
         </div>
         <div data-aos="fade-left" className='section-5-body'>
-        <div className='section-5-title mobile'>게시물작성</div>
+          <div className='section-5-title mobile'>게시물작성</div>
           <img className='section-5-FPbot' src='/img/findpartnerbot.png' alt='findparter' />
+        </div>
+      </div>
+
+      <div className='explain-section-6'>
+        <div data-aos="fade-up" className='section-6-head'>
+          <p className='section-6-title web'>채팅하기</p>
+          <p className='section-6-text'>
+            신청에 성공하면<br />
+            모집자와 신청자가<br /> 채팅방을 이용할 수 있습니다.
+          </p>
+        </div>
+        <div data-aos="fade-left" className='section-6-body'>
+          <div className='section-6-title mobile'>채팅하기</div>
+          <img className='section-6-chat' src='/img/chat.png' alt='chat' />
         </div>
       </div>
 

@@ -232,14 +232,16 @@ html {
   .home-container .section-2-head,
   .section-3-head,
   .section-4-head,
-  .section-5-head {
+  .section-5-head,
+  .section-6-head {
     display: flex;
     flex-direction: column;
   }
   .home-container .explain-section-2,
   .explain-section-3,
   .explain-section-4,
-  .explain-section-5 {
+  .explain-section-5,
+  .explain-section-6 {
     width: 100%;
     height: 120vw;
     display: flex;
@@ -252,7 +254,8 @@ html {
   .home-container .section-2-title,
   .section-3-title,
   .section-4-title,
-  .section-5-title {
+  .section-5-title,
+  .section-6-title {
     width: 100%;
     height: 0;
     font-size: 30px;
@@ -268,7 +271,8 @@ html {
   .home-container .section-2-text,
   .section-3-text,
   .section-4-text,
-  .section-5-text {
+  .section-5-text,
+  .section-6-text {
     width: 80%;
     font-size: 1.4em;
     font-weight: 700;
@@ -283,7 +287,8 @@ html {
   .home-container .section-2-body,
   .section-3-body,
   .section-4-body,
-  .section-5-body {
+  .section-5-body,
+  .section-6-body {
     position: relative;
     padding-top: 100px;
     text-align: center;
@@ -291,7 +296,8 @@ html {
   .home-container .section-2-board,
   .section-3-view,
   .section-4-FPtop,
-  .section-5-FPbot {
+  .section-5-FPbot,
+  .section-6-chat {
     width: 90%;
     border-radius: 5px;
   }
@@ -311,14 +317,16 @@ html {
   .home-container .section-2-head,
   .section-3-head,
   .section-4-head,
-  .section-5-head {
+  .section-5-head,
+  .section-6-head {
     display: flex;
     flex-direction: column;
   }
   .home-container .explain-section-2,
   .explain-section-3,
   .explain-section-4,
-  .explain-section-5 {
+  .explain-section-5,
+  .explain-section-6 {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -330,7 +338,8 @@ html {
   .home-container .section-2-title,
   .section-3-title,
   .section-4-title,
-  .section-5-title {
+  .section-5-title,
+  .section-6-title {
     width: 100%;
     height: 0;
     font-size: 30px;
@@ -346,7 +355,8 @@ html {
   .home-container .section-2-text,
   .section-3-text,
   .section-4-text,
-  .section-5-text {
+  .section-5-text,
+  .section-6-text {
     width: 300px;
     font-size: 1.4em;
     font-weight: 700;
@@ -361,14 +371,16 @@ html {
   .home-container .section-2-body,
   .section-3-body,
   .section-4-body,
-  .section-5-body {
+  .section-5-body,
+  .section-6-body {
     padding-top: 100px;
     text-align: center;
   }
   .home-container .section-2-board,
   .section-3-view,
   .section-4-FPtop,
-  .section-5-FPbot {
+  .section-5-FPbot,
+  .section-6-chat {
     width: 70%;
     border-radius: 5px;
   }
@@ -383,7 +395,7 @@ html {
   flex-direction: row;
   justify-content: center;
   margin: 0 0 20% 0;
-  flex-wrap : wrap;
+  flex-wrap: wrap;
 }
 .home-container .button-section-1,
 .button-section-2,
@@ -414,20 +426,20 @@ html {
   }
 
   .home-container .btn-1-btn,
-.btn-2-btn,
-.btn-3-btn {
-  width: 160px;
-  height: 50px;
-  border-radius: 30px;
-  background-color: var(--main-color1);
-  color: white;
-  font-size: 0.95em;
-  border: none;
-  font-weight: 700;
-  float: inline-end;
-  margin-bottom: 20%;
-  cursor: pointer;
-}
+  .btn-2-btn,
+  .btn-3-btn {
+    width: 160px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: var(--main-color1);
+    color: white;
+    font-size: 0.95em;
+    border: none;
+    font-weight: 700;
+    float: inline-end;
+    margin-bottom: 20%;
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 998px) and (max-width: 1179px) {
@@ -440,20 +452,20 @@ html {
   }
 
   .home-container .btn-1-btn,
-.btn-2-btn,
-.btn-3-btn {
-  width: 160px;
-  height: 50px;
-  border-radius: 30px;
-  background-color: var(--main-color1);
-  color: white;
-  font-size: 1em;
-  border: none;
-  font-weight: 700;
-  float: inline-end;
-  margin-bottom: 20%;
-  cursor: pointer;
-}
+  .btn-2-btn,
+  .btn-3-btn {
+    width: 160px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: var(--main-color1);
+    color: white;
+    font-size: 1em;
+    border: none;
+    font-weight: 700;
+    float: inline-end;
+    margin-bottom: 20%;
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 1180px) {
@@ -466,20 +478,20 @@ html {
   }
 
   .home-container .btn-1-btn,
-.btn-2-btn,
-.btn-3-btn {
-  width: 180px;
-  height: 60px;
-  border-radius: 30px;
-  background-color: var(--main-color1);
-  color: white;
-  font-size: 1.2em;
-  border: none;
-  font-weight: 700;
-  float: inline-end;
-  margin-bottom: 20%;
-  cursor: pointer;
-}
+  .btn-2-btn,
+  .btn-3-btn {
+    width: 180px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: var(--main-color1);
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    font-weight: 700;
+    float: inline-end;
+    margin-bottom: 20%;
+    cursor: pointer;
+  }
 }
 /* 
 section3 .home-container .explain-section-3 {
