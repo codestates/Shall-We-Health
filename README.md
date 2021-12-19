@@ -41,4 +41,4 @@ _**Shall We Health ?**_ 에서 만나보실 수 있습니다.
 </br>
 
 ## 🛠 Tech Stack 
-![](https://images.velog.io/images/bbaa3218/post/bb2d7fc7-b050-4cbc-97ed-db2e07d04c42/Shall-We-Health%20(1).png)
+![](https://images.velog.io/images/bbaa3218/post/7c1a5f9d-c77d-40ec-8e17-de36a37a7b25/Shall-We-Health%20(2).png)
