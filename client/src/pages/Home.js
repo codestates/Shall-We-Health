@@ -25,12 +25,12 @@ export default function Home() {
 
       <div className='image-section-main'>
         <img className='main-logo' src='img/logo.svg' alt='logo' />
-        <button className='button-find-partner' onClick={onClick}>파트너찾으러가기</button>
+        <button className='button-find-partner' onClick={onClick}>메이트찾으러가기</button>
       </div>
 
       <div className='explain-section-1'>
         <p data-aos="fade-up" className='explain-text-1'>혼자하는 헬스는 이제 그만,
-          <br />전국 헬스장에서 당신의 운동 파트너를 찾아보세요.
+          <br />전국 헬스장에서 당신의 운동 메이트를 찾아보세요.
           <br />Shall We Health와 함께라면 가능합니다.
         </p>
       </div>
@@ -41,7 +41,7 @@ export default function Home() {
           <p className='section-2-text'>
             게시판에서
             <br />원하는 날짜, 시간, 장소에
-            <br />같이 운동할 파트너가 있는지 <br />찾아보세요.</p>
+            <br />같이 운동할 메이트가 있는지 <br />찾아보세요.</p>
         </div>
 
         <div data-aos="fade-left" className='section-2-body'>
@@ -82,7 +82,7 @@ export default function Home() {
           <p className='section-5-title web'>게시물작성</p>
           <p className='section-5-text'>
             나의 운동 레벨과  <br /> 운동하고 싶은 부위를 선택 후,<br />
-            파트너에게 하고 싶은 말을
+            메이트에게 하고 싶은 말을
             <br />작성해주세요.
           </p>
         </div>
@@ -111,15 +111,15 @@ export default function Home() {
           <div className='btn-1-text'>지금 바로 다른 사람과<br /> 운동하러 가보세요.</div>
           <Link
             to='/board'
-            style={{ color: 'inherit', textDecoration: 'inherit' }}><button className='btn-1-btn' >파트너 신청하기</button></Link>
+            style={{ color: 'inherit', textDecoration: 'inherit' }}><button className='btn-1-btn' >메이트 신청하기</button></Link>
         </div>
 
         <div data-aos="fade-up" className='button-section-2'>
-          <div className='btn-2-text'>내가 원하는 시간에<br />파트너를 모집해보세요.</div>
+          <div className='btn-2-text'>내가 원하는 시간에<br />메이트를 모집해보세요.</div>
           <Link
             to='/find-partner'
             style={{ color: 'inherit', textDecoration: 'inherit' }}
-          ><button className='btn-2-btn' >파트너 모집하기</button></Link>
+          ><button className='btn-2-btn' >메이트 모집하기</button></Link>
         </div>
 
         <div data-aos="fade-up" className='button-section-3'>
