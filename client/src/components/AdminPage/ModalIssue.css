@@ -1,0 +1,71 @@
+.modalissue-container{
+    width: 100%;
+    height: 100%; /*실제 적용시 100% */
+    top: 0; /*실제 적용시 0 */
+    left: 0;
+    position: fixed;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+  }
+  
+  .modalissue-container .box-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 90%; /*조절필요*/
+    height: 50%; /*조절필요*/
+    max-width: 500px;
+    max-height: 500px;
+    background-color: var(--main-backcolor3);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .modalissue-container .table-info{
+    text-align: left;
+    margin-right: auto;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .modalissue-container .table-info th{
+      font-size: 0.9em;
+      color: var(--font-color3);
+  }
+
+  .modalissue-container .table-info td{
+    font-size: 0.88em;
+    color: var(--font-color2);
+    padding-left: 10px;
+}
+
+.modalissue-container .issue-content{
+    height: 58%;
+    text-align: left;
+    width: 88%;
+    font-size:0.9em;
+    color:var(--font-color2);
+    padding: 10px 5px;
+    border-top: 1px solid rgb(187, 187, 187);
+}
+  
+.modalissue-container span{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 3px;
+    color: rgb(93, 93, 93);
+    width: 90px;
+    height: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--font-color2);
+  }

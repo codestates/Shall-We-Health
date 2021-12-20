@@ -1,0 +1,268 @@
+@media (min-width: 601px) {
+  .findmap-container {
+    margin-left: 2%;
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.findmap-container .searchResult-table {
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+  height: 470px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* border: 1px black solid; */
+}
+
+.findmap-container #map {
+  color: black;
+}
+
+.findmap-container .inputForm {
+  margin: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.findmap-container .input-textbox {
+  border: none;
+  font-size: 1.25em;
+  width: 70%;
+  height: 18px;
+  background-color: var(--main-backcolor3);
+  color: var(--font-color1);
+
+  /* border: black 1px solid; */
+}
+
+.findmap-container .input-textbox:focus {
+  outline: none;
+}
+.findmap-container .search-button {
+  font-size: 1.2em;
+  border: none;
+  /* margin-left: 23px; */
+  width: 25%;
+  background-color: var(--main-backcolor3);
+  height: 27px;
+  color: var(--font-color2);
+  display: flex;
+  align-items: center;
+  text-align: right;
+  justify-content: right;
+}
+.findmap-container .empty-result {
+  text-align: center;
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #39cfd9;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #d3dadb;
+  width: 150px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+}
+.findmap-container .search-section {
+  border: solid 1px black;
+  width: 250px;
+  height: 40px;
+  border-radius: 4px;
+  margin: 2%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+.findmap-container .findmap-search {
+  /* border: black solid 1px; */
+  width: 30%;
+}
+
+.findmap-container .search-section {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.findmap-container .search-result {
+  margin-top: 30px;
+  margin-left: 2%;
+  font-size: 1.25em;
+}
+
+.findmap-container .place-name {
+  font-size: 1em;
+  margin: 1%;
+}
+
+.findmap-container .place-address {
+  font-size: 1em;
+  margin: 1%;
+}
+.findmap-container .place-phone {
+  font-size: 0.9em;
+  margin: 1%;
+}
+
+.findmap-container .place-list {
+  margin: 3%;
+  padding: 2%;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.findmap-container .place-list:hover {
+  background-color: #39cfd9;
+  color: white;
+}
+.findmap-container .selected {
+  background-color: #39cfd9;
+  color: white;
+}
+.findmap-container .emapty-result {
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.findmap-container .place-list-container {
+  border-bottom: black 1px solid;
+  width: 100%;
+}
+
+.findmap-container .showmap {
+  margin-left: 5%;
+  padding-right: 0;
+  width: 600px;
+  z-index: 0;
+  height: 600px;
+  /* width: ; */
+}
+
+.findmap-container #pagination {
+  margin: 10px auto;
+  text-align: center;
+}
+.findmap-container #pagination a {
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #9ca2a3;
+  color: white;
+  border-radius: 50px;
+  width: 20px;
+  text-decoration-line: none;
+}
+.findmap-container #pagination .on {
+  font-weight: bold;
+  cursor: default;
+  background-color: #39cfd9;
+}
+
+@media (min-width: 375px) and (max-width: 768px) {
+  .findmap-container .search-button {
+    font-size: 14px;
+    border: none;
+    margin-top: 2%;
+    /* margin-left: 23px; */
+    width: 25%;
+    background-color: var(--main-backcolor3);
+    height: 27px;
+    color: var(--font-color2);
+  }
+  .findmap-container .empty-result {
+    text-align: center;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #39cfd9;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #d3dadb;
+    width: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+  }
+  .findmap-container .place-name {
+    font-size: 15px;
+    margin: 1%;
+  }
+
+  .findmap-container .place-address {
+    font-size: 15px;
+    margin: 1%;
+  }
+  .findmap-container .place-phone {
+    font-size: 0.9em;
+    margin: 1%;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 0) and (max-width: 600px) {
+  .findmap-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .findmap-container .findmap-search {
+    position: relative;
+    /* background-color: black; */
+
+    width: 100%;
+    height: 100%;
+  }
+  .findmap-container .findmap-search {
+    height: 330px;
+  }
+  .findmap-container .search-section {
+    width: 250px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  .findmap-container .inputForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .findmap-container .search-result {
+    font-size: 1em;
+  }
+  .findmap-container .empty-result {
+    text-align: center;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #39cfd9;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #d3dadb;
+    width: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+  }
+
+  .findmap-container .input-textbox {
+    height: 20px;
+  }
+  .findmap-container .searchResult-table {
+    height: 50%;
+  }
+
+  .findmap-container .search-button {
+    height: 20px;
+    margin-top: 0%;
+  }
+  .findmap-container .showmap {
+    margin-left: 0%;
+    padding-right: 0;
+    width: 100%;
+    z-index: 0;
+    height: 400px;
+    /* width: ; */
+  }
+}

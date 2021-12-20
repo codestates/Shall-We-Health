@@ -1,0 +1,360 @@
+
+.board-container {
+    max-width: 1024px;
+    width: 100%;
+    /* min-width: 768px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0  auto  5% auto;
+  }
+  
+  .board-container .box-banner{
+      margin:1vw auto;
+      width: 90%;
+      border-radius: 20px;
+      box-shadow: 5px 10px 20px var(--shadow-color);
+      background-color: rgb(235, 235, 235);
+      overflow: hidden;
+  }
+  
+  .board-container div.banner{
+      width: 100%;
+      height: 25vw;
+      min-height: 120px;
+      max-height: 260px;
+      text-align :center;
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      overflow: hidden;
+      position: relative;
+  }
+  
+  .board-container .img-banner{
+      width: 100%;
+      height: auto;
+      min-height: 120px;
+      margin: 0 auto;
+  }
+
+
+  @media (min-width: 0px) and (max-width: 444px) {
+    .board-container .text-banner{
+        font-size: 1em;
+    }
+  }
+
+  @media (min-width: 445px) {
+    .board-container .text-banner{
+        font-size: 1.2em;
+    }
+  }
+
+  .board-container .text-banner{
+      position: absolute;
+      left: 5%;
+      bottom: 10%;
+      color: white;
+      z-index: 1;
+      font-weight: 800;
+      text-shadow: 6px 6px 10px rgb(54, 54, 54);
+  }
+  
+  .board-container .box-banner .slick-prev:before{
+      visibility: hidden;
+  }
+  
+  .board-container .box-banner .slick-next:before{
+      visibility: hidden;
+  }
+  
+  .board-container .box-date{
+      width: 85%;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      margin-left: auto;
+      margin-right: auto;
+  
+  }
+  
+  .board-container .box-date .btn-date div.date{
+      text-align: center;
+  }
+  
+  .board-container .box-date .btn-date div.days{
+      text-align: center;
+      font-size: 0.75em;
+  }
+  
+  .board-container .box-date .btn-date div.blue{
+      color: rgb(56, 56, 231)
+  }
+  
+  .board-container .box-date .btn-date div.red{
+      color: rgb(238, 52, 52)
+  }
+  
+  .board-container .box-date .btn-date{
+      cursor: pointer;
+      height: 50px;
+      text-align :center;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  
+  .board-container .box-date .btn-selected-date{
+      cursor: pointer;
+      background-color: var(--main-color1);
+      color: white;
+      border-radius: 30px;
+      height: 50px;
+      text-align :center;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  
+  .board-container .box-date .btn-selected-date .days{
+      font-size: 0.75em;
+  }
+  
+  .board-container .box-date .slick-prev:before{
+      color: var(--btn-color1);
+  }
+  
+  
+  .board-container .box-date .slick-next:before{
+      color: var(--btn-color1);
+  }
+  
+  .board-container .box-location{
+      width: 90%;
+      box-sizing: content-box;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px 0;
+      max-width: 1024px;
+      margin: 0 auto;
+      list-style: none;
+  }
+  
+  .board-container .box-location .btn-location{
+      margin: 0 3px;
+      height: 30px;
+      line-height: 30px; 
+      cursor: pointer;
+      text-align :center;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 0.85em;
+      display: inline-grid;
+      list-style: none;
+      vertical-align: baseline;
+      padding: 5px 10px;
+  }
+  
+  .board-container .box-location .btn-selected-location{
+      margin: 0 3px;
+      background-color: var(--main-color2);
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px; 
+      font-size: 0.85em;
+      text-align :center;
+      flex-direction: column;
+      justify-content: center;
+      display: inline-grid;
+      list-style: none;
+      vertical-align: baseline;
+      padding: 5px 10px;
+  }
+  
+  .board-container .box-filter{
+      width: 90%;
+      margin: 10px auto;
+      display: flex;
+      align-items: center;
+  }
+  
+  .board-container .match-check-box{
+      background: #FFF;
+      border: 1px solid #DDD;
+      border-radius: 4px;
+      content: '';
+      margin-right: 5px;
+      display: inline-block;
+      vertical-align: middle;
+      width: 15px;
+      height: 15px;
+  }
+  
+  .board-container .text-match{
+      font-size: 0.8em;
+      cursor: pointer;
+  }
+  
+  .board-container .search-box{
+      margin-left: auto;
+      padding: 3px;
+      height: 20px;
+      background-color: var(--main-backcolor3);
+      border: 1px solid #838282;
+      border-radius: 2px;
+      width: 200px;
+  }
+  
+  .board-container #search {
+      padding: 0;
+      width: 140px;
+      border:none;
+      background: none;
+      outline: none;
+      float: left;
+      font-size: 0.8rem;
+      line-height: 20px;
+      margin-left: 20px;
+      color: var(--font-color1);
+    }
+
+.board-container #search::placeholder{
+    color: var(--font-color2);
+}
+  
+  .board-container #searchButton {
+      text-decoration: none;
+      float: right;
+      width: 20px;
+      height: 20px;
+      background-color: #8d8d8d;
+      border-radius: 50%;
+      display: flex;
+      font-size: 0.7em;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      cursor: pointer;
+      border: 2px solid #8d8d8d;
+    }
+  
+  .board-container .box-list{
+      width: 90%;
+      margin: 10px auto;
+  }
+  
+  .board-container .table-data{
+      width: 100%;
+      text-align: center;
+      border-collapse: collapse;
+  }
+  
+  .board-container .table-data tr.box-none{
+      border-bottom: 1px solid rgb(211, 211, 211);
+      height: 400px;
+      color: #696969
+  }
+
+  .board-container .table-data tr.box-loading{
+    border-bottom: 1px solid rgb(211, 211, 211);
+    height: 400px;
+}
+
+  .board-container .table-data tr{
+    border-bottom: 1px solid rgb(211, 211, 211);
+    height: 90px;
+}
+  
+  .board-container .table-data tr td.time{
+      width: 15%;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  
+  .board-container .table-data tr td.info{
+      width:65%;
+      text-align: left;
+  }
+  
+  .board-container .table-data tr td.match{
+      width: 20%;
+  }
+  
+  
+  .board-container .title{
+      cursor: pointer;
+  }
+  
+  .board-container .sub-info{
+      font-size: 0.7em;
+      color: rgb(156, 156, 156);
+      cursor: pointer;
+  }
+  
+  .board-container .btn-match{
+      color: white;
+      font-size: 0.85em;
+      font-weight: 600;
+      background-color: var(--main-color1);
+      border-radius: 7px;
+      height: 30px;
+      width: 130px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+  }
+  
+  .board-container .btn-match-end{
+      color: white;
+      font-size: 0.85em;
+      font-weight: 600;
+      background-color: #757575;
+      border-radius: 7px;
+      height: 30px;
+      width: 130px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .board-container .pagination { display: flex; justify-content: center; margin-top: 15px; }
+  .board-container ul { list-style: none; padding: 0; }
+  .board-container ul.pagination li { display: inline-block; width: 30px; height: 30px; margin: 0 2px; display: flex; justify-content: center; align-items: center; font-size: 1rem; } 
+  .board-container ul.pagination li:first-child{  } 
+  .board-container ul.pagination li:last-child{  } 
+  .board-container ul.pagination li a { text-decoration: none; color: #696969; font-size: 1rem; } 
+  .board-container ul.pagination li.active a { color: white; } 
+  .board-container ul.pagination li.active { background-color: var(--main-color1); border-radius: 20px;} 
+  /* .board-container ul.pagination li a:hover, ul.pagination li a.active { color: #39CFD9;}  */
+  .board-container .page-selection { width: 48px; height: 30px; color: var(--main-color1); }
+
+  /*top 버튼*/
+
+  .board-container .btn-top{
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      bottom: 5%;
+      right: 210px;
+      font-size: 1.6em;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: var(--btn-color1);
+      box-shadow: 0px 2px 7px var(--shadow-color);
+      background-color: var(--btn-color2);
+      cursor: pointer;
+      z-index: 100;
+  }
+
+  .board-container .btn-top *{
+      margin: 0 auto;
+  }
+
+  .board-container .none{
+      display: none;
+  }

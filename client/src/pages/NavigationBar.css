@@ -1,0 +1,165 @@
+@media (min-width: 769px) {
+  .navBar-container {
+    /* width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    position: fixed; */
+    position: fixed;
+    width: 100vw;
+    height: 45px;
+    z-index: 99;
+  }
+
+  .navBar-container .bar {
+    display: flex;
+    height: 45px;
+    align-items: center;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .navBar-container .home-logo {
+    height: 80%;
+    flex: 1.7;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
+  .navBar-container .btn-board {
+    flex: 1.1;
+  }
+
+  .navBar-container .btn-search {
+    flex: 5;
+  }
+
+  .navBar-container .btn-mypage {
+    margin-left: auto;
+    text-align: left;
+    flex: 1;
+  }
+
+  .navBar-container .btn-login-nav {
+    margin-left: auto;
+    text-align: left;
+    flex: 1;
+  }
+
+  .navBar-container .btn-logout {
+    margin-left: auto;
+    text-align: left;
+    flex: 1;
+  }
+
+  .navBar-container .btn-signup {
+    margin-left: auto;
+    text-align: left;
+    flex: 1.2;
+  }
+
+  .navBar-container .btn-admin {
+    margin-left: auto;
+    text-align: left;
+    flex: 0.8;
+    cursor: pointer;
+  }
+
+  .navBar-container span {
+    cursor: pointer;
+  }
+
+  .navBar-container .mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .navBar-container {
+    /* width: 100%;
+        max-width: 1024px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 45px;
+        position: fixed; */
+    position: fixed;
+    width: 100vw;
+    height: 45px;
+    z-index: 99;
+  }
+
+  .navBar-container .bar {
+    display: flex;
+    height: 45px;
+    align-items: center;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .navBar-container .home-logo {
+    height: 60%;
+    flex: 1.7;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
+  .navBar-container .btn-board {
+    flex: 1.1;
+    font-size: 1.3em;
+  }
+
+  .navBar-container .btn-search {
+    flex: 5;
+    font-size: 1.3em;
+  }
+
+  .navBar-container .btn-mypage {
+    margin-left: auto;
+    text-align: left;
+    flex: 1;
+    font-size: 1.3em;
+  }
+
+  .navBar-container .btn-login-nav {
+    margin-left: auto;
+    text-align: left;
+    flex: 1.8;
+  }
+
+  .navBar-container .btn-logout {
+    margin-left: auto;
+    text-align: left;
+    flex: 1.8;
+  }
+
+  .navBar-container .btn-signup {
+    margin-left: auto;
+    text-align: left;
+    flex: 2;
+  }
+
+  .navBar-container .btn-admin {
+    margin-left: auto;
+    text-align: left;
+    flex: 0.8;
+    cursor: pointer;
+  }
+
+  .navBar-container span {
+    cursor: pointer;
+  }
+
+  .navBar-container .web {
+    display: none;
+  }
+
+  .navBar-container .mobile {
+  }
+}

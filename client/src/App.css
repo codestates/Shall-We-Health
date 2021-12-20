@@ -1,0 +1,105 @@
+:root {
+  --main-color1: #39CFD9;
+  --main-color2: rgb(172, 172, 172);
+  --btn-color1: rgb(100, 100, 100);
+  --btn-color2: #FFF;
+  --nav-color: rgb(211, 211, 211);
+  --main-backcolor1: #fafafa;
+  --main-backcolor2: #f4f4f49d;
+  --main-backcolor3: white;
+  --main-backcolor4: #656565;
+  --main-backcolor5: rgb(228, 228, 228);
+  --main-backcolor6: rgb(243, 249, 250);
+  --main-backcolor7: rgb(231, 246, 250);
+  --font-color1: black;
+  --font-color2: #535353;
+  --font-color3: rgb(56, 56, 56);
+  --shadow-color: rgb(187, 187, 187);
+}
+
+[data-theme="dark"] {
+  --main-color1: #367c81;
+  --main-color2: rgb(88, 86, 86);
+  --btn-color1: rgb(240, 240, 240);
+  --btn-color2: rgb(54, 54, 54);
+  --nav-color: rgb(93, 93, 93);
+  --main-backcolor1: #202020;
+  --main-backcolor2: #202020;
+  --main-backcolor3: rgb(93, 93, 93);
+  --main-backcolor4: #313131;
+  --main-backcolor5: rgb(47, 47, 47);
+  --main-backcolor6: rgb(29, 35, 36);
+  --main-backcolor7: rgb(55, 65, 68);
+  --font-color1: white;
+  --font-color2: #eeeeee;
+  --font-color3: rgb(233, 233, 233);
+  --shadow-color: rgb(0, 0, 0);
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Apple SD Gothic Neo,arial,sans-serif;
+  overflow-x: hidden;
+  background-color: var(--main-backcolor1);
+  color: var(--font-color1);
+}
+
+.area-nav {
+  height: 45px;
+}
+
+.App .body-container{
+  min-height: 100vh;
+}
+
+.btn-theme{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  bottom: 5%;
+  right: 20px;
+  font-size: 0.9em;
+  width: 160px;
+  height: 50px;
+  border-radius: 30px;
+  color: rgb(98, 98, 98);
+  background-color: #FFF;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.btn-theme .icon-theme{
+  margin-right: 5px;
+}
+
+.btn-theme div{
+  margin-left: 5px;
+}
+
+.dark{
+  box-shadow: 0px 2px 7px rgb(187, 187, 187);
+}
+
+.dark:hover{
+  background-color: rgb(117, 117, 117);
+  color: #FFF;
+}
+
+.light {
+  background-color: rgb(54, 54, 54);
+  color: #FFF;
+  box-shadow: 0px 2px 7px rgb(0, 0, 0);
+}
+
+.light:hover {
+  background-color: rgb(214, 214, 214);
+  color: rgb(0, 0, 0);
+}
+
+.btn-theme *{
+  margin: 0 auto;
+}

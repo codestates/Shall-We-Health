@@ -1,0 +1,258 @@
+.mypage-container{
+    max-width: 1024px;
+    width: 100%;
+    margin: 0  auto  5% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mypage-container .mypage-title{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(200, 200, 200);
+}
+
+.mypage-container .mypage-title img{
+    height: 50%;
+    margin: 0 10px;
+}
+
+.mypage-container .mypage-title div{
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--font-color3);
+}
+
+.mypage-container .mypage-tap{
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.mypage-container .mypage-tap span{
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.mypage-container .mypage-tap span.selected{
+    font-weight: 700;
+    padding-bottom: 5px;
+    border-bottom: 4px solid var(--btn-color1);
+}
+
+.mypage-container .box-userinfo{
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    height: 60px;
+    width: 90%;
+    margin: 20px 7%;
+}
+
+.mypage-container .text-nickname{
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.mypage-container .text-email{
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: var(--font-color2);
+}
+
+/*활동 로그*/
+.mylog-container{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mylog-container .table-scroll{
+    height: 570px;
+    overflow-y: auto;
+}
+
+/* 스크롤바 설정*/
+.mylog-container .table-scroll::-webkit-scrollbar{
+    width: 10px;
+}
+
+/* 스크롤바 막대 설정*/
+.mylog-container .table-scroll::-webkit-scrollbar-thumb{
+    height: 17%;
+    background-color: gray;
+    border-radius: 10px;  
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.mylog-container .table-scroll::-webkit-scrollbar-track{
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;  
+}
+
+.mylog-container .table-data{
+    text-align: center;
+    margin: 5px auto;
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.mylog-container .table-data-th{
+    text-align: center;
+    margin: 0 auto;
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.mylog-container .table-data-th th{
+    height: 60px;
+    vertical-align: middle;
+    border-bottom: 3px solid #2AB2BB;
+}
+
+.mylog-container .table-data tr{
+    border-bottom: 1px solid #dfdfdf;
+    height: 70px;
+    font-size: 0.9em;
+    color: var(--font-color2);
+}
+
+.mylog-container .table-data-th .date{
+    width: 17%
+}
+
+.mylog-container .table-data-th .location{
+    width: 28%
+}
+
+.mylog-container .table-data-th .hostGuest{
+    width: 28%
+}
+
+.mylog-container .table-data-th .match{
+    width: 20%
+}
+
+.mylog-container .table-data-th .etc{
+    width: 10%
+}
+
+.mylog-container .table-data .date{
+    width: 15%
+}
+
+.mylog-container .table-data .location{
+    width: 27%
+}
+
+.mylog-container .table-data .hostGuest{
+    width: 25%
+}
+
+.mylog-container .table-data .match{
+    width: 10%
+}
+
+.mylog-container .table-data .etc{
+    width: 15%
+}
+
+.mylog-container .table-data .box-loading{
+    height: 420px;
+}
+
+.mylog-container .table-data .box-none{
+    height: 420px;
+}
+
+.mylog-container .table-data tr.canceled span{
+    text-decoration: line-through;
+    color: rgb(109, 109, 109);
+}
+
+.mylog-container .table-data div.text-canceled{
+    margin-top: 5px;
+}
+
+.mylog-container .table-data td.etc{
+    /* vertical-align: top; */
+}
+
+.mylog-container .table-data .like-issue{
+    margin-top: 5px;
+}
+
+.mylog-container .table-data .btn-thumbsup{
+    cursor: pointer;
+}
+
+.mylog-container .table-data .btn-issue{
+    color:rgb(209, 75, 51);
+    margin: 0 0 0 10%;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/*활동 로그 모달창*/
+
+.mylog-container .modalmylog-container{
+    width: 100%;
+    height: 100%; /*실제 적용시 100% */
+    top: 0; /*실제 적용시 0 */
+    left: 0;
+    position: fixed;
+    display: block;
+    background: rgb(194, 194, 194);
+    z-index: 9999;
+    text-align: center;
+  }
+  
+  .mylog-container .modalmylog-container .box-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 20%; /*조절필요*/
+    height: 25%; /*조절필요*/
+    min-width: 300px;
+    min-height: 220px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .mylog-container .modalmylog-container .modal-message{
+    margin: 15px 0;
+    font-weight: 600;
+    height: 50%;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .mylog-container .modalmylog-container span{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#2AB2BB;
+    padding-top: 3px;
+    color: white;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+  }

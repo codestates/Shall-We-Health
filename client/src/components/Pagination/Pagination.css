@@ -1,0 +1,42 @@
+/*pagination*/
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+.pagination-container > span {
+  padding: 1.4em 0.25em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pagination-container > span > *{
+  font-size: 0.9em;
+  margin: 0 5px;
+}
+.pagination-container ul.paging-group {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.pagination-container ul.paging-group > li {
+  width: 27px;
+  height: 27px;
+  text-align: center;
+  border-radius: 50%;
+  color: #848080;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 100;
+}
+.pagination-container .paging-group > li.active {
+  background-color: var(--main-color1);
+  color: white;
+}
+.pagination-container span.paging-num {
+  cursor: pointer;
+}

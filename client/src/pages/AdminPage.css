@@ -1,0 +1,669 @@
+.adminpage-container{
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminpage-container .admin-title{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(200, 200, 200);
+}
+
+.adminpage-container .admin-title img{
+    height: 50%;
+    margin: 0 10px;
+}
+
+.adminpage-container .admin-title div{
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--font-color3);
+}
+
+
+.adminpage-container .box-pages{
+  height: 670px;
+}
+
+.adminpage-container .admin-tap{
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.adminpage-container .admin-tap span{
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.adminpage-container .admin-tap span.selected{
+    font-weight: 700;
+    padding-bottom: 5px;
+    border-bottom: 4px solid var(--btn-color1);
+}
+
+.modaladmin-container{
+    width: 100%;
+    height: 100%; /*실제 적용시 100% */
+    top: 0; /*실제 적용시 0 */
+    left: 0;
+    position: fixed;
+    display: block;
+    background: rgb(194, 194, 194);
+    z-index: 9999;
+    text-align: center;
+  }
+  
+  .modaladmin-container .box-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 20%; /*조절필요*/
+    height: 25%; /*조절필요*/
+    min-width: 300px;
+    min-height: 220px;
+    background-color: var(--main-backcolor3);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .modaladmin-container .modal-message{
+    margin: 15px 0;
+    font-weight: 600;
+    height: 50%;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .modaladmin-container span{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#2AB2BB;
+    padding-top: 3px;
+    color: white;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+/*매칭 관리*/
+.adminmatch-container{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminpage-container .box-search{
+    display: flex;
+    align-items: center;
+}
+
+.adminpage-container .box-search .search-box{
+    margin-left:auto;
+}
+
+.adminpage-container .search-box{
+    margin-left: auto;
+    padding: 3px;
+    height: 20px;
+    background-color: var(--main-backcolor3);
+    border: 1px solid #838282;
+    border-radius: 2px;
+    width: 200px;
+}
+
+.adminpage-container #search {
+    padding: 0;
+    width: 140px;
+    border:none;
+    background: none;
+    outline: none;
+    float: left;
+    font-size: 0.8rem;
+    line-height: 20px;
+    margin-left: 20px;
+    color: var(--font-color1);
+  }
+
+.adminpage-container #search::placeholder{
+    color: var(--font-color2);
+}
+
+.adminpage-container #searchButton {
+    text-decoration: none;
+    float: right;
+    width: 20px;
+    height: 20px;
+    background-color: #8d8d8d;
+    border-radius: 50%;
+    display: flex;
+    font-size: 0.7em;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+    border: 2px solid #8d8d8d;
+  }
+
+.adminmatch-container .box-table{
+  height: 485px;
+}
+
+.adminmatch-container .table-data{
+    text-align: center;
+    margin: 5px auto;
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.adminmatch-container .table-data th{
+    height: 60px;
+    vertical-align: middle;
+    border-bottom: 3px solid #2AB2BB;
+}
+
+@media (min-width: 0px) and (max-width: 453px) {
+  .adminmatch-container .table-data th{
+    font-size: 0.9em;
+}
+}
+
+.adminmatch-container .table-data tr{
+    border-bottom: 1px solid #dfdfdf;
+    height: 60px;
+    font-size: 0.9em;
+    color: var(--font-color2);
+}
+
+.adminmatch-container .table-data .date{
+    width: 15%
+}
+
+.adminmatch-container .table-data .location{
+    width: 27%
+}
+
+.adminmatch-container .text-location{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
+}
+
+.adminmatch-container .table-data .target{
+    width: 25%
+}
+
+.adminmatch-container .table-data .match{
+    width: 20%
+}
+
+.adminmatch-container .table-data .delete{
+    width: 10%
+}
+
+.adminmatch-container .table-data .box-none{
+    height: 420px;
+}
+
+.adminmatch-container .table-data .box-loading{
+    height: 420px;
+}
+
+.adminmatch-container .table-data .btn-delete{
+    cursor: pointer;
+}
+
+.adminmatch-container .box-paging{
+    margin: 30px 0;
+}
+
+
+/*매칭 관리 모달, 컨펌 창*/
+.modalmatch-container{
+    width: 100%;
+    height: 100%; /*실제 적용시 100% */
+    top: 0; /*실제 적용시 0 */
+    left: 0;
+    position: fixed;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+  }
+  
+  .modalmatch-container .box-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 20%; /*조절필요*/
+    height: 25%; /*조절필요*/
+    min-width: 300px;
+    min-height: 220px;
+    background-color: var(--main-backcolor3);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .modalmatch-container .modal-message{
+    margin: 15px 0;
+    font-weight: 600;
+    height: 50%;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .modalmatch-container span{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#2AB2BB;
+    padding-top: 3px;
+    color: white;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .confirmmatch-container{
+    width: 100%;
+    height: 100%;
+    top: 0; 
+    left: 0;
+    position: fixed;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+  }
+  
+  .confirmmatch-container .box-confirm{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 20%; /*조절필요*/
+    height: 25%; /*조절필요*/
+    min-width: 300px;
+    min-height: 220px;
+    background-color: var(--main-backcolor3);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .confirmmatch-container .confirm-message{
+    margin: 15px 0;
+    font-weight: 600;
+    height: 60%;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .confirmmatch-container .box-confirm-btn{
+    display: flex;
+  }
+  
+  .confirmmatch-container span#btn-cancel{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#bdbdbd;
+    padding-top: 3px;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .confirmmatch-container span#btn-confirm{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#2AB2BB;
+    padding-top: 3px;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+
+/*유저 괸리*/
+.adminuser-container{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminuser-container .box-table{
+  height: 485px;
+}
+
+.adminuser-container .table-data{
+    text-align: center;
+    margin: 5px auto;
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.adminuser-container .table-data th{
+    height: 60px;
+    vertical-align: middle;
+    border-bottom: 3px solid #2AB2BB;
+}
+
+@media (min-width: 0px) and (max-width: 497px) {
+  .adminuser-container .table-data th{
+    font-size: 0.9em;
+}
+}
+
+.adminuser-container .table-data tr{
+    border-bottom: 1px solid #dfdfdf;
+    height: 60px;
+    font-size: 0.9em;
+    color: var(--font-color2);
+}
+
+.adminuser-container .table-data .email{
+    width: 20%
+}
+
+.adminuser-container .table-data .nickname{
+    width: 20%
+}
+
+.adminuser-container .table-data .hostNum{
+    width: 13%
+}
+
+.adminuser-container .table-data .guestNum{
+    width: 13%
+}
+
+.adminuser-container .table-data .delete{
+    width: 10%
+}
+
+.adminuser-container .table-data .box-none{
+    height: 420px;
+}
+
+.adminuser-container .table-data .box-loading{
+    height: 420px;
+}
+
+.adminuser-container .table-data .btn-delete{
+    cursor: pointer;
+}
+
+.adminuser-container .box-paging{
+    margin: 30px 0;
+}
+
+/*유저 관리 모달, 컨펌 창*/
+.modaluser-container{
+    width: 100%;
+    height: 100%; /*실제 적용시 100% */
+    top: 0; /*실제 적용시 0 */
+    left: 0;
+    position: fixed;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+  }
+  
+  .modaluser-container .box-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 20%; /*조절필요*/
+    height: 25%; /*조절필요*/
+    min-width: 300px;
+    min-height: 220px;
+    background-color: var(--main-backcolor3);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .modaluser-container .modal-message{
+    margin: 15px 0;
+    font-weight: 600;
+    height: 50%;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .modaluser-container span{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#2AB2BB;
+    padding-top: 3px;
+    color: white;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .confirmuser-container{
+    width: 100%;
+    height: 100%;
+    top: 0; 
+    left: 0;
+    position: fixed;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+  }
+  
+  .confirmuser-container .box-confirm{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 20%; /*조절필요*/
+    height: 25%; /*조절필요*/
+    min-width: 300px;
+    min-height: 220px;
+    background-color: var(--main-backcolor3);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .confirmuser-container .confirm-message{
+    margin: 15px 0;
+    font-weight: 600;
+    height: 60%;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .confirmuser-container .box-confirm-btn{
+    display: flex;
+  }
+  
+  .confirmuser-container span#btn-cancel{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#bdbdbd;
+    padding-top: 3px;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .confirmuser-container span#btn-confirm{
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    background-color:#2AB2BB;
+    padding-top: 3px;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+
+
+/*신고 내역*/
+.adminissue-container{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminissue-container .box-table{
+  height: 513px;
+}
+
+.adminissue-container .table-data{
+    text-align: center;
+    margin: 5px auto;
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.adminissue-container .table-data th{
+    height: 60px;
+    vertical-align: middle;
+    border-bottom: 3px solid #2AB2BB;
+}
+
+.adminissue-container .table-data tr{
+    border-bottom: 1px solid #dfdfdf;
+    height: 60px;
+    font-size: 0.9em;
+    color: var(--font-color2);
+    cursor: pointer;
+}
+
+@media (min-width: 0px) and (max-width: 624px) {
+  .adminissue-container .table-data th{
+    font-size: 0.9em;
+}
+}
+
+.adminissue-container .table-data .issue-date{
+    width: 10%
+}
+
+.adminissue-container .table-data .date{
+    width: 20%
+}
+
+.adminissue-container .table-data .location{
+    width: 20%
+}
+
+.adminissue-container .text-location{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
+}
+
+.adminissue-container .table-data .target{
+    width: 15%
+}
+
+.adminissue-container .table-data .reporter{
+    width: 15%
+}
+
+.adminissue-container .table-data .box-none{
+    height: 420px;
+    cursor: default;
+}
+
+.adminissue-container .table-data .box-loading{
+    height: 420px;
+    cursor: default;
+}
+
+
+.adminissue-container .box-paging{
+    margin: 30px 0;
+}
+
+.adminpage-container .pagination { display: flex; justify-content: center; margin-top: 15px; }
+.adminpage-container ul { list-style: none; padding: 0; }
+.adminpage-container ul.pagination li { display: inline-block; width: 30px; height: 30px; margin: 0 2px; display: flex; justify-content: center; align-items: center; font-size: 1rem; } 
+.adminpage-container ul.pagination li:first-child{ } 
+.adminpage-container ul.pagination li:last-child{  } 
+.adminpage-container ul.pagination li a { text-decoration: none; color: #696969; font-size: 1rem; } 
+.adminpage-container ul.pagination li.active a { color: white; } 
+.adminpage-container ul.pagination li.active { background-color: #39CFD9; border-radius: 20px;} 
+/* .board-container ul.pagination li a:hover, ul.pagination li a.active { color: #39CFD9;}  */
+.adminpage-container .page-selection { width: 48px; height: 30px; color: #39CFD9; }

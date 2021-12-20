@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.login-container .fadeIn {
+  animation: fadeIn 0.7s;
+}
+
+.login-container {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: block;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  text-align: center;
+}
+
+.login-container .login-modal {
+  font-family: 'Roboto Mono', monospace;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  min-width: 400px;
+  margin: 0 auto;
+  background-color: var(--main-backcolor3);
+  border-radius: 30px;
+  padding: 10px 0;
+  min-height: 550px;
+  max-height: 550px;
+}
+
+.login-container .fadeIn {
+  animation: fadeIn 0.7s;
+}
+
+.login-container .home-logo {
+  background-image: url('../img/logo.svg');
+  width: 200px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.login-container .btn-loginClose {
+  background-image: url('../img/X.svg');
+  width: 20px;
+  height: 30px;
+  background-repeat: no-repeat;
+  align-self: flex-end;
+  margin-right: 5%;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+.login-container .text-email,
+.login-container .text-pw {
+  padding-right: 50%;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--font-color3);
+}
+
+.login-container .text-email {
+  padding-right: 60%;
+}
+
+.login-container .btn-login {
+  border: none;
+  color: white;
+  background: #2ab2bb;
+  font-size: 20px;
+  font-weight: 700;
+  width: 280px;
+  padding: 4px;
+  border-radius: 30px;
+  margin-bottom: 25px;
+}
+
+.login-container .text-falilogin {
+  color: #ff7373;
+  height: 22px;
+  margin-bottom: 10px;
+  font-weight: 550;
+}
+
+.login-container .hidden {
+  visibility: hidden;
+}
+
+.login-container .input-back {
+  background-image: url('../img/dumbbell.svg');
+  background-color: var(--main-backcolor3);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  width: 190px;
+  padding: 20px 50px 40px 40px;
+  margin-bottom: 25px;
+}
+
+.login-container input {
+  border: none;
+  width: 190px;
+  font-size: 15px;
+  color: var(--font-color1);
+  background-color: var(--main-backcolor3);
+}
+
+.login-container input:focus {
+  outline: none;
+  border: none;
+}
+
+.login-container button:hover {
+  cursor: pointer;
+}
+
+.login-container .grid-func {
+  display: grid;
+  grid-template-columns: 120px 100px 100px;
+}
+
+.login-container .grid-signup,
+.login-container .grid-findpw {
+  text-align: right;
+  border-right: rgb(117, 117, 117) 2px solid;
+  padding-right: 3%;
+  font-weight: 650;
+  color: var(--font-color2);
+}
+
+.login-container .grid-naver:nth-child(3) {
+  grid-column: 3/4;
+  grid-row: 1/4;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.login-container .grid-kakao:nth-child(2) {
+  align-self: center;
+  background-image: url('../img/kakao.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  grid-column: 2/3;
+  grid-row: 1/4;
+  cursor: pointer;
+}
+
+/* -ㅏ--------------------------------------------- */
+.login-container .modal-container {
+  width: 100%;
+  height: 100%; /*실제 적용시 100% */
+  top: 0; /*실제 적용시 0 */
+  left: 0;
+  position: fixed;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  text-align: center;
+  border-radius: 30px;
+}
+
+.login-container .modal-container .box-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 20%;
+  height: 25%;
+  min-width: 300px;
+  min-height: 220px;
+  background-color: var(--main-backcolor3);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container .modal-container .modal-message {
+  display: block;
+  margin: 20px 0;
+  height: 30%;
+  font-weight: 650;
+}
+
+.login-container .modal-container .btn-close {
+  text-align: center;
+  background-color: #2ab2bb;
+  padding: 8px 30px 8px 30px;
+  color: white;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px var(--main-backcolor3) inset !important;
+  -webkit-text-fill-color: var(--font-color2) !important;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .login-container .login-modal {
+    width: 80%;
+    max-width: 300px;
+    min-width: 290px;
+    margin: 0 auto;
+    min-height: 470px;
+    max-height: 470px;
+  }
+
+  .login-container .grid-func {
+    display: grid;
+    grid-template-columns: 120px 70px 60px;
+  }
+}
