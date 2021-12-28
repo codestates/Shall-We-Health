@@ -51,22 +51,34 @@ export default function SignUp() {
   const handlePassword = () => {
     const pwCheck = verifyPassword(password);
     if (password !== '' && !pwCheck) {
+      console.log('abcd')
       setPasswordValid(0)
       setCheckMsg({ ...checkMsg, password: '숫자와 영문자 조합하여 8~15자리를 사용해야 합니다' });
-    } else if (password !== '' && pwCheck) {
+    }
+    else if (password !== '' && pwCheck) { // pw값이 비어있지않고 유효성이 통과했을 때 
+      console.log('????')
       setPasswordValid(1)
+      handlePwConfirm()
       setCheckMsg({ ...checkMsg, password: '사용 가능한 비밀번호입니다' });
     }
+
   }
 
+
+
+
   const handlePwConfirm = () => {
+
     if (pwConfirm !== password) {
+      console.log('3')
       setPwConfirmValid(0)
       setCheckMsg({ ...checkMsg, pwConfirm: '비밀번호가 일치하지 않습니다' });
     } else if (password === pwConfirm && pwConfirm !== '') {
+      console.log('4')
       setPwConfirmValid(1)
       setCheckMsg({ ...checkMsg, pwConfirm: '비밀번호가 일치합니다' })
     }
+
   }
 
 
@@ -240,9 +252,7 @@ export default function SignUp() {
               placeholder=' 비밀번호 재입력'
             />
           </div>
-          <div className={pwConfirmValid ? 'message check' : 'message err'}>{checkMsg.pwConfirm}</div>
-
-          <div className='message err center'>{checkMsg.signUp}</div>
+          {pwConfirm === '' ? <div className='message check'></div> : (pwConfirmValid ? <div className='message check'>비밀번호가 일치합니다</div> : <div className='message err'>비밀번호가 일치하지 않습니다</div>)}          <div className='message err center'>{checkMsg.signUp}</div>
           <button
             name='signUp'
             className='btn-signup'
