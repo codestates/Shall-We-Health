@@ -30,8 +30,13 @@
     cursor: pointer;
   }
 
+  .navBar-container .logo-text{
+    fill: var(--logo-color);
+  }
+
   .navBar-container .btn-board {
     flex: 1.1;
+    min-width: 85px;
   }
 
   .navBar-container .btn-search {
@@ -39,6 +44,7 @@
   }
 
   .navBar-container .btn-mypage {
+    min-width: 80px;
     margin-left: auto;
     text-align: left;
     flex: 1;
@@ -134,6 +140,7 @@
   }
 
   .navBar-container .btn-logout {
+    min-width: 60px;
     margin-left: auto;
     text-align: left;
     flex: 1.8;
