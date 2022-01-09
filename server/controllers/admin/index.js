@@ -31,7 +31,7 @@ module.exports = {
         });
         return res.status(204).end();
       }
-      return res.status(400).json({
+      return res.status(404).json({
         data: null,
         error: {
           path: "/admin",
@@ -52,7 +52,7 @@ module.exports = {
         });
         return res.status(204).end();
       }
-      return res.status(400).json({
+      return res.status(404).json({
         data: null,
         error: {
           path: "/admin",

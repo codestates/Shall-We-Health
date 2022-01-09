@@ -15,7 +15,7 @@ module.exports = {
         attributes: ["id"],
       });
       if (!userData) {
-        return res.status(400).json({
+        return res.status(404).json({
           data: null,
           error: {
             path: "/mypage",
@@ -100,7 +100,7 @@ module.exports = {
         });
         return res.status(201).end();
       } else {
-        return res.status(400).json({
+        return res.status(404).json({
           data: null,
           error: {
             path: "/mypage",
@@ -136,7 +136,7 @@ module.exports = {
         })
         return res.status(200).end();
       } else {
-        return res.status(400).json({
+        return res.status(404).json({
           data: null,
           error: {
             path: "/mypage",

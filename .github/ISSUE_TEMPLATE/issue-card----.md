@@ -28,4 +28,4 @@ ex) Github 소셜 로그인 기능이 필요합니다.
 
 ### 라벨
 - 예상 소요 시간: `E: 1h`
-- 그룹: `client`, `server`
+- 그룹: `client`, `server`, `deploy`
