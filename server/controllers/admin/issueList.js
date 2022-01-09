@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     const offset = (page - 1) * limit;
 
     if (!page) {
-      return res.status(404).json({
+      return res.status(400).json({
         data: null,
         error: "/admin/issue-list",
         message: "Insufficient query",

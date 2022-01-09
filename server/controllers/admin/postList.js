@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
       ],
     ];
     if (!page) {
-      return res.status(404).json({
+      return res.status(400).json({
         data: null,
         error: "/users/post-list",
         message: "Insufficient query",
