@@ -76,7 +76,7 @@ export default function UpdatePw({ match }) {
               <div className='text-title' > 비밀번호 변경 </div>
               <div className='text-pw' >비밀번호</div>
               <input className='input-pw' type='password' onChange={handleInputChange} name='password' placeholder='비밀번호를 입력하세요' />
-              <div className={pwVerify ? 'hidden' : 'err'}>숫자와 영문자 조합하여 10~15자리를 사용해야 합니다</div>
+              <div className={pwVerify ? 'hidden' : 'err'}>숫자와 영문자 조합하여 8~15자리를 사용해야 합니다</div>
 
               <div className='text-dubble-pw' >비밀번호 확인</div>
               <input className='input-dubble-pw' type='password' onChange={handleInputChange} name='pwConfirm' placeholder='비밀번호를 한번 더  입력하세요' />
