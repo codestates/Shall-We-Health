@@ -15,6 +15,7 @@
   --font-color2: #535353;
   --font-color3: rgb(56, 56, 56);
   --shadow-color: rgb(187, 187, 187);
+  --logo-color: #676767;
 }
 
 [data-theme="dark"] {
@@ -34,6 +35,7 @@
   --font-color2: #eeeeee;
   --font-color3: rgb(233, 233, 233);
   --shadow-color: rgb(0, 0, 0);
+  --logo-color: white;
 }
 
 .App {
