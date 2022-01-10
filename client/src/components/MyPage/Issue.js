@@ -15,7 +15,7 @@ export default function Issue({setIssue, issueInfo}) {
     if(content==='') {
       setModal(true)
     } else {
-      axios.post(`${process.env.REACT_APP_SERVER_API}/mypage/issue`,{
+      axios.post(`${process.env.REACT_APP_SERVER_API}/mypages/issue`,{
         targetId: issueInfo.targetId,
         content,
         postId: issueInfo.postId

@@ -51,7 +51,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     const { email, password } = loginInfo
-    await axios.post(`${process.env.REACT_APP_SERVER_API}/user/login`, { email, password },
+    await axios.post(`${process.env.REACT_APP_SERVER_API}/users/login`, { email, password },
       {
         withCredentials: true
       })

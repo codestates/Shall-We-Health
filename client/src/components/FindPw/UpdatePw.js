@@ -31,7 +31,7 @@ export default function UpdatePw({ match }) {
     const { password } = inputPw
 
     if (pwVerify && pwConfirmVerify) {
-      await axios.patch(`${process.env.REACT_APP_SERVER_API}/user/password-verification`, { token, password })
+      await axios.patch(`${process.env.REACT_APP_SERVER_API}/users/password-verification`, { token, password })
         .then(() => {
           setCompleted(1)
           window.location.replace('/')

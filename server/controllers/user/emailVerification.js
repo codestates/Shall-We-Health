@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
       return res.status(401).json({
         data: null,
         error: {
-          path: "/user/email-verification",
+          path: "/users/email-verification",
           message: "token fail verfied",
         },
       });
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
         return res.status(404).json({
           data: null,
           error: {
-            path: "/user/email-verification",
+            path: "/users/email-verification",
             message: "token not found userInfo",
           },
         });
@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
           return res.status(404).json({
             data: null,
             error: {
-              path: "/user/email-verification",
+              path: "/users/email-verification",
               message: "page not found",
             },
           })

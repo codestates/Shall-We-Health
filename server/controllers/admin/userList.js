@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     if (!page) {
       return res.status(400).json({
         data: null,
-        error: "/admin/user-list",
+        error: "/admins/user-list",
         message: "Insufficient query",
       });
     }
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
       return res.status(404).json({
         data: null,
         error: {
-          path: "/admin/user-list",
+          path: "/admins/user-list",
           message: "page not found",
         },
       });
@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
         return res.status(404).json({
           data: null,
           error: {
-            path: "/admin/user-list",
+            path: "/admins/user-list",
             message: "page not found",
           },
         });

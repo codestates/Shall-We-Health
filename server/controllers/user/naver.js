@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({
       data: null,
       error: {
-        path: "user/naver",
+        path: "users/naver",
         message: "Insufficient body data",
       },
     });

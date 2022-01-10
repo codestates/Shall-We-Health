@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({
         data: null,
         error: {
-          path: "/user/auth",
+          path: "/users/auth",
           message: "no accessToken",
         },
       });
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         return res.status(401).json({
           data: null,
           error: {
-            path: "/user/auth",
+            path: "/users/auth",
             message: "invalid accessToken",
           },
         });
@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
         if (!userData) {
           return res.status(404).json({
             data: null,
-            error: "/user/auth",
+            error: "/users/auth",
             message: "user not found",
           });
         } else {

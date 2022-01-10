@@ -11,7 +11,7 @@ export default function AdminPage() {
   const [modal, setModal] = useState(false)
 
   const checkisAdmin = () => {
-    axios.get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+    axios.get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
       withCredentials: true,
     })
     .then((res) =>{

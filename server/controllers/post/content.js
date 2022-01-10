@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({
         data: null,
         error: {
-          path: "/post/:postId/content",
+          path: "/posts/:postId/content",
           message: "Insufficient queries",
         },
       });
@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
     return res.status(404).json({
       data: null,
       error: {
-        path: "/post/:postId/content",
+        path: "/posts/:postId/content",
         message: "post not found",
       },
     });

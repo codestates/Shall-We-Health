@@ -11,7 +11,7 @@ module.exports = {
       return res.status(403).json({
         data: null,
         error: {
-          path: "/admin",
+          path: "/admins",
           message: "forbidden access",
         },
       });
@@ -34,7 +34,7 @@ module.exports = {
       return res.status(404).json({
         data: null,
         error: {
-          path: "/admin",
+          path: "/admins",
           message: "post not found",
         },
       });
@@ -55,7 +55,7 @@ module.exports = {
       return res.status(404).json({
         data: null,
         error: {
-          path: "/admin",
+          path: "/admins",
           message: "user not found",
         },
       });
@@ -63,7 +63,7 @@ module.exports = {
       return res.status(400).json({
         data: null,
         error: {
-          path: "/admin",
+          path: "/admins",
           message: "Insufficient body data",
         },
       });

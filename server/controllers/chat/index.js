@@ -14,7 +14,7 @@ module.exports = {
         return res.status(400).json({
           data: null,
           error: {
-            path: "/chat",
+            path: "/chats",
             message: "Insufficient body data",
           },
         });
@@ -48,7 +48,7 @@ module.exports = {
         return res.status(400).json({
           data: null,
           error: {
-            path: "/chat",
+            path: "/chats",
             message: "Insufficient body data",
           },
         });

@@ -83,7 +83,7 @@ export default function SignUp() {
 
     if (name === 'nickname') {
       if (nicknameVaild === 1) {
-        await axios.get(`${process.env.REACT_APP_SERVER_API}/user/duplication`, {
+        await axios.get(`${process.env.REACT_APP_SERVER_API}/users/duplication`, {
           params: { nickname, email },
         })
           .then((res) => {
@@ -106,7 +106,7 @@ export default function SignUp() {
     if (name === 'email') {
       if (emailValid === 1) {
         await axios
-          .get(`${process.env.REACT_APP_SERVER_API}/user/duplication`, {
+          .get(`${process.env.REACT_APP_SERVER_API}/users/duplication`, {
             params: { nickname, email },
           })
           .then((res) => {
@@ -129,13 +129,13 @@ export default function SignUp() {
         setLoading(true);
         const { nickname, email, password } = inputInfo;
         await axios
-          .post(`${process.env.REACT_APP_SERVER_API}/user/signup`, {
+          .post(`${process.env.REACT_APP_SERVER_API}/users/signup`, {
             nickname,
             email,
             password,
           })
           .then(() => {
-            axios.post(`${process.env.REACT_APP_SERVER_API}/user/signup-verification`, { email })
+            axios.post(`${process.env.REACT_APP_SERVER_API}/users/signup-verification`, { email })
               .then(async (res) => {
                 await setLoading(false);
                 await setSignUp(true);

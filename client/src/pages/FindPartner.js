@@ -155,7 +155,7 @@ export default function FindPartner() {
   const handleSubmit = () => {
     const reserveTime = `${year} ${hour}:${minute}:01`
     if (reserveTime && userId && sbd && bodypartOptions.length > 0 && markerPlace.address_name) {
-      axios.post(`${process.env.REACT_APP_SERVER_API}/post`, {
+      axios.post(`${process.env.REACT_APP_SERVER_API}/posts`, {
         reserved_at: reserveTime,
         location: markerPlace,
         description: description
