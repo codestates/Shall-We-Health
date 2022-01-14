@@ -22,6 +22,14 @@ export default function FindPartnerModify({ match }) {
     const [sbd, setSbd] = useState([])
     const [text, setText] = useState('즐겁게 운동해요!')
     const [bodypartOptions, setBodyPartOptions] = useState([])
+    const nowToday = new Date();
+    const nowHour = (nowToday.getHours());
+    const nowMinute = (nowToday.getMinutes())
+    const currentTime = nowHour + ':' + nowMinute
+    const nowYear = nowToday.getFullYear();
+    const nowMonth = ('0' + (nowToday.getMonth() + 1)).slice(-2);
+    const nowDate = ('0' + nowToday.getDate()).slice(-2);
+    const currentDate = nowYear + '-' + nowMonth + '-' + nowDate;
     // const [isSelected, setIsSelected] = useState('')
     console.log(match)
 
