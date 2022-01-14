@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({
       data: null,
       error: {
-        path: "user/kakao",
+        path: "users/kakao",
         mesage: "Insufficient body data",
       },
     });

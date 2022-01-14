@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
     } else if ((!nickname && !newPassword) || !email) {
       return res.status(400).json({
         error: {
-          path: "/user/info",
+          path: "/users/info",
           message: "Insufficient body data",
         },
       });

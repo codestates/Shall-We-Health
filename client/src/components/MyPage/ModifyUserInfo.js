@@ -41,7 +41,7 @@ export default function ModifyUserInfo() {
       setModal(true)
       setModalMsg('사용 불가능한 닉네임입니다.');
     } else {
-      axios.get(`${process.env.REACT_APP_SERVER_API}/user/duplication`, {
+      axios.get(`${process.env.REACT_APP_SERVER_API}/users/duplication`, {
         params: { email: '', nickname: nicknameForm },
       })
       .then((res) => {
@@ -90,7 +90,7 @@ export default function ModifyUserInfo() {
       setModal(true)
       setModalMsg('입력한 비밀번호를 확인해주세요');
     } else if(checkNickname===1 && checkpwd===1) {
-      axios.patch(`${process.env.REACT_APP_SERVER_API}/user/info`, {
+      axios.patch(`${process.env.REACT_APP_SERVER_API}/users/info`, {
         email,
         nickname: nicknameForm,
         newPassword: pwd
@@ -99,7 +99,7 @@ export default function ModifyUserInfo() {
         setCompleteModal(true)
       })
     } else if (checkNickname===1 && checkpwd!==1) {
-      axios.patch(`${process.env.REACT_APP_SERVER_API}/user/info`, {
+      axios.patch(`${process.env.REACT_APP_SERVER_API}/users/info`, {
         email,
         nickname: nicknameForm
       })
@@ -107,7 +107,7 @@ export default function ModifyUserInfo() {
         setCompleteModal(true)
       })
     } else {
-      axios.patch(`${process.env.REACT_APP_SERVER_API}/user/info`, {
+      axios.patch(`${process.env.REACT_APP_SERVER_API}/users/info`, {
         email,
         newPassword: pwd
       })

@@ -21,7 +21,7 @@ function KakaoLoginClickHandler() {
           const nickname = res.kakao_account.profile.nickname
           const isOauth = 1
 
-          await axios.post(`${process.env.REACT_APP_SERVER_API}/user/kakao`,
+          await axios.post(`${process.env.REACT_APP_SERVER_API}/users/kakao`,
             { email, nickname, isOauth },
             { withCredentials: true })
             .then((res) => {
@@ -33,7 +33,7 @@ function KakaoLoginClickHandler() {
                 KakaoLoginClickHandler()
               } else {
                 /* 로그인 */
-                axios.post(`${process.env.REACT_APP_SERVER_API}/user/kakao`, { email })
+                axios.post(`${process.env.REACT_APP_SERVER_API}/users/kakao`, { email })
                   .then((res) => {
                     console.log(res, 'kakao/response/if/201/login')
                   })

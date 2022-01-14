@@ -15,7 +15,7 @@ export default function AdminIssue() {
   const getIssueData = useCallback(async () => {
     await setIsLoading(true);
     await axios
-      .get(`${process.env.REACT_APP_SERVER_API}/admin/issue-list`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/admins/issue-list`, {
         params: { page },
       })
       .then((res) => {
@@ -27,7 +27,7 @@ export default function AdminIssue() {
 
   const getIssueDataPage = useCallback(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/admin/issue-list`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/admins/issue-list`, {
         params: { page },
       })
       .then((res) => {

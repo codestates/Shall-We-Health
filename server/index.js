@@ -87,8 +87,8 @@ let server = http.listen(process.env.PORT, () => {
 module.exports = server;
 
 /*라우터 설정*/
-app.use("/post", postRouter);
-app.use("/mypage", mypageRouter);
-app.use("/user", userRouter);
-app.use("/chat", chatRouter);
-app.use("/admin", adminRouter);
+app.use("/posts", postRouter);
+app.use("/mypages", mypageRouter);
+app.use("/users", userRouter);
+app.use("/chats", chatRouter);
+app.use("/admins", adminRouter);

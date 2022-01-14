@@ -23,13 +23,13 @@ export default function MyLog() {
   const getLogData = async () => {
     await setIsLoading(true);
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
         withCredentials: true,
       })
       .then((res) => {
         axios
           .get(
-            `${process.env.REACT_APP_SERVER_API}/mypage/${res.data.data.decoded.id}`,
+            `${process.env.REACT_APP_SERVER_API}/mypages/${res.data.data.decoded.id}`,
             {
               withCredentials: true,
             }
@@ -67,7 +67,7 @@ export default function MyLog() {
     if (el.hostId === id) {
       axios
         .post(
-          `${process.env.REACT_APP_SERVER_API}/mypage`,
+          `${process.env.REACT_APP_SERVER_API}/mypages`,
           {
             postId: el.postId,
             giverId: id,
@@ -79,13 +79,13 @@ export default function MyLog() {
         )
         .then(() => {
           axios
-            .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+            .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
               withCredentials: true,
             })
             .then((res) => {
               axios
                 .get(
-                  `${process.env.REACT_APP_SERVER_API}/mypage/${res.data.data.decoded.id}`,
+                  `${process.env.REACT_APP_SERVER_API}/mypages/${res.data.data.decoded.id}`,
                   {
                     withCredentials: true,
                   }
@@ -98,7 +98,7 @@ export default function MyLog() {
     } else {
       axios
         .post(
-          `${process.env.REACT_APP_SERVER_API}/mypage`,
+          `${process.env.REACT_APP_SERVER_API}/mypages`,
           {
             postId: el.postId,
             giverId: id,
@@ -110,13 +110,13 @@ export default function MyLog() {
         )
         .then(() => {
           axios
-            .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+            .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
               withCredentials: true,
             })
             .then((res) => {
               axios
                 .get(
-                  `${process.env.REACT_APP_SERVER_API}/mypage/${res.data.data.decoded.id}`,
+                  `${process.env.REACT_APP_SERVER_API}/mypages/${res.data.data.decoded.id}`,
                   {
                     withCredentials: true,
                   }
@@ -132,7 +132,7 @@ export default function MyLog() {
   const deleteThumbsUp = (el) => {
     if (el.hostId === id) {
       axios
-        .delete(`${process.env.REACT_APP_SERVER_API}/mypage`, {
+        .delete(`${process.env.REACT_APP_SERVER_API}/mypages`, {
           data: {
             postId: el.postId,
             giverId: id,
@@ -142,13 +142,13 @@ export default function MyLog() {
         })
         .then(() => {
           axios
-            .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+            .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
               withCredentials: true,
             })
             .then((res) => {
               axios
                 .get(
-                  `${process.env.REACT_APP_SERVER_API}/mypage/${res.data.data.decoded.id}`,
+                  `${process.env.REACT_APP_SERVER_API}/mypages/${res.data.data.decoded.id}`,
                   {
                     withCredentials: true,
                   }
@@ -161,7 +161,7 @@ export default function MyLog() {
     } else {
       axios
         .delete(
-          `${process.env.REACT_APP_SERVER_API}/mypage`,
+          `${process.env.REACT_APP_SERVER_API}/mypages`,
           {
             data: {
               postId: el.postId,
@@ -176,13 +176,13 @@ export default function MyLog() {
         )
         .then(() => {
           axios
-            .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+            .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
               withCredentials: true,
             })
             .then((res) => {
               axios
                 .get(
-                  `${process.env.REACT_APP_SERVER_API}/mypage/${res.data.data.decoded.id}`,
+                  `${process.env.REACT_APP_SERVER_API}/mypages/${res.data.data.decoded.id}`,
                   {
                     withCredentials: true,
                   }

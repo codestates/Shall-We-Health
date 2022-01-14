@@ -50,7 +50,7 @@ module.exports = {
       return res.status(400).json({
         data: null,
         error: {
-          path: "/post",
+          path: "/posts",
           message: "Insufficient body data",
         },
       });
@@ -187,7 +187,7 @@ module.exports = {
         return res.status(400).json({
           data: null,
           error: {
-            path: "/post",
+            path: "/posts",
             message: "post not found",
           },
         });
@@ -209,7 +209,7 @@ module.exports = {
           return res.status(403).json({
             data: null,
             error: {
-              path: "/post",
+              path: "/posts",
               message: "forbidden access",
             },
           });

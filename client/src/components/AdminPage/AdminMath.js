@@ -27,7 +27,7 @@ export default function AdminMatch() {
   const getMatchData = async () => {
     await setIsLoading(true);
     await axios
-      .get(`${process.env.REACT_APP_SERVER_API}/admin/post-list`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/admins/post-list`, {
         params: { page, nickname },
       })
       .then((res) => {
@@ -41,7 +41,7 @@ export default function AdminMatch() {
     await setIsLoading(true);
     await setPage(1);
     await axios
-      .get(`${process.env.REACT_APP_SERVER_API}/admin/post-list`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/admins/post-list`, {
         params: { page, nickname },
       })
       .then((res) => {
@@ -53,7 +53,7 @@ export default function AdminMatch() {
 
   const getMatchDataPage = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/admin/post-list`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/admins/post-list`, {
         params: { page, nickname },
       })
       .then((res) => {
@@ -64,7 +64,7 @@ export default function AdminMatch() {
 
   const deleteMatch = () => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_API}/admin`, {
+      .delete(`${process.env.REACT_APP_SERVER_API}/admins`, {
         data: { postId: deleteId },
         withCredentials: true,
       })

@@ -31,7 +31,7 @@ function App() {
 
   const isAuthenticated = useCallback(async () => {
     await axios
-      .get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
         withCredentials: true,
       })
       .then((res) => {

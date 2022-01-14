@@ -18,7 +18,7 @@ module.exports = {
         return res.status(404).json({
           data: null,
           error: {
-            path: "/mypage",
+            path: "/mypages",
             message: "user not found",
           },
         });
@@ -35,7 +35,7 @@ module.exports = {
         return res.status(403).json({
           data: null,
           error: {
-            path: "/post",
+            path: "/posts",
             message: "forbidden access",
           },
         });
@@ -69,7 +69,7 @@ module.exports = {
         return res.status(400).json({
           data: null,
           error: {
-            path: "/mypage",
+            path: "/mypages",
             message: "post not found",
           },
         });
@@ -103,7 +103,7 @@ module.exports = {
         return res.status(404).json({
           data: null,
           error: {
-            path: "/mypage",
+            path: "/mypages",
             error: "post not found",
           },
         });
@@ -139,7 +139,7 @@ module.exports = {
         return res.status(404).json({
           data: null,
           error: {
-            path: "/mypage",
+            path: "/mypages",
             error: "thumbsup not found",
           },
         });

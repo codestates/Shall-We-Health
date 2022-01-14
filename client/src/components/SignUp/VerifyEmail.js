@@ -7,7 +7,7 @@ export default function VerifyEmail({ match }) {
   const { token } = match.params
 
   const signUpstateUpdate = async () => {
-    await axios.patch(`${process.env.REACT_APP_SERVER_API}/user/email-verification`, { token })
+    await axios.patch(`${process.env.REACT_APP_SERVER_API}/users/email-verification`, { token })
       .then((res) => {
         if (!res.data.data) {
           setCompleted(false)

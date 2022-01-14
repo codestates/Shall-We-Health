@@ -113,7 +113,7 @@ export default function Board() {
   const getData = async () => {
     await setPage(1)
     await setIsLoading(true)
-    await axios.get(`${process.env.REACT_APP_SERVER_API}/post`, {
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/posts`, {
       params: {
         date: getDateForm(selectDate),
         location: locationForm,
@@ -130,7 +130,7 @@ export default function Board() {
   }
 
   const getDataPage = () => {
-    axios.get(`${process.env.REACT_APP_SERVER_API}/post`, {
+    axios.get(`${process.env.REACT_APP_SERVER_API}/posts`, {
       params: {
         date: getDateForm(selectDate),
         location: locationForm,

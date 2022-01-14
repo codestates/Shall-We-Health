@@ -26,7 +26,7 @@ export default function AdminUser() {
   const getUserData = async () => {
     await setIsLoading(true);
     await axios
-      .get(`${process.env.REACT_APP_SERVER_API}/admin/user-list`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/admins/user-list`, {
         params: { page, keyword },
       })
       .then((res) => {
@@ -40,7 +40,7 @@ export default function AdminUser() {
     await setIsLoading(true);
     await setPage(1);
     await axios
-      .get(`${process.env.REACT_APP_SERVER_API}/admin/user-list`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/admins/user-list`, {
         params: { page, keyword },
       })
       .then((res) => {
@@ -52,7 +52,7 @@ export default function AdminUser() {
 
   const getUserDataPage = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_API}/admin/user-list`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/admins/user-list`, {
         params: { page, keyword },
       })
       .then((res) => {
@@ -63,7 +63,7 @@ export default function AdminUser() {
 
   const deleteUser = () => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_API}/admin`, {
+      .delete(`${process.env.REACT_APP_SERVER_API}/admins`, {
         data: { userId: deleteId },
         withCredentials: true,
       })

@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
       return res.status(404).json({
         data: null,
         error: {
-          path: "/user/password-verification",
+          path: "/users/password-verification",
           message: "token fail verfied",
         },
       });
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
         return res.status(404).json({
           data: null,
           error: {
-            path: "/user/password-verification",
+            path: "/users/password-verification",
             message: "token not found userInfo",
           },
         });

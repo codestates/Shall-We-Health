@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({
         data: null,
         error: {
-          path: "/user/signup",
+          path: "/users/signup",
           message: "Insufficient body data",
         },
       });
