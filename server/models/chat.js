@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Chat.belongsTo(models.User, {
+        foreignKey: "authorIds",
+        as: "authorIds",
         onDelete: "CASCADE",
       });
       Chat.belongsTo(models.Post, {

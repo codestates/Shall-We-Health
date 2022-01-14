@@ -10,6 +10,7 @@ module.exports = {
       },
       hostId: {
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
         references: {
           model: "Users",
           key: "id",
@@ -18,6 +19,7 @@ module.exports = {
       },
       guestId: {
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
         references: {
           model: "Users",
           key: "id",
