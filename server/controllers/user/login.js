@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
         return res.status(403).json({
           data: null,
           error: {
-            path: "/user/login",
+            path: "/users/login",
             message: "email verification required",
           },
         });

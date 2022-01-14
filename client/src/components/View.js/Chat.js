@@ -16,7 +16,7 @@ export default function Chat({ data, postId, socket }) {
 
   const handleSendMessage = async () => {
     await axios.post(
-      `${process.env.REACT_APP_SERVER_API}/chat`,
+      `${process.env.REACT_APP_SERVER_API}/chats`,
       { roomId: postId, content },
       { withCredentials: true }
     );
@@ -25,7 +25,7 @@ export default function Chat({ data, postId, socket }) {
 
   const getbeforeMessage = async () => {
     await axios
-      .get(`${process.env.REACT_APP_SERVER_API}/chat/${postId}`, {
+      .get(`${process.env.REACT_APP_SERVER_API}/chats/${postId}`, {
         params: { guestId, hostId },
       })
       .then((res) => {

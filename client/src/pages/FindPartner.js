@@ -209,7 +209,7 @@ export default function FindPartner() {
   const handleSubmit = () => {
     const reserveTime = `${year} ${hour}:${minute}:00`
     if (reserveTime.length === 19 && userId && sbd && bodypartOptions.length > 0 && markerPlace.address_name && markerPlace.category_name.slice(17, 21) === '헬스클럽') {
-      axios.post(`${process.env.REACT_APP_SERVER_API}/post`, {
+      axios.post(`${process.env.REACT_APP_SERVER_API}/posts`, {
         reserved_at: reserveTime,
         location: markerPlace,
         description: description

@@ -14,7 +14,7 @@ export default function FindPw() {
   }
 
   const emailCheck = async () => {
-    await axios.get(`${process.env.REACT_APP_SERVER_API}/user/duplication`, { params: { nickname: '', email } })
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/users/duplication`, { params: { nickname: '', email } })
       .then((res) => {
         if (res.data.data === false) {
           setVerify(false)
@@ -22,7 +22,7 @@ export default function FindPw() {
         else {
           setVerify(true)
           setLoading(true)
-          axios.post(`${process.env.REACT_APP_SERVER_API}/user/findpw-verification`, { email })
+          axios.post(`${process.env.REACT_APP_SERVER_API}/users/findpw-verification`, { email })
             .then(async (res) => {
               await setLoading(false)
               await setIsSend(true)

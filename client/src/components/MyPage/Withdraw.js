@@ -14,7 +14,7 @@ export default function Withdraw({setWithdrawModal}) {
   const [ modalMsg, setModalMsg ] = useState('')
 
   const submitWithdraw = () => {
-    axios.delete(`${process.env.REACT_APP_SERVER_API}/user/withdrawal`, {
+    axios.delete(`${process.env.REACT_APP_SERVER_API}/users/withdrawal`, {
       withCredentials: true,
     })
     .then(()=> {

@@ -12,7 +12,7 @@ export default function NaverLogin() {
   const getNaverToken = () => {
     if (!location.hash) return;
     const token = location.hash.split('=')[1].split('&')[0];
-    axios.post(`${process.env.REACT_APP_SERVER_API}/user/naver-login`, {
+    axios.post(`${process.env.REACT_APP_SERVER_API}/users/naver-login`, {
         token
     }, {
         withCredentials: true

@@ -27,9 +27,9 @@ export default function FindPartnerModify({ match }) {
 
     const getPostData = async () => {
 
-        await axios.get(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}`)
+        await axios.get(`${process.env.REACT_APP_SERVER_API}/posts/${postNumber}`)
             .then((res) => {
-                axios.get(`${process.env.REACT_APP_SERVER_API}/user/auth`, {
+                axios.get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
                     withCredentials: true,
                 })
                     .then((res2) => {
@@ -241,7 +241,7 @@ export default function FindPartnerModify({ match }) {
         console.log(markerPlace)
         console.log(description)
         if (reserveTime.length === 19 && userId && sbd && bodypartOptions.length > 0 && markerPlace.address_name && markerPlace.category_name.slice(17, 21) === '헬스클럽') {
-            axios.patch(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}/content`, {
+            axios.patch(`${process.env.REACT_APP_SERVER_API}/posts/${postNumber}/content`, {
                 reserved_at: reserveTime,
                 location: markerPlace,
                 description: description

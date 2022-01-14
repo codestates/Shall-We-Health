@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({
         data: null,
         error: {
-          path: "/post/:postId/match",
+          path: "/posts/:postId/match",
           message: "Insufficient body data",
         },
       });
@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
         return res.status(400).json({
           data: null,
           error: {
-            path: "/post/:postId/match",
+            path: "/posts/:postId/match",
             message: "Insufficient body data",
           },
         });
@@ -72,7 +72,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({
       data: null,
       error: {
-        path: "/post/:postId/match",
+        path: "/posts/:postId/match",
         message: "post not found",
       },
     });

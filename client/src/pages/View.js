@@ -33,7 +33,7 @@ export default function View({ match }) {
 
 
   const getDetailpost = async () => {
-    await axios.get(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}`)
+    await axios.get(`${process.env.REACT_APP_SERVER_API}/posts/${postNumber}`)
       .then((res) => {
         setSbdResult(res.data.data[0].description.sbd)
         setBodypartArr(res.data.data[0].description.bodyPart)
@@ -82,7 +82,7 @@ export default function View({ match }) {
         console.log(userId)
         console.log(res.data.data)
         setData(res.data.data[0])
-        // await axios.get(`${process.env.REACT_APP_SERVER_API}/post/${postNumber}`)
+        // await axios.get(`${process.env.REACT_APP_SERVER_API}/posts/${postNumber}`)
       }
       )
   }
@@ -139,7 +139,7 @@ export default function View({ match }) {
     }
     axios
       .patch(
-        `${process.env.REACT_APP_SERVER_API}/post/${postNumber}/match`,
+        `${process.env.REACT_APP_SERVER_API}/posts/${postNumber}/match`,
         {
           apply: true,
         },
@@ -161,7 +161,7 @@ export default function View({ match }) {
   const cancelClick = () => {
     axios
       .patch(
-        `${process.env.REACT_APP_SERVER_API}/post/${postNumber}/match`,
+        `${process.env.REACT_APP_SERVER_API}/posts/${postNumber}/match`,
         {
           cancel: true,
         },
@@ -182,7 +182,7 @@ export default function View({ match }) {
 
     if (postNumber && hostId) {
       const postId = Number(postNumber)
-      axios.delete(`${process.env.REACT_APP_SERVER_API}/post`,
+      axios.delete(`${process.env.REACT_APP_SERVER_API}/posts`,
         {
           data:
           {

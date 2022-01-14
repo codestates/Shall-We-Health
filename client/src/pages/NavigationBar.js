@@ -22,7 +22,7 @@ export default function NavigationBar() {
 
   const handleLogout = () => {
     axios
-      .post(`${process.env.REACT_APP_SERVER_API}/user/logout`, '', {
+      .post(`${process.env.REACT_APP_SERVER_API}/users/logout`, '', {
         withCredentials: true,
       })
       .then(window.location.replace('/'))

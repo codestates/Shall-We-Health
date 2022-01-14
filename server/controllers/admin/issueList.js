@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     if (!page) {
       return res.status(400).json({
         data: null,
-        error: "/admin/issue-list",
+        error: "/admins/issue-list",
         message: "Insufficient query",
       });
     } else {
