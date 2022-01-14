@@ -104,20 +104,63 @@ export default function FindPartnerModify({ match }) {
     }
 
     let timeOptions = []
-    for (let i = 0; i < 24; i++) {
-        let obj = {}
-        if (i < 10) { i = `0${i}` }
-        obj.value = `${i}`
-        obj.label = `${i}`
-        timeOptions.push(obj)
+    if (year === currentDate && nowMinute < 50) {
+        for (let i = nowHour; i < 24; i++) {
+            let obj = {}
+            if (i < 10) { i = `0${i}` }
+            obj.value = `${i}`
+            obj.label = `${i}`
+            timeOptions.push(obj)
+        }
     }
 
-    let minuteOptions = [{ value: '00', label: '00' }]
-    for (let i = 10; i < 60; i = i + 10) {
-        let obj = {}
-        obj.value = `${i}`
-        obj.label = `${i}`
-        minuteOptions.push(obj)
+    if (year !== currentDate) {
+        for (let i = 0; i < 24; i++) {
+            let obj = {}
+            if (i < 10) { i = `0${i}` }
+            obj.value = `${i}`
+            obj.label = `${i}`
+            timeOptions.push(obj)
+        }
+    }
+
+    if (year === currentDate && nowMinute > 50) {
+        for (let i = nowHour + 1; i < 24; i++) {
+            let obj = {}
+            if (i < 10) { i = `0${i}` }
+            obj.value = `${i}`
+            obj.label = `${i}`
+            timeOptions.push(obj)
+        }
+    }
+
+
+    let minuteOptions = []
+    let newHour = (nowToday.getHours());
+    if (newHour < 10) {
+        newHour = `0${newHour}`
+    }
+
+    if (year === currentDate) {
+        if (hour === newHour) {
+            let el = Math.ceil(nowMinute / 10) * 10
+            for (let i = el; i < 60; i = i + 10) {
+                let obj = {}
+                obj.value = i
+                obj.label = i
+                minuteOptions.push(obj)
+            }
+        }
+    }
+
+    if (year !== currentDate || newHour !== hour) {
+        minuteOptions = [{ value: '00', label: '00' }]
+        for (let i = 10; i < 60; i = i + 10) {
+            let obj = {}
+            obj.value = `${i}`
+            obj.label = `${i}`
+            minuteOptions.push(obj)
+        }
     }
     //
 
@@ -125,13 +168,14 @@ export default function FindPartnerModify({ match }) {
     //
 
     //React-select style
-    const customStyles = value => ({
-        control: (provided, state) => ({
-            ...provided,
-            alignItems: "baseline",
-            backgroundColor: value ? "gray" : "white"
-        })
-    });
+    const customStyles = {
+        placeholder: (defaultStyles) => {
+            return {
+                ...defaultStyles,
+                color: '#000000',
+            }
+        }
+    }
 
     let description = {
         "sbd": sbd,
@@ -196,7 +240,7 @@ export default function FindPartnerModify({ match }) {
         console.log(reserveTime)
         console.log(markerPlace)
         console.log(description)
-        if (reserveTime && userId && sbd && bodypartOptions.length > 0 && markerPlace.address_name) {
+        if (reserveTime.length === 19 && userId && sbd && bodypartOptions.length > 0 && markerPlace.address_name && markerPlace.category_name.slice(17, 21) === '헬스클럽') {
             axios.patch(`${process.env.REACT_APP_SERVER_API}/posts/${postNumber}/content`, {
                 reserved_at: reserveTime,
                 location: markerPlace,
@@ -215,10 +259,15 @@ export default function FindPartnerModify({ match }) {
             setModalMsg('로그인 후 수정 가능합니다.')
             setModal(true)
         }
-        else if (!reserveTime || !sbd || bodypartOptions.length === 0 || !markerPlace.address_name) {
+        else if (reserveTime.length !== 19 || !sbd || bodypartOptions.length === 0 || !markerPlace.address_name) {
             setModalMsg('선택하지 않은 정보가 있습니다.')
             setModal(true)
         }
+        else if (markerPlace.category_name.slice(17, 21) !== '헬스클럽') {
+            setModalMsg('헬스장을 선택해 주세요.')
+            setModal(true)
+        }
+
 
     }
 

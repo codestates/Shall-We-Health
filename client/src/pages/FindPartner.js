@@ -17,7 +17,23 @@ export default function FindPartner() {
   const [modal, setModal] = useState(false)
   const [modalMsg, setModalMsg] = useState('')
   const [pkId, setPkId] = useState('')
-  // const [isSelected, setIsSelected] = useState('')
+  const [timeCheck, setCheck] = useState(false)
+  const [year, setYear] = useState('')
+  const [hour, setHour] = useState('')
+  const [minute, setMinute] = useState('')
+  const [sbd, setSbd] = useState('')
+  const [text, setText] = useState('즐겁게 운동해요!')
+  const [bodypartOptions, setBodyPartOptions] = useState([])
+  const nowToday = new Date();
+  const nowHour = (nowToday.getHours());
+  const nowMinute = (nowToday.getMinutes())
+  const currentTime = nowHour + ':' + nowMinute
+  const nowYear = nowToday.getFullYear();
+  const nowMonth = ('0' + (nowToday.getMonth() + 1)).slice(-2);
+  const nowDate = ('0' + nowToday.getDate()).slice(-2);
+  const currentDate = nowYear + '-' + nowMonth + '-' + nowDate;
+
+
   function CreateModal({ setModal, modalMsg }) {
     return (
       <div className='modalmatch-container'>
@@ -57,44 +73,78 @@ export default function FindPartner() {
     dateOptions.push(obj)
   }
 
+
   let timeOptions = []
-  for (let i = 0; i < 24; i++) {
-    let obj = {}
-    if (i < 10) { i = `0${i}` }
-    obj.value = i
-    obj.label = i
-    timeOptions.push(obj)
+  if (year === currentDate && nowMinute < 50) {
+    for (let i = nowHour; i < 24; i++) {
+      let obj = {}
+      if (i < 10) { i = `0${i}` }
+      obj.value = `${i}`
+      obj.label = `${i}`
+      timeOptions.push(obj)
+    }
   }
 
-  let minuteOptions = [{ value: '00', label: '00' }]
-  for (let i = 10; i < 60; i = i + 10) {
-    let obj = {}
-    obj.value = `${i}`
-    obj.label = `${i}`
-    minuteOptions.push(obj)
+  if (year !== currentDate) {
+    for (let i = 0; i < 24; i++) {
+      let obj = {}
+      if (i < 10) { i = `0${i}` }
+      obj.value = `${i}`
+      obj.label = `${i}`
+      timeOptions.push(obj)
+    }
   }
-  //
+
+  if (year === currentDate && nowMinute > 50) {
+    for (let i = nowHour + 1; i < 24; i++) {
+      let obj = {}
+      if (i < 10) { i = `0${i}` }
+      obj.value = `${i}`
+      obj.label = `${i}`
+      timeOptions.push(obj)
+    }
+  }
 
 
-  //
+  let minuteOptions = []
+  let newHour = (nowToday.getHours());
+  if (newHour < 10) {
+    newHour = `0${newHour}`
+  }
+
+  if (year === currentDate) {
+    if (hour === newHour) {
+      let el = Math.ceil(nowMinute / 10) * 10
+      for (let i = el; i < 60; i = i + 10) {
+        let obj = {}
+        obj.value = i
+        obj.label = i
+        minuteOptions.push(obj)
+      }
+    }
+  }
+
+  if (year !== currentDate || newHour !== hour) {
+    minuteOptions = [{ value: '00', label: '00' }]
+    for (let i = 10; i < 60; i = i + 10) {
+      let obj = {}
+      obj.value = `${i}`
+      obj.label = `${i}`
+      minuteOptions.push(obj)
+    }
+  }
+
+
 
   //React-select style
-  const customStyles = value => ({
-    control: (provided, state) => ({
-      ...provided,
-      alignItems: "baseline",
-      backgroundColor: value ? "gray" : "white"
-    })
-  });
-
-
-  const [year, setYear] = useState('')
-  const [hour, setHour] = useState('00')
-  const [minute, setMinute] = useState('00')
-  const [sbd, setSbd] = useState('')
-  const [text, setText] = useState('즐겁게 운동해요!')
-  const [bodypartOptions, setBodyPartOptions] = useState([])
-
+  const customStyles = {
+    placeholder: (defaultStyles) => {
+      return {
+        ...defaultStyles,
+        color: '#000000',
+      }
+    }
+  }
 
   let description = {
     "sbd": sbd,
@@ -108,8 +158,10 @@ export default function FindPartner() {
   }, []);
 
 
+
   const yearChange = (value) => {
     setYear(value.value)
+
   }
   const hourChange = (value) => {
     setHour(value.value)
@@ -119,6 +171,7 @@ export default function FindPartner() {
   }
   const sbdChange = (e) => {
     setSbd(e.target.value)
+    console.log(markerPlace.category_name.slice(17, 21))
   }
 
   const textChange = (e) => {
@@ -138,23 +191,24 @@ export default function FindPartner() {
 
     setBodyPartOptions(bodypartArr)
     // 출력
-    // console.log(bodypartArr)
+
 
   }
 
 
   useEffect(() => {
 
-  }, [modalMsg])
+  }, [modalMsg], [timeCheck])
   useEffect(() => {
     description.sbd = sbd
 
   }, [sbd])
 
 
+
   const handleSubmit = () => {
-    const reserveTime = `${year} ${hour}:${minute}:01`
-    if (reserveTime && userId && sbd && bodypartOptions.length > 0 && markerPlace.address_name) {
+    const reserveTime = `${year} ${hour}:${minute}:00`
+    if (reserveTime.length === 19 && userId && sbd && bodypartOptions.length > 0 && markerPlace.address_name && markerPlace.category_name.slice(17, 21) === '헬스클럽') {
       axios.post(`${process.env.REACT_APP_SERVER_API}/posts`, {
         reserved_at: reserveTime,
         location: markerPlace,
@@ -167,20 +221,26 @@ export default function FindPartner() {
             setModal(true)
           }
           else {
-            console.log(res.status)
             setModalMsg('1일 1개의 모집글만 작성 할 수 있습니다.')
             setModal(true)
           }
         })
     }
+
     else if (!userId) {
       setModalMsg('로그인 후 이용가능합니다.')
       setModal(true)
     }
-    else if (!reserveTime || !sbd || bodypartOptions.length === 0 || !markerPlace.address_name) {
+    else if (reserveTime.length !== 19 || !sbd || bodypartOptions.length === 0 || !markerPlace.address_name) {
       setModalMsg('선택하지 않은 정보가 있습니다.')
       setModal(true)
     }
+
+    else if (markerPlace.category_name.slice(17, 21) !== '헬스클럽') {
+      setModalMsg('헬스장을 선택해 주세요.')
+      setModal(true)
+    }
+
 
   }
 
@@ -194,7 +254,6 @@ export default function FindPartner() {
           <div className='datepick-main'>
             <div className='date-title'>날짜</div>
             <Select className='date-selectbox' options={dateOptions} value={dateOptions.find(op => { return op.value === year })} onChange={yearChange} placeholder='0000-00-00' styles={customStyles} />
-
             <Select className='time-selectbox' options={timeOptions} value={timeOptions.find(op => { return op.value === hour })} onChange={hourChange} placeholder='00' styles={customStyles} />
             <div className=' time-title'>시</div>
             <Select className='minute-selectbox' options={minuteOptions} value={minuteOptions.find(op => { return op.value === minute })} onChange={minuteChange} placeholder='00' styles={customStyles} />
