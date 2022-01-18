@@ -30,9 +30,8 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
       });
       User.hasMany(models.Chat, {
-        foreignKey: {
-          name: "authorId",
-        },
+        foreignKey: "authorId",
+        as: "authorIds",
         onDelete: "CASCADE",
       });
       User.hasMany(models.Thumbsup, {

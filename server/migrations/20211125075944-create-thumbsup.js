@@ -10,6 +10,7 @@ module.exports = {
       },
       postId: {
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
         references: {
           model: "Posts",
           key: "id",
@@ -18,6 +19,7 @@ module.exports = {
       },
       giverId: {
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
         references: {
           model: "Users",
           key: "id",
@@ -26,6 +28,7 @@ module.exports = {
       },
       receiverId: {
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
         references: {
           model: "Users",
           key: "id",
