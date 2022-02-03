@@ -107,15 +107,16 @@ export default function FindPartner() {
 
 
   let minuteOptions = []
-  let newHour = (nowToday.getHours());
+  let newHour = String((nowToday.getHours()));
   if (newHour < 10) {
-    newHour = `0${newHour}`
+    newHour = '0' + newHour
   }
 
   if (year === currentDate) {
     if (hour === newHour) {
       let el = Math.ceil(nowMinute / 10) * 10
       for (let i = el; i < 60; i = i + 10) {
+
         let obj = {}
         obj.value = i
         obj.label = i
